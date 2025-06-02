@@ -2,7 +2,7 @@
 
 ![Unit tests](https://github.com/LTLA/sanisizer/actions/workflows/run-tests.yaml/badge.svg)
 ![Documentation](https://github.com/LTLA/sanisizer/actions/workflows/doxygenate.yaml/badge.svg)
-[![Codecov](https://codecov.io/gh/LTLA/sanisizer/branch/master/graph/badge.svg?token=GByG4StuqU)](https://codecov.io/gh/LTLA/nclist)
+[![Codecov](https://codecov.io/gh/LTLA/sanisizer/branch/master/graph/badge.svg?token=UIfGJvpZTi)](https://codecov.io/gh/LTLA/sanisizer)
 
 ## Overview
 
@@ -11,7 +11,7 @@ Any user-supplied value will be implicitly cast to the expected type of the argu
 In some cases, the implicit cast could silently overflow, resulting in a smaller array/container than expected. 
 This library provides a few methods for sanitizing size values so that any overflow results in an error.
 
-## Safe casts
+## Casting
 
 Given an integer, we use `sanizer::cast()` to convert it to the expected type of the size for our array/container.
 This will throw an error if the value of our integer would cause an overflow.
@@ -32,6 +32,8 @@ We could also use `sanisizer::create()`, which creates a new container instance 
 ```cpp
 auto my_container2 = sanisizer::create<std::vector<double> >(new_size);
 ```
+
+See the [reference documentation](https://ltla.github.io/sanisizer) for more details.
 
 ## Arithmetic
 
