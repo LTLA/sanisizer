@@ -90,12 +90,12 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__2github_2workspace_2README"></a></p>
-<p><img src="https://github.com/LTLA/sanisizer/actions/workflows/run-tests.yaml/badge.svg" alt="Unit tests" style="pointer-events: none;" class="inline"/> <img src="https://github.com/LTLA/sanisizer/actions/workflows/doxygenate.yaml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/> <a href="https://codecov.io/gh/LTLA/nclist"><img src="https://codecov.io/gh/LTLA/sanisizer/branch/master/graph/badge.svg?token=GByG4StuqU" alt="Codecov" style="pointer-events: none;" class="inline"/></a></p>
+<p><img src="https://github.com/LTLA/sanisizer/actions/workflows/run-tests.yaml/badge.svg" alt="Unit tests" style="pointer-events: none;" class="inline"/> <img src="https://github.com/LTLA/sanisizer/actions/workflows/doxygenate.yaml/badge.svg" alt="Documentation" style="pointer-events: none;" class="inline"/> <a href="https://codecov.io/gh/LTLA/sanisizer"><img src="https://codecov.io/gh/LTLA/sanisizer/branch/master/graph/badge.svg?token=UIfGJvpZTi" alt="Codecov" style="pointer-events: none;" class="inline"/></a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Overview</h1>
 <p>Both <code>new</code> and many constructors of STL containers accept an integer that specifies the size of the array/container. Any user-supplied value will be implicitly cast to the expected type of the argument - <code>std::size_t</code> for <code>new</code>, and some <code>size_type</code> for container constructors. In some cases, the implicit cast could silently overflow, resulting in a smaller array/container than expected. This library provides a few methods for sanitizing size values so that any overflow results in an error.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
-Safe casts</h1>
+Casting</h1>
 <p>Given an integer, we use <code>sanizer::cast()</code> to convert it to the expected type of the size for our array/container. This will throw an error if the value of our integer would cause an overflow.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">long</span> <span class="keywordtype">long</span> new_size = 12345;</div>
 <div class="line"> </div>
@@ -109,7 +109,8 @@ Safe casts</h1>
 </div><!-- fragment --><p>We could also use <code><a class="el" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create()</a></code>, which creates a new container instance with less of the type-deducation boilerplate:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> my_container2 = <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(new_size);</div>
 <div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> cast.hpp:71</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+</div><!-- fragment --><p>See the <a href="https://ltla.github.io/sanisizer">reference documentation</a> for more details.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Arithmetic</h1>
 <p>Sometimes, we need to perform some arithmetic to determine the size of our array/container. For example, if we are creating an array that is the concatenation of smaller arrays, we would need to add the sizes of the latter. This summation needs to be checked for overflow using the <code>sum()</code> functions.</p>
 <div class="fragment"><div class="line">std::vector&lt;long long&gt; individual_sizes{ 123, 456, 789 };</div>
