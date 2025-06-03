@@ -110,6 +110,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a45ebf64ffe61405e2ec5930008cb93e6" id="r_a45ebf64ffe61405e2ec5930008cb93e6"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </td></tr>
 <tr class="memitem:a45ebf64ffe61405e2ec5930008cb93e6"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product</a> (Left_ left, Right_ right)</td></tr>
 <tr class="separator:a45ebf64ffe61405e2ec5930008cb93e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e8f089e1c84d1189156e427de867d72" id="r_a2e8f089e1c84d1189156e427de867d72"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Input_ &gt; </td></tr>
+<tr class="memitem:a2e8f089e1c84d1189156e427de867d72"><td class="memTemplItemLeft" align="right" valign="top">constexpr Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a2e8f089e1c84d1189156e427de867d72">cap</a> (Input_ x)</td></tr>
+<tr class="separator:a2e8f089e1c84d1189156e427de867d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed4423ffa6beced95cee29c155e494d2" id="r_aed4423ffa6beced95cee29c155e494d2"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Input_ &gt; </td></tr>
 <tr class="memitem:aed4423ffa6beced95cee29c155e494d2"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aed4423ffa6beced95cee29c155e494d2">cast</a> (Input_ x)</td></tr>
 <tr class="separator:aed4423ffa6beced95cee29c155e494d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,6 +141,48 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sanitize sizes to avoid integer overflow. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a2e8f089e1c84d1189156e427de867d72" name="a2e8f089e1c84d1189156e427de867d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e8f089e1c84d1189156e427de867d72">&#9670;&#160;</a></span>cap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Size_ , typename Input_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Size_ sanisizer::cap </td>
+          <td>(</td>
+          <td class="paramtype">Input_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Cap an integer at the largest value of a size type. This is primarily intended for setting appropriate default values of function arguments and class variables.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Size_</td><td>Integer type to return, typically representing some concept of size for an array/container. </td></tr>
+    <tr><td class="paramname">Input_</td><td>Integer type of the input size.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Non-negative value to be capped.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>x</code> if it can be represented in <code>Size_</code>, otherwise the maximum value of <code>Size_</code>. </dd></dl>
+
+</div>
+</div>
 <a id="aed4423ffa6beced95cee29c155e494d2" name="aed4423ffa6beced95cee29c155e494d2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aed4423ffa6beced95cee29c155e494d2">&#9670;&#160;</a></span>cast()</h2>
 

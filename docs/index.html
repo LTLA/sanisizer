@@ -111,6 +111,20 @@ Casting</h1>
 <div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> cast.hpp:71</div></div>
 </div><!-- fragment --><p>See the <a href="https://ltla.github.io/sanisizer">reference documentation</a> for more details.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
+Capping</h1>
+<p>A related problem is to cap a value at the maximum of its type, typically when defining defaults for function arguments or class members. This avoids compile-time overflow (and the associated compiler warnings) and ensures that a sane value is used. For example, for data member defaults:</p>
+<div class="fragment"><div class="line"><span class="keyword">struct </span>Options {</div>
+<div class="line">    <span class="comment">// size_t is only guaranteed to hold up to 65535, so this will be the</span></div>
+<div class="line">    <span class="comment">// cap if it can&#39;t faithfully hold our intended value of 100000.</span></div>
+<div class="line">    std::size_t some_buffer_size = <a class="code hl_function" href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">sanisizer::cap&lt;std::size_t&gt;</a>(100000);</div>
+<div class="line">};</div>
+<div class="ttc" id="anamespacesanisizer_html_a2e8f089e1c84d1189156e427de867d72"><div class="ttname"><a href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">sanisizer::cap</a></div><div class="ttdeci">constexpr Size_ cap(Input_ x)</div><div class="ttdef"><b>Definition</b> cap.hpp:27</div></div>
+</div><!-- fragment --><p>We can also use this inside function arguments:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> do_something(<span class="keywordtype">long</span> num_chunks = <a class="code hl_function" href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">sanisizer::cap&lt;long&gt;</a>(10000000000)) {</div>
+<div class="line">    <span class="comment">// Ditto for other integer types, which are only guaranteed to hold</span></div>
+<div class="line">    <span class="comment">// up to a certain size - for long, this is at least 32 bits.</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
 Arithmetic</h1>
 <p>Sometimes, we need to perform some arithmetic to determine the size of our array/container. For example, if we are creating an array that is the concatenation of smaller arrays, we would need to add the sizes of the latter. This summation needs to be checked for overflow using the <code>sum()</code> functions.</p>
 <div class="fragment"><div class="line">std::vector&lt;long long&gt; individual_sizes{ 123, 456, 789 };</div>
@@ -126,7 +140,7 @@ Arithmetic</h1>
 <div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#a45ebf64ffe61405e2ec5930008cb93e6">sanisizer::product&lt;std::size_t&gt;</a>(combined_size, is);</div>
 <div class="line">}</div>
 <div class="ttc" id="anamespacesanisizer_html_a45ebf64ffe61405e2ec5930008cb93e6"><div class="ttname"><a href="namespacesanisizer.html#a45ebf64ffe61405e2ec5930008cb93e6">sanisizer::product</a></div><div class="ttdeci">Size_ product(Left_ left, Right_ right)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:102</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 N-dimensional offsets</h1>
 <p>Consider an N-dimensional array of dimensions <code>(d1, d2, ..., dN)</code> that is flattened and stored contiguously in memory. Let the first dimension be the fastest changing, then the second, and so on. If we want to access element <code>(x1, x2, ..., xN)</code>, we would compute the offset:</p>
 <div class="fragment"><div class="line"><span class="comment">// For N = 3:</span></div>
@@ -142,9 +156,9 @@ N-dimensional offsets</h1>
 <div class="line">    <span class="keyword">auto</span> elmt = matrix[<a class="code hl_function" href="namespacesanisizer.html#ac9d066c34f8184cfaf21686d0427df68">sanisizer::nd_offset&lt;std::size_t&gt;</a>(c, NC, r)];</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>(One might think that it would be better to compute an initial offset outside of the loop and just add <code>NC</code> in each loop iteration to avoid the multiplication. However, modern compilers - well, Clang and GCC, at least - will optimize out the multiplication so there is no performance penalty in practice. The above approach is easier to reason about and is more amenable to vectorization as there are no dependencies in the loop body. Importantly, it avoids overflow from adding <code>NC</code> in the final iteration, which could be undefined behavior if the size type is signed.)</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Building projects</h1>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md7"></a>
 CMake with <code>FetchContent</code></h2>
 <p>If you're using CMake, you just need to add something like this to your <code>CMakeLists.txt</code>:</p>
 <div class="fragment"><div class="line">include(FetchContent)</div>
@@ -162,7 +176,7 @@ CMake with <code>FetchContent</code></h2>
 <div class="line"> </div>
 <div class="line"># For libaries</div>
 <div class="line">target_link_libraries(mylib INTERFACE sanisizer)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
 CMake with <code>find_package()</code></h2>
 <p>You can install the library by cloning a suitable version of this repository and running the following commands:</p>
 <div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
@@ -171,7 +185,7 @@ CMake with <code>find_package()</code></h2>
 </div><!-- fragment --><p>Then you can use <code>find_package()</code> as usual:</p>
 <div class="fragment"><div class="line">find_package(ltla_sanisizer CONFIG REQUIRED)</div>
 <div class="line">target_link_libraries(mylib INTERFACE ltla::sanisizer)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
 Manual</h2>
 <p>If you're not using CMake, the simple approach is to just copy the files in the <code>include/</code> subdirectory - either directly or with Git submodules - and include their path during compilation with, e.g., GCC's <code>-I</code>. </p>
 </div></div><!-- PageDoc -->

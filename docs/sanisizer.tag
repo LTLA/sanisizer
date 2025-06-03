@@ -9,6 +9,13 @@
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
+    <name>cap.hpp</name>
+    <path>sanisizer/</path>
+    <filename>cap_8hpp.html</filename>
+    <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
     <name>cast.hpp</name>
     <path>sanisizer/</path>
     <filename>cast_8hpp.html</filename>
@@ -36,6 +43,7 @@
     <includes id="arithmetic_8hpp" name="arithmetic.hpp" local="yes" import="no" module="no" objc="no">arithmetic.hpp</includes>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
     <includes id="nd__offset_8hpp" name="nd_offset.hpp" local="yes" import="no" module="no" objc="no">nd_offset.hpp</includes>
+    <includes id="cap_8hpp" name="cap.hpp" local="yes" import="no" module="no" objc="no">cap.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="class">
@@ -59,6 +67,13 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a45ebf64ffe61405e2ec5930008cb93e6</anchor>
       <arglist>(Left_ left, Right_ right)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Size_</type>
+      <name>cap</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a2e8f089e1c84d1189156e427de867d72</anchor>
+      <arglist>(Input_ x)</arglist>
     </member>
     <member kind="function">
       <type>Size_</type>
