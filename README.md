@@ -35,6 +35,29 @@ auto my_container2 = sanisizer::create<std::vector<double> >(new_size);
 
 See the [reference documentation](https://ltla.github.io/sanisizer) for more details.
 
+## Capping
+
+A related problem is to cap a value at the maximum of its type, typically when defining defaults for function arguments or class members.
+This avoids compile-time overflow (and the associated compiler warnings) and ensures that a sane value is used.
+For example, for data member defaults:
+
+```cpp
+struct Options {
+    // size_t is only guaranteed to hold up to 65535, so this will be the
+    // cap if it can't faithfully hold our intended value of 100000.
+    std::size_t some_buffer_size = sanisizer::cap<std::size_t>(100000);
+};
+```
+
+We can also use this inside function arguments:
+
+```cpp
+void do_something(long num_chunks = sanisizer::cap<long>(10000000000)) {
+    // Ditto for other integer types, which are only guaranteed to hold
+    // up to a certain size - for long, this is at least 32 bits.
+}
+```
+
 ## Arithmetic
 
 Sometimes, we need to perform some arithmetic to determine the size of our array/container.

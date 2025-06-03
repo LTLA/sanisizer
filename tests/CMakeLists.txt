@@ -21,6 +21,7 @@ add_executable(libtest
     src/cast.cpp
     src/arithmetic.cpp
     src/nd_offset.cpp
+    src/cap.cpp
 )
 
 target_link_libraries(libtest 

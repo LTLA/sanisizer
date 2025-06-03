@@ -5,6 +5,7 @@
 #include "arithmetic.hpp"
 #include "comparisons.hpp"
 #include "nd_offset.hpp"
+#include "cap.hpp"
 
 /**
  * @file sanisizer.hpp
