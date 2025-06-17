@@ -53,6 +53,9 @@ Size_ nd_offset_internal(Size_ extent, Size_ pos, MoreArgs_... more_args) {
  */
 template<typename Size_, typename First_, typename Second_, typename... Remaining_>
 Size_ nd_offset(First_ x1, First_ extent1, Second_ x2, Remaining_... remaining) {
+    // Note that we don't use Size_ in the function signature, even though everything is cast to Size_.
+    // This avoids inadvertent deduction of Size_ from the input types.
+    // The user is always forced to explicitly specify Size_ to avoid any risk of accidental overflow.
     return static_cast<Size_>(x1) + nd_offset_internal<Size_>(extent1, x2, remaining...);
 }
 
