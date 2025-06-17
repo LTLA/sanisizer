@@ -62,6 +62,24 @@ Size_ sum(Left_ left, Right_ right) {
 }
 
 /**
+ * Unsafe version of `sum()` that casts its arguments to `Size_` but does not check for overflow.
+ * This is more efficent if it is known that the sum will not overflow, e.g., from previous calls to `sum()` with larger values.
+ *
+ * @tparam Size_ Integer type representing some concept of size for an array/container.
+ * @tparam Left_ Integer type of the left hand side value.
+ * @tparam Right_ Integer type of the right hand side value.
+ * 
+ * @param left Non-negative value to add.
+ * @param right Non-negative value to add.
+ *
+ * @return Sum of `left` and `right` as a `Size_`.
+ */
+template<typename Size_, typename Left_, typename Right_>
+Size_ sum_unsafe(Left_ left, Right_ right) {
+    return static_cast<Size_>(left) + static_cast<Size_>(right);
+}
+
+/**
  * @cond
  */
 template<typename Size_, typename Left_, typename Right_>
@@ -86,7 +104,7 @@ constexpr bool needs_product_check() {
  * 
  * For consistency, this function will also check that each of `left` and `right` can be cast to `Size_`.
  * This ensures that per-dimension indices/extents can be safely represented as `Size_` in later steps (e.g., `nd_offset()`). 
- * Note that separate checks are necessary as the product may fit in `Size_` but not each of `left` and `right` if either is equal to zero.
+ * These checls are necessary as the product may fit in `Size_` but not each of `left` and `right` if either is equal to zero.
  *
  * @tparam Size_ Integer type representing some concept of size for an array/container.
  * @tparam Left_ Integer type of the left hand side value.
@@ -113,7 +131,24 @@ Size_ product(Left_ left, Right_ right) {
     return lout * rout;
 }
 
+/**
+ * Unsafe version of `product()` that casts its arguments to `Size_` but does not check for overflow.
+ * This is more efficent if it is known that the product will not overflow, e.g., from previous calls to `product()` with larger values.
+ *
+ * @tparam Size_ Integer type representing some concept of size for an array/container.
+ * @tparam Left_ Integer type of the left hand side value.
+ * @tparam Right_ Integer type of the right hand side value.
+ * 
+ * @param left Non-negative value to multiply.
+ * @param right Non-negative value to multiply.
+ *
+ * @return Product of `left` and `right` as a `Size_`.
+ */
+template<typename Size_, typename Left_, typename Right_>
+Size_ product_unsafe(Left_ left, Right_ right) {
+    return static_cast<Size_>(left) * static_cast<Size_>(right);
+}
+
 }
 
 #endif
-

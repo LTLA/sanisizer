@@ -39,6 +39,12 @@ TEST(Sum, Basic) {
     EXPECT_TRUE(failed);
 }
 
+TEST(Sum, Unsafe) {
+    EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5, 20), 25);
+    EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5u, 20u), 25);
+    EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5u, 20u), 25);
+}
+
 TEST(Product, Basic) {
     {
         bool check = sanisizer::needs_product_check<std::int64_t, std::int64_t, std::int64_t>();
@@ -85,4 +91,10 @@ TEST(Product, Basic) {
         failed = true;
     }
     EXPECT_TRUE(failed);
+}
+
+TEST(Product, Unsafe) {
+    EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5, 20), 100);
+    EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5u, 20u), 100);
+    EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5u, 20u), 100);
 }
