@@ -55,6 +55,7 @@ Size_ cast(Input_ x) {
 
 /**
  * Check that `x` can be cast to the type of the size of a C-style array or STL container. 
+ * This is useful for chaining together checks without actually doing the cast itself.
  * 
  * @tparam Size_ Integer type to cast to, typically representing some concept of size for an array/container.
  * @tparam Input_ Integer type of the input size.
@@ -62,7 +63,7 @@ Size_ cast(Input_ x) {
  * @param x Non-negative value to be casted, typically representing the size of an array/container.
  *
  * @return `x` as its input type.
- * This allows developers to chain together multiple checks without actually doing any of the casts.
+ * If overflow would occur, an `OverflowError` is raised.
  */
 template<typename Size_, typename Input_>
 Input_ can_cast(Input_ x) {
