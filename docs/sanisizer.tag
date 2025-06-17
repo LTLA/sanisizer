@@ -97,6 +97,13 @@
       <arglist>(Input_ x)</arglist>
     </member>
     <member kind="function">
+      <type>Input_</type>
+      <name>can_cast</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ae296713052655ffb92c4add715f63596</anchor>
+      <arglist>(Input_ x)</arglist>
+    </member>
+    <member kind="function">
       <type>Container_</type>
       <name>create</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
