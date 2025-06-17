@@ -63,9 +63,23 @@
     </member>
     <member kind="function">
       <type>Size_</type>
+      <name>sum_unsafe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a5598fd49890204b4940cb607e8c3d894</anchor>
+      <arglist>(Left_ left, Right_ right)</arglist>
+    </member>
+    <member kind="function">
+      <type>Size_</type>
       <name>product</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a45ebf64ffe61405e2ec5930008cb93e6</anchor>
+      <arglist>(Left_ left, Right_ right)</arglist>
+    </member>
+    <member kind="function">
+      <type>Size_</type>
+      <name>product_unsafe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ad4686b4f2e095fafaef21ad2d7627a8c</anchor>
       <arglist>(Left_ left, Right_ right)</arglist>
     </member>
     <member kind="function">

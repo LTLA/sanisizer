@@ -4,5 +4,6 @@ var searchData=
   ['sanisizer_2ehpp_1',['sanisizer.hpp',['../sanisizer_8hpp.html',1,'']]],
   ['sanitize_20sizes_20to_20avoid_20integer_20overflow_2',['Sanitize sizes to avoid integer overflow',['../index.html',1,'']]],
   ['sizes_20to_20avoid_20integer_20overflow_3',['Sanitize sizes to avoid integer overflow',['../index.html',1,'']]],
-  ['sum_4',['sum',['../namespacesanisizer.html#a89bb3c2d0ba52e16b6edcea1b45a754e',1,'sanisizer']]]
+  ['sum_4',['sum',['../namespacesanisizer.html#a89bb3c2d0ba52e16b6edcea1b45a754e',1,'sanisizer']]],
+  ['sum_5funsafe_5',['sum_unsafe',['../namespacesanisizer.html#a5598fd49890204b4940cb607e8c3d894',1,'sanisizer']]]
 ];

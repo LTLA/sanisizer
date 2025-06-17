@@ -107,9 +107,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a89bb3c2d0ba52e16b6edcea1b45a754e" id="r_a89bb3c2d0ba52e16b6edcea1b45a754e"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </td></tr>
 <tr class="memitem:a89bb3c2d0ba52e16b6edcea1b45a754e"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a89bb3c2d0ba52e16b6edcea1b45a754e">sum</a> (Left_ left, Right_ right)</td></tr>
 <tr class="separator:a89bb3c2d0ba52e16b6edcea1b45a754e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5598fd49890204b4940cb607e8c3d894" id="r_a5598fd49890204b4940cb607e8c3d894"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </td></tr>
+<tr class="memitem:a5598fd49890204b4940cb607e8c3d894"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a5598fd49890204b4940cb607e8c3d894">sum_unsafe</a> (Left_ left, Right_ right)</td></tr>
+<tr class="separator:a5598fd49890204b4940cb607e8c3d894"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45ebf64ffe61405e2ec5930008cb93e6" id="r_a45ebf64ffe61405e2ec5930008cb93e6"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </td></tr>
 <tr class="memitem:a45ebf64ffe61405e2ec5930008cb93e6"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product</a> (Left_ left, Right_ right)</td></tr>
 <tr class="separator:a45ebf64ffe61405e2ec5930008cb93e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4686b4f2e095fafaef21ad2d7627a8c" id="r_ad4686b4f2e095fafaef21ad2d7627a8c"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </td></tr>
+<tr class="memitem:ad4686b4f2e095fafaef21ad2d7627a8c"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad4686b4f2e095fafaef21ad2d7627a8c">product_unsafe</a> (Left_ left, Right_ right)</td></tr>
+<tr class="separator:ad4686b4f2e095fafaef21ad2d7627a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e8f089e1c84d1189156e427de867d72" id="r_a2e8f089e1c84d1189156e427de867d72"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Input_ &gt; </td></tr>
 <tr class="memitem:a2e8f089e1c84d1189156e427de867d72"><td class="memTemplItemLeft" align="right" valign="top">constexpr Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a2e8f089e1c84d1189156e427de867d72">cap</a> (Input_ x)</td></tr>
 <tr class="separator:a2e8f089e1c84d1189156e427de867d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -561,7 +567,7 @@ template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Multiply two values, checking for overflow in the output type. This is typically used to compute the size of a flattened N-dimensional array as the product of its dimension extents.</p>
-<p>For consistency, this function will also check that each of <code>left</code> and <code>right</code> can be cast to <code>Size_</code>. This ensures that per-dimension indices/extents can be safely represented as <code>Size_</code> in later steps (e.g., <code><a class="el" href="#ac9d066c34f8184cfaf21686d0427df68">nd_offset()</a></code>). Note that separate checks are necessary as the product may fit in <code>Size_</code> but not each of <code>left</code> and <code>right</code> if either is equal to zero.</p>
+<p>For consistency, this function will also check that each of <code>left</code> and <code>right</code> can be cast to <code>Size_</code>. This ensures that per-dimension indices/extents can be safely represented as <code>Size_</code> in later steps (e.g., <code><a class="el" href="#ac9d066c34f8184cfaf21686d0427df68">nd_offset()</a></code>). These checls are necessary as the product may fit in <code>Size_</code> but not each of <code>left</code> and <code>right</code> if either is equal to zero.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Size_</td><td>Integer type representing some concept of size for an array/container. </td></tr>
@@ -578,6 +584,46 @@ template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Product of <code>left</code> and <code>right</code> as a <code>Size_</code>. If overflow would occur, an <code><a class="el" href="classsanisizer_1_1OverflowError.html" title="Error from an integer overflow.">OverflowError</a></code> is raised. </dd></dl>
+
+</div>
+</div>
+<a id="ad4686b4f2e095fafaef21ad2d7627a8c" name="ad4686b4f2e095fafaef21ad2d7627a8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4686b4f2e095fafaef21ad2d7627a8c">&#9670;&#160;</a></span>product_unsafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Size_ sanisizer::product_unsafe </td>
+          <td>(</td>
+          <td class="paramtype">Left_</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Right_</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unsafe version of <code><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product()</a></code> that casts its arguments to <code>Size_</code> but does not check for overflow. This is more efficent if it is known that the product will not overflow, e.g., from previous calls to <code><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product()</a></code> with larger values.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Size_</td><td>Integer type representing some concept of size for an array/container. </td></tr>
+    <tr><td class="paramname">Left_</td><td>Integer type of the left hand side value. </td></tr>
+    <tr><td class="paramname">Right_</td><td>Integer type of the right hand side value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>Non-negative value to multiply. </td></tr>
+    <tr><td class="paramname">right</td><td>Non-negative value to multiply.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Product of <code>left</code> and <code>right</code> as a <code>Size_</code>. </dd></dl>
 
 </div>
 </div>
@@ -618,6 +664,46 @@ template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Sum of <code>left</code> and <code>right</code> as a <code>Size_</code>. If overflow would occur, an <code><a class="el" href="classsanisizer_1_1OverflowError.html" title="Error from an integer overflow.">OverflowError</a></code> is raised. </dd></dl>
+
+</div>
+</div>
+<a id="a5598fd49890204b4940cb607e8c3d894" name="a5598fd49890204b4940cb607e8c3d894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5598fd49890204b4940cb607e8c3d894">&#9670;&#160;</a></span>sum_unsafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Size_ sanisizer::sum_unsafe </td>
+          <td>(</td>
+          <td class="paramtype">Left_</td>          <td class="paramname"><span class="paramname"><em>left</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Right_</td>          <td class="paramname"><span class="paramname"><em>right</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unsafe version of <code><a class="el" href="#a89bb3c2d0ba52e16b6edcea1b45a754e">sum()</a></code> that casts its arguments to <code>Size_</code> but does not check for overflow. This is more efficent if it is known that the sum will not overflow, e.g., from previous calls to <code><a class="el" href="#a89bb3c2d0ba52e16b6edcea1b45a754e">sum()</a></code> with larger values.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Size_</td><td>Integer type representing some concept of size for an array/container. </td></tr>
+    <tr><td class="paramname">Left_</td><td>Integer type of the left hand side value. </td></tr>
+    <tr><td class="paramname">Right_</td><td>Integer type of the right hand side value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>Non-negative value to add. </td></tr>
+    <tr><td class="paramname">right</td><td>Non-negative value to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Sum of <code>left</code> and <code>right</code> as a <code>Size_</code>. </dd></dl>
 
 </div>
 </div>
