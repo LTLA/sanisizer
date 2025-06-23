@@ -124,34 +124,34 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
 </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Input_&gt;</div>
-<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">   68</a></span>Input_ <a class="code hl_function" href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">can_cast</a>(Input_ x) {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">constexpr</span> Size_ maxed = std::numeric_limits&lt;Size_&gt;::max();</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(<a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(std::numeric_limits&lt;Input_&gt;::max(), maxed)) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(x, maxed)) {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <span class="keywordflow">throw</span> <a class="code hl_class" href="classsanisizer_1_1OverflowError.html">OverflowError</a>(<span class="stringliteral">&quot;overflow detected in sanisize::cast&quot;</span>);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        }</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">return</span> x;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Input_&gt;</div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">   69</a></span>Input_ <a class="code hl_function" href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">can_cast</a>(Input_ x) {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">constexpr</span> Size_ maxed = std::numeric_limits&lt;Size_&gt;::max();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(<a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(std::numeric_limits&lt;Input_&gt;::max(), maxed)) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(x, maxed)) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <span class="keywordflow">throw</span> <a class="code hl_class" href="classsanisizer_1_1OverflowError.html">OverflowError</a>(<span class="stringliteral">&quot;overflow detected in sanisize::cast&quot;</span>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">return</span> x;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
 </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>Container_, <span class="keyword">typename</span> Input_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="foldopen" id="foldopen00093" data-start="{" data-end="}">
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">   93</a></span>Container_ <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">create</a>(Input_ x, Args_&amp;&amp;... args) {</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">return</span> Container_(<a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast</a>&lt;<span class="keyword">decltype</span>(std::declval&lt;Container_&gt;().size())&gt;(x), std::forward&lt;Args_&gt;(args)...);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>Container_, <span class="keyword">typename</span> Input_, <span class="keyword">typename</span> ... Args_&gt;</div>
+<div class="foldopen" id="foldopen00094" data-start="{" data-end="}">
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">   94</a></span>Container_ <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">create</a>(Input_ x, Args_&amp;&amp;... args) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">return</span> Container_(<a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast</a>&lt;<span class="keyword">decltype</span>(std::declval&lt;Container_&gt;().size())&gt;(x), std::forward&lt;Args_&gt;(args)...);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
 </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclasssanisizer_1_1OverflowError_html"><div class="ttname"><a href="classsanisizer_1_1OverflowError.html">sanisizer::OverflowError</a></div><div class="ttdoc">Error from an integer overflow.</div><div class="ttdef"><b>Definition</b> cast.hpp:21</div></div>
 <div class="ttc" id="acomparisons_8hpp_html"><div class="ttname"><a href="comparisons_8hpp.html">comparisons.hpp</a></div><div class="ttdoc">Signedness-safe integer comparisons.</div></div>
 <div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:14</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> cast.hpp:93</div></div>
-<div class="ttc" id="anamespacesanisizer_html_ae296713052655ffb92c4add715f63596"><div class="ttname"><a href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">sanisizer::can_cast</a></div><div class="ttdeci">Input_ can_cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:68</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> cast.hpp:94</div></div>
+<div class="ttc" id="anamespacesanisizer_html_ae296713052655ffb92c4add715f63596"><div class="ttname"><a href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">sanisizer::can_cast</a></div><div class="ttdeci">Input_ can_cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:69</div></div>
 <div class="ttc" id="anamespacesanisizer_html_ae72cbdc03b1a76623454dfb4f3a06e31"><div class="ttname"><a href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">sanisizer::is_greater_than</a></div><div class="ttdeci">constexpr bool is_greater_than(Left_ l, Right_ r)</div><div class="ttdef"><b>Definition</b> comparisons.hpp:65</div></div>
 <div class="ttc" id="anamespacesanisizer_html_aed4423ffa6beced95cee29c155e494d2"><div class="ttname"><a href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a></div><div class="ttdeci">Size_ cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
