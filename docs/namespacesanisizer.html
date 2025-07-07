@@ -143,9 +143,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af487e747e2124fc1a2cea73d1dad7974" id="r_af487e747e2124fc1a2cea73d1dad7974"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
 <tr class="memitem:af487e747e2124fc1a2cea73d1dad7974"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af487e747e2124fc1a2cea73d1dad7974">is_less_than_or_equal</a> (Left_ l, Right_ r)</td></tr>
 <tr class="separator:af487e747e2124fc1a2cea73d1dad7974"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9d066c34f8184cfaf21686d0427df68" id="r_ac9d066c34f8184cfaf21686d0427df68"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename First_ , typename Second_ , typename... Remaining_&gt; </td></tr>
-<tr class="memitem:ac9d066c34f8184cfaf21686d0427df68"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac9d066c34f8184cfaf21686d0427df68">nd_offset</a> (First_ x1, First_ extent1, Second_ x2, Remaining_... remaining)</td></tr>
-<tr class="separator:ac9d066c34f8184cfaf21686d0427df68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762" id="r_a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename FirstIndex_ , typename FirstExtent_ , typename SecondIndex_ , typename... Remaining_&gt; </td></tr>
+<tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1b7b649bb2ee029e69a40a62c76f4762">nd_offset</a> (FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</td></tr>
+<tr class="separator:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sanitize sizes to avoid integer overflow. </p>
@@ -530,28 +530,28 @@ template&lt;typename Left_ , typename Right_ &gt; </div>
 
 </div>
 </div>
-<a id="ac9d066c34f8184cfaf21686d0427df68" name="ac9d066c34f8184cfaf21686d0427df68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9d066c34f8184cfaf21686d0427df68">&#9670;&#160;</a></span>nd_offset()</h2>
+<a id="a1b7b649bb2ee029e69a40a62c76f4762" name="a1b7b649bb2ee029e69a40a62c76f4762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b7b649bb2ee029e69a40a62c76f4762">&#9670;&#160;</a></span>nd_offset()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Size_ , typename First_ , typename Second_ , typename... Remaining_&gt; </div>
+template&lt;typename Size_ , typename FirstIndex_ , typename FirstExtent_ , typename SecondIndex_ , typename... Remaining_&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">Size_ sanisizer::nd_offset </td>
           <td>(</td>
-          <td class="paramtype">First_</td>          <td class="paramname"><span class="paramname"><em>x1</em></span>, </td>
+          <td class="paramtype">FirstIndex_</td>          <td class="paramname"><span class="paramname"><em>x1</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">First_</td>          <td class="paramname"><span class="paramname"><em>extent1</em></span>, </td>
+          <td class="paramtype">FirstExtent_</td>          <td class="paramname"><span class="paramname"><em>extent1</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Second_</td>          <td class="paramname"><span class="paramname"><em>x2</em></span>, </td>
+          <td class="paramtype">SecondIndex_</td>          <td class="paramname"><span class="paramname"><em>x2</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -564,8 +564,9 @@ template&lt;typename Size_ , typename First_ , typename Second_ , typename... Re
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Size_</td><td>Integer type to represent the size of the flattened array. </td></tr>
-    <tr><td class="paramname">First_</td><td>Integer type to represent the index on or extent of the first dimension. It is assumed that this can be safely cast to <code>Size_</code>, as overflow checks should have been performed during array allocation, e.g., via <code><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product()</a></code>. </td></tr>
-    <tr><td class="paramname">Second_</td><td>Integer type to represent the index on or extent of the second dimension. It is assumed that this can be safely cast to <code>Size_</code>, as overflow checks should have been performed during array allocation, e.g., via <code><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product()</a></code>. </td></tr>
+    <tr><td class="paramname">FirstIndex_</td><td>Integer type to represent the index on the first dimension. It is assumed that this can be safely cast to <code>Size_</code>, as overflow checks should have been performed during array allocation, e.g., via <code><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product()</a></code>. </td></tr>
+    <tr><td class="paramname">FirstExtent_</td><td>Integer type to represent the extent of the first dimension. It is assumed that this can be safely cast to <code>Size_</code>, as overflow checks should have been performed during array allocation, e.g., via <code><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product()</a></code>. </td></tr>
+    <tr><td class="paramname">SecondIndex_</td><td>Integer type to represent the index on the second dimension. It is assumed that this can be safely cast to <code>Size_</code>, as overflow checks should have been performed during array allocation, e.g., via <code><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product()</a></code>. </td></tr>
     <tr><td class="paramname">Remaining_</td><td>Additional arguments for further dimensions. It is assumed that all types can be safely cast to <code>Size_</code>, as overflow checks should have been performed during array allocation, e.g., <code><a class="el" href="#a45ebf64ffe61405e2ec5930008cb93e6">product()</a></code>.</td></tr>
   </table>
   </dd>
@@ -604,7 +605,7 @@ template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Multiply two values, checking for overflow in the output type. This is typically used to compute the size of a flattened N-dimensional array as the product of its dimension extents.</p>
-<p>For consistency, this function will also check that each of <code>left</code> and <code>right</code> can be cast to <code>Size_</code>. This ensures that per-dimension indices/extents can be safely represented as <code>Size_</code> in later steps (e.g., <code><a class="el" href="#ac9d066c34f8184cfaf21686d0427df68">nd_offset()</a></code>). These checls are necessary as the product may fit in <code>Size_</code> but not each of <code>left</code> and <code>right</code> if either is equal to zero.</p>
+<p>For consistency, this function will also check that each of <code>left</code> and <code>right</code> can be cast to <code>Size_</code>. This ensures that per-dimension indices/extents can be safely represented as <code>Size_</code> in later steps (e.g., <code><a class="el" href="#a1b7b649bb2ee029e69a40a62c76f4762">nd_offset()</a></code>). These checls are necessary as the product may fit in <code>Size_</code> but not each of <code>left</code> and <code>right</code> if either is equal to zero.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Size_</td><td>Integer type representing some concept of size for an array/container. </td></tr>

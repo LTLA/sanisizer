@@ -113,22 +113,22 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>Size_ nd_offset_internal(Size_ extent, Size_ pos, MoreArgs_... more_args) {</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">return</span> (pos + nd_offset_internal&lt;Size_&gt;(more_args...)) * extent;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span>... Remaining_&gt;</div>
-<div class="foldopen" id="foldopen00055" data-start="{" data-end="}">
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#ac9d066c34f8184cfaf21686d0427df68">   55</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#ac9d066c34f8184cfaf21686d0427df68">nd_offset</a>(First_ x1, First_ extent1, Second_ x2, Remaining_... remaining) {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// Note that we don&#39;t use Size_ in the function signature, even though everything is cast to Size_.</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// This avoids inadvertent deduction of Size_ from the input types.</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// The user is always forced to explicitly specify Size_ to avoid any risk of accidental overflow.</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(x1) + nd_offset_internal&lt;Size_&gt;(extent1, x2, remaining...);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
-</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> FirstIndex_, <span class="keyword">typename</span> FirstExtent_, <span class="keyword">typename</span> SecondIndex_, <span class="keyword">typename</span>... Remaining_&gt;</div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">   57</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">nd_offset</a>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// Note that we don&#39;t use Size_ in the function signature, even though everything is cast to Size_.</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// This avoids inadvertent deduction of Size_ from the input types.</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// The user is always forced to explicitly specify Size_ to avoid any risk of accidental overflow.</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(x1) + nd_offset_internal&lt;Size_&gt;(extent1, x2, remaining...);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>}</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
 <div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:14</div></div>
-<div class="ttc" id="anamespacesanisizer_html_ac9d066c34f8184cfaf21686d0427df68"><div class="ttname"><a href="namespacesanisizer.html#ac9d066c34f8184cfaf21686d0427df68">sanisizer::nd_offset</a></div><div class="ttdeci">Size_ nd_offset(First_ x1, First_ extent1, Second_ x2, Remaining_... remaining)</div><div class="ttdef"><b>Definition</b> nd_offset.hpp:55</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a1b7b649bb2ee029e69a40a62c76f4762"><div class="ttname"><a href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">sanisizer::nd_offset</a></div><div class="ttdeci">Size_ nd_offset(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</div><div class="ttdef"><b>Definition</b> nd_offset.hpp:57</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

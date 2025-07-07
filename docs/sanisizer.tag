@@ -149,8 +149,8 @@
       <type>Size_</type>
       <name>nd_offset</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ac9d066c34f8184cfaf21686d0427df68</anchor>
-      <arglist>(First_ x1, First_ extent1, Second_ x2, Remaining_... remaining)</arglist>
+      <anchor>a1b7b649bb2ee029e69a40a62c76f4762</anchor>
+      <arglist>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</arglist>
     </member>
   </compound>
   <compound kind="page">

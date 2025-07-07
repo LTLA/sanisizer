@@ -147,13 +147,13 @@ N-dimensional offsets</h1>
 <div class="line">x1 + d1 * (x2 + d2 * (x3));</div>
 </div><!-- fragment --><p>If <code>x1</code>, <code>d1</code>, <code>x2</code>, etc. are of a smaller type than the array/container's size, the intermediate sums and products could overflow, even if the final offset itself would be representable by the array/container size type. To avoid this, we provide the <code>nd_offset()</code> function, which casts all inputs to the size type before performing calculations.</p>
 <div class="fragment"><div class="line"><span class="comment">// Same calculation as above</span></div>
-<div class="line"><a class="code hl_function" href="namespacesanisizer.html#ac9d066c34f8184cfaf21686d0427df68">sanisizer::nd_offset&lt;std::size_t&gt;</a>(x1, d1, x2, d2, x3);</div>
-<div class="ttc" id="anamespacesanisizer_html_ac9d066c34f8184cfaf21686d0427df68"><div class="ttname"><a href="namespacesanisizer.html#ac9d066c34f8184cfaf21686d0427df68">sanisizer::nd_offset</a></div><div class="ttdeci">Size_ nd_offset(First_ x1, First_ extent1, Second_ x2, Remaining_... remaining)</div><div class="ttdef"><b>Definition</b> nd_offset.hpp:55</div></div>
+<div class="line"><a class="code hl_function" href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">sanisizer::nd_offset&lt;std::size_t&gt;</a>(x1, d1, x2, d2, x3);</div>
+<div class="ttc" id="anamespacesanisizer_html_a1b7b649bb2ee029e69a40a62c76f4762"><div class="ttname"><a href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">sanisizer::nd_offset</a></div><div class="ttdeci">Size_ nd_offset(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</div><div class="ttdef"><b>Definition</b> nd_offset.hpp:57</div></div>
 </div><!-- fragment --><p>The idea is to use <code>nd_offset()</code> within tight loops - say, for accessing the 10-th column of a row-major matrix:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> c = 10;</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> r = 0; r &lt; NR; ++r) {</div>
 <div class="line">    <span class="comment">// Do something with the matrix element at (r, c)</span></div>
-<div class="line">    <span class="keyword">auto</span> elmt = matrix[<a class="code hl_function" href="namespacesanisizer.html#ac9d066c34f8184cfaf21686d0427df68">sanisizer::nd_offset&lt;std::size_t&gt;</a>(c, NC, r)];</div>
+<div class="line">    <span class="keyword">auto</span> elmt = matrix[<a class="code hl_function" href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">sanisizer::nd_offset&lt;std::size_t&gt;</a>(c, NC, r)];</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>(One might think that it would be better to compute an initial offset outside of the loop and just add <code>NC</code> in each loop iteration to avoid the multiplication. However, modern compilers - well, Clang and GCC, at least - will optimize out the multiplication so there is no performance penalty in practice. The above approach is easier to reason about and is more amenable to vectorization as there are no dependencies in the loop body. Importantly, it avoids overflow from adding <code>NC</code> in the final iteration, which could be undefined behavior if the size type is signed.)</p>
 <h1><a class="anchor" id="autotoc_md6"></a>
