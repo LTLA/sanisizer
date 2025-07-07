@@ -35,9 +35,11 @@ Size_ nd_offset_internal(Size_ extent, Size_ pos, MoreArgs_... more_args) {
  * The first dimension is assumed to be the fastest-changing, followed by the second dimension, and so on.
  * 
  * @tparam Size_ Integer type to represent the size of the flattened array.
- * @tparam First_ Integer type to represent the index on or extent of the first dimension.
+ * @tparam FirstIndex_ Integer type to represent the index on the first dimension.
  * It is assumed that this can be safely cast to `Size_`, as overflow checks should have been performed during array allocation, e.g., via `product()`.
- * @tparam Second_ Integer type to represent the index on or extent of the second dimension.
+ * @tparam FirstExtent_ Integer type to represent the extent of the first dimension.
+ * It is assumed that this can be safely cast to `Size_`, as overflow checks should have been performed during array allocation, e.g., via `product()`.
+ * @tparam SecondIndex_ Integer type to represent the index on the second dimension.
  * It is assumed that this can be safely cast to `Size_`, as overflow checks should have been performed during array allocation, e.g., via `product()`.
  * @tparam Remaining_ Additional arguments for further dimensions.
  * It is assumed that all types can be safely cast to `Size_`, as overflow checks should have been performed during array allocation, e.g., `product()`.
@@ -51,8 +53,8 @@ Size_ nd_offset_internal(Size_ extent, Size_ pos, MoreArgs_... more_args) {
  *
  * @return Offset into the array for element `(x1, x2, ...)`.
  */
-template<typename Size_, typename First_, typename Second_, typename... Remaining_>
-Size_ nd_offset(First_ x1, First_ extent1, Second_ x2, Remaining_... remaining) {
+template<typename Size_, typename FirstIndex_, typename FirstExtent_, typename SecondIndex_, typename... Remaining_>
+Size_ nd_offset(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining) {
     // Note that we don't use Size_ in the function signature, even though everything is cast to Size_.
     // This avoids inadvertent deduction of Size_ from the input types.
     // The user is always forced to explicitly specify Size_ to avoid any risk of accidental overflow.
