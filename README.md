@@ -83,6 +83,17 @@ for (auto is : individual_sizes) {
 }
 ```
 
+Another common operation is to compute differences between iterators, e.g., to recover an index from iterator-based functions like `std::lower_bound()`.
+For large containers, the iterator's difference type might not be unable to store the difference, typically when the difference type is the same size as the size type. 
+To protect against overflow, we can use the `can_ptrdiff()` function:
+
+```cpp
+auto to_search = sanisizer::create<std::vector<double> >(current_size);
+sanisizer::can_ptrdiff<decltype(to_search.begin())>(current_size);
+auto it = std::lower_bound(to_search.begin(), to_search.end(), some_value);
+auto idx = it - to_search.begin(); // this is known to be safe after can_ptrdiff().
+```
+
 ## N-dimensional offsets
 
 Consider an N-dimensional array of dimensions `(d1, d2, ..., dN)` that is flattened and stored contiguously in memory.

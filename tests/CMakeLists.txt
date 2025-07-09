@@ -22,6 +22,7 @@ add_executable(libtest
     src/arithmetic.cpp
     src/nd_offset.cpp
     src/cap.cpp
+    src/ptrdiff.cpp
 )
 
 target_link_libraries(libtest 

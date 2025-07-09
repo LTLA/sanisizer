@@ -6,6 +6,7 @@
 #include "comparisons.hpp"
 #include "nd_offset.hpp"
 #include "cap.hpp"
+#include "ptrdiff.hpp"
 
 /**
  * @file sanisizer.hpp
