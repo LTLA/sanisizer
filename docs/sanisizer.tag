@@ -36,6 +36,14 @@
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
+    <name>ptrdiff.hpp</name>
+    <path>sanisizer/</path>
+    <filename>ptrdiff_8hpp.html</filename>
+    <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
+    <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
     <name>sanisizer.hpp</name>
     <path>sanisizer/</path>
     <filename>sanisizer_8hpp.html</filename>
@@ -44,6 +52,7 @@
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
     <includes id="nd__offset_8hpp" name="nd_offset.hpp" local="yes" import="no" module="no" objc="no">nd_offset.hpp</includes>
     <includes id="cap_8hpp" name="cap.hpp" local="yes" import="no" module="no" objc="no">cap.hpp</includes>
+    <includes id="ptrdiff_8hpp" name="ptrdiff.hpp" local="yes" import="no" module="no" objc="no">ptrdiff.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="class">
@@ -151,6 +160,13 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a1b7b649bb2ee029e69a40a62c76f4762</anchor>
       <arglist>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>ptrdiff</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ab1f376e379d273490e0047a612dcf3f9</anchor>
+      <arglist>(const Iterator_ &amp;start, const Iterator_ &amp;end, Size_ max_diff)</arglist>
     </member>
   </compound>
   <compound kind="page">

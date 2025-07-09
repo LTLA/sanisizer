@@ -140,6 +140,14 @@ Arithmetic</h1>
 <div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#a45ebf64ffe61405e2ec5930008cb93e6">sanisizer::product&lt;std::size_t&gt;</a>(combined_size, is);</div>
 <div class="line">}</div>
 <div class="ttc" id="anamespacesanisizer_html_a45ebf64ffe61405e2ec5930008cb93e6"><div class="ttname"><a href="namespacesanisizer.html#a45ebf64ffe61405e2ec5930008cb93e6">sanisizer::product</a></div><div class="ttdeci">Size_ product(Left_ left, Right_ right)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:120</div></div>
+</div><!-- fragment --><p>Another common operation is to compute differences between iterators, e.g., to recover an index from iterator-based functions like <code>std::lower_bound()</code>. For large containers, the iterator's difference type might not be unable to store the difference, typically when the difference type is the same size as the size type. To protect against overflow, we can use the <code>ptrdiff()</code> function:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_search = <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(current_size);</div>
+<div class="line"><span class="keyword">auto</span> it = std::lower_bound(to_search.begin(), to_search.end(), some_value);</div>
+<div class="line"><span class="keyword">auto</span> index = <a class="code hl_function" href="namespacesanisizer.html#ab1f376e379d273490e0047a612dcf3f9">sanisizer::ptrdiff</a>(to_search.begin(), it, current_size);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Or to check once for all possible searches:</span></div>
+<div class="line"><a class="code hl_function" href="namespacesanisizer.html#ab1f376e379d273490e0047a612dcf3f9">sanisizer::ptrdiff</a>(to_search.begin(), to_search.end(), current_size);</div>
+<div class="ttc" id="anamespacesanisizer_html_ab1f376e379d273490e0047a612dcf3f9"><div class="ttname"><a href="namespacesanisizer.html#ab1f376e379d273490e0047a612dcf3f9">sanisizer::ptrdiff</a></div><div class="ttdeci">auto ptrdiff(const Iterator_ &amp;start, const Iterator_ &amp;end, Size_ max_diff)</div><div class="ttdef"><b>Definition</b> ptrdiff.hpp:31</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 N-dimensional offsets</h1>
 <p>Consider an N-dimensional array of dimensions <code>(d1, d2, ..., dN)</code> that is flattened and stored contiguously in memory. Let the first dimension be the fastest changing, then the second, and so on. If we want to access element <code>(x1, x2, ..., xN)</code>, we would compute the offset:</p>
