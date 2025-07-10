@@ -146,9 +146,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762" id="r_a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename FirstIndex_ , typename FirstExtent_ , typename SecondIndex_ , typename... Remaining_&gt; </td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1b7b649bb2ee029e69a40a62c76f4762">nd_offset</a> (FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</td></tr>
 <tr class="separator:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1f376e379d273490e0047a612dcf3f9" id="r_ab1f376e379d273490e0047a612dcf3f9"><td class="memTemplParams" colspan="2">template&lt;typename Iterator_ , typename Size_ &gt; </td></tr>
-<tr class="memitem:ab1f376e379d273490e0047a612dcf3f9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ab1f376e379d273490e0047a612dcf3f9">ptrdiff</a> (const Iterator_ &amp;start, const Iterator_ &amp;end, Size_ max_diff)</td></tr>
-<tr class="separator:ab1f376e379d273490e0047a612dcf3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbe2c4a2bd3f774551a98949fcda2412" id="r_acbe2c4a2bd3f774551a98949fcda2412"><td class="memTemplParams" colspan="2">template&lt;typename Iterator_ , typename MaxDiff_ &gt; </td></tr>
+<tr class="memitem:acbe2c4a2bd3f774551a98949fcda2412"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acbe2c4a2bd3f774551a98949fcda2412">can_ptrdiff</a> (MaxDiff_ max_diff)</td></tr>
+<tr class="separator:acbe2c4a2bd3f774551a98949fcda2412"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sanitize sizes to avoid integer overflow. </p>
@@ -184,6 +184,39 @@ template&lt;typename Size_ , typename Input_ &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>x</code> as its input type. If overflow would occur, an <code><a class="el" href="classsanisizer_1_1OverflowError.html" title="Error from an integer overflow.">OverflowError</a></code> is raised. </dd></dl>
+
+</div>
+</div>
+<a id="acbe2c4a2bd3f774551a98949fcda2412" name="acbe2c4a2bd3f774551a98949fcda2412"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbe2c4a2bd3f774551a98949fcda2412">&#9670;&#160;</a></span>can_ptrdiff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Iterator_ , typename MaxDiff_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void sanisizer::can_ptrdiff </td>
+          <td>(</td>
+          <td class="paramtype">MaxDiff_</td>          <td class="paramname"><span class="paramname"><em>max_diff</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check if differences between iterators can be safely represented in the iterator's difference type. If <code>max_diff</code> is would overflow the difference type, an <a class="el" href="classsanisizer_1_1OverflowError.html" title="Error from an integer overflow.">OverflowError</a> is raised.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Iterator_</td><td>Random access iterator that supports subtraction. </td></tr>
+    <tr><td class="paramname">MaxDiff_</td><td>Integer type for maximum difference between iterators.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">max_diff</td><td>Maximum difference between iterators, typically derived from external knowledge (e.g., the array/container size). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -665,51 +698,6 @@ template&lt;typename Size_ , typename Left_ , typename Right_ &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Product of <code>left</code> and <code>right</code> as a <code>Size_</code>. </dd></dl>
-
-</div>
-</div>
-<a id="ab1f376e379d273490e0047a612dcf3f9" name="ab1f376e379d273490e0047a612dcf3f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1f376e379d273490e0047a612dcf3f9">&#9670;&#160;</a></span>ptrdiff()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Iterator_ , typename Size_ &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">auto sanisizer::ptrdiff </td>
-          <td>(</td>
-          <td class="paramtype">const Iterator_ &amp;</td>          <td class="paramname"><span class="paramname"><em>start</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Iterator_ &amp;</td>          <td class="paramname"><span class="paramname"><em>end</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Size_</td>          <td class="paramname"><span class="paramname"><em>max_diff</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Safely compute the difference between iterators (<code>end - start</code>) can be safely represented in the iterator's difference type.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Iterator_</td><td>Random access iterator that supports subtraction and comparison. </td></tr>
-    <tr><td class="paramname">Size_</td><td>Integer type for the size of the container being iterated.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">start</td><td>Start iterator. </td></tr>
-    <tr><td class="paramname">end</td><td>End iterator, such that <code>start &lt;= end</code>. </td></tr>
-    <tr><td class="paramname">max_diff</td><td>Maximum difference between iterators, i.e., assume that <code>end &lt;= start + max_diff</code>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>end - start</code> as an integer of the iterator's difference type. If an overflow would occur, an <a class="el" href="classsanisizer_1_1OverflowError.html" title="Error from an integer overflow.">OverflowError</a> is raised. </dd></dl>
 
 </div>
 </div>

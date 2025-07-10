@@ -162,11 +162,11 @@
       <arglist>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</arglist>
     </member>
     <member kind="function">
-      <type>auto</type>
-      <name>ptrdiff</name>
+      <type>void</type>
+      <name>can_ptrdiff</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ab1f376e379d273490e0047a612dcf3f9</anchor>
-      <arglist>(const Iterator_ &amp;start, const Iterator_ &amp;end, Size_ max_diff)</arglist>
+      <anchor>acbe2c4a2bd3f774551a98949fcda2412</anchor>
+      <arglist>(MaxDiff_ max_diff)</arglist>
     </member>
   </compound>
   <compound kind="page">
