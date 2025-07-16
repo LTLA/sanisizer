@@ -319,7 +319,7 @@ template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </div>
 <p>Create a new container of a specified size. This protects against overflow when casting the integer size to the container's size type.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Container_</td><td>Container class that accepts the size in the first argument of its constructor. </td></tr>
+    <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a constructor that accepts the size as the first argument. </td></tr>
     <tr><td class="paramname">Input_</td><td>Integer type of the input size. </td></tr>
     <tr><td class="paramname">Args_</td><td>Further arguments to pass to the container's constructor.</td></tr>
   </table>
