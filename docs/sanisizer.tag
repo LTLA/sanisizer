@@ -67,29 +67,29 @@
       <type>Size_</type>
       <name>sum</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a89bb3c2d0ba52e16b6edcea1b45a754e</anchor>
-      <arglist>(Left_ left, Right_ right)</arglist>
+      <anchor>a3d1827f9cf0268a7df4f6f5144b45f6c</anchor>
+      <arglist>(First_ first, Second_ second, Args_... more)</arglist>
     </member>
     <member kind="function">
       <type>Size_</type>
       <name>sum_unsafe</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a5598fd49890204b4940cb607e8c3d894</anchor>
-      <arglist>(Left_ left, Right_ right)</arglist>
+      <anchor>aa12859cbf72cbf271cd5932ff467f898</anchor>
+      <arglist>(First_ first, Second_ second, Args_... more)</arglist>
     </member>
     <member kind="function">
       <type>Size_</type>
       <name>product</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a45ebf64ffe61405e2ec5930008cb93e6</anchor>
-      <arglist>(Left_ left, Right_ right)</arglist>
+      <anchor>ac51a903d22bd7a22986195c5ec18e62b</anchor>
+      <arglist>(First_ first, Second_ second, Args_... more)</arglist>
     </member>
     <member kind="function">
       <type>Size_</type>
       <name>product_unsafe</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ad4686b4f2e095fafaef21ad2d7627a8c</anchor>
-      <arglist>(Left_ left, Right_ right)</arglist>
+      <anchor>a0783e5cb9204cc76c755e07d8ea1ab8b</anchor>
+      <arglist>(First_ first, Second_ second, Args_... more)</arglist>
     </member>
     <member kind="function">
       <type>constexpr Size_</type>
