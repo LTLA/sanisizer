@@ -146,6 +146,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a692dab8520331e20e6d2361439a53450" id="r_a692dab8520331e20e6d2361439a53450"><td class="memTemplParams" colspan="2">template&lt;typename First_ , typename Second_ &gt; </td></tr>
 <tr class="memitem:a692dab8520331e20e6d2361439a53450"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a692dab8520331e20e6d2361439a53450">max</a> (First_ first, Second_ second)</td></tr>
 <tr class="separator:a692dab8520331e20e6d2361439a53450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9351dec099e9a5618639f0e9f56d2505" id="r_a9351dec099e9a5618639f0e9f56d2505"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Input_ &gt; </td></tr>
+<tr class="memitem:a9351dec099e9a5618639f0e9f56d2505"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9351dec099e9a5618639f0e9f56d2505">as_size_type</a> (Input_ x)</td></tr>
+<tr class="separator:a9351dec099e9a5618639f0e9f56d2505"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ece7999b7f4228f9721ef6c6a4a8cf2" id="r_a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memTemplItemLeft" align="right" valign="top">Container_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7ece7999b7f4228f9721ef6c6a4a8cf2">create</a> (Input_ x, Args_ &amp;&amp;... args)</td></tr>
 <tr class="separator:a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,6 +165,40 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sanitize sizes to avoid integer overflow. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a9351dec099e9a5618639f0e9f56d2505" name="a9351dec099e9a5618639f0e9f56d2505"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9351dec099e9a5618639f0e9f56d2505">&#9670;&#160;</a></span>as_size_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Container_ , typename Input_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">auto sanisizer::as_size_type </td>
+          <td>(</td>
+          <td class="paramtype">Input_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cast an integer to the type of the size of a container. This protects against overflow when using this integer in the container's constructor or <code><a class="el" href="#a7e35f43abdb652783441d89351510992">resize()</a></code> method.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a constructor that accepts the size as the first argument. </td></tr>
+    <tr><td class="paramname">Input_</td><td>Integer type of the input size.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Non-negative value representing the desired container size.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>x</code> as the container's size's type. If overflow would occur, an <code><a class="el" href="classsanisizer_1_1OverflowError.html" title="Error from an integer overflow.">OverflowError</a></code> is raised. </dd></dl>
+
+</div>
+</div>
 <a id="ae296713052655ffb92c4add715f63596" name="ae296713052655ffb92c4add715f63596"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae296713052655ffb92c4add715f63596">&#9670;&#160;</a></span>can_cast()</h2>
 

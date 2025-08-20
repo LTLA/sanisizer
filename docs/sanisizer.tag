@@ -179,6 +179,13 @@
       <arglist>(First_ first, Second_ second)</arglist>
     </member>
     <member kind="function">
+      <type>auto</type>
+      <name>as_size_type</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a9351dec099e9a5618639f0e9f56d2505</anchor>
+      <arglist>(Input_ x)</arglist>
+    </member>
+    <member kind="function">
       <type>Container_</type>
       <name>create</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
