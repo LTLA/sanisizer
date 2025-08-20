@@ -43,20 +43,3 @@ TEST(CanCast, Basic) {
     }
     EXPECT_TRUE(failed);
 }
-
-TEST(Create, Basic) {
-    auto output = sanisizer::create<std::vector<int> >(20);
-    EXPECT_EQ(output.size(), 20);
-
-    struct MockVector {
-        MockVector(std::uint8_t) {}
-        std::uint8_t size() const { return 0; }
-    };
-    bool failed = false;
-    try {
-        sanisizer::create<MockVector>(300);
-    } catch (sanisizer::OverflowError& e) {
-        failed = true;
-    }
-    EXPECT_TRUE(failed);
-}
