@@ -5,6 +5,8 @@
 
 #include <stdexcept>
 #include <utility>
+#include <limits>
+#include <type_traits>
 
 /**
  * @file cast.hpp
@@ -77,6 +79,17 @@ Input_ can_cast(Input_ x) {
 }
 
 /**
+ * @cond
+ */
+template<typename Input_>
+typename std::remove_const<typename std::remove_reference<Input_>::type>::type copy(Input_ x) {
+    return x;
+}
+/**
+ * @endcond
+ */
+
+/**
  * Create a new container of a specified size.
  * This protects against overflow when casting the integer size to the container's size type.
  *
@@ -92,7 +105,7 @@ Input_ can_cast(Input_ x) {
  */
 template<class Container_, typename Input_, typename ... Args_>
 Container_ create(Input_ x, Args_&&... args) {
-    return Container_(cast<decltype(std::declval<Container_>().size())>(x), std::forward<Args_>(args)...);
+    return Container_(cast<decltype(copy(std::declval<Container_>().size()))>(x), std::forward<Args_>(args)...);
 }
 
 }
