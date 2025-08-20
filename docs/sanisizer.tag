@@ -155,6 +155,20 @@
       <arglist>(Left_ l, Right_ r)</arglist>
     </member>
     <member kind="function">
+      <type>constexpr auto</type>
+      <name>min</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>aa483a5cd81fb958f0cd7198752030076</anchor>
+      <arglist>(First_ first, Second_ second)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr auto</type>
+      <name>max</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a692dab8520331e20e6d2361439a53450</anchor>
+      <arglist>(First_ first, Second_ second)</arglist>
+    </member>
+    <member kind="function">
       <type>Size_</type>
       <name>nd_offset</name>
       <anchorfile>namespacesanisizer.html</anchorfile>

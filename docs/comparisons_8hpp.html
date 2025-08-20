@@ -100,6 +100,7 @@ $(function(){ initResizable(false); });
 <p>Signedness-safe integer comparisons.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
 </div>
 <p><a href="comparisons_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -126,6 +127,12 @@ Functions</h2></td></tr>
 <tr class="memitem:af487e747e2124fc1a2cea73d1dad7974" id="r_af487e747e2124fc1a2cea73d1dad7974"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
 <tr class="memitem:af487e747e2124fc1a2cea73d1dad7974"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#af487e747e2124fc1a2cea73d1dad7974">sanisizer::is_less_than_or_equal</a> (Left_ l, Right_ r)</td></tr>
 <tr class="separator:af487e747e2124fc1a2cea73d1dad7974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa483a5cd81fb958f0cd7198752030076" id="r_aa483a5cd81fb958f0cd7198752030076"><td class="memTemplParams" colspan="2">template&lt;typename First_ , typename Second_ &gt; </td></tr>
+<tr class="memitem:aa483a5cd81fb958f0cd7198752030076"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#aa483a5cd81fb958f0cd7198752030076">sanisizer::min</a> (First_ first, Second_ second)</td></tr>
+<tr class="separator:aa483a5cd81fb958f0cd7198752030076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692dab8520331e20e6d2361439a53450" id="r_a692dab8520331e20e6d2361439a53450"><td class="memTemplParams" colspan="2">template&lt;typename First_ , typename Second_ &gt; </td></tr>
+<tr class="memitem:a692dab8520331e20e6d2361439a53450"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a692dab8520331e20e6d2361439a53450">sanisizer::max</a> (First_ first, Second_ second)</td></tr>
+<tr class="separator:a692dab8520331e20e6d2361439a53450"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Signedness-safe integer comparisons. </p>

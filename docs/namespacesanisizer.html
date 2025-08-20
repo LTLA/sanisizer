@@ -143,6 +143,12 @@ Functions</h2></td></tr>
 <tr class="memitem:af487e747e2124fc1a2cea73d1dad7974" id="r_af487e747e2124fc1a2cea73d1dad7974"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
 <tr class="memitem:af487e747e2124fc1a2cea73d1dad7974"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af487e747e2124fc1a2cea73d1dad7974">is_less_than_or_equal</a> (Left_ l, Right_ r)</td></tr>
 <tr class="separator:af487e747e2124fc1a2cea73d1dad7974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa483a5cd81fb958f0cd7198752030076" id="r_aa483a5cd81fb958f0cd7198752030076"><td class="memTemplParams" colspan="2">template&lt;typename First_ , typename Second_ &gt; </td></tr>
+<tr class="memitem:aa483a5cd81fb958f0cd7198752030076"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa483a5cd81fb958f0cd7198752030076">min</a> (First_ first, Second_ second)</td></tr>
+<tr class="separator:aa483a5cd81fb958f0cd7198752030076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692dab8520331e20e6d2361439a53450" id="r_a692dab8520331e20e6d2361439a53450"><td class="memTemplParams" colspan="2">template&lt;typename First_ , typename Second_ &gt; </td></tr>
+<tr class="memitem:a692dab8520331e20e6d2361439a53450"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a692dab8520331e20e6d2361439a53450">max</a> (First_ first, Second_ second)</td></tr>
+<tr class="separator:a692dab8520331e20e6d2361439a53450"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762" id="r_a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename FirstIndex_ , typename FirstExtent_ , typename SecondIndex_ , typename... Remaining_&gt; </td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1b7b649bb2ee029e69a40a62c76f4762">nd_offset</a> (FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</td></tr>
 <tr class="separator:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -563,6 +569,98 @@ template&lt;typename Left_ , typename Right_ &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Whether <code>l</code> is less than or equal to <code>r</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a692dab8520331e20e6d2361439a53450" name="a692dab8520331e20e6d2361439a53450"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a692dab8520331e20e6d2361439a53450">&#9670;&#160;</a></span>max()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename First_ , typename Second_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto sanisizer::max </td>
+          <td>(</td>
+          <td class="paramtype">First_</td>          <td class="paramname"><span class="paramname"><em>first</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Second_</td>          <td class="paramname"><span class="paramname"><em>second</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">First_</td><td>First integer type. </td></tr>
+    <tr><td class="paramname">Second_</td><td>Second integer type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>First non-negative value. </td></tr>
+    <tr><td class="paramname">second</td><td>Second non-negative value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The larger of <code>first</code> and <code>second</code>, in the larger integer type of <code>First_</code> and <code>Second_</code>. </dd></dl>
+
+</div>
+</div>
+<a id="aa483a5cd81fb958f0cd7198752030076" name="aa483a5cd81fb958f0cd7198752030076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa483a5cd81fb958f0cd7198752030076">&#9670;&#160;</a></span>min()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename First_ , typename Second_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto sanisizer::min </td>
+          <td>(</td>
+          <td class="paramtype">First_</td>          <td class="paramname"><span class="paramname"><em>first</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Second_</td>          <td class="paramname"><span class="paramname"><em>second</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">First_</td><td>First integer type. </td></tr>
+    <tr><td class="paramname">Second_</td><td>Second integer type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>First non-negative value. </td></tr>
+    <tr><td class="paramname">second</td><td>Second non-negative value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The smaller of <code>first</code> and <code>second</code>, in the smaller integer type of <code>First_</code> and <code>Second_</code>. </dd></dl>
 
 </div>
 </div>
