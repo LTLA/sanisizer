@@ -105,10 +105,10 @@ Casting</h1>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Same for new, which expects a `std::size_t`.</span></div>
 <div class="line"><span class="keyword">auto</span> ptr = <span class="keyword">new</span> <span class="keywordtype">double</span>[<a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast&lt;std::size_t&gt;</a>(new_size)];</div>
-<div class="ttc" id="anamespacesanisizer_html_aed4423ffa6beced95cee29c155e494d2"><div class="ttname"><a href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a></div><div class="ttdeci">Size_ cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:46</div></div>
+<div class="ttc" id="anamespacesanisizer_html_aed4423ffa6beced95cee29c155e494d2"><div class="ttname"><a href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a></div><div class="ttdeci">Size_ cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:48</div></div>
 </div><!-- fragment --><p>We could also use <code><a class="el" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create()</a></code>, which creates a new container instance with less of the type-deducation boilerplate:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> my_container2 = <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(new_size);</div>
-<div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> cast.hpp:94</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> cast.hpp:107</div></div>
 </div><!-- fragment --><p>See the <a href="https://ltla.github.io/sanisizer">reference documentation</a> for more details.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Capping</h1>
