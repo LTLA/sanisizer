@@ -91,7 +91,6 @@ $(function(){ initResizable(false); });
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">cast.hpp File Reference</div></div>
@@ -100,20 +99,12 @@ $(function(){ initResizable(false); });
 
 <p>Safe casts of integer size.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="comparisons_8hpp_source.html">comparisons.hpp</a>&quot;</code><br />
-<code>#include &lt;stdexcept&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
-<code>#include &lt;limits&gt;</code><br />
-<code>#include &lt;type_traits&gt;</code><br />
+<div class="textblock"><code>#include &lt;limits&gt;</code><br />
+<code>#include &quot;<a class="el" href="comparisons_8hpp_source.html">comparisons.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="utils_8hpp_source.html">utils.hpp</a>&quot;</code><br />
 </div>
 <p><a href="cast_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsanisizer_1_1OverflowError.html">sanisizer::OverflowError</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error from an integer overflow.  <a href="classsanisizer_1_1OverflowError.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html">sanisizer</a></td></tr>
@@ -128,9 +119,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ae296713052655ffb92c4add715f63596" id="r_ae296713052655ffb92c4add715f63596"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Input_ &gt; </td></tr>
 <tr class="memitem:ae296713052655ffb92c4add715f63596"><td class="memTemplItemLeft" align="right" valign="top">Input_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">sanisizer::can_cast</a> (Input_ x)</td></tr>
 <tr class="separator:ae296713052655ffb92c4add715f63596"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ece7999b7f4228f9721ef6c6a4a8cf2" id="r_a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </td></tr>
-<tr class="memitem:a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memTemplItemLeft" align="right" valign="top">Container_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a> (Input_ x, Args_ &amp;&amp;... args)</td></tr>
-<tr class="separator:a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Safe casts of integer size. </p>

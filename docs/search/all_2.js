@@ -11,5 +11,6 @@ var searchData=
   ['cmake_20with_20tt_20fetchcontent_20tt_8',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md7',1,'']]],
   ['cmake_20with_20tt_20find_5fpackage_20tt_9',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md8',1,'']]],
   ['comparisons_2ehpp_10',['comparisons.hpp',['../comparisons_8hpp.html',1,'']]],
-  ['create_11',['create',['../namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2',1,'sanisizer']]]
+  ['create_11',['create',['../namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2',1,'sanisizer']]],
+  ['create_2ehpp_12',['create.hpp',['../create_8hpp.html',1,'']]]
 ];

@@ -100,117 +100,119 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="cast_8hpp.html">cast.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="comparisons_8hpp.html">comparisons.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="namespacesanisizer.html">   14</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacesanisizer.html">sanisizer</a> {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> needs_sum_check() {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">constexpr</span> Size_ smaxed = std::numeric_limits&lt;Size_&gt;::max();</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">constexpr</span> Left_ lmaxed = std::numeric_limits&lt;Left_&gt;::max();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(<a class="code hl_function" href="namespacesanisizer.html#a30b33a82b205c1de74701d41f78f3c2f">is_greater_than_or_equal</a>(lmaxed, smaxed)) {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keyword">constexpr</span> Size_ delta = smaxed - <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(lmaxed);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">constexpr</span> Right_ rmaxed = std::numeric_limits&lt;Right_&gt;::max();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(rmaxed, delta);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sum</a>(Left_ left, Right_ right) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    Size_ lout = <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;Size_&gt;</a>(left);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    Size_ rout = <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;Size_&gt;</a>(right);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(needs_sum_check&lt;Size_, Left_, Right_&gt;()) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">constexpr</span> Size_ smaxed = std::numeric_limits&lt;Size_&gt;::max();</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">if</span> (smaxed - lout &lt; rout) {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordflow">throw</span> <a class="code hl_class" href="classsanisizer_1_1OverflowError.html">OverflowError</a>(<span class="stringliteral">&quot;overflow detected in sanisize::sum&quot;</span>);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        }</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> lout + rout;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>Size_ <a class="code hl_function" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sum_unsafe</a>(Left_ left, Right_ right) {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(left) + <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(right);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">   72</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sum</a>(First_ first, Second_ second, Args_... more) {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sum&lt;Size_&gt;</a>(first, <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sum&lt;Size_&gt;</a>(second, more...));</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="utils_8hpp.html">utils.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="namespacesanisizer.html">   15</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacesanisizer.html">sanisizer</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> needs_sum_check() {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">constexpr</span> Size_ smaxed = std::numeric_limits&lt;Size_&gt;::max();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">constexpr</span> Left_ lmaxed = std::numeric_limits&lt;Left_&gt;::max();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(<a class="code hl_function" href="namespacesanisizer.html#a30b33a82b205c1de74701d41f78f3c2f">is_greater_than_or_equal</a>(lmaxed, smaxed)) {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">constexpr</span> Size_ delta = smaxed - <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(lmaxed);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keyword">constexpr</span> Right_ rmaxed = std::numeric_limits&lt;Right_&gt;::max();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(rmaxed, delta);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sum</a>(Left_ left, Right_ right) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    Size_ lout = <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;Size_&gt;</a>(left);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    Size_ rout = <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;Size_&gt;</a>(right);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(needs_sum_check&lt;Size_, Left_, Right_&gt;()) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keyword">constexpr</span> Size_ smaxed = std::numeric_limits&lt;Size_&gt;::max();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">if</span> (smaxed - lout &lt; rout) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="keywordflow">throw</span> <a class="code hl_class" href="classsanisizer_1_1OverflowError.html">OverflowError</a>(<span class="stringliteral">&quot;overflow detected in sanisize::sum&quot;</span>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> lout + rout;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>Size_ <a class="code hl_function" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sum_unsafe</a>(Left_ left, Right_ right) {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(left) + <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(right);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">   73</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sum</a>(First_ first, Second_ second, Args_... more) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sum&lt;Size_&gt;</a>(first, <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sum&lt;Size_&gt;</a>(second, more...));</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
 </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">   92</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sum_unsafe</a>(First_ first, Second_ second, Args_... more) {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sum_unsafe&lt;Size_&gt;</a>(first, <a class="code hl_function" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sum_unsafe&lt;Size_&gt;</a>(second, more...));</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
+<div class="foldopen" id="foldopen00093" data-start="{" data-end="}">
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">   93</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sum_unsafe</a>(First_ first, Second_ second, Args_... more) {</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sum_unsafe&lt;Size_&gt;</a>(first, <a class="code hl_function" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sum_unsafe&lt;Size_&gt;</a>(second, more...));</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>}</div>
 </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> needs_product_check() {</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keyword">constexpr</span> Size_ smaxed = std::numeric_limits&lt;Size_&gt;::max();</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">constexpr</span> Left_ lmaxed = std::numeric_limits&lt;Left_&gt;::max();</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(<a class="code hl_function" href="namespacesanisizer.html#a30b33a82b205c1de74701d41f78f3c2f">is_greater_than_or_equal</a>(lmaxed, smaxed)) {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keyword">constexpr</span> Size_ ratio = smaxed / <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(lmaxed);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">constexpr</span> Right_ rmaxed = std::numeric_limits&lt;Right_&gt;::max();</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(rmaxed, ratio);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>Size_ <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">product</a>(Left_ left, Right_ right) {</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    Size_ lout = <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;Size_&gt;</a>(left);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    Size_ rout = <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;Size_&gt;</a>(right);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(needs_product_check&lt;Size_, Left_, Right_&gt;()) {</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keyword">constexpr</span> Size_ smaxed = std::numeric_limits&lt;Size_&gt;::max();</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">if</span> (lout &amp;&amp; smaxed / lout &lt; rout) {</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keywordflow">throw</span> OverflowError(<span class="stringliteral">&quot;overflow detected in sanisize::product&quot;</span>);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">return</span> lout * rout;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">product_unsafe</a>(Left_ left, Right_ right) {</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(left) * <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(right);</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="foldopen" id="foldopen00156" data-start="{" data-end="}">
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">  156</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">product</a>(First_ first, Second_ second, Args_... more) {</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">product&lt;Size_&gt;</a>(first, <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">product&lt;Size_&gt;</a>(second, more...));</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>}</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> needs_product_check() {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keyword">constexpr</span> Size_ smaxed = std::numeric_limits&lt;Size_&gt;::max();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keyword">constexpr</span> Left_ lmaxed = std::numeric_limits&lt;Left_&gt;::max();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(<a class="code hl_function" href="namespacesanisizer.html#a30b33a82b205c1de74701d41f78f3c2f">is_greater_than_or_equal</a>(lmaxed, smaxed)) {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">constexpr</span> Size_ ratio = smaxed / <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(lmaxed);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keyword">constexpr</span> Right_ rmaxed = std::numeric_limits&lt;Right_&gt;::max();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(rmaxed, ratio);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>Size_ <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">product</a>(Left_ left, Right_ right) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    Size_ lout = <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;Size_&gt;</a>(left);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    Size_ rout = <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;Size_&gt;</a>(right);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(needs_product_check&lt;Size_, Left_, Right_&gt;()) {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keyword">constexpr</span> Size_ smaxed = std::numeric_limits&lt;Size_&gt;::max();</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">if</span> (lout &amp;&amp; smaxed / lout &lt; rout) {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>            <span class="keywordflow">throw</span> OverflowError(<span class="stringliteral">&quot;overflow detected in sanisize::product&quot;</span>);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    }</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">return</span> lout * rout;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>}</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Left_, <span class="keyword">typename</span> Right_&gt;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">product_unsafe</a>(Left_ left, Right_ right) {</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(left) * <span class="keyword">static_cast&lt;</span>Size_<span class="keyword">&gt;</span>(right);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>}</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">  157</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">product</a>(First_ first, Second_ second, Args_... more) {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">product&lt;Size_&gt;</a>(first, <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">product&lt;Size_&gt;</a>(second, more...));</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}</div>
 </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="foldopen" id="foldopen00176" data-start="{" data-end="}">
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">  176</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">product_unsafe</a>(First_ first, Second_ second, Args_... more) {</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">product_unsafe&lt;Size_&gt;</a>(first, <a class="code hl_function" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">product_unsafe&lt;Size_&gt;</a>(second, more...));</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>}</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
+<div class="foldopen" id="foldopen00177" data-start="{" data-end="}">
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">  177</a></span>Size_ <a class="code hl_function" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">product_unsafe</a>(First_ first, Second_ second, Args_... more) {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">product_unsafe&lt;Size_&gt;</a>(first, <a class="code hl_function" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">product_unsafe&lt;Size_&gt;</a>(second, more...));</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
 </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>}</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
 </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="acast_8hpp_html"><div class="ttname"><a href="cast_8hpp.html">cast.hpp</a></div><div class="ttdoc">Safe casts of integer size.</div></div>
-<div class="ttc" id="aclasssanisizer_1_1OverflowError_html"><div class="ttname"><a href="classsanisizer_1_1OverflowError.html">sanisizer::OverflowError</a></div><div class="ttdoc">Error from an integer overflow.</div><div class="ttdef"><b>Definition</b> cast.hpp:23</div></div>
+<div class="ttc" id="aclasssanisizer_1_1OverflowError_html"><div class="ttname"><a href="classsanisizer_1_1OverflowError.html">sanisizer::OverflowError</a></div><div class="ttdoc">Error from an integer overflow.</div><div class="ttdef"><b>Definition</b> utils.hpp:19</div></div>
 <div class="ttc" id="acomparisons_8hpp_html"><div class="ttname"><a href="comparisons_8hpp.html">comparisons.hpp</a></div><div class="ttdoc">Signedness-safe integer comparisons.</div></div>
-<div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:14</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a0783e5cb9204cc76c755e07d8ea1ab8b"><div class="ttname"><a href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">sanisizer::product_unsafe</a></div><div class="ttdeci">Size_ product_unsafe(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:176</div></div>
+<div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:15</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a0783e5cb9204cc76c755e07d8ea1ab8b"><div class="ttname"><a href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">sanisizer::product_unsafe</a></div><div class="ttdeci">Size_ product_unsafe(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:177</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a30b33a82b205c1de74701d41f78f3c2f"><div class="ttname"><a href="namespacesanisizer.html#a30b33a82b205c1de74701d41f78f3c2f">sanisizer::is_greater_than_or_equal</a></div><div class="ttdeci">constexpr bool is_greater_than_or_equal(Left_ l, Right_ r)</div><div class="ttdef"><b>Definition</b> comparisons.hpp:52</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a3d1827f9cf0268a7df4f6f5144b45f6c"><div class="ttname"><a href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer::sum</a></div><div class="ttdeci">Size_ sum(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:72</div></div>
-<div class="ttc" id="anamespacesanisizer_html_aa12859cbf72cbf271cd5932ff467f898"><div class="ttname"><a href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sanisizer::sum_unsafe</a></div><div class="ttdeci">Size_ sum_unsafe(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:92</div></div>
-<div class="ttc" id="anamespacesanisizer_html_ac51a903d22bd7a22986195c5ec18e62b"><div class="ttname"><a href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer::product</a></div><div class="ttdeci">Size_ product(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:156</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a3d1827f9cf0268a7df4f6f5144b45f6c"><div class="ttname"><a href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer::sum</a></div><div class="ttdeci">Size_ sum(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:73</div></div>
+<div class="ttc" id="anamespacesanisizer_html_aa12859cbf72cbf271cd5932ff467f898"><div class="ttname"><a href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sanisizer::sum_unsafe</a></div><div class="ttdeci">Size_ sum_unsafe(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:93</div></div>
+<div class="ttc" id="anamespacesanisizer_html_ac51a903d22bd7a22986195c5ec18e62b"><div class="ttname"><a href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer::product</a></div><div class="ttdeci">Size_ product(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:157</div></div>
 <div class="ttc" id="anamespacesanisizer_html_ae72cbdc03b1a76623454dfb4f3a06e31"><div class="ttname"><a href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">sanisizer::is_greater_than</a></div><div class="ttdeci">constexpr bool is_greater_than(Left_ l, Right_ r)</div><div class="ttdef"><b>Definition</b> comparisons.hpp:66</div></div>
-<div class="ttc" id="anamespacesanisizer_html_aed4423ffa6beced95cee29c155e494d2"><div class="ttname"><a href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a></div><div class="ttdeci">Size_ cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:48</div></div>
+<div class="ttc" id="anamespacesanisizer_html_aed4423ffa6beced95cee29c155e494d2"><div class="ttname"><a href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a></div><div class="ttdeci">Size_ cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:29</div></div>
+<div class="ttc" id="autils_8hpp_html"><div class="ttname"><a href="utils_8hpp.html">utils.hpp</a></div><div class="ttdoc">General-purposes utilities.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

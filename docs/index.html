@@ -105,10 +105,10 @@ Casting</h1>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Same for new, which expects a `std::size_t`.</span></div>
 <div class="line"><span class="keyword">auto</span> ptr = <span class="keyword">new</span> <span class="keywordtype">double</span>[<a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast&lt;std::size_t&gt;</a>(new_size)];</div>
-<div class="ttc" id="anamespacesanisizer_html_aed4423ffa6beced95cee29c155e494d2"><div class="ttname"><a href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a></div><div class="ttdeci">Size_ cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:48</div></div>
+<div class="ttc" id="anamespacesanisizer_html_aed4423ffa6beced95cee29c155e494d2"><div class="ttname"><a href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a></div><div class="ttdeci">Size_ cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:29</div></div>
 </div><!-- fragment --><p>We could also use <code><a class="el" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create()</a></code>, which creates a new container instance with less of the type-deducation boilerplate:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> my_container2 = <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(new_size);</div>
-<div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> cast.hpp:107</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:31</div></div>
 </div><!-- fragment --><p>See the <a href="https://ltla.github.io/sanisizer">reference documentation</a> for more details.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Capping</h1>
@@ -132,14 +132,14 @@ Arithmetic</h1>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> is : individual_sizes) {</div>
 <div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer::sum&lt;std::size_t&gt;</a>(combined_size, is);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacesanisizer_html_a3d1827f9cf0268a7df4f6f5144b45f6c"><div class="ttname"><a href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer::sum</a></div><div class="ttdeci">Size_ sum(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:72</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a3d1827f9cf0268a7df4f6f5144b45f6c"><div class="ttname"><a href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer::sum</a></div><div class="ttdeci">Size_ sum(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:73</div></div>
 </div><!-- fragment --><p>When allocating contiguous memory for a high-dimensional array, we need to compute the product of the dimension extents. Again, this calculation can be done safely by using the <code>product()</code> functions to check for overflow.</p>
 <div class="fragment"><div class="line">std::vector&lt;long long&gt; dimensions{ 123, 456, 789 };</div>
 <div class="line">std::size_t combined_size = 1;</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> is : individual_sizes) {</div>
 <div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer::product&lt;std::size_t&gt;</a>(combined_size, is);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacesanisizer_html_ac51a903d22bd7a22986195c5ec18e62b"><div class="ttname"><a href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer::product</a></div><div class="ttdeci">Size_ product(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:156</div></div>
+<div class="ttc" id="anamespacesanisizer_html_ac51a903d22bd7a22986195c5ec18e62b"><div class="ttname"><a href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer::product</a></div><div class="ttdeci">Size_ product(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:157</div></div>
 </div><!-- fragment --><p>Another common operation is to compute differences between iterators, e.g., to recover an index from iterator-based functions like <code>std::lower_bound()</code>. For large containers, the iterator's difference type might not be unable to store the difference, typically when the difference type is the same size as the size type. To protect against overflow, we can use the <code>can_ptrdiff()</code> function:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> to_search = <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(current_size);</div>
 <div class="line"><a class="code hl_function" href="namespacesanisizer.html#acbe2c4a2bd3f774551a98949fcda2412">sanisizer::can_ptrdiff</a>&lt;<span class="keyword">decltype</span>(to_search.begin())&gt;(current_size);</div>
@@ -154,7 +154,7 @@ N-dimensional offsets</h1>
 </div><!-- fragment --><p>If <code>x1</code>, <code>d1</code>, <code>x2</code>, etc. are of a smaller type than the array/container's size, the intermediate sums and products could overflow, even if the final offset itself would be representable by the array/container size type. To avoid this, we provide the <code>nd_offset()</code> function, which casts all inputs to the size type before performing calculations.</p>
 <div class="fragment"><div class="line"><span class="comment">// Same calculation as above</span></div>
 <div class="line"><a class="code hl_function" href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">sanisizer::nd_offset&lt;std::size_t&gt;</a>(x1, d1, x2, d2, x3);</div>
-<div class="ttc" id="anamespacesanisizer_html_a1b7b649bb2ee029e69a40a62c76f4762"><div class="ttname"><a href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">sanisizer::nd_offset</a></div><div class="ttdeci">Size_ nd_offset(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</div><div class="ttdef"><b>Definition</b> nd_offset.hpp:57</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a1b7b649bb2ee029e69a40a62c76f4762"><div class="ttname"><a href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">sanisizer::nd_offset</a></div><div class="ttdeci">Size_ nd_offset(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</div><div class="ttdef"><b>Definition</b> nd_offset.hpp:51</div></div>
 </div><!-- fragment --><p>The idea is to use <code>nd_offset()</code> within tight loops - say, for accessing the 10-th column of a row-major matrix:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> c = 10;</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> r = 0; r &lt; NR; ++r) {</div>

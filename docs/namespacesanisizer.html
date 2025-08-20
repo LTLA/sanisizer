@@ -125,9 +125,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ae296713052655ffb92c4add715f63596" id="r_ae296713052655ffb92c4add715f63596"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Input_ &gt; </td></tr>
 <tr class="memitem:ae296713052655ffb92c4add715f63596"><td class="memTemplItemLeft" align="right" valign="top">Input_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae296713052655ffb92c4add715f63596">can_cast</a> (Input_ x)</td></tr>
 <tr class="separator:ae296713052655ffb92c4add715f63596"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ece7999b7f4228f9721ef6c6a4a8cf2" id="r_a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </td></tr>
-<tr class="memitem:a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memTemplItemLeft" align="right" valign="top">Container_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7ece7999b7f4228f9721ef6c6a4a8cf2">create</a> (Input_ x, Args_ &amp;&amp;... args)</td></tr>
-<tr class="separator:a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbe42dad8b782f5e4361ee00a64fb29f" id="r_afbe42dad8b782f5e4361ee00a64fb29f"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
 <tr class="memitem:afbe42dad8b782f5e4361ee00a64fb29f"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#afbe42dad8b782f5e4361ee00a64fb29f">is_equal</a> (Left_ l, Right_ r)</td></tr>
 <tr class="separator:afbe42dad8b782f5e4361ee00a64fb29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,6 +146,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a692dab8520331e20e6d2361439a53450" id="r_a692dab8520331e20e6d2361439a53450"><td class="memTemplParams" colspan="2">template&lt;typename First_ , typename Second_ &gt; </td></tr>
 <tr class="memitem:a692dab8520331e20e6d2361439a53450"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a692dab8520331e20e6d2361439a53450">max</a> (First_ first, Second_ second)</td></tr>
 <tr class="separator:a692dab8520331e20e6d2361439a53450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ece7999b7f4228f9721ef6c6a4a8cf2" id="r_a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memTemplItemLeft" align="right" valign="top">Container_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7ece7999b7f4228f9721ef6c6a4a8cf2">create</a> (Input_ x, Args_ &amp;&amp;... args)</td></tr>
+<tr class="separator:a7ece7999b7f4228f9721ef6c6a4a8cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e35f43abdb652783441d89351510992" id="r_a7e35f43abdb652783441d89351510992"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a7e35f43abdb652783441d89351510992"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7e35f43abdb652783441d89351510992">resize</a> (Container_ &amp;container, Input_ x, Args_ &amp;&amp;... args)</td></tr>
+<tr class="separator:a7e35f43abdb652783441d89351510992"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762" id="r_a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename FirstIndex_ , typename FirstExtent_ , typename SecondIndex_ , typename... Remaining_&gt; </td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1b7b649bb2ee029e69a40a62c76f4762">nd_offset</a> (FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</td></tr>
 <tr class="separator:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -810,6 +813,51 @@ template&lt;typename Size_ , typename First_ , typename Second_ , typename ... A
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Product of all arguments as a <code>Size_</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a7e35f43abdb652783441d89351510992" name="a7e35f43abdb652783441d89351510992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e35f43abdb652783441d89351510992">&#9670;&#160;</a></span>resize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void sanisizer::resize </td>
+          <td>(</td>
+          <td class="paramtype">Container_ &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Input_</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args_ &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Resize a container to the desired size. This protects against overflow when casting the integer size to the container's size type.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a <code><a class="el" href="#a7e35f43abdb652783441d89351510992">resize()</a></code> method that accepts the size as the first argument. </td></tr>
+    <tr><td class="paramname">Input_</td><td>Integer type of the input size. </td></tr>
+    <tr><td class="paramname">Args_</td><td>Further arguments to pass to the container's <code><a class="el" href="#a7e35f43abdb652783441d89351510992">resize()</a></code> method.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">container</td><td>An existing instance of the container. This is resized to size <code>x</code>. </td></tr>
+    <tr><td class="paramname">x</td><td>Non-negative value representing the desired container size. If this would overflow the container's size type, an <code><a class="el" href="classsanisizer_1_1OverflowError.html" title="Error from an integer overflow.">OverflowError</a></code> is raised. </td></tr>
+    <tr><td class="paramname">args</td><td>Additional arguments to pass to <code><a class="el" href="#a7e35f43abdb652783441d89351510992">resize()</a></code> after the size. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

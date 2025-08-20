@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>sanisizer: Namespace Members</title>
+<title>sanisizer: sanisizer/utils.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -57,8 +57,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="doc-content">
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function(){ initResizable(false); });
@@ -85,28 +83,42 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_0a8034aaba84db31794826969fd82345.html">sanisizer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a>  </div>
+  <div class="headertitle"><div class="title">utils.hpp File Reference</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all documented namespace functions with links to the namespaces they belong to:</div><ul>
-<li>can_cast()&#160;:&#160;<a class="el" href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">sanisizer</a></li>
-<li>can_ptrdiff()&#160;:&#160;<a class="el" href="namespacesanisizer.html#acbe2c4a2bd3f774551a98949fcda2412">sanisizer</a></li>
-<li>cap()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">sanisizer</a></li>
-<li>cast()&#160;:&#160;<a class="el" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer</a></li>
-<li>create()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer</a></li>
-<li>is_equal()&#160;:&#160;<a class="el" href="namespacesanisizer.html#afbe42dad8b782f5e4361ee00a64fb29f">sanisizer</a></li>
-<li>is_greater_than()&#160;:&#160;<a class="el" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">sanisizer</a></li>
-<li>is_greater_than_or_equal()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a30b33a82b205c1de74701d41f78f3c2f">sanisizer</a></li>
-<li>is_less_than()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a2d7fa66b9cb5391774cbe167c37e8048">sanisizer</a></li>
-<li>is_less_than_or_equal()&#160;:&#160;<a class="el" href="namespacesanisizer.html#af487e747e2124fc1a2cea73d1dad7974">sanisizer</a></li>
-<li>max()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a692dab8520331e20e6d2361439a53450">sanisizer</a></li>
-<li>min()&#160;:&#160;<a class="el" href="namespacesanisizer.html#aa483a5cd81fb958f0cd7198752030076">sanisizer</a></li>
-<li>nd_offset()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762">sanisizer</a></li>
-<li>product()&#160;:&#160;<a class="el" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer</a></li>
-<li>product_unsafe()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">sanisizer</a></li>
-<li>resize()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a7e35f43abdb652783441d89351510992">sanisizer</a></li>
-<li>sum()&#160;:&#160;<a class="el" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer</a></li>
-<li>sum_unsafe()&#160;:&#160;<a class="el" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sanisizer</a></li>
-</ul>
-</div><!-- contents -->
+
+<p>General-purposes utilities.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+</div>
+<p><a href="utils_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsanisizer_1_1OverflowError.html">sanisizer::OverflowError</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error from an integer overflow.  <a href="classsanisizer_1_1OverflowError.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html">sanisizer</a></td></tr>
+<tr class="memdesc:namespacesanisizer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sanitize sizes to avoid integer overflow. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>General-purposes utilities. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0

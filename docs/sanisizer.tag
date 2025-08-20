@@ -6,6 +6,7 @@
     <filename>arithmetic_8hpp.html</filename>
     <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
+    <includes id="utils_8hpp" name="utils.hpp" local="yes" import="no" module="no" objc="no">utils.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -20,13 +21,21 @@
     <path>sanisizer/</path>
     <filename>cast_8hpp.html</filename>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
-    <class kind="class">sanisizer::OverflowError</class>
+    <includes id="utils_8hpp" name="utils.hpp" local="yes" import="no" module="no" objc="no">utils.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
     <name>comparisons.hpp</name>
     <path>sanisizer/</path>
     <filename>comparisons_8hpp.html</filename>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
+    <name>create.hpp</name>
+    <path>sanisizer/</path>
+    <filename>create_8hpp.html</filename>
+    <includes id="utils_8hpp" name="utils.hpp" local="yes" import="no" module="no" objc="no">utils.hpp</includes>
+    <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -40,7 +49,7 @@
     <path>sanisizer/</path>
     <filename>ptrdiff_8hpp.html</filename>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
-    <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
+    <includes id="utils_8hpp" name="utils.hpp" local="yes" import="no" module="no" objc="no">utils.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -50,9 +59,17 @@
     <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
     <includes id="arithmetic_8hpp" name="arithmetic.hpp" local="yes" import="no" module="no" objc="no">arithmetic.hpp</includes>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
+    <includes id="create_8hpp" name="create.hpp" local="yes" import="no" module="no" objc="no">create.hpp</includes>
     <includes id="nd__offset_8hpp" name="nd_offset.hpp" local="yes" import="no" module="no" objc="no">nd_offset.hpp</includes>
     <includes id="cap_8hpp" name="cap.hpp" local="yes" import="no" module="no" objc="no">cap.hpp</includes>
     <includes id="ptrdiff_8hpp" name="ptrdiff.hpp" local="yes" import="no" module="no" objc="no">ptrdiff.hpp</includes>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
+    <name>utils.hpp</name>
+    <path>sanisizer/</path>
+    <filename>utils_8hpp.html</filename>
+    <class kind="class">sanisizer::OverflowError</class>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="class">
@@ -113,13 +130,6 @@
       <arglist>(Input_ x)</arglist>
     </member>
     <member kind="function">
-      <type>Container_</type>
-      <name>create</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a7ece7999b7f4228f9721ef6c6a4a8cf2</anchor>
-      <arglist>(Input_ x, Args_ &amp;&amp;... args)</arglist>
-    </member>
-    <member kind="function">
       <type>constexpr bool</type>
       <name>is_equal</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
@@ -167,6 +177,20 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a692dab8520331e20e6d2361439a53450</anchor>
       <arglist>(First_ first, Second_ second)</arglist>
+    </member>
+    <member kind="function">
+      <type>Container_</type>
+      <name>create</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a7ece7999b7f4228f9721ef6c6a4a8cf2</anchor>
+      <arglist>(Input_ x, Args_ &amp;&amp;... args)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>resize</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a7e35f43abdb652783441d89351510992</anchor>
+      <arglist>(Container_ &amp;container, Input_ x, Args_ &amp;&amp;... args)</arglist>
     </member>
     <member kind="function">
       <type>Size_</type>
