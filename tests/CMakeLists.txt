@@ -24,27 +24,29 @@ add_executable(libtest
     src/nd_offset.cpp
     src/cap.cpp
     src/ptrdiff.cpp
+    src/float.cpp
 )
 
-target_link_libraries(libtest 
-    gtest_main
-    gmock_main
-    sanisizer)
+add_executable(frexptest 
+    src/float.cpp
+)
+target_compile_definitions(frexptest PRIVATE SANISIZER_FLOAT_FORCE_FREXP=1)
 
-include(CheckIncludeFiles)
-check_include_files(filesystem HAVE_CXX_FS)
-if (NOT HAVE_CXX_FS)
-    target_link_libraries(libtest stdc++fs)
-endif()
+target_link_libraries(libtest gtest_main sanisizer)
+target_link_libraries(frexptest gtest_main sanisizer)
 
 target_compile_options(libtest PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_compile_options(frexptest PRIVATE -Wall -Wextra -Wpedantic -Werror)
 
 set(CODE_COVERAGE OFF CACHE BOOL "Enable coverage testing")
 if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(libtest PRIVATE -O0 -g --coverage)
     target_link_options(libtest PRIVATE --coverage)
+    target_compile_options(frexptest PRIVATE -O0 -g --coverage)
+    target_link_options(frexptest PRIVATE --coverage)
 endif()
 
 # Making the tests discoverable.
 include(GoogleTest)
 gtest_discover_tests(libtest)
+gtest_discover_tests(frexptest)

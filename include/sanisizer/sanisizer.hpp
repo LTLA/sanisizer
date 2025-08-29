@@ -8,6 +8,7 @@
 #include "nd_offset.hpp"
 #include "cap.hpp"
 #include "ptrdiff.hpp"
+#include "float.hpp"
 
 /**
  * @file sanisizer.hpp
