@@ -155,6 +155,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a7e35f43abdb652783441d89351510992" id="r_a7e35f43abdb652783441d89351510992"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:a7e35f43abdb652783441d89351510992"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7e35f43abdb652783441d89351510992">resize</a> (Container_ &amp;container, Input_ x, Args_ &amp;&amp;... args)</td></tr>
 <tr class="separator:a7e35f43abdb652783441d89351510992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56076716172db1c8ee4b11e1a01bb4b6" id="r_a56076716172db1c8ee4b11e1a01bb4b6"><td class="memTemplParams" colspan="2">template&lt;typename Integer_ , typename Float_ &gt; </td></tr>
+<tr class="memitem:a56076716172db1c8ee4b11e1a01bb4b6"><td class="memTemplItemLeft" align="right" valign="top">Integer_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a56076716172db1c8ee4b11e1a01bb4b6">from_float</a> (Float_ x)</td></tr>
+<tr class="separator:a56076716172db1c8ee4b11e1a01bb4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762" id="r_a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename FirstIndex_ , typename FirstExtent_ , typename SecondIndex_ , typename... Remaining_&gt; </td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1b7b649bb2ee029e69a40a62c76f4762">nd_offset</a> (FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</td></tr>
 <tr class="separator:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -379,6 +382,41 @@ template&lt;class Container_ , typename Input_ , typename ... Args_&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An instance of the container, constructed to be of size <code>x</code>. If overflow would occur, an <code><a class="el" href="classsanisizer_1_1OverflowError.html" title="Error from an integer overflow.">OverflowError</a></code> is raised. </dd></dl>
+
+</div>
+</div>
+<a id="a56076716172db1c8ee4b11e1a01bb4b6" name="a56076716172db1c8ee4b11e1a01bb4b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56076716172db1c8ee4b11e1a01bb4b6">&#9670;&#160;</a></span>from_float()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Integer_ , typename Float_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Integer_ sanisizer::from_float </td>
+          <td>(</td>
+          <td class="paramtype">Float_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Safely convert a non-negative floating-point number to an integer with truncation. This is occasionally necessary when the size of a container or number of loop iterations is determined by floating-point calculations.</p>
+<p>We do not have a <code>to_float()</code> function as we assume that the implementation's floats are compliant with the IEEE-754 specifiation, such that very large integers will be safely converted to positive infinity.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Integer_</td><td>Integer type. </td></tr>
+    <tr><td class="paramname">Float_</td><td>Floating-point type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Non-negative floating-point number, usually holding some kind of size.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of <code>x</code> as an integer, after truncation. An exception is raised if the input is non-finite or overflow would occur. </dd></dl>
 
 </div>
 </div>

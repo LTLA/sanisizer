@@ -39,6 +39,12 @@
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
+    <name>float.hpp</name>
+    <path>sanisizer/</path>
+    <filename>float_8hpp.html</filename>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
     <name>nd_offset.hpp</name>
     <path>sanisizer/</path>
     <filename>nd__offset_8hpp.html</filename>
@@ -63,6 +69,7 @@
     <includes id="nd__offset_8hpp" name="nd_offset.hpp" local="yes" import="no" module="no" objc="no">nd_offset.hpp</includes>
     <includes id="cap_8hpp" name="cap.hpp" local="yes" import="no" module="no" objc="no">cap.hpp</includes>
     <includes id="ptrdiff_8hpp" name="ptrdiff.hpp" local="yes" import="no" module="no" objc="no">ptrdiff.hpp</includes>
+    <includes id="float_8hpp" name="float.hpp" local="yes" import="no" module="no" objc="no">float.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -198,6 +205,13 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a7e35f43abdb652783441d89351510992</anchor>
       <arglist>(Container_ &amp;container, Input_ x, Args_ &amp;&amp;... args)</arglist>
+    </member>
+    <member kind="function">
+      <type>Integer_</type>
+      <name>from_float</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a56076716172db1c8ee4b11e1a01bb4b6</anchor>
+      <arglist>(Float_ x)</arglist>
     </member>
     <member kind="function">
       <type>Size_</type>
