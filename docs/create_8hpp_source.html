@@ -106,7 +106,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> Container_, <span class="keyword">typename</span> Input_&gt;</div>
 <div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a9351dec099e9a5618639f0e9f56d2505">   29</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespacesanisizer.html#a9351dec099e9a5618639f0e9f56d2505">as_size_type</a>(Input_ x) {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;decltype(I(std::declval&lt;Container_&gt;</a>().size()))&gt;(x);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">cast&lt;I&lt;decltype(std::declval&lt;Container_&gt;</a>().size())&gt; &gt;(x);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
 </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
