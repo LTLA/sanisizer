@@ -27,7 +27,7 @@ namespace sanisizer {
  */
 template<class Container_, typename Input_>
 auto as_size_type(Input_ x) {
-    return cast<decltype(I(std::declval<Container_>().size()))>(x);
+    return cast<I<decltype(std::declval<Container_>().size())> >(x);
 }
 
 /**
