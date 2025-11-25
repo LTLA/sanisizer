@@ -27,26 +27,28 @@ add_executable(libtest
     src/float.cpp
 )
 
-add_executable(frexptest 
+add_executable(floattest 
     src/float.cpp
 )
-target_compile_definitions(frexptest PRIVATE SANISIZER_FLOAT_FORCE_FREXP=1)
+target_compile_definitions(floattest PRIVATE 
+    SANISIZER_FLOAT_FORCE_FREXP=1
+    SANISIZER_FLOAT_FORCE_MANUAL=1)
 
 target_link_libraries(libtest gtest_main sanisizer)
-target_link_libraries(frexptest gtest_main sanisizer)
+target_link_libraries(floattest gtest_main sanisizer)
 
 target_compile_options(libtest PRIVATE -Wall -Wextra -Wpedantic -Werror)
-target_compile_options(frexptest PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_compile_options(floattest PRIVATE -Wall -Wextra -Wpedantic -Werror)
 
 set(CODE_COVERAGE OFF CACHE BOOL "Enable coverage testing")
 if(CODE_COVERAGE AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(libtest PRIVATE -O0 -g --coverage)
     target_link_options(libtest PRIVATE --coverage)
-    target_compile_options(frexptest PRIVATE -O0 -g --coverage)
-    target_link_options(frexptest PRIVATE --coverage)
+    target_compile_options(floattest PRIVATE -O0 -g --coverage)
+    target_link_options(floattest PRIVATE --coverage)
 endif()
 
 # Making the tests discoverable.
 include(GoogleTest)
 gtest_discover_tests(libtest)
-gtest_discover_tests(frexptest)
+gtest_discover_tests(floattest)

@@ -5,9 +5,11 @@
 #include <cmath>
 #include <stdexcept>
 
+#include "utils.hpp"
+
 /**
  * @file float.hpp
- * @brief Safely convert floats to integer sizes.
+ * @brief Safely convert floats to/from integer sizes.
  */
 
 namespace sanisizer {
@@ -42,9 +44,6 @@ bool float_to_int_overflows(Float_ floored_x) {
  * Safely convert a non-negative floating-point number to an integer with truncation.
  * This is occasionally necessary when the size of a container or number of loop iterations is determined by floating-point calculations.
  *
- * We do not have a `to_float()` function as we assume that the implementation's floats are compliant with the IEEE-754 specifiation,
- * such that very large integers will be safely converted to positive infinity.
- *
  * @tparam Integer_ Integer type.
  * @tparam Float_ Floating-point type.
  *
@@ -62,6 +61,54 @@ Integer_ from_float(Float_ x) {
     if (float_to_int_overflows<Integer_>(x)) {
         throw std::runtime_error("invalid conversion in sanisizer::from_float");
     }
+    return x;
+}
+
+/**
+ * Safely convert a non-negative integer into a floating-point number without loss of precision.
+ * This is occasionally necessary when the surrounding environment does not have a dedicated integer type (e.g., Javascript).
+ *
+ * Note that the "safety" of this function is based on preserving precision rather than avoiding undefined behavior.
+ * If the implementation's floats are compliant with the IEEE-754 specifiation, very large integers will already be safely converted to positive infinity via regular casts.
+ *
+ * @tparam Integer_ Integer type.
+ * @tparam Float_ Floating-point type.
+ *
+ * @param x Non-negative integer, usually holding some kind of size. 
+ *
+ * @return The value of `x` as a floating-point number.
+ * An exception is raised if overflow would occur.
+ */
+template<typename Float_, typename Integer_>
+Float_ to_float(Integer_ x) {
+    if (x == 0) {
+        return 0;
+    }
+
+    constexpr auto frad = std::numeric_limits<Float_>::radix;
+    constexpr auto fdig = std::numeric_limits<Float_>::digits;
+#ifndef SANISIZER_FLOAT_FORCE_MANUAL
+    if constexpr(frad == 2) {
+        if constexpr(std::numeric_limits<Integer_>::digits > fdig) {
+            const auto y = (x - 1) >> fdig;
+            if (y) {
+                throw OverflowError("overflow detected in sanisizer::to_float");
+            }
+        }
+    } else {
+#endif
+        // Manual fallback in the unusual case that the radixes is not 2.
+        Integer_ working = x - 1;
+        for (I<decltype(fdig)> d = 0; d < fdig && working; ++d) {
+            working /= frad;
+        }
+        if (working) {
+            throw OverflowError("overflow detected in sanisizer::to_float");
+        }
+#ifndef SANISIZER_FLOAT_FORCE_MANUAL
+    }
+#endif
+
     return x;
 }
 
