@@ -55,11 +55,11 @@ bool float_to_int_overflows(Float_ floored_x) {
 template<typename Integer_, typename Float_>
 Integer_ from_float(Float_ x) {
     if (!std::isfinite(x)) {
-        throw std::runtime_error("invalid conversion in sanisizer::from_float");
+        throw std::runtime_error("invalid conversion of non-finite value in sanisizer::from_float");
     }
     x = std::trunc(x);
     if (float_to_int_overflows<Integer_>(x)) {
-        throw std::runtime_error("invalid conversion in sanisizer::from_float");
+        throw OverflowError("overflow detected in sanisizer::from_float");
     }
     return x;
 }

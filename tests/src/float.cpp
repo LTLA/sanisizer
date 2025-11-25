@@ -17,7 +17,7 @@ TEST(Float, FromFloat) {
     } catch (std::exception& e) {
         failmsg = e.what();
     }
-    EXPECT_TRUE(failmsg.find("invalid conversion") != std::string::npos);
+    EXPECT_TRUE(failmsg.find("overflow detected") != std::string::npos);
 
     failmsg.clear();
     try {
@@ -25,7 +25,7 @@ TEST(Float, FromFloat) {
     } catch (std::exception& e) {
         failmsg = e.what();
     }
-    EXPECT_TRUE(failmsg.find("invalid conversion") != std::string::npos);
+    EXPECT_TRUE(failmsg.find("overflow detected") != std::string::npos);
 
     failmsg.clear();
     try {
