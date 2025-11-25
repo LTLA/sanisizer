@@ -158,6 +158,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a56076716172db1c8ee4b11e1a01bb4b6" id="r_a56076716172db1c8ee4b11e1a01bb4b6"><td class="memTemplParams" colspan="2">template&lt;typename Integer_ , typename Float_ &gt; </td></tr>
 <tr class="memitem:a56076716172db1c8ee4b11e1a01bb4b6"><td class="memTemplItemLeft" align="right" valign="top">Integer_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a56076716172db1c8ee4b11e1a01bb4b6">from_float</a> (Float_ x)</td></tr>
 <tr class="separator:a56076716172db1c8ee4b11e1a01bb4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4339f0370428ea79772ab81e3637db20" id="r_a4339f0370428ea79772ab81e3637db20"><td class="memTemplParams" colspan="2">template&lt;typename Float_ , typename Integer_ &gt; </td></tr>
+<tr class="memitem:a4339f0370428ea79772ab81e3637db20"><td class="memTemplItemLeft" align="right" valign="top">Float_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4339f0370428ea79772ab81e3637db20">to_float</a> (Integer_ x)</td></tr>
+<tr class="separator:a4339f0370428ea79772ab81e3637db20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762" id="r_a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename FirstIndex_ , typename FirstExtent_ , typename SecondIndex_ , typename... Remaining_&gt; </td></tr>
 <tr class="memitem:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1b7b649bb2ee029e69a40a62c76f4762">nd_offset</a> (FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</td></tr>
 <tr class="separator:a1b7b649bb2ee029e69a40a62c76f4762"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -402,7 +405,6 @@ template&lt;typename Integer_ , typename Float_ &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Safely convert a non-negative floating-point number to an integer with truncation. This is occasionally necessary when the size of a container or number of loop iterations is determined by floating-point calculations.</p>
-<p>We do not have a <code>to_float()</code> function as we assume that the implementation's floats are compliant with the IEEE-754 specifiation, such that very large integers will be safely converted to positive infinity.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Integer_</td><td>Integer type. </td></tr>
@@ -1027,6 +1029,41 @@ template&lt;typename Size_ , typename First_ , typename Second_ , typename ... A
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Sum of all arguments as a <code>Size_</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a4339f0370428ea79772ab81e3637db20" name="a4339f0370428ea79772ab81e3637db20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4339f0370428ea79772ab81e3637db20">&#9670;&#160;</a></span>to_float()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Float_ , typename Integer_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Float_ sanisizer::to_float </td>
+          <td>(</td>
+          <td class="paramtype">Integer_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Safely convert a non-negative integer into a floating-point number without loss of precision. This is occasionally necessary when the surrounding environment does not have a dedicated integer type (e.g., Javascript).</p>
+<p>Note that the "safety" of this function is based on preserving precision rather than avoiding undefined behavior. If the implementation's floats are compliant with the IEEE-754 specifiation, very large integers will already be safely converted to positive infinity via regular casts.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Integer_</td><td>Integer type. </td></tr>
+    <tr><td class="paramname">Float_</td><td>Floating-point type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Non-negative integer, usually holding some kind of size.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of <code>x</code> as a floating-point number. An exception is raised if overflow would occur. </dd></dl>
 
 </div>
 </div>

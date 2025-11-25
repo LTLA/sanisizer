@@ -42,6 +42,7 @@
     <name>float.hpp</name>
     <path>sanisizer/</path>
     <filename>float_8hpp.html</filename>
+    <includes id="utils_8hpp" name="utils.hpp" local="yes" import="no" module="no" objc="no">utils.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -212,6 +213,13 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a56076716172db1c8ee4b11e1a01bb4b6</anchor>
       <arglist>(Float_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>Float_</type>
+      <name>to_float</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a4339f0370428ea79772ab81e3637db20</anchor>
+      <arglist>(Integer_ x)</arglist>
     </member>
     <member kind="function">
       <type>Size_</type>
