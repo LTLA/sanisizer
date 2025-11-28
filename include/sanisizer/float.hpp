@@ -4,6 +4,7 @@
 #include <limits>
 #include <cmath>
 #include <stdexcept>
+#include <type_traits>
 
 #include "utils.hpp"
 
@@ -54,6 +55,9 @@ bool float_to_int_overflows(Float_ floored_x) {
  */
 template<typename Integer_, typename Float_>
 Integer_ from_float(Float_ x) {
+    static_assert(std::is_floating_point<Float_>::value);
+    static_assert(std::is_integral<Integer_>::value);
+
     if (!std::isfinite(x)) {
         throw std::runtime_error("invalid conversion of non-finite value in sanisizer::from_float");
     }
@@ -81,6 +85,8 @@ Integer_ from_float(Float_ x) {
  */
 template<typename Float_, typename Integer_>
 Float_ to_float(Integer_ x) {
+    static_assert(std::is_floating_point<Float_>::value);
+    static_assert(std::is_integral<Integer_>::value);
     if (x == 0) {
         return 0;
     }

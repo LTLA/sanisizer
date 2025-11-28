@@ -2,6 +2,7 @@
 #define SANISIZER_CAP_HPP
 
 #include <limits>
+#include <type_traits>
 
 #include "comparisons.hpp"
 
@@ -25,6 +26,9 @@ namespace sanisizer {
  */
 template<typename Size_, typename Input_>
 constexpr Size_ cap(Input_ x) {
+    static_assert(std::is_integral<Size_>::value);
+    static_assert(std::is_integral<Input_>::value);
+
     constexpr Size_ maxed = std::numeric_limits<Size_>::max();
     if (is_greater_than(x, maxed)) {
         return maxed;

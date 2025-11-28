@@ -22,6 +22,8 @@ namespace sanisizer {
  */
 template<typename Left_, typename Right_>
 constexpr bool is_equal(Left_ l, Right_ r) {
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
     return static_cast<typename std::make_unsigned<Left_>::type>(l) == static_cast<typename std::make_unsigned<Right_>::type>(r);
 }
 
@@ -36,6 +38,8 @@ constexpr bool is_equal(Left_ l, Right_ r) {
  */
 template<typename Left_, typename Right_>
 constexpr bool is_less_than(Left_ l, Right_ r) {
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
     return static_cast<typename std::make_unsigned<Left_>::type>(l) < static_cast<typename std::make_unsigned<Right_>::type>(r);
 }
 
@@ -50,6 +54,8 @@ constexpr bool is_less_than(Left_ l, Right_ r) {
  */
 template<typename Left_, typename Right_>
 constexpr bool is_greater_than_or_equal(Left_ l, Right_ r) {
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
     return !is_less_than(l, r);
 }
 
@@ -64,6 +70,8 @@ constexpr bool is_greater_than_or_equal(Left_ l, Right_ r) {
  */
 template<typename Left_, typename Right_>
 constexpr bool is_greater_than(Left_ l, Right_ r) {
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
     return static_cast<typename std::make_unsigned<Left_>::type>(l) > static_cast<typename std::make_unsigned<Right_>::type>(r);
 }
 
@@ -78,6 +86,8 @@ constexpr bool is_greater_than(Left_ l, Right_ r) {
  */
 template<typename Left_, typename Right_>
 constexpr bool is_less_than_or_equal(Left_ l, Right_ r) {
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
     return !is_greater_than(l, r);
 }
 
@@ -92,6 +102,9 @@ constexpr bool is_less_than_or_equal(Left_ l, Right_ r) {
  */
 template<typename First_, typename Second_>
 constexpr auto min(First_ first, Second_ second) {
+    static_assert(std::is_integral<First_>::value);
+    static_assert(std::is_integral<Second_>::value);
+
     if constexpr(std::numeric_limits<First_>::max() > std::numeric_limits<Second_>::max()) {
         if (is_greater_than(first, second)) {
             return second;
@@ -118,6 +131,9 @@ constexpr auto min(First_ first, Second_ second) {
  */
 template<typename First_, typename Second_>
 constexpr auto max(First_ first, Second_ second) {
+    static_assert(std::is_integral<First_>::value);
+    static_assert(std::is_integral<Second_>::value);
+
     if constexpr(std::numeric_limits<First_>::max() > std::numeric_limits<Second_>::max()) {
         if (is_greater_than(first, second)) {
             return first;

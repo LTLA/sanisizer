@@ -3,6 +3,7 @@
 
 #include <limits>
 #include <utility>
+#include <type_traits>
 
 #include "comparisons.hpp"
 #include "utils.hpp"
@@ -25,6 +26,7 @@ namespace sanisizer {
  */
 template<typename Iterator_, typename MaxDiff_>
 void can_ptrdiff(MaxDiff_ max_diff) {
+    static_assert(std::is_integral<MaxDiff_>::value);
     typedef I<decltype(std::declval<Iterator_>() - std::declval<Iterator_>())> Diff;
     constexpr auto theoretical_max_diff = std::numeric_limits<Diff>::max();
     if constexpr(!is_greater_than_or_equal(theoretical_max_diff, std::numeric_limits<MaxDiff_>::max())) {

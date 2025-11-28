@@ -2,6 +2,7 @@
 #define SANISIZER_ARITHMETIC_HPP
 
 #include <limits>
+#include <type_traits>
 
 #include "cast.hpp"
 #include "comparisons.hpp"
@@ -19,6 +20,10 @@ namespace sanisizer {
  */
 template<typename Size_, typename Left_, typename Right_>
 constexpr bool needs_sum_check() {
+    static_assert(std::is_integral<Size_>::value);
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
+
     constexpr Size_ smaxed = std::numeric_limits<Size_>::max();
     constexpr Left_ lmaxed = std::numeric_limits<Left_>::max();
     if constexpr(is_greater_than_or_equal(lmaxed, smaxed)) {
@@ -32,8 +37,12 @@ constexpr bool needs_sum_check() {
 
 template<typename Size_, typename Left_, typename Right_>
 Size_ sum(Left_ left, Right_ right) {
-    Size_ lout = cast<Size_>(left);
-    Size_ rout = cast<Size_>(right);
+    static_assert(std::is_integral<Size_>::value);
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
+
+    const Size_ lout = cast<Size_>(left);
+    const Size_ rout = cast<Size_>(right);
 
     if constexpr(needs_sum_check<Size_, Left_, Right_>()) {
         constexpr Size_ smaxed = std::numeric_limits<Size_>::max();
@@ -47,6 +56,9 @@ Size_ sum(Left_ left, Right_ right) {
 
 template<typename Size_, typename Left_, typename Right_>
 Size_ sum_unsafe(Left_ left, Right_ right) {
+    static_assert(std::is_integral<Size_>::value);
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
     return static_cast<Size_>(left) + static_cast<Size_>(right);
 }
 /**
@@ -99,6 +111,10 @@ Size_ sum_unsafe(First_ first, Second_ second, Args_... more) {
  */
 template<typename Size_, typename Left_, typename Right_>
 constexpr bool needs_product_check() {
+    static_assert(std::is_integral<Size_>::value);
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
+
     constexpr Size_ smaxed = std::numeric_limits<Size_>::max();
     constexpr Left_ lmaxed = std::numeric_limits<Left_>::max();
     if constexpr(is_greater_than_or_equal(lmaxed, smaxed)) {
@@ -112,6 +128,10 @@ constexpr bool needs_product_check() {
 
 template<typename Size_, typename Left_, typename Right_>
 Size_ product(Left_ left, Right_ right) {
+    static_assert(std::is_integral<Size_>::value);
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
+
     Size_ lout = cast<Size_>(left);
     Size_ rout = cast<Size_>(right);
 
@@ -127,6 +147,9 @@ Size_ product(Left_ left, Right_ right) {
 
 template<typename Size_, typename Left_, typename Right_>
 Size_ product_unsafe(Left_ left, Right_ right) {
+    static_assert(std::is_integral<Size_>::value);
+    static_assert(std::is_integral<Left_>::value);
+    static_assert(std::is_integral<Right_>::value);
     return static_cast<Size_>(left) * static_cast<Size_>(right);
 }
 /**
