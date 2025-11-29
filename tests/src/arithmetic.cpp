@@ -62,9 +62,14 @@ TEST(Sum, Basic) {
 }
 
 TEST(Sum, Unsafe) {
+    EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>(5, 20), 25);
+    EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>(5u, 20), 25);
+    EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>(5, 20u), 25);
+    EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>(5u, 20u, 100u), 125);
+
     EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5, 20), 25);
-    EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5u, 20u), 25);
-    EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5u, 20u), 25);
+    EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5u, 20), 25);
+    EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5, 20u), 25);
     EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>(5u, 20u, 100u), 125);
 }
 
@@ -91,29 +96,31 @@ TEST(Product, Basic) {
     }
 
     EXPECT_EQ(sanisizer::product<std::int64_t>(5, 20), 100);
-    EXPECT_EQ(sanisizer::product<std::int64_t>(5u, 20u), 100);
-    EXPECT_EQ(sanisizer::product<std::int64_t>(5u, 20u), 100);
+    EXPECT_EQ(sanisizer::product<std::int64_t>(5, 20u), 100);
+    EXPECT_EQ(sanisizer::product<std::int64_t>(5u, 20), 100);
 
     EXPECT_EQ(sanisizer::product<std::int8_t>(5, 20), 100);
-    EXPECT_EQ(sanisizer::product<std::int8_t>(5u, 20u), 100);
-    EXPECT_EQ(sanisizer::product<std::int8_t>(5u, 20u), 100);
+    EXPECT_EQ(sanisizer::product<std::int8_t>(5, 20u), 100);
+    EXPECT_EQ(sanisizer::product<std::int8_t>(5u, 20), 100);
     EXPECT_EQ(sanisizer::product<std::int8_t>(0u, 20u), 0);
 
-    bool failed = false;
-    try {
-        sanisizer::product<std::int8_t>(5, 255);
-    } catch (sanisizer::OverflowError& e) {
-        failed = true;
-    }
-    EXPECT_TRUE(failed);
+    {
+        bool failed = false;
+        try {
+            sanisizer::product<std::int8_t>(5, 255);
+        } catch (sanisizer::OverflowError& e) {
+            failed = true;
+        }
+        EXPECT_TRUE(failed);
 
-    failed = false;
-    try {
-        sanisizer::product<std::int8_t>(0, 1000);
-    } catch (sanisizer::OverflowError& e) {
-        failed = true;
+        failed = false;
+        try {
+            sanisizer::product<std::int8_t>(0, 1000);
+        } catch (sanisizer::OverflowError& e) {
+            failed = true;
+        }
+        EXPECT_TRUE(failed);
     }
-    EXPECT_TRUE(failed);
 
     // Still works with additional arguments.
     EXPECT_EQ(sanisizer::product<std::int64_t>(5, 20, 50), 5000);
@@ -137,8 +144,13 @@ TEST(Product, Basic) {
 }
 
 TEST(Product, Unsafe) {
+    EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>(5, 20), 100);
+    EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>(5u, 20), 100);
+    EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>(5, 20u), 100);
+    EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>(5u, 20u, 2u), 200);
+
     EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5, 20), 100);
-    EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5u, 20u), 100);
-    EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5u, 20u), 100);
+    EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5u, 20), 100);
+    EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5, 20u), 100);
     EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>(5u, 20u, 100u), 10000);
 }
