@@ -59,11 +59,11 @@ Integer_ from_float(Float_ x) {
     static_assert(std::is_integral<Integer_>::value);
 
     if (!std::isfinite(x)) {
-        throw std::runtime_error("invalid conversion of non-finite value in sanisizer::from_float");
+        throw std::range_error("invalid conversion of non-finite value in sanisizer::from_float");
     }
     x = std::trunc(x);
     if (float_to_int_overflows<Integer_>(x)) {
-        throw OverflowError("overflow detected in sanisizer::from_float");
+        throw std::overflow_error("overflow detected in sanisizer::from_float");
     }
     return x;
 }
@@ -98,7 +98,7 @@ Float_ to_float(Integer_ x) {
         if constexpr(std::numeric_limits<Integer_>::digits > fdig) {
             const auto y = (x - 1) >> fdig;
             if (y) {
-                throw OverflowError("overflow detected in sanisizer::to_float");
+                throw std::overflow_error("overflow detected in sanisizer::to_float");
             }
         }
     } else {
@@ -109,7 +109,7 @@ Float_ to_float(Integer_ x) {
             working /= frad;
         }
         if (working) {
-            throw OverflowError("overflow detected in sanisizer::to_float");
+            throw std::overflow_error("overflow detected in sanisizer::to_float");
         }
 #ifndef SANISIZER_FLOAT_FORCE_MANUAL
     }

@@ -4,8 +4,7 @@
 #include <limits>
 #include <type_traits>
 
-#include "cast.hpp"
-#include "comparisons.hpp"
+#include "attest.hpp"
 #include "utils.hpp"
 
 /**
@@ -20,38 +19,45 @@ namespace sanisizer {
  */
 template<typename Size_, typename Left_, typename Right_>
 constexpr bool needs_sum_check() {
-    static_assert(std::is_integral<Size_>::value);
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
-
     constexpr Size_ smaxed = std::numeric_limits<Size_>::max();
-    constexpr Left_ lmaxed = std::numeric_limits<Left_>::max();
-    if constexpr(is_greater_than_or_equal(lmaxed, smaxed)) {
+    constexpr auto lmaxed = get_max<Left_>();
+    if constexpr(as_unsigned(lmaxed) > as_unsigned(smaxed)) {
         return true;
-    } else {
-        constexpr Size_ delta = smaxed - static_cast<Size_>(lmaxed);
-        constexpr Right_ rmaxed = std::numeric_limits<Right_>::max();
-        return is_greater_than(rmaxed, delta);
     }
+
+    constexpr Size_ delta = smaxed - lmaxed;
+    constexpr auto rmaxed = get_max_<Right_>();
+    return as_unsigned(rmaxed) > as_unsigned(delta);
 }
 
 template<typename Size_, typename Left_, typename Right_>
-Size_ sum(Left_ left, Right_ right) {
-    static_assert(std::is_integral<Size_>::value);
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
+auto sum_protected(Left_ l, Right_ r) {
+    check_negative(l);
+    check_cast<Size_>(l);
+    const Size_ lval = get_value(l);
 
-    const Size_ lout = cast<Size_>(left);
-    const Size_ rout = cast<Size_>(right);
+    check_negative(r);
+    check_cast<Size_>(r);
+    const Size_ rval = get_value(r);
 
     if constexpr(needs_sum_check<Size_, Left_, Right_>()) {
+        static_assert(std::is_integral<Size_>::value);
         constexpr Size_ smaxed = std::numeric_limits<Size_>::max();
-        if (smaxed - lout < rout) {
-            throw OverflowError("overflow detected in sanisize::sum");
+        if (static_cast<Size_>(smaxed - lval) < rval) {
+            throw std::overflow_error("overflow detected in sanisize::sum");
         }
-    }
+        return Attestation<Size_, true, smaxed>(lval + rval);
 
-    return lout + rout;
+    } else {
+        constexpr Size_ maxsum = static_cast<Size_>(get_max<Left_>()) + static_cast<Size_>(get_max<Right_>());
+        return Attestation<Size_, true, maxsum>(lval + rval);
+    }
+}
+
+template<typename Size_, typename Left_, typename Right_, typename ... Args_>
+auto sum_protected(Left_ left, Right_ right, Args_... more) {
+    const auto subsum = sum_protected<Size_>(right, more...);
+    return sum_protected<Size_>(left, subsum);
 }
 
 template<typename Size_, typename Left_, typename Right_>
@@ -83,7 +89,8 @@ Size_ sum_unsafe(Left_ left, Right_ right) {
  */
 template<typename Size_, typename First_, typename Second_, typename ... Args_>
 Size_ sum(First_ first, Second_ second, Args_... more) {
-    return sum<Size_>(first, sum<Size_>(second, more...));
+    return get_value(sum_protected<Size_>(first, second, more...));
+
 }
 
 /**
@@ -111,38 +118,47 @@ Size_ sum_unsafe(First_ first, Second_ second, Args_... more) {
  */
 template<typename Size_, typename Left_, typename Right_>
 constexpr bool needs_product_check() {
-    static_assert(std::is_integral<Size_>::value);
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
-
     constexpr Size_ smaxed = std::numeric_limits<Size_>::max();
-    constexpr Left_ lmaxed = std::numeric_limits<Left_>::max();
-    if constexpr(is_greater_than_or_equal(lmaxed, smaxed)) {
+    constexpr auto lmaxed = get_max<Left_>();
+    if constexpr(as_unsigned(lmaxed) > as_unsigned(smaxed)) {
         return true;
-    } else {
-        constexpr Size_ ratio = smaxed / static_cast<Size_>(lmaxed);
-        constexpr Right_ rmaxed = std::numeric_limits<Right_>::max();
-        return is_greater_than(rmaxed, ratio);
     }
+    if constexpr(lmaxed == 0) {
+        return false;
+    }
+    constexpr auto ratio = smaxed / lmaxed;
+    constexpr auto rmaxed = get_max<Right_>();
+    return as_unsigned(rmaxed) > as_unsigned(ratio);
 }
 
 template<typename Size_, typename Left_, typename Right_>
-Size_ product(Left_ left, Right_ right) {
-    static_assert(std::is_integral<Size_>::value);
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
+auto product_guarded(Left_ l, Right_ r) {
+    check_negative(l);
+    check_cast<Size_>(l);
+    const Size_ lval = get_value(l);
 
-    Size_ lout = cast<Size_>(left);
-    Size_ rout = cast<Size_>(right);
+    check_negative(r);
+    check_cast<Size_>(r);
+    const Size_ rval = get_value(r);
 
     if constexpr(needs_product_check<Size_, Left_, Right_>()) {
+        static_assert(std::is_integral<Size_>::value);
         constexpr Size_ smaxed = std::numeric_limits<Size_>::max();
-        if (lout && smaxed / lout < rout) {
-            throw OverflowError("overflow detected in sanisize::product");
+        if (lval && static_cast<Size_>(smaxed / lval) < rval) {
+            throw std::overflow_error("overflow detected in sanisize::product");
         }
-    }
+        return Attestation<Size_, true, smaxed>(lval * rval);
 
-    return lout * rout;
+    } else {
+        constexpr Size_ maxprod = static_cast<Size_>(get_max<Left_>()) * static_cast<Size_>(get_max<Right_>());
+        return Attestation<Size_, true, maxprod>(lval * rval);
+    }
+}
+
+template<typename Size_, typename Left_, typename Right_, typename ... Args_>
+auto product_protected(Left_ left, Right_ right, Args_... more) {
+    auto subproduct = product_protected<Size_>(right, more...);
+    return product_protected<Size_>(left, subproduct);
 }
 
 template<typename Size_, typename Left_, typename Right_>
@@ -178,7 +194,7 @@ Size_ product_unsafe(Left_ left, Right_ right) {
  */
 template<typename Size_, typename First_, typename Second_, typename ... Args_>
 Size_ product(First_ first, Second_ second, Args_... more) {
-    return product<Size_>(first, product<Size_>(second, more...));
+    return product_guarded<Size_>(first, product<Size_>(second, more...));
 }
 
 /**

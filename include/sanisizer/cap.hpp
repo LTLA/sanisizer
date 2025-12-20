@@ -27,13 +27,15 @@ namespace sanisizer {
 template<typename Size_, typename Input_>
 constexpr Size_ cap(Input_ x) {
     static_assert(std::is_integral<Size_>::value);
-    static_assert(std::is_integral<Input_>::value);
+    constexpr auto umaxed = as_unsigned(std::numeric_limits<Size_>::max());
 
-    constexpr Size_ maxed = std::numeric_limits<Size_>::max();
-    if (is_greater_than(x, maxed)) {
-        return maxed;
-    } else {
+    static_assert(std::is_integral_or_Attestation<Input_>::value);
+    if constexpr(umaxed >= as_unsigned(get_max<Input_>())) {
         return x;
+    } else if (umaxed >= as_unsigned(get_value<Input_>())) {
+        return x;
+    } else {
+        return maxed;
     }
 }
 

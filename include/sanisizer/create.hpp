@@ -2,10 +2,9 @@
 #define SANISIZER_CREATE_HPP
 
 #include <utility>
-#include <type_traits>
 
 #include "utils.hpp"
-#include "cast.hpp"
+#include "attest.hpp"
 
 /**
  * @file create.hpp
@@ -28,8 +27,10 @@ namespace sanisizer {
  */
 template<class Container_, typename Input_>
 auto as_size_type(Input_ x) {
-    static_assert(std::is_integral<Input_>::value);
-    return cast<I<decltype(std::declval<Container_>().size())> >(x);
+    check_negative(x);
+    typedef I<decltype(std::declval<Container_>().size())> Size;
+    check_cast<Size>(x);
+    return static_cast<Size>(x);
 }
 
 /**
@@ -48,7 +49,6 @@ auto as_size_type(Input_ x) {
  */
 template<class Container_, typename Input_, typename ... Args_>
 Container_ create(Input_ x, Args_&&... args) {
-    static_assert(std::is_integral<Input_>::value);
     return Container_(as_size_type<Container_>(x), std::forward<Args_>(args)...);
 }
 
@@ -68,7 +68,6 @@ Container_ create(Input_ x, Args_&&... args) {
  */
 template<class Container_, typename Input_, typename ... Args_>
 void resize(Container_& container, Input_ x, Args_&&... args) {
-    static_assert(std::is_integral<Input_>::value);
     container.resize(as_size_type<Container_>(x), std::forward<Args_>(args)...);
 }
 

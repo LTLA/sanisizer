@@ -1,8 +1,8 @@
 #ifndef SANISIZER_COMPARISONS_HPP
 #define SANISIZER_COMPARISONS_HPP
 
-#include <type_traits>
-#include <limits>
+#include "utils.hpp"
+#include "attest.hpp"
 
 /**
  * @file comparisons.hpp
@@ -22,9 +22,9 @@ namespace sanisizer {
  */
 template<typename Left_, typename Right_>
 constexpr bool is_equal(Left_ l, Right_ r) {
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
-    return static_cast<typename std::make_unsigned<Left_>::type>(l) == static_cast<typename std::make_unsigned<Right_>::type>(r);
+    check_negative(l);
+    check_negative(r);
+    return as_unsigned(get_value(l)) == as_unsigned(get_value(r));
 }
 
 /**
@@ -38,41 +38,9 @@ constexpr bool is_equal(Left_ l, Right_ r) {
  */
 template<typename Left_, typename Right_>
 constexpr bool is_less_than(Left_ l, Right_ r) {
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
-    return static_cast<typename std::make_unsigned<Left_>::type>(l) < static_cast<typename std::make_unsigned<Right_>::type>(r);
-}
-
-/**
- * @tparam Left_ Integer type on the left hand side of the comparison.
- * @tparam Right_ Integer type on the right hand side of the comparison.
- *
- * @param l Non-negative value on the left hand side of the comparison.
- * @param r Non-negative value on the right hand side of the comparison.
- *
- * @return Whether `l` is greater than or equal to `r`.
- */
-template<typename Left_, typename Right_>
-constexpr bool is_greater_than_or_equal(Left_ l, Right_ r) {
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
-    return !is_less_than(l, r);
-}
-
-/**
- * @tparam Left_ Integer type on the left hand side of the comparison.
- * @tparam Right_ Integer type on the right hand side of the comparison.
- *
- * @param l Non-negative value on the left hand side of the comparison.
- * @param r Non-negative value on the right hand side of the comparison.
- *
- * @return Whether `l` is greater than `r`.
- */
-template<typename Left_, typename Right_>
-constexpr bool is_greater_than(Left_ l, Right_ r) {
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
-    return static_cast<typename std::make_unsigned<Left_>::type>(l) > static_cast<typename std::make_unsigned<Right_>::type>(r);
+    check_negative(l);
+    check_negative(r);
+    return as_unsigned(get_value(l)) < as_unsigned(get_value(r));
 }
 
 /**
@@ -86,9 +54,41 @@ constexpr bool is_greater_than(Left_ l, Right_ r) {
  */
 template<typename Left_, typename Right_>
 constexpr bool is_less_than_or_equal(Left_ l, Right_ r) {
-    static_assert(std::is_integral<Left_>::value);
-    static_assert(std::is_integral<Right_>::value);
-    return !is_greater_than(l, r);
+    check_negative(l);
+    check_negative(r);
+    return as_unsigned(get_value(l)) <= as_unsigned(get_value(r));
+}
+
+/**
+ * @tparam Left_ Integer type on the left hand side of the comparison.
+ * @tparam Right_ Integer type on the right hand side of the comparison.
+ *
+ * @param l Non-negative value on the left hand side of the comparison.
+ * @param r Non-negative value on the right hand side of the comparison.
+ *
+ * @return Whether `l` is greater than `r`.
+ */
+template<typename Left_, typename Right_>
+constexpr bool is_greater_than(Left_ l, Right_ r) {
+    check_negative(l);
+    check_negative(r);
+    return as_unsigned(get_value(l)) > as_unsigned(get_value(r));
+}
+
+/**
+ * @tparam Left_ Integer type on the left hand side of the comparison.
+ * @tparam Right_ Integer type on the right hand side of the comparison.
+ *
+ * @param l Non-negative value on the left hand side of the comparison.
+ * @param r Non-negative value on the right hand side of the comparison.
+ *
+ * @return Whether `l` is greater than or equal to `r`.
+ */
+template<typename Left_, typename Right_>
+constexpr bool is_greater_than_or_equal(Left_ l, Right_ r) {
+    check_negative(l);
+    check_negative(r);
+    return as_unsigned(get_value(l)) >= as_unsigned(get_value(r));
 }
 
 /**
@@ -102,20 +102,24 @@ constexpr bool is_less_than_or_equal(Left_ l, Right_ r) {
  */
 template<typename First_, typename Second_>
 constexpr auto min(First_ first, Second_ second) {
-    static_assert(std::is_integral<First_>::value);
-    static_assert(std::is_integral<Second_>::value);
+    check_negative(first);
+    check_negative(second);
 
-    if constexpr(std::numeric_limits<First_>::max() > std::numeric_limits<Second_>::max()) {
-        if (is_greater_than(first, second)) {
-            return second;
+    const auto fval = get_value(first);
+    const auto sval = get_value(second);
+    const bool first_larger = as_unsigned(fval) > as_unsigned(sval);
+
+    if constexpr(as_unsigned(get_max<First_>()) > as_unsigned(get_max<Second_>())) {
+        if (first_larger) {
+            return sval;
         } else {
-            return static_cast<Second_>(first);
+            return static_cast<I<decltype(sval)> >(fval);
         }
     } else {
-        if (is_greater_than(first, second)) {
-            return static_cast<First_>(second);
+        if (first_larger) {
+            return static_cast<I<decltype(fval)> >(sval);
         } else {
-            return first;
+            return fval;
         }
     }
 }
@@ -131,20 +135,24 @@ constexpr auto min(First_ first, Second_ second) {
  */
 template<typename First_, typename Second_>
 constexpr auto max(First_ first, Second_ second) {
-    static_assert(std::is_integral<First_>::value);
-    static_assert(std::is_integral<Second_>::value);
+    check_negative(first);
+    check_negative(second);
 
-    if constexpr(std::numeric_limits<First_>::max() > std::numeric_limits<Second_>::max()) {
-        if (is_greater_than(first, second)) {
-            return first;
+    const auto fval = get_value(first);
+    const auto sval = get_value(second);
+    const bool first_larger = as_unsigned(fval) > as_unsigned(sval);
+
+    if constexpr(as_unsigned(get_max<First_>()) > as_unsigned(get_max<Second_>())) {
+        if (first_larger) {
+            return fval;
         } else {
-            return static_cast<First_>(second);
+            return static_cast<I<decltype(fval)> >(sval);
         }
     } else {
-        if (is_greater_than(first, second)) {
-            return static_cast<Second_>(first);
+        if (first_larger) {
+            return static_cast<I<decltype(sval)> >(fval);
         } else {
-            return second;
+            return sval;
         }
     }
 }

@@ -5,7 +5,7 @@
 #include <utility>
 #include <type_traits>
 
-#include "comparisons.hpp"
+#include "attest.hpp"
 #include "utils.hpp"
 
 /**
@@ -26,14 +26,9 @@ namespace sanisizer {
  */
 template<typename Iterator_, typename MaxDiff_>
 void can_ptrdiff(MaxDiff_ max_diff) {
-    static_assert(std::is_integral<MaxDiff_>::value);
+    check_negative(max_diff);
     typedef I<decltype(std::declval<Iterator_>() - std::declval<Iterator_>())> Diff;
-    constexpr auto theoretical_max_diff = std::numeric_limits<Diff>::max();
-    if constexpr(!is_greater_than_or_equal(theoretical_max_diff, std::numeric_limits<MaxDiff_>::max())) {
-        if (!is_greater_than_or_equal(theoretical_max_diff, max_diff)) {
-            throw OverflowError("potential overflow detected in sanisizer::can_ptrdiff");
-        }
-    }
+    can_cast<Diff>(max_diff);
 }
 
 // It is tempting to write a ptrdiff() function that checks each subtraction for overflow given 'start' and 'end' iterators.

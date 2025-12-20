@@ -1,10 +1,7 @@
 #ifndef SANISIZER_CAST_HPP
 #define SANISIZER_CAST_HPP
 
-#include <limits>
-#include <type_traits>
-
-#include "comparisons.hpp"
+#include "attest.hpp"
 #include "utils.hpp"
 
 /**
@@ -28,15 +25,8 @@ namespace sanisizer {
  */
 template<typename Size_, typename Input_>
 Size_ cast(Input_ x) {
-    static_assert(std::is_integral<Size_>::value);
-    static_assert(std::is_integral<Input_>::value);
-
-    constexpr Size_ maxed = std::numeric_limits<Size_>::max();
-    if constexpr(is_greater_than(std::numeric_limits<Input_>::max(), maxed)) {
-        if (is_greater_than(x, maxed)) {
-            throw OverflowError("overflow detected in sanisize::cast");
-        }
-    }
+    check_negative(x);
+    check_cast<Size_>(x);
     return x;
 }
 
@@ -54,15 +44,8 @@ Size_ cast(Input_ x) {
  */
 template<typename Size_, typename Input_>
 Input_ can_cast(Input_ x) {
-    static_assert(std::is_integral<Size_>::value);
-    static_assert(std::is_integral<Input_>::value);
-
-    constexpr Size_ maxed = std::numeric_limits<Size_>::max();
-    if constexpr(is_greater_than(std::numeric_limits<Input_>::max(), maxed)) {
-        if (is_greater_than(x, maxed)) {
-            throw OverflowError("overflow detected in sanisize::cast");
-        }
-    }
+    check_negative(x);
+    check_cast<Size_>(x);
     return x;
 }
 
