@@ -25,6 +25,7 @@ add_executable(libtest
     src/cap.cpp
     src/ptrdiff.cpp
     src/float.cpp
+    src/attest.cpp
 )
 
 add_executable(floattest 
