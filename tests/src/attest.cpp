@@ -28,6 +28,12 @@ TEST(Attest, Class) {
         static_assert(decltype(val)::max == 1000);
         static_assert(!decltype(val)::gez);
     }
+
+    static_assert(sanisizer::is_Attestation<sanisizer::Attestation<int, true, 10> >::value);
+    static_assert(sanisizer::is_integral_or_Attestation<sanisizer::Attestation<int, true, 10> >::value);
+    static_assert(!sanisizer::is_Attestation<int>::value);
+    static_assert(sanisizer::is_integral_or_Attestation<int>::value);
+    static_assert(!sanisizer::is_integral_or_Attestation<char*>::value);
 }
 
 TEST(Attest, GetValue) {
@@ -40,11 +46,11 @@ TEST(Attest, GetValue) {
 
 TEST(Attest, Unsigned) {
     {
-        static_assert(sanisizer::get_gez(sanisizer::Attestation<unsigned, true, 20>(5u)));
-        static_assert(!sanisizer::get_gez(sanisizer::Attestation<int, false, 20>(10)));
-        static_assert(sanisizer::get_gez(sanisizer::Attestation<int, true, 20>(5)));
-        static_assert(!sanisizer::get_gez(5));
-        static_assert(sanisizer::get_gez(5u));
+        static_assert(sanisizer::get_gez<sanisizer::Attestation<unsigned, true, 20> >());
+        static_assert(!sanisizer::get_gez<sanisizer::Attestation<int, false, 20> >());
+        static_assert(sanisizer::get_gez<sanisizer::Attestation<int, true, 20> >());
+        static_assert(!sanisizer::get_gez<int>());
+        static_assert(sanisizer::get_gez<unsigned>());
     }
 
     {
@@ -79,18 +85,18 @@ TEST(Attest, Unsigned) {
 
 TEST(Attest, Limit) {
     {
-        static_assert(5 == sanisizer::get_max(sanisizer::Attestation<unsigned, true, 5>(5u)));
-        static_assert(10 == sanisizer::get_max(sanisizer::Attestation<int, false, 10>(5)));
-        static_assert(20 == sanisizer::get_max(sanisizer::Attestation<int, true, 20>(5)));
-        static_assert(sanisizer::get_max(5) == std::numeric_limits<int>::max());
-        static_assert(sanisizer::get_max(5u) == std::numeric_limits<unsigned>::max());
+        static_assert(5 == sanisizer::get_max<sanisizer::Attestation<unsigned, true, 5> >());
+        static_assert(10 == sanisizer::get_max<sanisizer::Attestation<int, false, 10> >());
+        static_assert(20 == sanisizer::get_max<sanisizer::Attestation<int, true, 20> >());
+        static_assert(sanisizer::get_max<int>() == std::numeric_limits<int>::max());
+        static_assert(sanisizer::get_max<unsigned>() == std::numeric_limits<unsigned>::max());
     }
 
     {
         constexpr auto thing = sanisizer::attest_max_by_type<char>(20u);
         static_assert(std::is_same<typename decltype(thing)::Type, unsigned>::value);
         static_assert(thing.value == 20);
-        static_assert(sanisizer::get_max(thing) == std::numeric_limits<char>::max());
+        static_assert(decltype(thing)::max == std::numeric_limits<char>::max());
         static_assert(decltype(thing)::gez);
     }
 

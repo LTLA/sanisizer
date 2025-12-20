@@ -79,6 +79,47 @@ struct Attestation {
 };
 
 /**
+ * Default case for checking whether `Value_` is an `Attestation`.
+ *
+ * @tparam Value_ Type to be queried.
+ */
+template<typename Value_>
+struct is_Attestation {
+    /**
+     * Fale, `Value_` is not an `Attestation`.
+     */
+    static constexpr bool value = false;
+};
+
+/**
+ * Positive case for checking whether a class instance is an `Attestation`.
+ *
+ * @tparam Type_ See documentation for `Attestation`.
+ * @tparam gex_ See documentation for `Attestation`.
+ * @tparam max_ See documentation for `Attestation`.
+ */
+template<typename Type_, bool gez_, Type_ max_>
+struct is_Attestation<Attestation<Type_, gez_, max_> > {
+    /**
+     * True, this class is an `Attestation`.
+     */
+    static constexpr bool value = true;
+};
+
+/**
+ * Whether `Value_` is an integer or `Attestation`.
+ *
+ * @tparam Value_ Type to be queried.
+ */
+template<typename Value_>
+struct is_integral_or_Attestation {
+    /**
+     * Whether `Value_` is an integer or `Attestation`.
+     */
+    static constexpr bool value = std::is_integral<Value_>::value || is_Attestation<Value_>::value;
+};
+
+/**
  * @tparam Value_ Integer or `Attestation`.
  * @param x Integer value or an `Attestation` about an integer.
  * @return `x` if it is already an integer, otherwise `Attestation::value`.
@@ -88,20 +129,21 @@ constexpr auto get_value(Value_ x) {
     if constexpr(std::is_integral<Value_>::value) {
         return x;
     } else {
+        static_assert(is_Attestation<Value_>::value);
         return x.value;
     }
 }
 
 /**
  * @tparam Value_ Integer or `Attestation`.
- * @param x Integer value or an `Attestation` about an integer.
- * @return Whether the value of `x` is known to be greater than or equal to zero at compile time.
+ * @return Whether all instances of `Value_` are greater than or equal to zero. 
  */
 template<typename Value_>
-constexpr bool get_gez(const Value_&) {
+constexpr bool get_gez() {
     if constexpr(std::is_integral<Value_>::value) {
         return std::is_unsigned<Value_>::value;
     } else {
+        static_assert(is_Attestation<Value_>::value);
         return Value_::gez;
     }
 }
@@ -121,6 +163,7 @@ constexpr auto attest_gez(Value_ val) {
             return Attestation<Value_, true, std::numeric_limits<Value_>::max()>(val);
         }
     } else {
+        static_assert(is_Attestation<Value_>::value);
         if constexpr(Value_::gez) {
             return val;
         } else {
@@ -131,14 +174,14 @@ constexpr auto attest_gez(Value_ val) {
 
 /**
  * @tparam Value_ Integer or `Attestation`.
- * @param x Integer value or an `Attestation` about an integer.
- * @return The maximum value of an integer that is known at compile time.
+ * @return The maximum value of all instances of `Value_`.
  */
 template<typename Value_>
-constexpr auto get_max(const Value_&) {
+constexpr auto get_max() {
     if constexpr(std::is_integral<Value_>::value) {
         return std::numeric_limits<Value_>::max();
     } else {
+        static_assert(is_Attestation<Value_>::value);
         return Value_::max;
     }
 }
@@ -162,6 +205,7 @@ constexpr auto attest_max(Value_ val) {
             return Attestation<Value_, std::is_unsigned<Value_>::value, static_cast<Value_>(new_max_)>(val);
         }
     } else {
+        static_assert(is_Attestation<Value_>::value);
         typedef typename Value_::Type WrappedType;
         constexpr auto max_value = static_cast<typename std::make_unsigned<WrappedType>::type>(Value_::max);
         if constexpr(max_value <= unsigned_new_limit) {
