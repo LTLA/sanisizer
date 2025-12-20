@@ -34,7 +34,7 @@ TEST(Sum, Basic) {
         bool failed = false;
         try {
             sanisizer::sum<std::int8_t>(5, 255);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);
@@ -46,7 +46,7 @@ TEST(Sum, Basic) {
         bool failed = false;
         try {
             sanisizer::sum<std::int8_t>(200, 50, 6);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);
@@ -54,7 +54,7 @@ TEST(Sum, Basic) {
         failed = false;
         try {
             sanisizer::sum<std::int8_t>(6, 50, 200);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);
@@ -108,7 +108,7 @@ TEST(Product, Basic) {
         bool failed = false;
         try {
             sanisizer::product<std::int8_t>(5, 255);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);
@@ -116,7 +116,7 @@ TEST(Product, Basic) {
         failed = false;
         try {
             sanisizer::product<std::int8_t>(0, 1000);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);
@@ -128,7 +128,7 @@ TEST(Product, Basic) {
         bool failed = false;
         try {
             sanisizer::product<std::int8_t>(10, 10, 10);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);
@@ -136,7 +136,7 @@ TEST(Product, Basic) {
         failed = false;
         try {
             sanisizer::product<std::int8_t>(0, 0, 1000);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);

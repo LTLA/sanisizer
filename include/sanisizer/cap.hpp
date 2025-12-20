@@ -4,7 +4,7 @@
 #include <limits>
 #include <type_traits>
 
-#include "comparisons.hpp"
+#include "attest.hpp"
 
 /**
  * @file cap.hpp
@@ -27,12 +27,13 @@ namespace sanisizer {
 template<typename Size_, typename Input_>
 constexpr Size_ cap(Input_ x) {
     static_assert(std::is_integral<Size_>::value);
-    constexpr auto umaxed = as_unsigned(std::numeric_limits<Size_>::max());
+    constexpr auto maxed = std::numeric_limits<Size_>::max();
+    constexpr auto umaxed = as_unsigned(maxed);
 
-    static_assert(std::is_integral_or_Attestation<Input_>::value);
+    static_assert(is_integral_or_Attestation<Input_>::value);
     if constexpr(umaxed >= as_unsigned(get_max<Input_>())) {
         return x;
-    } else if (umaxed >= as_unsigned(get_value<Input_>())) {
+    } else if (umaxed >= as_unsigned(get_value(x))) {
         return x;
     } else {
         return maxed;

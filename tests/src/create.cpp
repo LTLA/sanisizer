@@ -20,7 +20,7 @@ TEST(Create, Basic) {
     bool failed = false;
     try {
         sanisizer::create<MockVector>(300);
-    } catch (sanisizer::OverflowError& e) {
+    } catch (std::overflow_error& e) {
         failed = true;
     }
     EXPECT_TRUE(failed);
@@ -47,7 +47,7 @@ TEST(Resize, Basic) {
     MockVector foo;
     try {
         sanisizer::resize(foo, 300);
-    } catch (sanisizer::OverflowError& e) {
+    } catch (std::overflow_error& e) {
         failed = true;
     }
     EXPECT_TRUE(failed);

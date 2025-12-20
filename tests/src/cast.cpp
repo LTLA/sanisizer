@@ -18,7 +18,7 @@ TEST(Cast, Basic) {
     bool failed = false;
     try {
         sanisizer::cast<std::uint8_t>(256);
-    } catch (sanisizer::OverflowError& e) {
+    } catch (std::overflow_error& e) {
         failed = true;
     }
     EXPECT_TRUE(failed);
@@ -38,7 +38,7 @@ TEST(CanCast, Basic) {
     bool failed = false;
     try {
         sanisizer::can_cast<std::uint8_t>(256);
-    } catch (sanisizer::OverflowError& e) {
+    } catch (std::overflow_error& e) {
         failed = true;
     }
     EXPECT_TRUE(failed);

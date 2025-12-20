@@ -24,7 +24,7 @@ TEST(CanPtrdiff, Basic) {
         bool failed = false;
         try {
             sanisizer::can_ptrdiff<MockIterator>(1000);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);
@@ -38,7 +38,7 @@ TEST(CanPtrdiff, Basic) {
         bool failed = false;
         try {
             sanisizer::can_ptrdiff<MockIterator>(1000);
-        } catch (sanisizer::OverflowError& e) {
+        } catch (std::overflow_error& e) {
             failed = true;
         }
         EXPECT_TRUE(failed);

@@ -235,7 +235,7 @@ constexpr auto attest_max_by_type(Value_ val) {
  */
 template<typename Value_>
 constexpr bool check_negative(Value_ x) {
-    static_assert(std::is_integral_or_Attestation<Input_>::value);
+    static_assert(is_integral_or_Attestation<Value_>::value);
     if constexpr(!get_gez<Value_>()) {
         if (get_value(x) < 0) {
             throw std::out_of_range("size-like values should not be negative in sanisizer");
@@ -248,10 +248,9 @@ template<typename Size_, typename Value_>
 constexpr bool check_cast(Value_ x) {
     static_assert(std::is_integral<Size_>::value);
     constexpr auto umaxed = as_unsigned(std::numeric_limits<Size_>::max());
-    static_assert(std::is_integral_or_Attestation<Input_>::value);
-    const auto val = get_value(x);
+    static_assert(is_integral_or_Attestation<Value_>::value);
     if constexpr(umaxed < as_unsigned(get_max<Value_>())) {
-        if (umaxed < as_unsigned(val)) {
+        if (umaxed < as_unsigned(get_value(x))) {
             throw std::overflow_error("overflow detected when casting size-like values in sanisizer");
         }
     }

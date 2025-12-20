@@ -23,11 +23,11 @@ constexpr bool needs_sum_check() {
     constexpr auto lmaxed = get_max<Left_>();
     if constexpr(as_unsigned(lmaxed) > as_unsigned(smaxed)) {
         return true;
+    } else {
+        constexpr Size_ delta = smaxed - static_cast<Size_>(lmaxed);
+        constexpr auto rmaxed = get_max<Right_>();
+        return as_unsigned(rmaxed) > as_unsigned(delta);
     }
-
-    constexpr Size_ delta = smaxed - lmaxed;
-    constexpr auto rmaxed = get_max_<Right_>();
-    return as_unsigned(rmaxed) > as_unsigned(delta);
 }
 
 template<typename Size_, typename Left_, typename Right_>
@@ -46,11 +46,11 @@ auto sum_protected(Left_ l, Right_ r) {
         if (static_cast<Size_>(smaxed - lval) < rval) {
             throw std::overflow_error("overflow detected in sanisize::sum");
         }
-        return Attestation<Size_, true, smaxed>(lval + rval);
+        return Attestation<Size_, true, smaxed>(static_cast<Size_>(lval + rval));
 
     } else {
         constexpr Size_ maxsum = static_cast<Size_>(get_max<Left_>()) + static_cast<Size_>(get_max<Right_>());
-        return Attestation<Size_, true, maxsum>(lval + rval);
+        return Attestation<Size_, true, maxsum>(static_cast<Size_>(lval + rval));
     }
 }
 
@@ -87,9 +87,9 @@ Size_ sum_unsafe(Left_ left, Right_ right) {
  * @return Sum of all arguments as a `Size_`.
  * If overflow would occur, an `OverflowError` is raised.
  */
-template<typename Size_, typename First_, typename Second_, typename ... Args_>
-Size_ sum(First_ first, Second_ second, Args_... more) {
-    return get_value(sum_protected<Size_>(first, second, more...));
+template<typename Size_, typename First_, typename ... Args_>
+Size_ sum(First_ first, Args_... more) {
+    return get_value(sum_protected<Size_>(first, more...));
 
 }
 
@@ -122,17 +122,17 @@ constexpr bool needs_product_check() {
     constexpr auto lmaxed = get_max<Left_>();
     if constexpr(as_unsigned(lmaxed) > as_unsigned(smaxed)) {
         return true;
-    }
-    if constexpr(lmaxed == 0) {
+    } else if constexpr(lmaxed == 0) {
         return false;
+    } else {
+        constexpr auto ratio = smaxed / lmaxed;
+        constexpr auto rmaxed = get_max<Right_>();
+        return as_unsigned(rmaxed) > as_unsigned(ratio);
     }
-    constexpr auto ratio = smaxed / lmaxed;
-    constexpr auto rmaxed = get_max<Right_>();
-    return as_unsigned(rmaxed) > as_unsigned(ratio);
 }
 
 template<typename Size_, typename Left_, typename Right_>
-auto product_guarded(Left_ l, Right_ r) {
+auto product_protected(Left_ l, Right_ r) {
     check_negative(l);
     check_cast<Size_>(l);
     const Size_ lval = get_value(l);
@@ -147,11 +147,11 @@ auto product_guarded(Left_ l, Right_ r) {
         if (lval && static_cast<Size_>(smaxed / lval) < rval) {
             throw std::overflow_error("overflow detected in sanisize::product");
         }
-        return Attestation<Size_, true, smaxed>(lval * rval);
+        return Attestation<Size_, true, smaxed>(static_cast<Size_>(lval * rval));
 
     } else {
         constexpr Size_ maxprod = static_cast<Size_>(get_max<Left_>()) * static_cast<Size_>(get_max<Right_>());
-        return Attestation<Size_, true, maxprod>(lval * rval);
+        return Attestation<Size_, true, maxprod>(static_cast<Size_>(lval * rval));
     }
 }
 
@@ -192,9 +192,9 @@ Size_ product_unsafe(Left_ left, Right_ right) {
  * @return Product of all arguments as a `Size_`.
  * If overflow would occur, an `OverflowError` is raised.
  */
-template<typename Size_, typename First_, typename Second_, typename ... Args_>
-Size_ product(First_ first, Second_ second, Args_... more) {
-    return product_guarded<Size_>(first, product<Size_>(second, more...));
+template<typename Size_, typename First_, typename ... Args_>
+Size_ product(First_ first, Args_... more) {
+    return get_value(product_protected<Size_>(first, more...));
 }
 
 /**
