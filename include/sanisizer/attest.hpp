@@ -17,21 +17,21 @@ namespace sanisizer {
 /**
  * @brief Attest to additional compile-time properties of an integer.
  *
- * @tparam Type_ Type of the integer.
+ * @tparam Integer_ Type of the integer.
  * @tparam gez_ Whether the integer is greater than or equal to zero, known at compile time.
- * This should be `true` if `Type_` is unsigned.
+ * This should be `true` if `Integer_` is unsigned.
  * @tparam max_ Maximum value of the integer, known at compile time.
  * This should be non-negative.
  *
  * `gez_` and `max_` are compile-time attestations to the properties of the integer.
- * This allows developers to specify more constraints on the integer than would otherwise be provided by `Type_`.
+ * This allows developers to specify more constraints on the integer than would otherwise be provided by `Integer_`.
  * For example, we could attest that an `int` can only store a non-negative value if `gez_ = true`,
  * or that a `std::size_t` has a upper limit of `max_ = 2^31 - 1`.
  */
-template<typename Type_, bool gez_, Type_ max_>
+template<typename Integer_, bool gez_, Integer_ max_>
 struct Attestation {
-    static_assert(std::is_integral<Type_>::value);
-    static_assert(!(std::is_unsigned<Type_>::value && !gez_));
+    static_assert(std::is_integral<Integer_>::value);
+    static_assert(!(std::is_unsigned<Integer_>::value && !gez_));
     static_assert(max_ >= 0);
 
     /**
@@ -39,9 +39,9 @@ struct Attestation {
      * This should be no greater than `max_`.
      * If `gez_ = true`, this should be non-negative.
      */
-    constexpr Attestation(Type_ value) : value(value) {
+    constexpr Attestation(Integer_ value) : value(value) {
         assert(value <= max_);
-        if constexpr(!std::is_unsigned<Type_>::value && gez_) {
+        if constexpr(!std::is_unsigned<Integer_>::value && gez_) {
             assert(value >= 0);
         }
     }
@@ -60,11 +60,11 @@ struct Attestation {
     /**
      * Type of the integer.
      */
-    typedef Type_ Type;
+    typedef Integer_ Integer;
 
     /**
      * Whether the integer is greater than or equal to zero, known at compile time.
-     * This will be `true` if `Type_` is unsigned.
+     * This will be `true` if `Integer_` is unsigned.
      */
     static constexpr bool gez = gez_;
 
@@ -72,12 +72,12 @@ struct Attestation {
      * Maximum value of the integer, known at compile time.
      * This will be non-negative.
      */
-    static constexpr Type max = max_;
+    static constexpr Integer_ max = max_;
 
     /**
      * Value of the integer.
      */
-    Type_ value;
+    Integer_ value;
 };
 
 /**
@@ -96,12 +96,12 @@ struct is_Attestation {
 /**
  * Positive case for checking whether a class instance is an `Attestation`.
  *
- * @tparam Type_ See documentation for `Attestation`.
+ * @tparam Integer_ See documentation for `Attestation`.
  * @tparam gex_ See documentation for `Attestation`.
  * @tparam max_ See documentation for `Attestation`.
  */
-template<typename Type_, bool gez_, Type_ max_>
-struct is_Attestation<Attestation<Type_, gez_, max_> > {
+template<typename Integer_, bool gez_, Integer_ max_>
+struct is_Attestation<Attestation<Integer_, gez_, max_> > {
     /**
      * True, this class is an `Attestation`.
      */
@@ -169,7 +169,7 @@ constexpr auto attest_gez(Value_ val) {
         if constexpr(Value_::gez) {
             return val;
         } else {
-            return Attestation<typename Value_::Type, true, Value_::max>(val.value);
+            return Attestation<typename Value_::Integer, true, Value_::max>(val.value);
         }
     }
 }
@@ -208,12 +208,12 @@ constexpr auto attest_max(Value_ val) {
         }
     } else {
         static_assert(is_Attestation<Value_>::value);
-        typedef typename Value_::Type WrappedType;
-        constexpr auto max_value = static_cast<typename std::make_unsigned<WrappedType>::type>(Value_::max);
+        typedef typename Value_::Integer WrappedInteger;
+        constexpr auto max_value = static_cast<typename std::make_unsigned<WrappedInteger>::type>(Value_::max);
         if constexpr(max_value <= unsigned_new_limit) {
             return val;
         } else {
-            return Attestation<WrappedType, Value_::gez, static_cast<WrappedType>(new_max_)>(val.value);
+            return Attestation<WrappedInteger, Value_::gez, static_cast<WrappedInteger>(new_max_)>(val.value);
         }
     }
 }
@@ -231,7 +231,10 @@ constexpr auto attest_max_by_type(Value_ val) {
 }
 
 /**
- * @cond
+ * @tparam Value_ Integer or `Attestation`.
+ * @param x Integer value or an `Attestation` about an integer.
+ * @return An out-of-range error is thrown if `x`'s value is negative.
+ * Otherwise, `false` is returned.
  */
 template<typename Value_>
 constexpr bool check_negative(Value_ x) {
@@ -241,24 +244,28 @@ constexpr bool check_negative(Value_ x) {
             throw std::out_of_range("size-like values should not be negative in sanisizer");
         }
     }
-    return true;
+    return false;
 }
 
-template<typename Size_, typename Value_>
-constexpr bool check_cast(Value_ x) {
-    static_assert(std::is_integral<Size_>::value);
-    constexpr auto umaxed = as_unsigned(std::numeric_limits<Size_>::max());
+/**
+ * @tparam Dest_ Integer type of the destination.
+ * @tparam Value_ Integer or `Attestation`.
+ * @param x Integer value or an `Attestation` about an integer.
+ * @return An overflow error is thrown if `x`'s value would overflow when stored in `Dest_`.
+ * Otherwise, `false` is returned.
+ */
+template<typename Dest_, typename Value_>
+constexpr bool check_overflow(Value_ x) {
+    static_assert(std::is_integral<Dest_>::value);
+    constexpr auto umaxed = as_unsigned(std::numeric_limits<Dest_>::max());
     static_assert(is_integral_or_Attestation<Value_>::value);
     if constexpr(umaxed < as_unsigned(get_max<Value_>())) {
         if (umaxed < as_unsigned(get_value(x))) {
             throw std::overflow_error("overflow detected when casting size-like values in sanisizer");
         }
     }
-    return true;
+    return false;
 }
-/**
- * @endcond
- */
 
 }
 

@@ -28,7 +28,7 @@ template<typename Iterator_, typename MaxDiff_>
 void can_ptrdiff(MaxDiff_ max_diff) {
     check_negative(max_diff);
     typedef I<decltype(std::declval<Iterator_>() - std::declval<Iterator_>())> Diff;
-    check_cast<Diff>(max_diff);
+    check_overflow<Diff>(max_diff);
 }
 
 // It is tempting to write a ptrdiff() function that checks each subtraction for overflow given 'start' and 'end' iterators.

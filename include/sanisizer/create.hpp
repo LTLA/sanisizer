@@ -29,7 +29,7 @@ template<class Container_, typename Input_>
 auto as_size_type(Input_ x) {
     check_negative(x);
     typedef I<decltype(std::declval<Container_>().size())> Size;
-    check_cast<Size>(x);
+    check_overflow<Size>(x);
     return static_cast<Size>(x);
 }
 

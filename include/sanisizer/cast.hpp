@@ -26,7 +26,7 @@ namespace sanisizer {
 template<typename Size_, typename Input_>
 Size_ cast(Input_ x) {
     check_negative(x);
-    check_cast<Size_>(x);
+    check_overflow<Size_>(x);
     return x;
 }
 
@@ -45,7 +45,7 @@ Size_ cast(Input_ x) {
 template<typename Size_, typename Input_>
 Input_ can_cast(Input_ x) {
     check_negative(x);
-    check_cast<Size_>(x);
+    check_overflow<Size_>(x);
     return x;
 }
 
