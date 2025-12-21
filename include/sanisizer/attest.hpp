@@ -35,14 +35,14 @@ struct Attestation {
     static_assert(max_ >= 0);
 
     /**
-     * @value Value of the integer.
+     * @param x Value of the integer.
      * This should be no greater than `max_`.
      * If `gez_ = true`, this should be non-negative.
      */
-    constexpr Attestation(Integer_ value) : value(value) {
-        assert(value <= max_);
+    constexpr Attestation(Integer_ x) : value(x) {
+        assert(x <= max_);
         if constexpr(!std::is_unsigned<Integer_>::value && gez_) {
-            assert(value >= 0);
+            assert(x >= 0);
         }
     }
 
@@ -157,19 +157,19 @@ constexpr bool get_gez() {
  * otherwise, an `Attestation` that attests to this constraint.
  */
 template<typename Value_>
-constexpr auto attest_gez(Value_ val) {
+constexpr auto attest_gez(Value_ x) {
     if constexpr(std::is_integral<Value_>::value) {
         if constexpr(std::is_unsigned<Value_>::value) {
-            return val;
+            return x;
         } else {
-            return Attestation<Value_, true, std::numeric_limits<Value_>::max()>(val);
+            return Attestation<Value_, true, std::numeric_limits<Value_>::max()>(x);
         }
     } else {
         static_assert(is_Attestation<Value_>::value);
         if constexpr(Value_::gez) {
-            return val;
+            return x;
         } else {
-            return Attestation<typename Value_::Integer, true, Value_::max>(val.value);
+            return Attestation<typename Value_::Integer, true, Value_::max>(x.value);
         }
     }
 }
@@ -197,23 +197,23 @@ constexpr auto get_max() {
  * otherwise, an `Attestation` that attests to this constraint.
  */
 template<typename Max_, Max_ new_max_, typename Value_>
-constexpr auto attest_max(Value_ val) {
+constexpr auto attest_max(Value_ x) {
     constexpr auto unsigned_new_limit = static_cast<typename std::make_unsigned<Max_>::type>(new_max_);
     if constexpr(std::is_integral<Value_>::value) {
         constexpr auto max_value = static_cast<typename std::make_unsigned<Value_>::type>(std::numeric_limits<Value_>::max());
         if constexpr(max_value <= unsigned_new_limit) {
-            return val; 
+            return x; 
         } else {
-            return Attestation<Value_, std::is_unsigned<Value_>::value, static_cast<Value_>(new_max_)>(val);
+            return Attestation<Value_, std::is_unsigned<Value_>::value, static_cast<Value_>(new_max_)>(x);
         }
     } else {
         static_assert(is_Attestation<Value_>::value);
         typedef typename Value_::Integer WrappedInteger;
         constexpr auto max_value = static_cast<typename std::make_unsigned<WrappedInteger>::type>(Value_::max);
         if constexpr(max_value <= unsigned_new_limit) {
-            return val;
+            return x;
         } else {
-            return Attestation<WrappedInteger, Value_::gez, static_cast<WrappedInteger>(new_max_)>(val.value);
+            return Attestation<WrappedInteger, Value_::gez, static_cast<WrappedInteger>(new_max_)>(x.value);
         }
     }
 }
@@ -226,8 +226,8 @@ constexpr auto attest_max(Value_ val) {
  * otherwise, an `Attestation` that attests to this constraint.
  */
 template<typename Max_, typename Value_>
-constexpr auto attest_max_by_type(Value_ val) {
-    return attest_max<Max_, std::numeric_limits<Max_>::max()>(val);
+constexpr auto attest_max_by_type(Value_ x) {
+    return attest_max<Max_, std::numeric_limits<Max_>::max()>(x);
 }
 
 /**

@@ -17,17 +17,17 @@ namespace sanisizer {
  * @tparam Right_ Integer type on the right hand side of the comparison.
  * This may also be an `Attestation`.
  *
- * @param l Non-negative value on the left hand side of the comparison.
- * @param r Non-negative value on the right hand side of the comparison.
+ * @param left Non-negative value on the left hand side of the comparison.
+ * @param right Non-negative value on the right hand side of the comparison.
  *
- * @return Whether `l` is equal to `r`.
+ * @return Whether `left` is equal to `right`.
  * An error is thrown if either value is negative.
  */
 template<typename Left_, typename Right_>
-constexpr bool is_equal(Left_ l, Right_ r) {
-    check_negative(l);
-    check_negative(r);
-    return as_unsigned(get_value(l)) == as_unsigned(get_value(r));
+constexpr bool is_equal(Left_ left, Right_ right) {
+    check_negative(left);
+    check_negative(right);
+    return as_unsigned(get_value(left)) == as_unsigned(get_value(right));
 }
 
 /**
@@ -36,17 +36,17 @@ constexpr bool is_equal(Left_ l, Right_ r) {
  * @tparam Right_ Integer type on the right hand side of the comparison.
  * This may also be an `Attestation`.
  *
- * @param l Non-negative value on the left hand side of the comparison.
- * @param r Non-negative value on the right hand side of the comparison.
+ * @param left Non-negative value on the left hand side of the comparison.
+ * @param right Non-negative value on the right hand side of the comparison.
  *
- * @return Whether `l` is less than `r`.
+ * @return Whether `left` is less than `right`.
  * An error is thrown if either value is negative.
  */
 template<typename Left_, typename Right_>
-constexpr bool is_less_than(Left_ l, Right_ r) {
-    check_negative(l);
-    check_negative(r);
-    return as_unsigned(get_value(l)) < as_unsigned(get_value(r));
+constexpr bool is_less_than(Left_ left, Right_ right) {
+    check_negative(left);
+    check_negative(right);
+    return as_unsigned(get_value(left)) < as_unsigned(get_value(right));
 }
 
 /**
@@ -55,17 +55,17 @@ constexpr bool is_less_than(Left_ l, Right_ r) {
  * @tparam Right_ Integer type on the right hand side of the comparison.
  * This may also be an `Attestation`.
  *
- * @param l Non-negative value on the left hand side of the comparison.
- * @param r Non-negative value on the right hand side of the comparison.
+ * @param left Non-negative value on the left hand side of the comparison.
+ * @param right Non-negative value on the right hand side of the comparison.
  *
- * @return Whether `l` is less than or equal to `r`.
+ * @return Whether `left` is less than or equal to `right`.
  * An error is thrown if either value is negative.
  */
 template<typename Left_, typename Right_>
-constexpr bool is_less_than_or_equal(Left_ l, Right_ r) {
-    check_negative(l);
-    check_negative(r);
-    return as_unsigned(get_value(l)) <= as_unsigned(get_value(r));
+constexpr bool is_less_than_or_equal(Left_ left, Right_ right) {
+    check_negative(left);
+    check_negative(right);
+    return as_unsigned(get_value(left)) <= as_unsigned(get_value(right));
 }
 
 /**
@@ -74,17 +74,17 @@ constexpr bool is_less_than_or_equal(Left_ l, Right_ r) {
  * @tparam Right_ Integer type on the right hand side of the comparison.
  * This may also be an `Attestation`.
  *
- * @param l Non-negative value on the left hand side of the comparison.
- * @param r Non-negative value on the right hand side of the comparison.
+ * @param left Non-negative value on the left hand side of the comparison.
+ * @param right Non-negative value on the right hand side of the comparison.
  *
- * @return Whether `l` is greater than `r`.
+ * @return Whether `left` is greater than `right`.
  * An error is thrown if either value is negative.
  */
 template<typename Left_, typename Right_>
-constexpr bool is_greater_than(Left_ l, Right_ r) {
-    check_negative(l);
-    check_negative(r);
-    return as_unsigned(get_value(l)) > as_unsigned(get_value(r));
+constexpr bool is_greater_than(Left_ left, Right_ right) {
+    check_negative(left);
+    check_negative(right);
+    return as_unsigned(get_value(left)) > as_unsigned(get_value(right));
 }
 
 /**
@@ -93,17 +93,17 @@ constexpr bool is_greater_than(Left_ l, Right_ r) {
  * @tparam Right_ Integer type on the right hand side of the comparison.
  * This may also be an `Attestation`.
  *
- * @param l Non-negative value on the left hand side of the comparison.
- * @param r Non-negative value on the right hand side of the comparison.
+ * @param left Non-negative value on the left hand side of the comparison.
+ * @param right Non-negative value on the right hand side of the comparison.
  *
- * @return Whether `l` is greater than or equal to `r`.
+ * @return Whether `left` is greater than or equal to `right`.
  * An error is thrown if either value is negative.
  */
 template<typename Left_, typename Right_>
-constexpr bool is_greater_than_or_equal(Left_ l, Right_ r) {
-    check_negative(l);
-    check_negative(r);
-    return as_unsigned(get_value(l)) >= as_unsigned(get_value(r));
+constexpr bool is_greater_than_or_equal(Left_ left, Right_ right) {
+    check_negative(left);
+    check_negative(right);
+    return as_unsigned(get_value(left)) >= as_unsigned(get_value(right));
 }
 
 /**

@@ -107,7 +107,6 @@ Dest_ sum(First_ first, Args_... more) {
  * @tparam Args_ Integer types of additional values.
  * 
  * @param first Non-negative value to add.
- * @param second Non-negative value to add.
  * @param more Additional non-negative values to add.
  *
  * @return Sum of all arguments as a `Dest_`.
