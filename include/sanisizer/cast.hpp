@@ -25,7 +25,7 @@ namespace sanisizer {
  * An error is thrown if `x` is negative or overflow would occur.
  */
 template<typename Size_, typename Value_>
-auto can_cast(Value_ x) {
+constexpr auto can_cast(Value_ x) {
     check_negative(x);
     check_overflow<Size_>(x);
     return get_value(x);
@@ -45,7 +45,7 @@ auto can_cast(Value_ x) {
  * An error is thrown if `x` is negative or overflow would occur.
  */
 template<typename Dest_, typename Value_>
-Dest_ cast(Value_ x) {
+constexpr Dest_ cast(Value_ x) {
     return can_cast<Dest_>(x);
 }
 

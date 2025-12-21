@@ -31,7 +31,7 @@ constexpr bool needs_sum_check() {
 }
 
 template<typename Dest_, typename First_, typename Second_>
-auto sum_protected(First_ first, Second_ second) {
+constexpr auto sum_protected(First_ first, Second_ second) {
     check_negative(first);
     check_overflow<Dest_>(first);
     const Dest_ first_val = get_value(first);
@@ -55,13 +55,13 @@ auto sum_protected(First_ first, Second_ second) {
 }
 
 template<typename Dest_, typename First_, typename Second_, typename ... Args_>
-auto sum_protected(First_ first, Second_ second, Args_... more) {
+constexpr auto sum_protected(First_ first, Second_ second, Args_... more) {
     const auto subsum = sum_protected<Dest_>(first, second); 
     return sum_protected<Dest_>(subsum, more...);
 }
 
 template<typename Dest_, typename First_, typename Second_>
-Dest_ sum_unprotected(First_ first, Second_ second) {
+constexpr Dest_ sum_unprotected(First_ first, Second_ second) {
     static_assert(std::is_integral<Dest_>::value);
     static_assert(std::is_integral<First_>::value);
     static_assert(std::is_integral<Second_>::value);
@@ -69,7 +69,7 @@ Dest_ sum_unprotected(First_ first, Second_ second) {
 }
 
 template<typename Dest_, typename First_, typename Second_, typename ... Args_>
-Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
+constexpr Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
     const auto subsum = sum_unprotected<Dest_>(first, second);
     return sum_unprotected<Dest_>(subsum, more...);
 }
@@ -94,7 +94,7 @@ Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
  * An error is raised if any values are negative or if an overflow would occur.
  */
 template<typename Dest_, typename First_, typename ... Args_>
-Dest_ sum(First_ first, Args_... more) {
+constexpr Dest_ sum(First_ first, Args_... more) {
     return get_value(sum_protected<Dest_>(first, more...));
 }
 
@@ -112,7 +112,7 @@ Dest_ sum(First_ first, Args_... more) {
  * @return Sum of all arguments as a `Dest_`.
  */
 template<typename Dest_, typename First_, typename ... Args_>
-Dest_ sum_unsafe(First_ first, Args_... more) {
+constexpr Dest_ sum_unsafe(First_ first, Args_... more) {
     return sum_unprotected<Dest_>(first, more...);
 }
 
@@ -135,7 +135,7 @@ constexpr bool needs_product_check() {
 }
 
 template<typename Dest_, typename First_, typename Second_>
-auto product_protected(First_ first, Second_ second) {
+constexpr auto product_protected(First_ first, Second_ second) {
     check_negative(first);
     check_overflow<Dest_>(first);
     const Dest_ first_val = get_value(first);
@@ -159,13 +159,13 @@ auto product_protected(First_ first, Second_ second) {
 }
 
 template<typename Dest_, typename First_, typename Second_, typename ... Args_>
-auto product_protected(First_ first, Second_ second, Args_... more) {
+constexpr auto product_protected(First_ first, Second_ second, Args_... more) {
     const auto subproduct = product_protected<Dest_>(first, second);
     return product_protected<Dest_>(subproduct, more...);
 }
 
 template<typename Dest_, typename First_, typename Second_>
-Dest_ product_unprotected(First_ left, Second_ right) {
+constexpr Dest_ product_unprotected(First_ left, Second_ right) {
     static_assert(std::is_integral<Dest_>::value);
     static_assert(std::is_integral<First_>::value);
     static_assert(std::is_integral<Second_>::value);
@@ -173,7 +173,7 @@ Dest_ product_unprotected(First_ left, Second_ right) {
 }
 
 template<typename Dest_, typename First_, typename Second_, typename ... Args_>
-Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
+constexpr Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
     const auto subproduct = product_unprotected<Dest_>(left, right);
     return product_unprotected<Dest_>(subproduct, more...);
 }
@@ -202,7 +202,7 @@ Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
  * An error is raised if any values are negative or if an overflow would occur.
  */
 template<typename Dest_, typename First_, typename ... Args_>
-Dest_ product(First_ first, Args_... more) {
+constexpr Dest_ product(First_ first, Args_... more) {
     return get_value(product_protected<Dest_>(first, more...));
 }
 
@@ -219,7 +219,7 @@ Dest_ product(First_ first, Args_... more) {
  * @return Product of all arguments as a `Dest_`.
  */
 template<typename Dest_, typename First_, typename ... Args_>
-Dest_ product_unsafe(First_ first, Args_... more) {
+constexpr Dest_ product_unsafe(First_ first, Args_... more) {
     return product_unprotected<Dest_>(first, more...);
 }
 

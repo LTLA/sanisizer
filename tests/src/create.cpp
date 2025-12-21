@@ -37,6 +37,9 @@ TEST(Create, Basic) {
     // Check that it works with attestations.
     auto output_attest = sanisizer::create<std::vector<int> >(sanisizer::Attestation<int, true, 20>(10));
     EXPECT_EQ(output_attest.size(), 10);
+
+    // as_size_type works at compile-time.
+    static_assert(sanisizer::as_size_type<std::vector<int> >(10) == 10);
 }
 
 TEST(Resize, Basic) {

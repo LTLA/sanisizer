@@ -54,4 +54,7 @@ TEST(CanPtrdiff, Basic) {
 
     // Works with Attestations.
     sanisizer::can_ptrdiff<double*>(sanisizer::Attestation<int, true, 20>(10));
+
+    // Works at compile time.
+    static_assert(sanisizer::can_ptrdiff<double*>(10));
 }

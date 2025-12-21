@@ -26,7 +26,7 @@ namespace sanisizer {
  * If overflow would occur, an `OverflowError` is raised.
  */
 template<class Container_, typename Value_>
-auto as_size_type(Value_ x) {
+constexpr auto as_size_type(Value_ x) {
     check_negative(x);
     typedef I<decltype(std::declval<Container_>().size())> Size;
     check_overflow<Size>(x);

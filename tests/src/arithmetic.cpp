@@ -36,6 +36,9 @@ TEST(Sum, Basic) {
         EXPECT_EQ(sanisizer::sum<std::int8_t>(5, sanisizer::Attestation<i32, false, 100>((i32)20)), 25);
         EXPECT_EQ(sanisizer::sum<std::int8_t>(sanisizer::Attestation<u32, true, 1000>((u32)20), 5), 25);
         EXPECT_EQ(sanisizer::sum<std::int8_t>(sanisizer::Attestation<u32, true, 100>((u32)20), 5), 25);
+
+        // Works at compile-time.
+        static_assert(sanisizer::sum<std::int64_t>((i32)5, (i32)20) == 25);
     }
 
     {
@@ -87,6 +90,9 @@ TEST(Sum, Unsafe) {
     EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>((u32)5, (i32)20), 25);
     EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>((i32)5, (u32)20), 25);
     EXPECT_EQ(sanisizer::sum_unsafe<std::int64_t>((u32)5, (u32)20, (u32)100), 125);
+
+    // Works at compile-time.
+    static_assert(sanisizer::sum_unsafe<std::int64_t>((i32)5, (i32)20) == 25);
 }
 
 TEST(Product, Basic) {
@@ -128,6 +134,9 @@ TEST(Product, Basic) {
         EXPECT_EQ(sanisizer::product<std::int8_t>(5, sanisizer::Attestation<u32, true, 100>((u32)20)), 100);
         EXPECT_EQ(sanisizer::product<std::int8_t>(sanisizer::Attestation<i32, true, 1000>((i32)20), 5), 100);
         EXPECT_EQ(sanisizer::product<std::int8_t>(sanisizer::Attestation<i32, true, 100>((i32)20), 5), 100);
+
+        // Works at compile-time.
+        static_assert(sanisizer::product<std::int64_t>((i32)5, (i32)20) == 100);
     }
 
     {
@@ -187,4 +196,7 @@ TEST(Product, Unsafe) {
     EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>((u32)5, (i32)20), 100);
     EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>((i32)5, (u32)20), 100);
     EXPECT_EQ(sanisizer::product_unsafe<std::int64_t>((u32)5, (u32)20, (u32)100), 10000);
+
+    // Works at compile-time.
+    static_assert(sanisizer::product_unsafe<std::int64_t>((i32)5, (i32)20) == 100);
 }

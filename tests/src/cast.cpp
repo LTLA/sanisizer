@@ -20,6 +20,9 @@ TEST(Cast, Basic) {
     EXPECT_EQ(sanisizer::cast<std::int8_t>((u32)100), 100);
     EXPECT_EQ(sanisizer::cast<std::int32_t>((u8)250), 250);
 
+    // Works at compile time.
+    static_assert(sanisizer::cast<std::uint8_t>(10) == 10);
+
     // Check that the type makes sense.
     static_assert(std::is_same<decltype(sanisizer::cast<std::uint32_t>((i32)1)), std::uint32_t>::value);
     static_assert(std::is_same<decltype(sanisizer::cast<std::int32_t>((u32)1)), std::int32_t>::value);
