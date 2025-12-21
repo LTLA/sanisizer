@@ -13,6 +13,7 @@ TEST(Create, Basic) {
     EXPECT_EQ(output2.front(), 1);
     EXPECT_EQ(output2.back(), 1);
 
+    // Check that it throws the right errors.
     struct MockVector {
         MockVector(std::uint8_t) {}
         std::uint8_t size() const { return 0; }
@@ -20,10 +21,22 @@ TEST(Create, Basic) {
     bool failed = false;
     try {
         sanisizer::create<MockVector>(300);
-    } catch (sanisizer::OverflowError& e) {
+    } catch (std::overflow_error& e) {
         failed = true;
     }
     EXPECT_TRUE(failed);
+
+    failed = false;
+    try {
+        sanisizer::create<std::vector<int> >(-1);
+    } catch (std::out_of_range& e) {
+        failed = true;
+    }
+    EXPECT_TRUE(failed);
+
+    // Check that it works with attestations.
+    auto output_attest = sanisizer::create<std::vector<int> >(sanisizer::Attestation<int, true, 20>(10));
+    EXPECT_EQ(output_attest.size(), 10);
 }
 
 TEST(Resize, Basic) {
@@ -47,7 +60,7 @@ TEST(Resize, Basic) {
     MockVector foo;
     try {
         sanisizer::resize(foo, 300);
-    } catch (sanisizer::OverflowError& e) {
+    } catch (std::overflow_error& e) {
         failed = true;
     }
     EXPECT_TRUE(failed);
