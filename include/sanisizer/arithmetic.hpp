@@ -78,7 +78,7 @@ Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
  */
 
 /**
- * Add two or more values, checking for overflow in the destination type.
+ * Add two or more non-negative values, checking for overflow in the destination type.
  * This is typically used to compute the size of an array that is a concatenation of smaller arrays.
  *
  * @tparam Dest_ Integer type of the destination.
@@ -87,8 +87,8 @@ Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
  * @tparam Args_ Integer types of additional values.
  * Any number of these may also be `Attestation`s.
  *
- * @param first First value to add.
- * @param more Additional values to add.
+ * @param first First non-negative value to add.
+ * @param more Additional non-negative values to add.
  *
  * @return Sum of all arguments as a `Dest_`.
  * An error is raised if any values are negative or if an overflow would occur.
@@ -183,7 +183,7 @@ Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
  */
 
 /**
- * Multiply two values, checking for overflow in the destination type.
+ * Multiply two or more non-negative values, checking for overflow in the destination type.
  * This is typically used to compute the size of a flattened N-dimensional array as the product of its dimension extents.
  * 
  * For consistency, this function will also check that each input value can be cast to `Dest_`.
@@ -192,10 +192,12 @@ Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
  *
  * @tparam Dest_ Integer type of the destination.
  * @tparam First_ Integer type of the first value.
+ * This may also be an `Attestation`.
  * @tparam Args_ Integer types of additional values.
+ * Any number of these may also be `Attestation`s.
  *
- * @param first Value to multiply.
- * @param more Additional values to multiply.
+ * @param first Non-negative value to multiply.
+ * @param more Additional non-negative values to multiply.
  *
  * @return Product of all arguments as a `Dest_`.
  * An error is raised if any values are negative or if an overflow would occur.
