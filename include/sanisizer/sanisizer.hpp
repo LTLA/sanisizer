@@ -3,6 +3,7 @@
 
 #include "cast.hpp"
 #include "arithmetic.hpp"
+#include "attest.hpp"
 #include "comparisons.hpp"
 #include "create.hpp"
 #include "nd_offset.hpp"
