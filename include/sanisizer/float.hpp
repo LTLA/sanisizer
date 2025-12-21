@@ -7,6 +7,7 @@
 #include <type_traits>
 
 #include "utils.hpp"
+#include "attest.hpp"
 
 /**
  * @file float.hpp
@@ -61,6 +62,10 @@ Integer_ from_float(Float_ x) {
     if (!std::isfinite(x)) {
         throw std::range_error("invalid conversion of non-finite value in sanisizer::from_float");
     }
+    if (x < 0) {
+        throw std::out_of_range("negative input value in sanisizer::from_float");
+    }
+
     x = std::trunc(x);
     if (float_to_int_overflows<Integer_>(x)) {
         throw std::overflow_error("overflow detected in sanisizer::from_float");
@@ -76,6 +81,7 @@ Integer_ from_float(Float_ x) {
  * If the implementation's floats are compliant with the IEEE-754 specifiation, very large integers will already be safely converted to positive infinity via regular casts.
  *
  * @tparam Integer_ Integer type.
+ * This can also be an `Attestation`.
  * @tparam Float_ Floating-point type.
  *
  * @param x Non-negative integer, usually holding some kind of size. 
@@ -85,9 +91,14 @@ Integer_ from_float(Float_ x) {
  */
 template<typename Float_, typename Integer_>
 Float_ to_float(Integer_ x) {
-    static_assert(std::is_floating_point<Float_>::value);
-    static_assert(std::is_integral<Integer_>::value);
-    if (x == 0) {
+    check_negative(x);
+    const auto val = get_value(x);
+
+    // protect against the various -1 operations.
+    constexpr auto xmax = get_max<I<decltype(x)> >();
+    if constexpr(xmax == 0) {
+        return 0;
+    } else if (val == 0) {
         return 0;
     }
 
@@ -95,16 +106,18 @@ Float_ to_float(Integer_ x) {
     constexpr auto fdig = std::numeric_limits<Float_>::digits;
 #ifndef SANISIZER_FLOAT_FORCE_MANUAL
     if constexpr(frad == 2) {
-        if constexpr(std::numeric_limits<Integer_>::digits > fdig) {
-            const auto y = (x - 1) >> fdig;
-            if (y) {
-                throw std::overflow_error("overflow detected in sanisizer::to_float");
+        if constexpr(std::numeric_limits<I<decltype(val)> >::digits > fdig) {
+            if constexpr((xmax - 1) >> fdig) {
+                const auto y = (val - 1) >> fdig;
+                if (y) {
+                    throw std::overflow_error("overflow detected in sanisizer::to_float");
+                }
             }
         }
     } else {
 #endif
         // Manual fallback in the unusual case that the radixes is not 2.
-        Integer_ working = x - 1;
+        I<decltype(val)> working = val - 1;
         for (I<decltype(fdig)> d = 0; d < fdig && working; ++d) {
             working /= frad;
         }
@@ -115,7 +128,7 @@ Float_ to_float(Integer_ x) {
     }
 #endif
 
-    return x;
+    return val;
 }
 
 }
