@@ -23,6 +23,8 @@ TEST(Comparisons, Equal) {
     static_assert(sanisizer::is_equal(1, 1u));
     static_assert(!sanisizer::is_equal(1u, 0));
 
+    EXPECT_TRUE(sanisizer::is_equal(10, 10u)); // for codecov.
+
     // Works with attestations.
     static_assert(!sanisizer::is_equal(sanisizer::Attestation<int, true, 100>(10), 20u));
     static_assert(sanisizer::is_equal(10u, sanisizer::Attestation<int, true, 100>(10)));
@@ -39,6 +41,8 @@ TEST(Comparisons, GreaterThan) {
     static_assert(sanisizer::is_greater_than(1u, 0u));
     static_assert(!sanisizer::is_greater_than(1, 1u));
     static_assert(sanisizer::is_greater_than(1u, 0));
+
+    EXPECT_TRUE(sanisizer::is_greater_than(11, 10u)); // for codecov.
 
     // Works with attestations.
     static_assert(!sanisizer::is_greater_than(sanisizer::Attestation<int, true, 100>(10), 20u));
@@ -60,6 +64,8 @@ TEST(Comparisons, LessThanOrEqual) {
     static_assert(sanisizer::is_less_than_or_equal(0, 1u));
     static_assert(!sanisizer::is_less_than_or_equal(1u, 0));
 
+    EXPECT_TRUE(sanisizer::is_less_than_or_equal(9, 10u)); // for codecov.
+
     // Works with attestations.
     static_assert(sanisizer::is_less_than_or_equal(sanisizer::Attestation<int, true, 100>(10), 20u));
     static_assert(!sanisizer::is_less_than_or_equal(20u, sanisizer::Attestation<int, true, 100>(10)));
@@ -76,6 +82,8 @@ TEST(Comparisons, LessThan) {
     static_assert(!sanisizer::is_less_than(1u, 1u));
     static_assert(sanisizer::is_less_than(0u, 1));
     static_assert(!sanisizer::is_less_than(1, 1u));
+
+    EXPECT_TRUE(sanisizer::is_less_than(9, 10u)); // for codecov.
 
     // Works with attestations.
     static_assert(sanisizer::is_less_than(sanisizer::Attestation<int, true, 100>(10), 20u));
@@ -96,6 +104,8 @@ TEST(Comparisons, GreaterThanOrEqual) {
     static_assert(sanisizer::is_greater_than_or_equal(1, 1u));
     static_assert(sanisizer::is_greater_than_or_equal(1, 0u));
     static_assert(!sanisizer::is_greater_than_or_equal(0u, 1));
+
+    EXPECT_TRUE(sanisizer::is_greater_than_or_equal(11, 10u)); // for codecov.
 
     // Works with attestations.
     static_assert(!sanisizer::is_greater_than_or_equal(sanisizer::Attestation<int, true, 100>(10), 20u));
@@ -142,6 +152,11 @@ TEST(Comparisons, Min) {
     static_assert(attest_check2 == 7);
     static_assert(std::is_same<decltype(attest_check2), const std::int8_t>::value);
 
+    // Check it works at compile time.
+    static_assert(sanisizer::min(1, 1) == 1);
+    static_assert(sanisizer::min(1u, 1) == 1);
+    static_assert(sanisizer::min(1u, 1u) == 1u);
+
     EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::min(-1, 0); })); 
     EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::min(0, -1); })); 
 }
@@ -181,6 +196,11 @@ TEST(Comparisons, Max) {
     );
     static_assert(attest_check2 == 10);
     static_assert(std::is_same<decltype(attest_check2), const std::int32_t>::value);
+
+    // Check it works at compile time.
+    static_assert(sanisizer::max(1, 1) == 1);
+    static_assert(sanisizer::max(1u, 1) == 1u);
+    static_assert(sanisizer::max(1u, 1u) == 1u);
 
     EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::max(-1, 0); })); 
     EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::max(0, -1); })); 
