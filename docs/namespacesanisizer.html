@@ -1438,7 +1438,7 @@ template&lt;typename Float_ , typename Integer_ &gt; </div>
 <p>Note that the "safety" of this function is based on preserving precision rather than avoiding undefined behavior. If the implementation's floats are compliant with the IEEE-754 specifiation, very large integers will already be safely converted to positive infinity via regular casts.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Integer_</td><td>Integer type. </td></tr>
+    <tr><td class="paramname">Integer_</td><td>Integer type. This can also be an <code><a class="el" href="structsanisizer_1_1Attestation.html" title="Attest to additional compile-time properties of an integer.">Attestation</a></code>. </td></tr>
     <tr><td class="paramname">Float_</td><td>Floating-point type.</td></tr>
   </table>
   </dd>

@@ -49,6 +49,7 @@
     <name>float.hpp</name>
     <path>sanisizer/</path>
     <filename>float_8hpp.html</filename>
+    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
