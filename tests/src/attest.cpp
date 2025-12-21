@@ -30,6 +30,11 @@ TEST(Attest, Class) {
         static_assert(!decltype(val)::gez);
     }
 
+    { // also works at run-time.
+        sanisizer::Attestation<int, true, 20> val(5);
+        EXPECT_EQ(val.value, 5);
+    }
+
     static_assert(sanisizer::is_Attestation<sanisizer::Attestation<int, true, 10> >::value);
     static_assert(sanisizer::is_integral_or_Attestation<sanisizer::Attestation<int, true, 10> >::value);
     static_assert(!sanisizer::is_Attestation<int>::value);
@@ -43,6 +48,12 @@ TEST(Attest, GetValue) {
     static_assert(20 == sanisizer::get_value(sanisizer::Attestation<int, true, 20>(20)));
     static_assert(5 == sanisizer::get_value(5));
     static_assert(20 == sanisizer::get_value(20));
+
+    { // also works at run-time.
+        sanisizer::Attestation<int, true, 20> val(5);
+        EXPECT_EQ(sanisizer::get_value(val), 5);
+        EXPECT_EQ(sanisizer::get_value(5), 5);
+    }
 }
 
 TEST(Attest, Unsigned) {
@@ -82,6 +93,21 @@ TEST(Attest, Unsigned) {
         static_assert(decltype(thing)::max == 20);
         static_assert(decltype(thing)::gez);
     }
+
+    { // also works at run-time.
+        sanisizer::Attestation<int, false, 20> val(5);
+        EXPECT_FALSE(sanisizer::get_gez<decltype(val)>());
+
+        auto copy = sanisizer::attest_gez(val);
+        EXPECT_TRUE(sanisizer::get_gez<decltype(copy)>());
+        auto copy2 = sanisizer::attest_gez(copy);
+        EXPECT_TRUE(sanisizer::get_gez<decltype(copy2)>());
+
+        auto uval = sanisizer::attest_gez(5);
+        EXPECT_TRUE(sanisizer::get_gez<decltype(uval)>());
+        auto uval2 = sanisizer::attest_gez(5u);
+        EXPECT_TRUE(sanisizer::get_gez<decltype(uval2)>());
+    }
 }
 
 TEST(Attest, Limit) {
@@ -120,6 +146,24 @@ TEST(Attest, Limit) {
         static_assert(decltype(thing)::max == std::numeric_limits<std::uint8_t>::max());
         static_assert(!decltype(thing)::gez);
     }
+
+    { // also works at run-time.
+        sanisizer::Attestation<int, false, 20> val(5);
+        EXPECT_EQ(sanisizer::get_max<decltype(val)>(), 20);
+
+        auto copy = sanisizer::attest_max<int, 10>(val);
+        EXPECT_EQ(sanisizer::get_max<decltype(copy)>(), 10);
+        auto copy2 = sanisizer::attest_max<int, 100>(val);
+        EXPECT_EQ(sanisizer::get_max<decltype(copy2)>(), 20);
+
+        auto imax = sanisizer::attest_max<int, 10>(10);
+        EXPECT_EQ(sanisizer::get_max<decltype(imax)>(), 10);
+        auto imax2 = sanisizer::attest_max<int, 1000>((std::uint8_t)10);
+        EXPECT_EQ(sanisizer::get_max<decltype(imax2)>(), 255);
+
+        auto typed = sanisizer::attest_max_by_type<std::uint8_t>(10);
+        EXPECT_EQ(sanisizer::get_max<decltype(typed)>(), 255);
+    }
 }
 
 TEST(Attest, CheckNegative) {
@@ -130,6 +174,7 @@ TEST(Attest, CheckNegative) {
         static_assert(!sanisizer::check_negative(sanisizer::Attestation<unsigned, true, 10>(10u)));
     }
 
+    // Also works at run-time.
     {
         EXPECT_FALSE(sanisizer::check_negative(10));
         EXPECT_FALSE(sanisizer::check_negative(10u));
@@ -161,6 +206,7 @@ TEST(Attest, CheckOverflow) {
         static_assert(!sanisizer::check_overflow<unsigned>(sanisizer::Attestation<unsigned, true, 10>(10u)));
     }
 
+    // Also works at run-time.
     {
         EXPECT_FALSE(sanisizer::check_overflow<int>(10));
         EXPECT_FALSE(sanisizer::check_overflow<int>(10u));

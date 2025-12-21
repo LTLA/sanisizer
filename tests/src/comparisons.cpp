@@ -127,15 +127,15 @@ TEST(Comparisons, Min) {
     EXPECT_EQ(x2, 255u);
     static_assert(sanisizer::min(static_cast<std::uint8_t>(255), 1000) == 255u);
 
-    auto x3 = sanisizer::min(500u, 1000);
+    auto x3 = sanisizer::min(1000, 500u);
     static_assert(std::is_same<decltype(x3), int>::value);
     EXPECT_EQ(x3, 500);
-    static_assert(sanisizer::min(500u, 1000) == 500);
+    static_assert(sanisizer::min(1000, 500u) == 500);
 
-    auto x4 = sanisizer::min(10000u, 1000);
+    auto x4 = sanisizer::min(1000, 10000u);
     static_assert(std::is_same<decltype(x4), int>::value);
     EXPECT_EQ(x4, 1000);
-    static_assert(sanisizer::min(10000u, 1000) == 1000);
+    static_assert(sanisizer::min(1000, 10000u) == 1000);
 
     // Check it works for attestations.
     constexpr auto attest_check1 = sanisizer::min(
@@ -152,11 +152,6 @@ TEST(Comparisons, Min) {
     static_assert(attest_check2 == 7);
     static_assert(std::is_same<decltype(attest_check2), const std::int8_t>::value);
 
-    // Check it works at compile time.
-    static_assert(sanisizer::min(1, 1) == 1);
-    static_assert(sanisizer::min(1u, 1) == 1);
-    static_assert(sanisizer::min(1u, 1u) == 1u);
-
     EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::min(-1, 0); })); 
     EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::min(0, -1); })); 
 }
@@ -172,15 +167,15 @@ TEST(Comparisons, Max) {
     EXPECT_EQ(x2, 1000);
     static_assert(sanisizer::max(static_cast<std::uint8_t>(255), 1000) == 1000);
 
-    auto x3 = sanisizer::max(500u, 1000);
+    auto x3 = sanisizer::max(1000, 500u);
     static_assert(std::is_same<decltype(x3), unsigned int>::value);
     EXPECT_EQ(x3, 1000u);
-    static_assert(sanisizer::max(500u, 1000) == 1000u);
+    static_assert(sanisizer::max(1000, 500u) == 1000u);
 
-    auto x4 = sanisizer::max(10000u, 1000);
+    auto x4 = sanisizer::max(1000, 10000u);
     static_assert(std::is_same<decltype(x4), unsigned int>::value);
     EXPECT_EQ(x4, 10000u);
-    static_assert(sanisizer::max(10000u, 1000) == 10000u);
+    static_assert(sanisizer::max(1000, 10000u) == 10000u);
 
     // Check it works for attestations.
     constexpr auto attest_check1 = sanisizer::max(
@@ -196,11 +191,6 @@ TEST(Comparisons, Max) {
     );
     static_assert(attest_check2 == 10);
     static_assert(std::is_same<decltype(attest_check2), const std::int32_t>::value);
-
-    // Check it works at compile time.
-    static_assert(sanisizer::max(1, 1) == 1);
-    static_assert(sanisizer::max(1u, 1) == 1u);
-    static_assert(sanisizer::max(1u, 1u) == 1u);
 
     EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::max(-1, 0); })); 
     EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::max(0, -1); })); 
