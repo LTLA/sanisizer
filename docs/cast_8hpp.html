@@ -99,10 +99,8 @@ $(function(){ initResizable(false); });
 
 <p>Safe casts of integer size.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;limits&gt;</code><br />
-<code>#include &lt;type_traits&gt;</code><br />
-<code>#include &quot;<a class="el" href="comparisons_8hpp_source.html">comparisons.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="utils_8hpp_source.html">utils.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="attest_8hpp_source.html">attest.hpp</a>&quot;</code><br />
+<code>#include &quot;utils.hpp&quot;</code><br />
 </div>
 <p><a href="cast_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -114,12 +112,12 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aed4423ffa6beced95cee29c155e494d2" id="r_aed4423ffa6beced95cee29c155e494d2"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Input_ &gt; </td></tr>
-<tr class="memitem:aed4423ffa6beced95cee29c155e494d2"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a> (Input_ x)</td></tr>
-<tr class="separator:aed4423ffa6beced95cee29c155e494d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae296713052655ffb92c4add715f63596" id="r_ae296713052655ffb92c4add715f63596"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Input_ &gt; </td></tr>
-<tr class="memitem:ae296713052655ffb92c4add715f63596"><td class="memTemplItemLeft" align="right" valign="top">Input_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#ae296713052655ffb92c4add715f63596">sanisizer::can_cast</a> (Input_ x)</td></tr>
-<tr class="separator:ae296713052655ffb92c4add715f63596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2a8d6af31cddbb12b3e644472071f73" id="r_af2a8d6af31cddbb12b3e644472071f73"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename Value_ &gt; </td></tr>
+<tr class="memitem:af2a8d6af31cddbb12b3e644472071f73"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#af2a8d6af31cddbb12b3e644472071f73">sanisizer::can_cast</a> (Value_ x)</td></tr>
+<tr class="separator:af2a8d6af31cddbb12b3e644472071f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac87ac5622c369ae4384e3599a86ac30" id="r_aac87ac5622c369ae4384e3599a86ac30"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
+<tr class="memitem:aac87ac5622c369ae4384e3599a86ac30"><td class="memTemplItemLeft" align="right" valign="top">Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#aac87ac5622c369ae4384e3599a86ac30">sanisizer::cast</a> (Value_ x)</td></tr>
+<tr class="separator:aac87ac5622c369ae4384e3599a86ac30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Safe casts of integer size. </p>

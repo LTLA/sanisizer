@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>sanisizer: sanisizer/ptrdiff.hpp File Reference</title>
+<title>sanisizer: sanisizer::is_Attestation&lt; Value_ &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,43 +85,64 @@ $(function(){ initResizable(false); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_0a8034aaba84db31794826969fd82345.html">sanisizer</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacesanisizer.html">sanisizer</a></li><li class="navelem"><a class="el" href="structsanisizer_1_1is__Attestation.html">is_Attestation</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">ptrdiff.hpp File Reference</div></div>
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="structsanisizer_1_1is__Attestation-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">sanisizer::is_Attestation&lt; Value_ &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Safe pointer differences.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;limits&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
-<code>#include &lt;type_traits&gt;</code><br />
-<code>#include &quot;<a class="el" href="attest_8hpp_source.html">attest.hpp</a>&quot;</code><br />
-<code>#include &quot;utils.hpp&quot;</code><br />
-</div>
-<p><a href="ptrdiff_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><code>#include &lt;<a class="el" href="attest_8hpp_source.html">attest.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html">sanisizer</a></td></tr>
-<tr class="memdesc:namespacesanisizer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sanitize sizes to avoid integer overflow. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:acbe2c4a2bd3f774551a98949fcda2412" id="r_acbe2c4a2bd3f774551a98949fcda2412"><td class="memTemplParams" colspan="2">template&lt;typename Iterator_ , typename MaxDiff_ &gt; </td></tr>
-<tr class="memitem:acbe2c4a2bd3f774551a98949fcda2412"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#acbe2c4a2bd3f774551a98949fcda2412">sanisizer::can_ptrdiff</a> (MaxDiff_ max_diff)</td></tr>
-<tr class="separator:acbe2c4a2bd3f774551a98949fcda2412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a9e1593c0b2cee2cbc7b1e3d86cfb9954" id="r_a9e1593c0b2cee2cbc7b1e3d86cfb9954"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e1593c0b2cee2cbc7b1e3d86cfb9954">value</a> = false</td></tr>
+<tr class="separator:a9e1593c0b2cee2cbc7b1e3d86cfb9954"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Safe pointer differences. </p>
-</div></div><!-- contents -->
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Value_&gt;<br />
+struct sanisizer::is_Attestation&lt; Value_ &gt;</div><p>Default case for checking whether <code>Value_</code> is an <code><a class="el" href="structsanisizer_1_1Attestation.html" title="Attest to additional compile-time properties of an integer.">Attestation</a></code>.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Value_</td><td>Type to be queried. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9e1593c0b2cee2cbc7b1e3d86cfb9954" name="a9e1593c0b2cee2cbc7b1e3d86cfb9954"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e1593c0b2cee2cbc7b1e3d86cfb9954">&#9670;&#160;</a></span>value</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Value_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="structsanisizer_1_1is__Attestation.html">sanisizer::is_Attestation</a>&lt; Value_ &gt;::value = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Fale, <code>Value_</code> is not an <code><a class="el" href="structsanisizer_1_1Attestation.html" title="Attest to additional compile-time properties of an integer.">Attestation</a></code>. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>sanisizer/<a class="el" href="attest_8hpp_source.html">attest.hpp</a></li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0

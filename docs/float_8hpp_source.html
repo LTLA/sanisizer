@@ -101,7 +101,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="utils_8hpp.html">utils.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;utils.hpp&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacesanisizer.html">sanisizer</a> {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
@@ -131,11 +131,11 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Integer_&gt;::value);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">if</span> (!std::isfinite(x)) {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;invalid conversion of non-finite value in sanisizer::from_float&quot;</span>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">throw</span> std::range_error(<span class="stringliteral">&quot;invalid conversion of non-finite value in sanisizer::from_float&quot;</span>);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    x = std::trunc(x);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">if</span> (float_to_int_overflows&lt;Integer_&gt;(x)) {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">throw</span> <a class="code hl_class" href="classsanisizer_1_1OverflowError.html">OverflowError</a>(<span class="stringliteral">&quot;overflow detected in sanisizer::from_float&quot;</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::from_float&quot;</span>);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    }</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">return</span> x;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
@@ -157,7 +157,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::numeric_limits&lt;Integer_&gt;::digits &gt; fdig) {</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <span class="keyword">const</span> <span class="keyword">auto</span> y = (x - 1) &gt;&gt; fdig;</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <span class="keywordflow">if</span> (y) {</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                <span class="keywordflow">throw</span> <a class="code hl_class" href="classsanisizer_1_1OverflowError.html">OverflowError</a>(<span class="stringliteral">&quot;overflow detected in sanisizer::to_float&quot;</span>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::to_float&quot;</span>);</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            }</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        }</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    } <span class="keywordflow">else</span> {</div>
@@ -168,7 +168,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            working /= frad;</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        }</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> (working) {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="keywordflow">throw</span> <a class="code hl_class" href="classsanisizer_1_1OverflowError.html">OverflowError</a>(<span class="stringliteral">&quot;overflow detected in sanisizer::to_float&quot;</span>);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::to_float&quot;</span>);</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        }</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_MANUAL</span></div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
@@ -181,11 +181,9 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>}</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclasssanisizer_1_1OverflowError_html"><div class="ttname"><a href="classsanisizer_1_1OverflowError.html">sanisizer::OverflowError</a></div><div class="ttdoc">Error from an integer overflow.</div><div class="ttdef"><b>Definition</b> utils.hpp:19</div></div>
-<div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:16</div></div>
+<div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:15</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a4339f0370428ea79772ab81e3637db20"><div class="ttname"><a href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Integer_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:87</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a56076716172db1c8ee4b11e1a01bb4b6"><div class="ttname"><a href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">sanisizer::from_float</a></div><div class="ttdeci">Integer_ from_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:57</div></div>
-<div class="ttc" id="autils_8hpp_html"><div class="ttname"><a href="utils_8hpp.html">utils.hpp</a></div><div class="ttdoc">General-purposes utilities.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

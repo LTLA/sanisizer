@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['overflowerror_0',['OverflowError',['../classsanisizer_1_1OverflowError.html',1,'sanisizer']]]
+  ['attestation_0',['Attestation',['../structsanisizer_1_1Attestation.html',1,'sanisizer']]]
 ];

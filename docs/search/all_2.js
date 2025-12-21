@@ -1,16 +1,18 @@
 var searchData=
 [
-  ['can_5fcast_0',['can_cast',['../namespacesanisizer.html#ae296713052655ffb92c4add715f63596',1,'sanisizer']]],
+  ['can_5fcast_0',['can_cast',['../namespacesanisizer.html#af2a8d6af31cddbb12b3e644472071f73',1,'sanisizer']]],
   ['can_5fptrdiff_1',['can_ptrdiff',['../namespacesanisizer.html#acbe2c4a2bd3f774551a98949fcda2412',1,'sanisizer']]],
-  ['cap_2',['cap',['../namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72',1,'sanisizer']]],
+  ['cap_2',['cap',['../namespacesanisizer.html#abd46ba64586c8de228897cc013def813',1,'sanisizer']]],
   ['cap_2ehpp_3',['cap.hpp',['../cap_8hpp.html',1,'']]],
   ['capping_4',['Capping',['../index.html#autotoc_md3',1,'']]],
-  ['cast_5',['cast',['../namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2',1,'sanisizer']]],
+  ['cast_5',['cast',['../namespacesanisizer.html#aac87ac5622c369ae4384e3599a86ac30',1,'sanisizer']]],
   ['cast_2ehpp_6',['cast.hpp',['../cast_8hpp.html',1,'']]],
   ['casting_7',['Casting',['../index.html#autotoc_md2',1,'']]],
-  ['cmake_20with_20tt_20fetchcontent_20tt_8',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md7',1,'']]],
-  ['cmake_20with_20tt_20find_5fpackage_20tt_9',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md8',1,'']]],
-  ['comparisons_2ehpp_10',['comparisons.hpp',['../comparisons_8hpp.html',1,'']]],
-  ['create_11',['create',['../namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2',1,'sanisizer']]],
-  ['create_2ehpp_12',['create.hpp',['../create_8hpp.html',1,'']]]
+  ['check_5fnegative_8',['check_negative',['../namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee',1,'sanisizer']]],
+  ['check_5foverflow_9',['check_overflow',['../namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a',1,'sanisizer']]],
+  ['cmake_20with_20tt_20fetchcontent_20tt_10',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md7',1,'']]],
+  ['cmake_20with_20tt_20find_5fpackage_20tt_11',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md8',1,'']]],
+  ['comparisons_2ehpp_12',['comparisons.hpp',['../comparisons_8hpp.html',1,'']]],
+  ['create_13',['create',['../namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7',1,'sanisizer']]],
+  ['create_2ehpp_14',['create.hpp',['../create_8hpp.html',1,'']]]
 ];

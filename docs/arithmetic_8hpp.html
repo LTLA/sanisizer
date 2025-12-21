@@ -101,9 +101,8 @@ $(function(){ initResizable(false); });
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;limits&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
-<code>#include &quot;<a class="el" href="cast_8hpp_source.html">cast.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="comparisons_8hpp_source.html">comparisons.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="utils_8hpp_source.html">utils.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="attest_8hpp_source.html">attest.hpp</a>&quot;</code><br />
+<code>#include &quot;utils.hpp&quot;</code><br />
 </div>
 <p><a href="arithmetic_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -115,18 +114,18 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3d1827f9cf0268a7df4f6f5144b45f6c" id="r_a3d1827f9cf0268a7df4f6f5144b45f6c"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename First_ , typename Second_ , typename ... Args_&gt; </td></tr>
-<tr class="memitem:a3d1827f9cf0268a7df4f6f5144b45f6c"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer::sum</a> (First_ first, Second_ second, Args_... more)</td></tr>
-<tr class="separator:a3d1827f9cf0268a7df4f6f5144b45f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa12859cbf72cbf271cd5932ff467f898" id="r_aa12859cbf72cbf271cd5932ff467f898"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename First_ , typename Second_ , typename ... Args_&gt; </td></tr>
-<tr class="memitem:aa12859cbf72cbf271cd5932ff467f898"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#aa12859cbf72cbf271cd5932ff467f898">sanisizer::sum_unsafe</a> (First_ first, Second_ second, Args_... more)</td></tr>
-<tr class="separator:aa12859cbf72cbf271cd5932ff467f898"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac51a903d22bd7a22986195c5ec18e62b" id="r_ac51a903d22bd7a22986195c5ec18e62b"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename First_ , typename Second_ , typename ... Args_&gt; </td></tr>
-<tr class="memitem:ac51a903d22bd7a22986195c5ec18e62b"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer::product</a> (First_ first, Second_ second, Args_... more)</td></tr>
-<tr class="separator:ac51a903d22bd7a22986195c5ec18e62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0783e5cb9204cc76c755e07d8ea1ab8b" id="r_a0783e5cb9204cc76c755e07d8ea1ab8b"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename First_ , typename Second_ , typename ... Args_&gt; </td></tr>
-<tr class="memitem:a0783e5cb9204cc76c755e07d8ea1ab8b"><td class="memTemplItemLeft" align="right" valign="top">Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a0783e5cb9204cc76c755e07d8ea1ab8b">sanisizer::product_unsafe</a> (First_ first, Second_ second, Args_... more)</td></tr>
-<tr class="separator:a0783e5cb9204cc76c755e07d8ea1ab8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa3af96799c9e5e02abbf9dbaefd5a28" id="r_aaa3af96799c9e5e02abbf9dbaefd5a28"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:aaa3af96799c9e5e02abbf9dbaefd5a28"><td class="memTemplItemLeft" align="right" valign="top">Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#aaa3af96799c9e5e02abbf9dbaefd5a28">sanisizer::sum</a> (First_ first, Args_... more)</td></tr>
+<tr class="separator:aaa3af96799c9e5e02abbf9dbaefd5a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e2a08a62950ac9c9e512f267ace65e6" id="r_a3e2a08a62950ac9c9e512f267ace65e6"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a3e2a08a62950ac9c9e512f267ace65e6"><td class="memTemplItemLeft" align="right" valign="top">Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a3e2a08a62950ac9c9e512f267ace65e6">sanisizer::sum_unsafe</a> (First_ first, Args_... more)</td></tr>
+<tr class="separator:a3e2a08a62950ac9c9e512f267ace65e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12dec9454e3d5449af6afd89589c70a3" id="r_a12dec9454e3d5449af6afd89589c70a3"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a12dec9454e3d5449af6afd89589c70a3"><td class="memTemplItemLeft" align="right" valign="top">Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a12dec9454e3d5449af6afd89589c70a3">sanisizer::product</a> (First_ first, Args_... more)</td></tr>
+<tr class="separator:a12dec9454e3d5449af6afd89589c70a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cb604c72e88281cfcd5dc9f81f02632" id="r_a5cb604c72e88281cfcd5dc9f81f02632"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a5cb604c72e88281cfcd5dc9f81f02632"><td class="memTemplItemLeft" align="right" valign="top">Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a5cb604c72e88281cfcd5dc9f81f02632">sanisizer::product_unsafe</a> (First_ first, Args_... more)</td></tr>
+<tr class="separator:a5cb604c72e88281cfcd5dc9f81f02632"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Safe arithmetic on integer sizes. </p>

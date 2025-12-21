@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nd_5foffset_0',['nd_offset',['../namespacesanisizer.html#a1b7b649bb2ee029e69a40a62c76f4762',1,'sanisizer']]]
+  ['max_0',['max',['../namespacesanisizer.html#a692dab8520331e20e6d2361439a53450',1,'sanisizer']]],
+  ['min_1',['min',['../namespacesanisizer.html#aa483a5cd81fb958f0cd7198752030076',1,'sanisizer']]]
 ];

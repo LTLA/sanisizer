@@ -101,14 +101,14 @@ Casting</h1>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Casting it avoids potential for overflow in constructor.</span></div>
 <div class="line">std::vector&lt;double&gt; my_container;</div>
-<div class="line">my_container.resize(<a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a>&lt;<span class="keyword">decltype</span>(my_container.size())&gt;(new_size));</div>
+<div class="line">my_container.resize(<a class="code hl_function" href="namespacesanisizer.html#aac87ac5622c369ae4384e3599a86ac30">sanisizer::cast</a>&lt;<span class="keyword">decltype</span>(my_container.size())&gt;(new_size));</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Same for new, which expects a `std::size_t`.</span></div>
-<div class="line"><span class="keyword">auto</span> ptr = <span class="keyword">new</span> <span class="keywordtype">double</span>[<a class="code hl_function" href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast&lt;std::size_t&gt;</a>(new_size)];</div>
-<div class="ttc" id="anamespacesanisizer_html_aed4423ffa6beced95cee29c155e494d2"><div class="ttname"><a href="namespacesanisizer.html#aed4423ffa6beced95cee29c155e494d2">sanisizer::cast</a></div><div class="ttdeci">Size_ cast(Input_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:30</div></div>
-</div><!-- fragment --><p>We could also use <code><a class="el" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create()</a></code>, which creates a new container instance with less of the type-deducation boilerplate:</p>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> my_container2 = <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(new_size);</div>
-<div class="ttc" id="anamespacesanisizer_html_a7ece7999b7f4228f9721ef6c6a4a8cf2"><div class="ttname"><a href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create</a></div><div class="ttdeci">Container_ create(Input_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:50</div></div>
+<div class="line"><span class="keyword">auto</span> ptr = <span class="keyword">new</span> <span class="keywordtype">double</span>[<a class="code hl_function" href="namespacesanisizer.html#aac87ac5622c369ae4384e3599a86ac30">sanisizer::cast&lt;std::size_t&gt;</a>(new_size)];</div>
+<div class="ttc" id="anamespacesanisizer_html_aac87ac5622c369ae4384e3599a86ac30"><div class="ttname"><a href="namespacesanisizer.html#aac87ac5622c369ae4384e3599a86ac30">sanisizer::cast</a></div><div class="ttdeci">Dest_ cast(Value_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:48</div></div>
+</div><!-- fragment --><p>We could also use <code><a class="el" href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">sanisizer::create()</a></code>, which creates a new container instance with less of the type-deducation boilerplate:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> my_container2 = <a class="code hl_function" href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(new_size);</div>
+<div class="ttc" id="anamespacesanisizer_html_a0c7c43499ff60d5185708c50b32a40d7"><div class="ttname"><a href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">sanisizer::create</a></div><div class="ttdeci">Container_ create(Value_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:51</div></div>
 </div><!-- fragment --><p>See the <a href="https://ltla.github.io/sanisizer">reference documentation</a> for more details.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Capping</h1>
@@ -116,11 +116,11 @@ Capping</h1>
 <div class="fragment"><div class="line"><span class="keyword">struct </span>Options {</div>
 <div class="line">    <span class="comment">// size_t is only guaranteed to hold up to 65535, so this will be the</span></div>
 <div class="line">    <span class="comment">// cap if it can&#39;t faithfully hold our intended value of 100000.</span></div>
-<div class="line">    std::size_t some_buffer_size = <a class="code hl_function" href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">sanisizer::cap&lt;std::size_t&gt;</a>(100000);</div>
+<div class="line">    std::size_t some_buffer_size = <a class="code hl_function" href="namespacesanisizer.html#abd46ba64586c8de228897cc013def813">sanisizer::cap&lt;std::size_t&gt;</a>(100000);</div>
 <div class="line">};</div>
-<div class="ttc" id="anamespacesanisizer_html_a2e8f089e1c84d1189156e427de867d72"><div class="ttname"><a href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">sanisizer::cap</a></div><div class="ttdeci">constexpr Size_ cap(Input_ x)</div><div class="ttdef"><b>Definition</b> cap.hpp:28</div></div>
+<div class="ttc" id="anamespacesanisizer_html_abd46ba64586c8de228897cc013def813"><div class="ttname"><a href="namespacesanisizer.html#abd46ba64586c8de228897cc013def813">sanisizer::cap</a></div><div class="ttdeci">constexpr Dest_ cap(Value_ x)</div><div class="ttdef"><b>Definition</b> cap.hpp:30</div></div>
 </div><!-- fragment --><p>We can also use this inside function arguments:</p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> do_something(<span class="keywordtype">long</span> num_chunks = <a class="code hl_function" href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">sanisizer::cap&lt;long&gt;</a>(10000000000)) {</div>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> do_something(<span class="keywordtype">long</span> num_chunks = <a class="code hl_function" href="namespacesanisizer.html#abd46ba64586c8de228897cc013def813">sanisizer::cap&lt;long&gt;</a>(10000000000)) {</div>
 <div class="line">    <span class="comment">// Ditto for other integer types, which are only guaranteed to hold</span></div>
 <div class="line">    <span class="comment">// up to a certain size - for long, this is at least 32 bits.</span></div>
 <div class="line">}</div>
@@ -130,18 +130,18 @@ Arithmetic</h1>
 <div class="fragment"><div class="line">std::vector&lt;long long&gt; individual_sizes{ 123, 456, 789 };</div>
 <div class="line">std::size_t combined_size = 0; </div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> is : individual_sizes) {</div>
-<div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer::sum&lt;std::size_t&gt;</a>(combined_size, is);</div>
+<div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#aaa3af96799c9e5e02abbf9dbaefd5a28">sanisizer::sum&lt;std::size_t&gt;</a>(combined_size, is);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacesanisizer_html_a3d1827f9cf0268a7df4f6f5144b45f6c"><div class="ttname"><a href="namespacesanisizer.html#a3d1827f9cf0268a7df4f6f5144b45f6c">sanisizer::sum</a></div><div class="ttdeci">Size_ sum(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:85</div></div>
+<div class="ttc" id="anamespacesanisizer_html_aaa3af96799c9e5e02abbf9dbaefd5a28"><div class="ttname"><a href="namespacesanisizer.html#aaa3af96799c9e5e02abbf9dbaefd5a28">sanisizer::sum</a></div><div class="ttdeci">Dest_ sum(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:97</div></div>
 </div><!-- fragment --><p>When allocating contiguous memory for a high-dimensional array, we need to compute the product of the dimension extents. Again, this calculation can be done safely by using the <code>product()</code> functions to check for overflow.</p>
 <div class="fragment"><div class="line">std::vector&lt;long long&gt; dimensions{ 123, 456, 789 };</div>
 <div class="line">std::size_t combined_size = 1;</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> is : individual_sizes) {</div>
-<div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer::product&lt;std::size_t&gt;</a>(combined_size, is);</div>
+<div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#a12dec9454e3d5449af6afd89589c70a3">sanisizer::product&lt;std::size_t&gt;</a>(combined_size, is);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacesanisizer_html_ac51a903d22bd7a22986195c5ec18e62b"><div class="ttname"><a href="namespacesanisizer.html#ac51a903d22bd7a22986195c5ec18e62b">sanisizer::product</a></div><div class="ttdeci">Size_ product(First_ first, Second_ second, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:180</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a12dec9454e3d5449af6afd89589c70a3"><div class="ttname"><a href="namespacesanisizer.html#a12dec9454e3d5449af6afd89589c70a3">sanisizer::product</a></div><div class="ttdeci">Dest_ product(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:205</div></div>
 </div><!-- fragment --><p>Another common operation is to compute differences between iterators, e.g., to recover an index from iterator-based functions like <code>std::lower_bound()</code>. For large containers, the iterator's difference type might not be unable to store the difference, typically when the difference type is the same size as the size type. To protect against overflow, we can use the <code>can_ptrdiff()</code> function:</p>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> to_search = <a class="code hl_function" href="namespacesanisizer.html#a7ece7999b7f4228f9721ef6c6a4a8cf2">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(current_size);</div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> to_search = <a class="code hl_function" href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">sanisizer::create&lt;std::vector&lt;double&gt;</a> &gt;(current_size);</div>
 <div class="line"><a class="code hl_function" href="namespacesanisizer.html#acbe2c4a2bd3f774551a98949fcda2412">sanisizer::can_ptrdiff</a>&lt;<span class="keyword">decltype</span>(to_search.begin())&gt;(current_size);</div>
 <div class="line"><span class="keyword">auto</span> it = std::lower_bound(to_search.begin(), to_search.end(), some_value);</div>
 <div class="line"><span class="keyword">auto</span> idx = it - to_search.begin(); <span class="comment">// this is known to be safe after can_ptrdiff().</span></div>

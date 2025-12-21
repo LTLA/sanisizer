@@ -99,8 +99,8 @@ $(function(){ initResizable(false); });
 
 <p>Signedness-safe integer comparisons.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;type_traits&gt;</code><br />
-<code>#include &lt;limits&gt;</code><br />
+<div class="textblock"><code>#include &quot;utils.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="attest_8hpp_source.html">attest.hpp</a>&quot;</code><br />
 </div>
 <p><a href="comparisons_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -112,21 +112,21 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afbe42dad8b782f5e4361ee00a64fb29f" id="r_afbe42dad8b782f5e4361ee00a64fb29f"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
-<tr class="memitem:afbe42dad8b782f5e4361ee00a64fb29f"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#afbe42dad8b782f5e4361ee00a64fb29f">sanisizer::is_equal</a> (Left_ l, Right_ r)</td></tr>
-<tr class="separator:afbe42dad8b782f5e4361ee00a64fb29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d7fa66b9cb5391774cbe167c37e8048" id="r_a2d7fa66b9cb5391774cbe167c37e8048"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
-<tr class="memitem:a2d7fa66b9cb5391774cbe167c37e8048"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a2d7fa66b9cb5391774cbe167c37e8048">sanisizer::is_less_than</a> (Left_ l, Right_ r)</td></tr>
-<tr class="separator:a2d7fa66b9cb5391774cbe167c37e8048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30b33a82b205c1de74701d41f78f3c2f" id="r_a30b33a82b205c1de74701d41f78f3c2f"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
-<tr class="memitem:a30b33a82b205c1de74701d41f78f3c2f"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a30b33a82b205c1de74701d41f78f3c2f">sanisizer::is_greater_than_or_equal</a> (Left_ l, Right_ r)</td></tr>
-<tr class="separator:a30b33a82b205c1de74701d41f78f3c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae72cbdc03b1a76623454dfb4f3a06e31" id="r_ae72cbdc03b1a76623454dfb4f3a06e31"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
-<tr class="memitem:ae72cbdc03b1a76623454dfb4f3a06e31"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">sanisizer::is_greater_than</a> (Left_ l, Right_ r)</td></tr>
-<tr class="separator:ae72cbdc03b1a76623454dfb4f3a06e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af487e747e2124fc1a2cea73d1dad7974" id="r_af487e747e2124fc1a2cea73d1dad7974"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
-<tr class="memitem:af487e747e2124fc1a2cea73d1dad7974"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#af487e747e2124fc1a2cea73d1dad7974">sanisizer::is_less_than_or_equal</a> (Left_ l, Right_ r)</td></tr>
-<tr class="separator:af487e747e2124fc1a2cea73d1dad7974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48da56272ee357d828828ffd58eda482" id="r_a48da56272ee357d828828ffd58eda482"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
+<tr class="memitem:a48da56272ee357d828828ffd58eda482"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a48da56272ee357d828828ffd58eda482">sanisizer::is_equal</a> (Left_ left, Right_ right)</td></tr>
+<tr class="separator:a48da56272ee357d828828ffd58eda482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9c6a966b9ff5f778c8a604f215461b5" id="r_ae9c6a966b9ff5f778c8a604f215461b5"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
+<tr class="memitem:ae9c6a966b9ff5f778c8a604f215461b5"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#ae9c6a966b9ff5f778c8a604f215461b5">sanisizer::is_less_than</a> (Left_ left, Right_ right)</td></tr>
+<tr class="separator:ae9c6a966b9ff5f778c8a604f215461b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa13ce5afa9f069e2aa89c6495e6c0d50" id="r_aa13ce5afa9f069e2aa89c6495e6c0d50"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
+<tr class="memitem:aa13ce5afa9f069e2aa89c6495e6c0d50"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#aa13ce5afa9f069e2aa89c6495e6c0d50">sanisizer::is_less_than_or_equal</a> (Left_ left, Right_ right)</td></tr>
+<tr class="separator:aa13ce5afa9f069e2aa89c6495e6c0d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130cca1b1feb23a41a4a6c44dabc01e7" id="r_a130cca1b1feb23a41a4a6c44dabc01e7"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
+<tr class="memitem:a130cca1b1feb23a41a4a6c44dabc01e7"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a130cca1b1feb23a41a4a6c44dabc01e7">sanisizer::is_greater_than</a> (Left_ left, Right_ right)</td></tr>
+<tr class="separator:a130cca1b1feb23a41a4a6c44dabc01e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e29b2bd239d09d23bf296ffa9c9c8a5" id="r_a6e29b2bd239d09d23bf296ffa9c9c8a5"><td class="memTemplParams" colspan="2">template&lt;typename Left_ , typename Right_ &gt; </td></tr>
+<tr class="memitem:a6e29b2bd239d09d23bf296ffa9c9c8a5"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a6e29b2bd239d09d23bf296ffa9c9c8a5">sanisizer::is_greater_than_or_equal</a> (Left_ left, Right_ right)</td></tr>
+<tr class="separator:a6e29b2bd239d09d23bf296ffa9c9c8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa483a5cd81fb958f0cd7198752030076" id="r_aa483a5cd81fb958f0cd7198752030076"><td class="memTemplParams" colspan="2">template&lt;typename First_ , typename Second_ &gt; </td></tr>
 <tr class="memitem:aa483a5cd81fb958f0cd7198752030076"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#aa483a5cd81fb958f0cd7198752030076">sanisizer::min</a> (First_ first, Second_ second)</td></tr>
 <tr class="separator:aa483a5cd81fb958f0cd7198752030076"><td class="memSeparator" colspan="2">&#160;</td></tr>

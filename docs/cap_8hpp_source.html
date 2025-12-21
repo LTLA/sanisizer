@@ -99,32 +99,38 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="comparisons_8hpp.html">comparisons.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="attest_8hpp.html">attest.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacesanisizer.html">sanisizer</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Input_&gt;</div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">   28</a></span><span class="keyword">constexpr</span> Size_ <a class="code hl_function" href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">cap</a>(Input_ x) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Size_&gt;::value);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Input_&gt;::value);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">constexpr</span> Size_ maxed = std::numeric_limits&lt;Size_&gt;::max();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">is_greater_than</a>(x, maxed)) {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">return</span> maxed;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">return</span> x;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> Value_&gt;</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#abd46ba64586c8de228897cc013def813">   30</a></span><span class="keyword">constexpr</span> Dest_ <a class="code hl_function" href="namespacesanisizer.html#abd46ba64586c8de228897cc013def813">cap</a>(Value_ x) {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Dest_&gt;::value);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> maxed = std::numeric_limits&lt;Dest_&gt;::max();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> umaxed = as_unsigned(maxed);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee">check_negative</a>(x);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> <span class="keyword">auto</span> val = <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(x);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(umaxed &gt;= as_unsigned(<a class="code hl_function" href="namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64">get_max&lt;Value_&gt;</a>())) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">return</span> val;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (umaxed &gt;= as_unsigned(val)) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">return</span> val;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordflow">return</span> maxed;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    }</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
 </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="acomparisons_8hpp_html"><div class="ttname"><a href="comparisons_8hpp.html">comparisons.hpp</a></div><div class="ttdoc">Signedness-safe integer comparisons.</div></div>
-<div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:16</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a2e8f089e1c84d1189156e427de867d72"><div class="ttname"><a href="namespacesanisizer.html#a2e8f089e1c84d1189156e427de867d72">sanisizer::cap</a></div><div class="ttdeci">constexpr Size_ cap(Input_ x)</div><div class="ttdef"><b>Definition</b> cap.hpp:28</div></div>
-<div class="ttc" id="anamespacesanisizer_html_ae72cbdc03b1a76623454dfb4f3a06e31"><div class="ttname"><a href="namespacesanisizer.html#ae72cbdc03b1a76623454dfb4f3a06e31">sanisizer::is_greater_than</a></div><div class="ttdeci">constexpr bool is_greater_than(Left_ l, Right_ r)</div><div class="ttdef"><b>Definition</b> comparisons.hpp:72</div></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aattest_8hpp_html"><div class="ttname"><a href="attest_8hpp.html">attest.hpp</a></div><div class="ttdoc">Create compile-time attestations.</div></div>
+<div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:15</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a1377156c38a676a8de3829988a703d17"><div class="ttname"><a href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">sanisizer::get_value</a></div><div class="ttdeci">constexpr auto get_value(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:130</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a743d244f216921a55a3c74d0544f1d64"><div class="ttname"><a href="namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64">sanisizer::get_max</a></div><div class="ttdeci">constexpr auto get_max()</div><div class="ttdef"><b>Definition</b> attest.hpp:182</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a7c1360b1927790be52a1068b3927b1ee"><div class="ttname"><a href="namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee">sanisizer::check_negative</a></div><div class="ttdeci">constexpr bool check_negative(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:240</div></div>
+<div class="ttc" id="anamespacesanisizer_html_abd46ba64586c8de228897cc013def813"><div class="ttname"><a href="namespacesanisizer.html#abd46ba64586c8de228897cc013def813">sanisizer::cap</a></div><div class="ttdeci">constexpr Dest_ cap(Value_ x)</div><div class="ttdef"><b>Definition</b> cap.hpp:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

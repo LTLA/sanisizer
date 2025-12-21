@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['to_20avoid_20integer_20overflow_0',['Sanitize sizes to avoid integer overflow',['../index.html',1,'']]],
-  ['to_5ffloat_1',['to_float',['../namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20',1,'sanisizer']]],
-  ['tt_2',['tt',['../index.html#autotoc_md7',1,'CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;'],['../index.html#autotoc_md8',1,'CMake with &lt;tt&gt;find_package()&lt;/tt&gt;']]],
-  ['tt_20fetchcontent_20tt_3',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md7',1,'']]],
-  ['tt_20find_5fpackage_20tt_4',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md8',1,'']]]
+  ['sanisizer_0',['sanisizer',['../namespacesanisizer.html',1,'']]],
+  ['sanisizer_2ehpp_1',['sanisizer.hpp',['../sanisizer_8hpp.html',1,'']]],
+  ['sanitize_20sizes_20to_20avoid_20integer_20overflow_2',['Sanitize sizes to avoid integer overflow',['../index.html',1,'']]],
+  ['sizes_20to_20avoid_20integer_20overflow_3',['Sanitize sizes to avoid integer overflow',['../index.html',1,'']]],
+  ['sum_4',['sum',['../namespacesanisizer.html#aaa3af96799c9e5e02abbf9dbaefd5a28',1,'sanisizer']]],
+  ['sum_5funsafe_5',['sum_unsafe',['../namespacesanisizer.html#a3e2a08a62950ac9c9e512f267ace65e6',1,'sanisizer']]]
 ];
