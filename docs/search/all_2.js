@@ -10,9 +10,10 @@ var searchData=
   ['casting_7',['Casting',['../index.html#autotoc_md2',1,'']]],
   ['check_5fnegative_8',['check_negative',['../namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee',1,'sanisizer']]],
   ['check_5foverflow_9',['check_overflow',['../namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a',1,'sanisizer']]],
-  ['cmake_20with_20tt_20fetchcontent_20tt_10',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md7',1,'']]],
-  ['cmake_20with_20tt_20find_5fpackage_20tt_11',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md8',1,'']]],
+  ['cmake_20with_20tt_20fetchcontent_20tt_10',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md9',1,'']]],
+  ['cmake_20with_20tt_20find_5fpackage_20tt_11',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md10',1,'']]],
   ['comparisons_2ehpp_12',['comparisons.hpp',['../comparisons_8hpp.html',1,'']]],
-  ['create_13',['create',['../namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7',1,'sanisizer']]],
-  ['create_2ehpp_14',['create.hpp',['../create_8hpp.html',1,'']]]
+  ['conversions_13',['Float conversions',['../index.html#autotoc_md7',1,'']]],
+  ['create_14',['create',['../namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7',1,'sanisizer']]],
+  ['create_2ehpp_15',['create.hpp',['../create_8hpp.html',1,'']]]
 ];
