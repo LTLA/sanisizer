@@ -14,23 +14,23 @@ This library provides a few methods for sanitizing size values so that any overf
 ## Casting
 
 Given an integer, we use `sanizer::cast()` to convert it to the expected type of the size for our array/container.
-This will throw an error if the value of our integer would cause an overflow.
+This will throw an error if the integer is negative or the cast would cause an overflow.
 
 ```cpp
 long long new_size = 12345;
 
-// Casting it avoids potential for overflow in constructor.
-std::vector<double> my_container;
-my_container.resize(sanisizer::cast<decltype(my_container.size())>(new_size));
-
-// Same for new, which expects a `std::size_t`.
+// new expects a `std::size_t`.
 auto ptr = new double[sanisizer::cast<std::size_t>(new_size)];
 ```
 
-We could also use `sanisizer::create()`, which creates a new container instance with less of the type-deducation boilerplate: 
+For standard library containers, `sanisizer::create()` creates a new instance with less of the type-deducation boilerplate.
+We can also use `sanisizer::resize()` to safely resize an existing container.
 
 ```cpp
-auto my_container2 = sanisizer::create<std::vector<double> >(new_size);
+auto new_container = sanisizer::create<std::vector<double> >(new_size);
+
+std::vector<double> existing_container;
+sanisizer::resize(existing_container, new_size));
 ```
 
 See the [reference documentation](https://ltla.github.io/sanisizer) for more details.
@@ -94,6 +94,36 @@ auto it = std::lower_bound(to_search.begin(), to_search.end(), some_value);
 auto idx = it - to_search.begin(); // this is known to be safe after can_ptrdiff().
 ```
 
+## Attestations
+
+Attestations are a mechanism by which users can supply additional constraints for compile-time optimizations.
+If we know that an integer is non-negative, we can attest to it when calling a **sanisizer** function.
+This allows the compiler to omit the run-time checks for negative values.
+
+```cpp
+int val; // set to some value that we know to be non-negative.
+auto must_be_non_neg = sanisizer::attest_gez(val); // i.e., greater-than-or-equal-to-zero.
+auto val_as_size = sanisizer::cast<std::size_t>(must_be_non_neg);
+```
+
+Similarly, we can attest to a maximum value for an integer that is below the integer type's maximum.
+This allows the compiler to omit run-time overflow checks.
+
+```cpp
+std::size_t x, y; // set to some values that are <= 100.
+auto limited100_x = sanisizer::attest_max<int, 100>(x);
+auto limited100_y = sanisizer::attest_max<int, 100>(y);
+auto sum_as_u8 = sanisizer::sum<std::uint8_t>(limited100_x, limited100_y);
+```
+
+If the maximum value is determined by another integer type, we can use the `sanisizer::attest_max_by_type()` function.
+
+```cpp
+std::size_t z;
+auto limited_z = attest_max_by_type<int>(z); // not greater than an int.
+auto z_as_int = sanisizer::cast<int>(limited_z); // skips all checks.
+```
+
 ## N-dimensional offsets
 
 Consider an N-dimensional array of dimensions `(d1, d2, ..., dN)` that is flattened and stored contiguously in memory.
@@ -128,6 +158,24 @@ for (int r = 0; r < NR; ++r) {
 However, modern compilers - well, Clang and GCC, at least - will optimize out the multiplication so there is no performance penalty in practice.
 The above approach is easier to reason about and is more amenable to vectorization as there are no dependencies in the loop body.
 Importantly, it avoids overflow from adding `NC` in the final iteration, which could be undefined behavior if the size type is signed.)
+
+## Float conversions
+
+Occasionally, we must cast a floating-point value to an integer, e.g., when determining the size of a container from a non-integer calculation.
+This can be done safely using the `from_float()` function:
+
+```cpp
+double some_value;
+auto as_u8 = sanisizer::from_float<std::uint8_t>(some_value);
+```
+
+We can do the converse with the `to_float()` function, which checks that the input integer can be exactly represented in floating-point.
+This is sometimes necessary when interfacing with frameworks that have no concept of an integer, e.g., Javascript.
+
+```cpp
+std::uint64_t foo;
+auto as_dbl = sanisizer::to_float<double>(foo);
+```
 
 ## Building projects 
 
