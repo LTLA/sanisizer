@@ -103,7 +103,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Size_, <span class="keyword">typename</span> Value_&gt;</div>
 <div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#af2a8d6af31cddbb12b3e644472071f73">   28</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespacesanisizer.html#af2a8d6af31cddbb12b3e644472071f73">can_cast</a>(Value_ x) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a58381525eca91a088489cdabfbc4f74c">   28</a></span><span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespacesanisizer.html#a58381525eca91a088489cdabfbc4f74c">can_cast</a>(Value_ x) {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_function" href="namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee">check_negative</a>(x);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_function" href="namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a">check_overflow&lt;Size_&gt;</a>(x);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(x);</div>
@@ -112,8 +112,8 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> Value_&gt;</div>
 <div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#aac87ac5622c369ae4384e3599a86ac30">   48</a></span>Dest_ <a class="code hl_function" href="namespacesanisizer.html#aac87ac5622c369ae4384e3599a86ac30">cast</a>(Value_ x) {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#af2a8d6af31cddbb12b3e644472071f73">can_cast&lt;Dest_&gt;</a>(x);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#acde4a5b2077777f0c0d0b0761183b29b">   48</a></span><span class="keyword">constexpr</span> Dest_ <a class="code hl_function" href="namespacesanisizer.html#acde4a5b2077777f0c0d0b0761183b29b">cast</a>(Value_ x) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a58381525eca91a088489cdabfbc4f74c">can_cast&lt;Dest_&gt;</a>(x);</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
 </div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
@@ -123,10 +123,10 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="aattest_8hpp_html"><div class="ttname"><a href="attest_8hpp.html">attest.hpp</a></div><div class="ttdoc">Create compile-time attestations.</div></div>
 <div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:15</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a1377156c38a676a8de3829988a703d17"><div class="ttname"><a href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">sanisizer::get_value</a></div><div class="ttdeci">constexpr auto get_value(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:130</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a58381525eca91a088489cdabfbc4f74c"><div class="ttname"><a href="namespacesanisizer.html#a58381525eca91a088489cdabfbc4f74c">sanisizer::can_cast</a></div><div class="ttdeci">constexpr auto can_cast(Value_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:28</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a6911bfdd00b6bd59dd72b935ca5d9d3a"><div class="ttname"><a href="namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a">sanisizer::check_overflow</a></div><div class="ttdeci">constexpr bool check_overflow(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:258</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a7c1360b1927790be52a1068b3927b1ee"><div class="ttname"><a href="namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee">sanisizer::check_negative</a></div><div class="ttdeci">constexpr bool check_negative(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:240</div></div>
-<div class="ttc" id="anamespacesanisizer_html_aac87ac5622c369ae4384e3599a86ac30"><div class="ttname"><a href="namespacesanisizer.html#aac87ac5622c369ae4384e3599a86ac30">sanisizer::cast</a></div><div class="ttdeci">Dest_ cast(Value_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:48</div></div>
-<div class="ttc" id="anamespacesanisizer_html_af2a8d6af31cddbb12b3e644472071f73"><div class="ttname"><a href="namespacesanisizer.html#af2a8d6af31cddbb12b3e644472071f73">sanisizer::can_cast</a></div><div class="ttdeci">auto can_cast(Value_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:28</div></div>
+<div class="ttc" id="anamespacesanisizer_html_acde4a5b2077777f0c0d0b0761183b29b"><div class="ttname"><a href="namespacesanisizer.html#acde4a5b2077777f0c0d0b0761183b29b">sanisizer::cast</a></div><div class="ttdeci">constexpr Dest_ cast(Value_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:48</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

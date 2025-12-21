@@ -167,31 +167,31 @@
     <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;</class>
     <class kind="struct">sanisizer::is_integral_or_Attestation</class>
     <member kind="function">
-      <type>Dest_</type>
+      <type>constexpr Dest_</type>
       <name>sum</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>aaa3af96799c9e5e02abbf9dbaefd5a28</anchor>
+      <anchor>ad0351da831c6ee07baf0a96c51a019c9</anchor>
       <arglist>(First_ first, Args_... more)</arglist>
     </member>
     <member kind="function">
-      <type>Dest_</type>
+      <type>constexpr Dest_</type>
       <name>sum_unsafe</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a3e2a08a62950ac9c9e512f267ace65e6</anchor>
+      <anchor>a6f87dc746d660a88c85ed46d90e5d54c</anchor>
       <arglist>(First_ first, Args_... more)</arglist>
     </member>
     <member kind="function">
-      <type>Dest_</type>
+      <type>constexpr Dest_</type>
       <name>product</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a12dec9454e3d5449af6afd89589c70a3</anchor>
+      <anchor>ace3b6841d0fd165ae3f47d07a713a15c</anchor>
       <arglist>(First_ first, Args_... more)</arglist>
     </member>
     <member kind="function">
-      <type>Dest_</type>
+      <type>constexpr Dest_</type>
       <name>product_unsafe</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a5cb604c72e88281cfcd5dc9f81f02632</anchor>
+      <anchor>aa3df28f9c655292959f7fbf22e61f9c2</anchor>
       <arglist>(First_ first, Args_... more)</arglist>
     </member>
     <member kind="function">
@@ -258,17 +258,17 @@
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
-      <type>auto</type>
+      <type>constexpr auto</type>
       <name>can_cast</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>af2a8d6af31cddbb12b3e644472071f73</anchor>
+      <anchor>a58381525eca91a088489cdabfbc4f74c</anchor>
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
-      <type>Dest_</type>
+      <type>constexpr Dest_</type>
       <name>cast</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>aac87ac5622c369ae4384e3599a86ac30</anchor>
+      <anchor>acde4a5b2077777f0c0d0b0761183b29b</anchor>
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
@@ -321,10 +321,10 @@
       <arglist>(First_ first, Second_ second)</arglist>
     </member>
     <member kind="function">
-      <type>auto</type>
+      <type>constexpr auto</type>
       <name>as_size_type</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a285b610568de8807d22ea3a2d96d5cf8</anchor>
+      <anchor>a1822e85f3815607a803d826f36b82814</anchor>
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
@@ -356,17 +356,17 @@
       <arglist>(Integer_ x)</arglist>
     </member>
     <member kind="function">
-      <type>Size_</type>
+      <type>constexpr Size_</type>
       <name>nd_offset</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a1b7b649bb2ee029e69a40a62c76f4762</anchor>
+      <anchor>a8d460a84022487d3460671e5ff96f163</anchor>
       <arglist>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
+      <type>constexpr bool</type>
       <name>can_ptrdiff</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>acbe2c4a2bd3f774551a98949fcda2412</anchor>
+      <anchor>adb21975d4661d6c96ededfaa2f59e1da</anchor>
       <arglist>(MaxDiff_ max_diff)</arglist>
     </member>
   </compound>

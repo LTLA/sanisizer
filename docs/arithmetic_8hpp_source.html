@@ -119,7 +119,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_&gt;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">auto</span> sum_protected(First_ first, Second_ second) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">constexpr</span> <span class="keyword">auto</span> sum_protected(First_ first, Second_ second) {</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee">check_negative</a>(first);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_function" href="namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a">check_overflow&lt;Dest_&gt;</a>(first);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> Dest_ first_val = <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(first);</div>
@@ -143,13 +143,13 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">auto</span> sum_protected(First_ first, Second_ second, Args_... more) {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">constexpr</span> <span class="keyword">auto</span> sum_protected(First_ first, Second_ second, Args_... more) {</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">const</span> <span class="keyword">auto</span> subsum = sum_protected&lt;Dest_&gt;(first, second); </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">return</span> sum_protected&lt;Dest_&gt;(subsum, more...);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_&gt;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>Dest_ sum_unprotected(First_ first, Second_ second) {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">constexpr</span> Dest_ sum_unprotected(First_ first, Second_ second) {</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Dest_&gt;::value);</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;First_&gt;::value);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Second_&gt;::value);</div>
@@ -157,20 +157,20 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">constexpr</span> Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">const</span> <span class="keyword">auto</span> subsum = sum_unprotected&lt;Dest_&gt;(first, second);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> sum_unprotected&lt;Dest_&gt;(subsum, more...);</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> ... Args_&gt;</div>
 <div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#aaa3af96799c9e5e02abbf9dbaefd5a28">   97</a></span>Dest_ <a class="code hl_function" href="namespacesanisizer.html#aaa3af96799c9e5e02abbf9dbaefd5a28">sum</a>(First_ first, Args_... more) {</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9">   97</a></span><span class="keyword">constexpr</span> Dest_ <a class="code hl_function" href="namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9">sum</a>(First_ first, Args_... more) {</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(sum_protected&lt;Dest_&gt;(first, more...));</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>}</div>
 </div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> ... Args_&gt;</div>
 <div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a3e2a08a62950ac9c9e512f267ace65e6">  115</a></span>Dest_ <a class="code hl_function" href="namespacesanisizer.html#a3e2a08a62950ac9c9e512f267ace65e6">sum_unsafe</a>(First_ first, Args_... more) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a6f87dc746d660a88c85ed46d90e5d54c">  115</a></span><span class="keyword">constexpr</span> Dest_ <a class="code hl_function" href="namespacesanisizer.html#a6f87dc746d660a88c85ed46d90e5d54c">sum_unsafe</a>(First_ first, Args_... more) {</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">return</span> sum_unprotected&lt;Dest_&gt;(first, more...);</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
 </div>
@@ -191,7 +191,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_&gt;</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">auto</span> product_protected(First_ first, Second_ second) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">constexpr</span> <span class="keyword">auto</span> product_protected(First_ first, Second_ second) {</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <a class="code hl_function" href="namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee">check_negative</a>(first);</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <a class="code hl_function" href="namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a">check_overflow&lt;Dest_&gt;</a>(first);</div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keyword">const</span> Dest_ first_val = <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(first);</div>
@@ -215,13 +215,13 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keyword">auto</span> product_protected(First_ first, Second_ second, Args_... more) {</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keyword">constexpr</span> <span class="keyword">auto</span> product_protected(First_ first, Second_ second, Args_... more) {</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keyword">const</span> <span class="keyword">auto</span> subproduct = product_protected&lt;Dest_&gt;(first, second);</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="keywordflow">return</span> product_protected&lt;Dest_&gt;(subproduct, more...);</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_&gt;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>Dest_ product_unprotected(First_ left, Second_ right) {</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="keyword">constexpr</span> Dest_ product_unprotected(First_ left, Second_ right) {</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Dest_&gt;::value);</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;First_&gt;::value);</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Second_&gt;::value);</div>
@@ -229,20 +229,20 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>}</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> Second_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="keyword">constexpr</span> Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keyword">const</span> <span class="keyword">auto</span> subproduct = product_unprotected&lt;Dest_&gt;(left, right);</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">return</span> product_unprotected&lt;Dest_&gt;(subproduct, more...);</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> ... Args_&gt;</div>
 <div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a12dec9454e3d5449af6afd89589c70a3">  205</a></span>Dest_ <a class="code hl_function" href="namespacesanisizer.html#a12dec9454e3d5449af6afd89589c70a3">product</a>(First_ first, Args_... more) {</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c">  205</a></span><span class="keyword">constexpr</span> Dest_ <a class="code hl_function" href="namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c">product</a>(First_ first, Args_... more) {</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(product_protected&lt;Dest_&gt;(first, more...));</div>
 <div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>}</div>
 </div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dest_, <span class="keyword">typename</span> First_, <span class="keyword">typename</span> ... Args_&gt;</div>
 <div class="foldopen" id="foldopen00222" data-start="{" data-end="}">
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a5cb604c72e88281cfcd5dc9f81f02632">  222</a></span>Dest_ <a class="code hl_function" href="namespacesanisizer.html#a5cb604c72e88281cfcd5dc9f81f02632">product_unsafe</a>(First_ first, Args_... more) {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#aa3df28f9c655292959f7fbf22e61f9c2">  222</a></span><span class="keyword">constexpr</span> Dest_ <a class="code hl_function" href="namespacesanisizer.html#aa3df28f9c655292959f7fbf22e61f9c2">product_unsafe</a>(First_ first, Args_... more) {</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordflow">return</span> product_unprotected&lt;Dest_&gt;(first, more...);</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>}</div>
 </div>
@@ -253,14 +253,14 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aattest_8hpp_html"><div class="ttname"><a href="attest_8hpp.html">attest.hpp</a></div><div class="ttdoc">Create compile-time attestations.</div></div>
 <div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:15</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a12dec9454e3d5449af6afd89589c70a3"><div class="ttname"><a href="namespacesanisizer.html#a12dec9454e3d5449af6afd89589c70a3">sanisizer::product</a></div><div class="ttdeci">Dest_ product(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:205</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a1377156c38a676a8de3829988a703d17"><div class="ttname"><a href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">sanisizer::get_value</a></div><div class="ttdeci">constexpr auto get_value(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:130</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a3e2a08a62950ac9c9e512f267ace65e6"><div class="ttname"><a href="namespacesanisizer.html#a3e2a08a62950ac9c9e512f267ace65e6">sanisizer::sum_unsafe</a></div><div class="ttdeci">Dest_ sum_unsafe(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:115</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a5cb604c72e88281cfcd5dc9f81f02632"><div class="ttname"><a href="namespacesanisizer.html#a5cb604c72e88281cfcd5dc9f81f02632">sanisizer::product_unsafe</a></div><div class="ttdeci">Dest_ product_unsafe(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:222</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a6911bfdd00b6bd59dd72b935ca5d9d3a"><div class="ttname"><a href="namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a">sanisizer::check_overflow</a></div><div class="ttdeci">constexpr bool check_overflow(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:258</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a6f87dc746d660a88c85ed46d90e5d54c"><div class="ttname"><a href="namespacesanisizer.html#a6f87dc746d660a88c85ed46d90e5d54c">sanisizer::sum_unsafe</a></div><div class="ttdeci">constexpr Dest_ sum_unsafe(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:115</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a743d244f216921a55a3c74d0544f1d64"><div class="ttname"><a href="namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64">sanisizer::get_max</a></div><div class="ttdeci">constexpr auto get_max()</div><div class="ttdef"><b>Definition</b> attest.hpp:182</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a7c1360b1927790be52a1068b3927b1ee"><div class="ttname"><a href="namespacesanisizer.html#a7c1360b1927790be52a1068b3927b1ee">sanisizer::check_negative</a></div><div class="ttdeci">constexpr bool check_negative(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:240</div></div>
-<div class="ttc" id="anamespacesanisizer_html_aaa3af96799c9e5e02abbf9dbaefd5a28"><div class="ttname"><a href="namespacesanisizer.html#aaa3af96799c9e5e02abbf9dbaefd5a28">sanisizer::sum</a></div><div class="ttdeci">Dest_ sum(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:97</div></div>
+<div class="ttc" id="anamespacesanisizer_html_aa3df28f9c655292959f7fbf22e61f9c2"><div class="ttname"><a href="namespacesanisizer.html#aa3df28f9c655292959f7fbf22e61f9c2">sanisizer::product_unsafe</a></div><div class="ttdeci">constexpr Dest_ product_unsafe(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:222</div></div>
+<div class="ttc" id="anamespacesanisizer_html_ace3b6841d0fd165ae3f47d07a713a15c"><div class="ttname"><a href="namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c">sanisizer::product</a></div><div class="ttdeci">constexpr Dest_ product(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:205</div></div>
+<div class="ttc" id="anamespacesanisizer_html_ad0351da831c6ee07baf0a96c51a019c9"><div class="ttname"><a href="namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9">sanisizer::sum</a></div><div class="ttdeci">constexpr Dest_ sum(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:97</div></div>
 <div class="ttc" id="astructsanisizer_1_1Attestation_html"><div class="ttname"><a href="structsanisizer_1_1Attestation.html">sanisizer::Attestation</a></div><div class="ttdoc">Attest to additional compile-time properties of an integer.</div><div class="ttdef"><b>Definition</b> attest.hpp:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
