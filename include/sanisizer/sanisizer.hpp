@@ -10,6 +10,7 @@
 #include "cap.hpp"
 #include "ptrdiff.hpp"
 #include "float.hpp"
+#include "class.hpp"
 
 /**
  * @file sanisizer.hpp
