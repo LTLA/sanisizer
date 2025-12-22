@@ -3,6 +3,7 @@
 
 #include <limits>
 #include <type_traits>
+#include <stdexcept>
 
 #include "attest.hpp"
 #include "utils.hpp"

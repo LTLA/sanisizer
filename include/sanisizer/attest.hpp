@@ -4,6 +4,7 @@
 #include <limits>
 #include <type_traits>
 #include <cassert>
+#include <stdexcept>
 
 #include "utils.hpp"
 
