@@ -32,6 +32,16 @@
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
+    <name>class.hpp</name>
+    <path>sanisizer/</path>
+    <filename>class_8hpp.html</filename>
+    <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
+    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <class kind="class">sanisizer::Cast</class>
+    <class kind="class">sanisizer::Exact</class>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
     <name>comparisons.hpp</name>
     <path>sanisizer/</path>
     <filename>comparisons_8hpp.html</filename>
@@ -78,6 +88,7 @@
     <includes id="cap_8hpp" name="cap.hpp" local="yes" import="no" module="no" objc="no">cap.hpp</includes>
     <includes id="ptrdiff_8hpp" name="ptrdiff.hpp" local="yes" import="no" module="no" objc="no">ptrdiff.hpp</includes>
     <includes id="float_8hpp" name="float.hpp" local="yes" import="no" module="no" objc="no">float.hpp</includes>
+    <includes id="class_8hpp" name="class.hpp" local="yes" import="no" module="no" objc="no">class.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="struct">
@@ -122,6 +133,51 @@
       <arglist></arglist>
     </member>
   </compound>
+  <compound kind="class">
+    <name>sanisizer::Cast</name>
+    <filename>classsanisizer_1_1Cast.html</filename>
+    <templarg>typename Value_</templarg>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>Cast</name>
+      <anchorfile>classsanisizer_1_1Cast.html</anchorfile>
+      <anchor>a327da91858adaf6b4fb636e67bacd536</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>operator Output_</name>
+      <anchorfile>classsanisizer_1_1Cast.html</anchorfile>
+      <anchor>a22b477d41df49b122428deb6532e2307</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>sanisizer::Exact</name>
+    <filename>classsanisizer_1_1Exact.html</filename>
+    <templarg>typename Integer_</templarg>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>Exact</name>
+      <anchorfile>classsanisizer_1_1Exact.html</anchorfile>
+      <anchor>a9289600110be8d00325b8d4e35618951</anchor>
+      <arglist>(Integer_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>operator Integer_</name>
+      <anchorfile>classsanisizer_1_1Exact.html</anchorfile>
+      <anchor>ae46a64c0dbe62535e6d5ffe8e555bba5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr</type>
+      <name>operator Output_</name>
+      <anchorfile>classsanisizer_1_1Exact.html</anchorfile>
+      <anchor>a0f5204707227e757d6b1dd25ba60619c</anchor>
+      <arglist>() const =delete</arglist>
+    </member>
+  </compound>
   <compound kind="struct">
     <name>sanisizer::is_Attestation</name>
     <filename>structsanisizer_1_1is__Attestation.html</filename>
@@ -164,6 +220,8 @@
     <name>sanisizer</name>
     <filename>namespacesanisizer.html</filename>
     <class kind="struct">sanisizer::Attestation</class>
+    <class kind="class">sanisizer::Cast</class>
+    <class kind="class">sanisizer::Exact</class>
     <class kind="struct">sanisizer::is_Attestation</class>
     <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;</class>
     <class kind="struct">sanisizer::is_integral_or_Attestation</class>

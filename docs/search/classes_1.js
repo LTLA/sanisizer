@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['is_5fattestation_0',['is_Attestation',['../structsanisizer_1_1is__Attestation.html',1,'sanisizer']]],
-  ['is_5fattestation_3c_20attestation_3c_20integer_5f_2c_20gez_5f_2c_20max_5f_20_3e_20_3e_1',['is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;',['../structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01gez___00_01max___01_4_01_4.html',1,'sanisizer']]],
-  ['is_5fintegral_5for_5fattestation_2',['is_integral_or_Attestation',['../structsanisizer_1_1is__integral__or__Attestation.html',1,'sanisizer']]]
+  ['cast_0',['Cast',['../classsanisizer_1_1Cast.html',1,'sanisizer']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sum_0',['sum',['../namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9',1,'sanisizer']]],
-  ['sum_5funsafe_1',['sum_unsafe',['../namespacesanisizer.html#a6f87dc746d660a88c85ed46d90e5d54c',1,'sanisizer']]]
+  ['product_0',['product',['../namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c',1,'sanisizer']]],
+  ['product_5funsafe_1',['product_unsafe',['../namespacesanisizer.html#aa3df28f9c655292959f7fbf22e61f9c2',1,'sanisizer']]]
 ];

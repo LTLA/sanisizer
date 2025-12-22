@@ -101,6 +101,12 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1Attestation.html">Attestation</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attest to additional compile-time properties of an integer.  <a href="structsanisizer_1_1Attestation.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsanisizer_1_1Cast.html">Cast</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classsanisizer_1_1Cast.html" title="Cast an integer in a function call.">Cast</a> an integer in a function call.  <a href="classsanisizer_1_1Cast.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsanisizer_1_1Exact.html">Exact</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do not cast an integer in a function call.  <a href="classsanisizer_1_1Exact.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1is__Attestation.html">is_Attestation</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01gez___00_01max___01_4_01_4.html">is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;</a></td></tr>
@@ -225,7 +231,7 @@ template&lt;class Container_ , typename Value_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Cast an integer to the type of the size of a container. This protects against overflow when using this integer in the container's constructor or <code><a class="el" href="#a3df6e5117dcf28cab0e705d4ac499f0d">resize()</a></code> method.</p>
+<p><a class="el" href="classsanisizer_1_1Cast.html" title="Cast an integer in a function call.">Cast</a> an integer to the type of the size of a container. This protects against overflow when using this integer in the container's constructor or <code><a class="el" href="#a3df6e5117dcf28cab0e705d4ac499f0d">resize()</a></code> method.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a constructor that accepts the size as the first argument. </td></tr>
@@ -516,7 +522,7 @@ template&lt;typename Dest_ , typename Value_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Cast a non-negative integer to a destination type, typically the size type of a C-style array or STL container. This avoids accidental overflow from an implicit cast when <code>x</code> is used in <code>new</code> or the container's constructor.</p>
+<p><a class="el" href="classsanisizer_1_1Cast.html" title="Cast an integer in a function call.">Cast</a> a non-negative integer to a destination type, typically the size type of a C-style array or STL container. This avoids accidental overflow from an implicit cast when <code>x</code> is used in <code>new</code> or the container's constructor.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>

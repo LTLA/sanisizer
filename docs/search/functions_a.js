@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['to_5ffloat_0',['to_float',['../namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20',1,'sanisizer']]]
+  ['resize_0',['resize',['../namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d',1,'sanisizer']]]
 ];
