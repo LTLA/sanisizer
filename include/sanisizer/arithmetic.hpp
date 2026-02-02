@@ -45,7 +45,7 @@ constexpr auto sum_protected(First_ first, Second_ second) {
         static_assert(std::is_integral<Dest_>::value);
         constexpr Dest_ dest_maxed = std::numeric_limits<Dest_>::max();
         if (static_cast<Dest_>(dest_maxed - first_val) < second_val) {
-            throw std::overflow_error("overflow detected in sanisize::sum");
+            throw std::overflow_error("overflow detected in sanisizer::sum");
         }
         return Attestation<Dest_, true, dest_maxed>(static_cast<Dest_>(first_val + second_val));
 
@@ -149,7 +149,7 @@ constexpr auto product_protected(First_ first, Second_ second) {
         static_assert(std::is_integral<Dest_>::value);
         constexpr Dest_ dest_maxed = std::numeric_limits<Dest_>::max();
         if (first_val && static_cast<Dest_>(dest_maxed / first_val) < second_val) {
-            throw std::overflow_error("overflow detected in sanisize::product");
+            throw std::overflow_error("overflow detected in sanisizer::product");
         }
         return Attestation<Dest_, true, dest_maxed>(static_cast<Dest_>(first_val * second_val));
 
