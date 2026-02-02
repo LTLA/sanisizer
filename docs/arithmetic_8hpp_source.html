@@ -133,7 +133,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keyword">static_assert</span>(std::is_integral&lt;Dest_&gt;::value);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">constexpr</span> Dest_ dest_maxed = std::numeric_limits&lt;Dest_&gt;::max();</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">if</span> (<span class="keyword">static_cast&lt;</span>Dest_<span class="keyword">&gt;</span>(dest_maxed - first_val) &lt; second_val) {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisize::sum&quot;</span>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::sum&quot;</span>);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        }</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structsanisizer_1_1Attestation.html">Attestation&lt;Dest_, true, dest_maxed&gt;</a>(<span class="keyword">static_cast&lt;</span>Dest_<span class="keyword">&gt;</span>(first_val + second_val));</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
@@ -205,7 +205,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keyword">static_assert</span>(std::is_integral&lt;Dest_&gt;::value);</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keyword">constexpr</span> Dest_ dest_maxed = std::numeric_limits&lt;Dest_&gt;::max();</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordflow">if</span> (first_val &amp;&amp; <span class="keyword">static_cast&lt;</span>Dest_<span class="keyword">&gt;</span>(dest_maxed / first_val) &lt; second_val) {</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisize::product&quot;</span>);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::product&quot;</span>);</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        }</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keywordflow">return</span> Attestation&lt;Dest_, true, dest_maxed&gt;(<span class="keyword">static_cast&lt;</span>Dest_<span class="keyword">&gt;</span>(first_val * second_val));</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
