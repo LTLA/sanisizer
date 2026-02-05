@@ -226,10 +226,10 @@
     <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;</class>
     <class kind="struct">sanisizer::is_integral_or_Attestation</class>
     <member kind="typedef">
-      <type>typename effective_size&lt; Container_ &gt;::Type</type>
+      <type>decltype(derive_effective_size&lt; Container_ &gt;())</type>
       <name>EffectiveSizeType</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a88eca0e763af92e5d0afc4869e146d5d</anchor>
+      <anchor>af9ef7d5241157fcb22979d809c46def3</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
