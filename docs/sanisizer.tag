@@ -225,6 +225,13 @@
     <class kind="struct">sanisizer::is_Attestation</class>
     <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;</class>
     <class kind="struct">sanisizer::is_integral_or_Attestation</class>
+    <member kind="typedef">
+      <type>typename effective_size&lt; Container_ &gt;::Type</type>
+      <name>EffectiveSizeType</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a88eca0e763af92e5d0afc4869e146d5d</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>constexpr Dest_</type>
       <name>sum</name>
@@ -380,10 +387,10 @@
       <arglist>(First_ first, Second_ second)</arglist>
     </member>
     <member kind="function">
-      <type>constexpr auto</type>
-      <name>as_size_type</name>
+      <type>constexpr EffectiveSizeType&lt; Container_ &gt;</type>
+      <name>as_effective_size_type</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a1822e85f3815607a803d826f36b82814</anchor>
+      <anchor>a508c9d22ef809f448ff598b34655c4bd</anchor>
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
@@ -398,6 +405,13 @@
       <name>resize</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a3df6e5117dcf28cab0e705d4ac499f0d</anchor>
+      <arglist>(Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reserve</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a1a07e85a7c7d29d992442f2d40476188</anchor>
       <arglist>(Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</arglist>
     </member>
     <member kind="function">

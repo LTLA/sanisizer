@@ -88,6 +88,7 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">sanisizer Namespace Reference</div></div>
 </div><!--header-->
@@ -113,6 +114,12 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1is__integral__or__Attestation.html">is_integral_or_Attestation</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a88eca0e763af92e5d0afc4869e146d5d" id="r_a88eca0e763af92e5d0afc4869e146d5d"><td class="memTemplParams" colspan="2">template&lt;class Container_ &gt; </td></tr>
+<tr class="memitem:a88eca0e763af92e5d0afc4869e146d5d"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a88eca0e763af92e5d0afc4869e146d5d">EffectiveSizeType</a> = typename effective_size&lt;Container_&gt;::Type</td></tr>
+<tr class="separator:a88eca0e763af92e5d0afc4869e146d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -182,15 +189,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a692dab8520331e20e6d2361439a53450" id="r_a692dab8520331e20e6d2361439a53450"><td class="memTemplParams" colspan="2">template&lt;typename First_ , typename Second_ &gt; </td></tr>
 <tr class="memitem:a692dab8520331e20e6d2361439a53450"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a692dab8520331e20e6d2361439a53450">max</a> (First_ first, Second_ second)</td></tr>
 <tr class="separator:a692dab8520331e20e6d2361439a53450"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1822e85f3815607a803d826f36b82814" id="r_a1822e85f3815607a803d826f36b82814"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Value_ &gt; </td></tr>
-<tr class="memitem:a1822e85f3815607a803d826f36b82814"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1822e85f3815607a803d826f36b82814">as_size_type</a> (Value_ x)</td></tr>
-<tr class="separator:a1822e85f3815607a803d826f36b82814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a508c9d22ef809f448ff598b34655c4bd" id="r_a508c9d22ef809f448ff598b34655c4bd"><td class="memTemplParams" colspan="2">template&lt;typename Container_ , typename Value_ &gt; </td></tr>
+<tr class="memitem:a508c9d22ef809f448ff598b34655c4bd"><td class="memTemplItemLeft" align="right" valign="top">constexpr <a class="el" href="#a88eca0e763af92e5d0afc4869e146d5d">EffectiveSizeType</a>&lt; Container_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a508c9d22ef809f448ff598b34655c4bd">as_effective_size_type</a> (Value_ x)</td></tr>
+<tr class="separator:a508c9d22ef809f448ff598b34655c4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c7c43499ff60d5185708c50b32a40d7" id="r_a0c7c43499ff60d5185708c50b32a40d7"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:a0c7c43499ff60d5185708c50b32a40d7"><td class="memTemplItemLeft" align="right" valign="top">Container_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0c7c43499ff60d5185708c50b32a40d7">create</a> (Value_ x, Args_ &amp;&amp;... args)</td></tr>
 <tr class="separator:a0c7c43499ff60d5185708c50b32a40d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3df6e5117dcf28cab0e705d4ac499f0d" id="r_a3df6e5117dcf28cab0e705d4ac499f0d"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:a3df6e5117dcf28cab0e705d4ac499f0d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a3df6e5117dcf28cab0e705d4ac499f0d">resize</a> (Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</td></tr>
 <tr class="separator:a3df6e5117dcf28cab0e705d4ac499f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a07e85a7c7d29d992442f2d40476188" id="r_a1a07e85a7c7d29d992442f2d40476188"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a1a07e85a7c7d29d992442f2d40476188"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1a07e85a7c7d29d992442f2d40476188">reserve</a> (Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</td></tr>
+<tr class="separator:a1a07e85a7c7d29d992442f2d40476188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56076716172db1c8ee4b11e1a01bb4b6" id="r_a56076716172db1c8ee4b11e1a01bb4b6"><td class="memTemplParams" colspan="2">template&lt;typename Integer_ , typename Float_ &gt; </td></tr>
 <tr class="memitem:a56076716172db1c8ee4b11e1a01bb4b6"><td class="memTemplItemLeft" align="right" valign="top">Integer_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a56076716172db1c8ee4b11e1a01bb4b6">from_float</a> (Float_ x)</td></tr>
 <tr class="separator:a56076716172db1c8ee4b11e1a01bb4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,20 +216,38 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Sanitize sizes to avoid integer overflow. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a1822e85f3815607a803d826f36b82814" name="a1822e85f3815607a803d826f36b82814"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1822e85f3815607a803d826f36b82814">&#9670;&#160;</a></span>as_size_type()</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a88eca0e763af92e5d0afc4869e146d5d" name="a88eca0e763af92e5d0afc4869e146d5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88eca0e763af92e5d0afc4869e146d5d">&#9670;&#160;</a></span>EffectiveSizeType</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Container_ , typename Value_ &gt; </div>
+template&lt;class Container_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a88eca0e763af92e5d0afc4869e146d5d">sanisizer::EffectiveSizeType</a> = typename effective_size&lt;Container_&gt;::Type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Effective size type of a container, defined as the smaller of the type of <code>size()</code> and the type of the difference between the <code>begin()</code> and <code>end()</code> iterators. This ensures that the size of the container can be safely used in the container's iterator arithmetic. For containers without <code>begin()</code> or <code>end()</code> methods that return random access iterators, the effective size type is just that of <code>size()</code>. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a508c9d22ef809f448ff598b34655c4bd" name="a508c9d22ef809f448ff598b34655c4bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a508c9d22ef809f448ff598b34655c4bd">&#9670;&#160;</a></span>as_effective_size_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Container_ , typename Value_ &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto sanisizer::as_size_type </td>
+          <td class="memname"><a class="el" href="#a88eca0e763af92e5d0afc4869e146d5d">EffectiveSizeType</a>&lt; Container_ &gt; sanisizer::as_effective_size_type </td>
           <td>(</td>
           <td class="paramtype">Value_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
           <td></td>
@@ -231,8 +259,7 @@ template&lt;class Container_ , typename Value_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classsanisizer_1_1Cast.html" title="Cast an integer in a function call.">Cast</a> an integer to the type of the size of a container. This protects against overflow when using this integer in the container's constructor or <code><a class="el" href="#a3df6e5117dcf28cab0e705d4ac499f0d">resize()</a></code> method.</p>
-<p>For containers that return random access iterators from <code>begin()</code> and <code>end()</code>, we additionally ensure that any integer in <code>[0, x)</code> can be safely used in the container's iterator arithmetic. This avoids overflow when casting to the iterator's difference type for such operations.</p>
+<p><a class="el" href="classsanisizer_1_1Cast.html" title="Cast an integer in a function call.">Cast</a> an integer to the effective size type of a container. This protects against overflow when using this integer in the container's constructor or <code><a class="el" href="#a3df6e5117dcf28cab0e705d4ac499f0d">resize()</a></code> method, or when using this integer in any arithmetic on the container's <code>begin()</code>/<code>end()</code> iterators (if available).</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a constructor that accepts the size as the first argument. </td></tr>
@@ -246,7 +273,7 @@ template&lt;class Container_ , typename Value_ &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>x</code> as the container's size's type. If overflow would occur, an <code>OverflowError</code> is raised. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>x</code> as the container's size's type. </dd></dl>
 
 </div>
 </div>
@@ -439,8 +466,7 @@ template&lt;typename Iterator_ , typename MaxDiff_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Check if differences between iterators can be safely represented in the iterator's difference type.</p>
-<p>This is necessary because implementations could, in theory, allocate arrays/containers of size greater than the maximum value of the difference type. In practice, most implementations enforce a maximum allocation size that is representable by the difference type, but this is not guaranteed.</p>
+<p>Check if differences between iterators can be safely represented in the iterator's difference type. This is necessary because implementations could, in theory, allocate arrays/containers of size greater than the maximum value of the difference type. In practice, most implementations enforce a maximum allocation size that is representable by the difference type, but this is not guaranteed.</p>
 <p>Note that this is not required if the iterator refers to a container that was created with <code><a class="el" href="#a0c7c43499ff60d5185708c50b32a40d7">create()</a></code> or allocated by <code><a class="el" href="#a3df6e5117dcf28cab0e705d4ac499f0d">resize()</a></code>. These functions automatically limit the size to the maximum value of the difference type of the <code>begin()</code>/<code>end()</code> iterators.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -644,7 +670,7 @@ template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Create a new container of a specified size. This protects against overflow when casting the integer size to the container's size type.</p>
+<p>Create a new container of a specified size. This protects against overflow when casting the integer size to the container's size type, see <code><a class="el" href="#a508c9d22ef809f448ff598b34655c4bd">as_effective_size_type()</a></code> for details.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a constructor that accepts the size as the first argument. </td></tr>
@@ -660,7 +686,7 @@ template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>An instance of the container, constructed to be of size <code>x</code>. If overflow would occur, an <code>OverflowError</code> is raised. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An instance of the container, constructed to be of size <code>x</code>. </dd></dl>
 
 </div>
 </div>
@@ -1286,6 +1312,51 @@ template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </div>
 
 </div>
 </div>
+<a id="a1a07e85a7c7d29d992442f2d40476188" name="a1a07e85a7c7d29d992442f2d40476188"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a07e85a7c7d29d992442f2d40476188">&#9670;&#160;</a></span>reserve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void sanisizer::reserve </td>
+          <td>(</td>
+          <td class="paramtype">Container_ &amp;</td>          <td class="paramname"><span class="paramname"><em>container</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Value_</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args_ &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reserve a container to the desired size. This protects against overflow when casting the integer size to the container's size type, see <code><a class="el" href="#a508c9d22ef809f448ff598b34655c4bd">as_effective_size_type()</a></code> for details.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a <code><a class="el" href="#a1a07e85a7c7d29d992442f2d40476188">reserve()</a></code> method that accepts the size as the first argument. </td></tr>
+    <tr><td class="paramname">Value_</td><td>Integer type of the input size. </td></tr>
+    <tr><td class="paramname">Args_</td><td>Further arguments to pass to the container's <code><a class="el" href="#a1a07e85a7c7d29d992442f2d40476188">reserve()</a></code> method.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">container</td><td>An existing instance of the container. On return, its allocation is set to <code>x</code>. </td></tr>
+    <tr><td class="paramname">x</td><td>Non-negative value representing the desired container size. </td></tr>
+    <tr><td class="paramname">args</td><td>Additional arguments to pass to <code><a class="el" href="#a1a07e85a7c7d29d992442f2d40476188">reserve()</a></code> after the size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a3df6e5117dcf28cab0e705d4ac499f0d" name="a3df6e5117dcf28cab0e705d4ac499f0d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3df6e5117dcf28cab0e705d4ac499f0d">&#9670;&#160;</a></span>resize()</h2>
 
@@ -1311,7 +1382,7 @@ template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Resize a container to the desired size. This protects against overflow when casting the integer size to the container's size type.</p>
+<p>Resize a container to the desired size. This protects against overflow when casting the integer size to the container's size type, see <code><a class="el" href="#a508c9d22ef809f448ff598b34655c4bd">as_effective_size_type()</a></code> for details.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a <code><a class="el" href="#a3df6e5117dcf28cab0e705d4ac499f0d">resize()</a></code> method that accepts the size as the first argument. </td></tr>
@@ -1323,7 +1394,7 @@ template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">container</td><td>An existing instance of the container. This is resized to size <code>x</code>. </td></tr>
-    <tr><td class="paramname">x</td><td>Non-negative value representing the desired container size. If this would overflow the container's size type, an <code>OverflowError</code> is raised. </td></tr>
+    <tr><td class="paramname">x</td><td>Non-negative value representing the desired container size. </td></tr>
     <tr><td class="paramname">args</td><td>Additional arguments to pass to <code><a class="el" href="#a3df6e5117dcf28cab0e705d4ac499f0d">resize()</a></code> after the size. </td></tr>
   </table>
   </dd>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['integer_0',['Integer',['../structsanisizer_1_1Attestation.html#ac5395e3b350d6a3adf4d12d95412842d',1,'sanisizer::Attestation']]]
+  ['effectivesizetype_0',['EffectiveSizeType',['../namespacesanisizer.html#a88eca0e763af92e5d0afc4869e146d5d',1,'sanisizer']]]
 ];
