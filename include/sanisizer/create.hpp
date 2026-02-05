@@ -57,6 +57,8 @@ struct minimum<X_, Y_> {
     >::type Type;
 };
 
+// We need this function as the constexpr() allows us to only invoke begin()/end()/data() for containers that support it.
+// We can't handle this with std::conditional, as this requires all of these methods to exist.
 template<typename Container_>
 auto derive_effective_size() {
     typedef I<decltype(std::declval<Container_>().size())> Size;

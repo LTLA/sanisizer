@@ -31,6 +31,8 @@ TEST(EffectiveSizeType, Basic) {
         struct Test {
             std::size_t size() const { return 0; }
         };
+
+        EXPECT_EQ(sanisizer::derive_effective_size<Test>(), 0);
         constexpr bool hd = sanisizer::has_data<Test>::value;
         EXPECT_FALSE(hd);
         constexpr bool hri = sanisizer::has_random_access_iterators<Test>::value;
@@ -44,6 +46,8 @@ TEST(EffectiveSizeType, Basic) {
             std::size_t size() const { return 0; }
             char* data() const { return NULL; }
         };
+
+        EXPECT_EQ(sanisizer::derive_effective_size<Test>(), 0);
         constexpr bool hd = sanisizer::has_data<Test>::value;
         EXPECT_TRUE(hd);
         constexpr bool hri = sanisizer::has_random_access_iterators<Test>::value;
@@ -61,6 +65,8 @@ TEST(EffectiveSizeType, Basic) {
             Ptr begin() const { return Ptr(); }
             Ptr end() const { return Ptr(); }
         };
+
+        EXPECT_EQ(sanisizer::derive_effective_size<Test>(), 0);
         constexpr bool hd = sanisizer::has_data<Test>::value;
         EXPECT_FALSE(hd);
         constexpr bool hri = sanisizer::has_random_access_iterators<Test>::value;
@@ -79,6 +85,8 @@ TEST(EffectiveSizeType, Basic) {
             Ptr begin() const { return Ptr(); }
             Ptr end() const { return Ptr(); }
         };
+
+        EXPECT_EQ(sanisizer::derive_effective_size<Test>(), 0);
         constexpr bool hd = sanisizer::has_data<Test>::value;
         EXPECT_TRUE(hd);
         constexpr bool hri = sanisizer::has_random_access_iterators<Test>::value;
