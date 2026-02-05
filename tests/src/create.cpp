@@ -29,12 +29,15 @@ TEST(Create, Basic) {
     static_assert(sanisizer::as_size_type<std::vector<int> >(10) == 10);
 }
 
-TEST(Create, MockSize) {
-    struct MockVector {
-        MockVector(std::uint8_t) {}
-        std::uint8_t size() const { return 0; }
-    };
+struct MockVector {
+    MockVector() = default;
+    MockVector(std::uint8_t) {}
+    std::uint8_t size() const { return 0; }
+    void resize(std::uint8_t) const {}
+    void reserve(std::uint8_t) const {}
+};
 
+TEST(Create, MockSize) {
     auto out = sanisizer::create<MockVector>(200);
     EXPECT_EQ(out.size(), 0);
 
@@ -83,15 +86,29 @@ TEST(Resize, Basic) {
     EXPECT_EQ(output[10], 1);
     EXPECT_EQ(output.back(), 1);
 
-    struct MockVector {
-        std::uint8_t size() const { return 0; }
-        void resize(std::uint8_t) {}
-    };
+    MockVector foo;
+    sanisizer::resize(foo, 1);
 
     bool failed = false;
-    MockVector foo;
     try {
         sanisizer::resize(foo, 300);
+    } catch (std::overflow_error& e) {
+        failed = true;
+    }
+    EXPECT_TRUE(failed);
+}
+
+TEST(Reserve, Basic) {
+    std::vector<int> output;
+    sanisizer::reserve(output, 10);
+    EXPECT_GE(output.capacity(), 10);
+
+    MockVector foo;
+    sanisizer::reserve(foo, 1);
+
+    bool failed = false;
+    try {
+        sanisizer::reserve(foo, 300);
     } catch (std::overflow_error& e) {
         failed = true;
     }

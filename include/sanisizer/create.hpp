@@ -51,7 +51,6 @@ using EffectiveSizeType = typename effective_size<Container_>::Type;
  * @param x Non-negative value representing the desired container size.
  *
  * @return `x` as the container's size's type.
- * If overflow would occur, an `OverflowError` is raised.
  */
 template<typename Container_, typename Value_>
 constexpr EffectiveSizeType<Container_> as_effective_size_type(Value_ x) {
@@ -84,7 +83,6 @@ constexpr auto as_size_type(Value_ x) {
  * @param args Additional arguments to pass to the `Container_` constructor after the size.
  *
  * @return An instance of the container, constructed to be of size `x`.
- * If overflow would occur, an `OverflowError` is raised.
  */
 template<class Container_, typename Value_, typename ... Args_>
 Container_ create(Value_ x, Args_&&... args) {
@@ -102,12 +100,29 @@ Container_ create(Value_ x, Args_&&... args) {
  * @param container An existing instance of the container.
  * This is resized to size `x`.
  * @param x Non-negative value representing the desired container size.
- * If this would overflow the container's size type, an `OverflowError` is raised.
  * @param args Additional arguments to pass to `resize()` after the size.
  */
 template<class Container_, typename Value_, typename ... Args_>
 void resize(Container_& container, Value_ x, Args_&&... args) {
     container.resize(as_size_type<Container_>(x), std::forward<Args_>(args)...);
+}
+
+/**
+ * Reserve a container to the desired size.
+ * This protects against overflow when casting the integer size to the container's size type, see `as_effective_size_type()` for details.
+ *
+ * @tparam Container_ Container class with a `size()` method and a `reserve()` method that accepts the size as the first argument.
+ * @tparam Value_ Integer type of the input size.
+ * @tparam Args_ Further arguments to pass to the container's `reserve()` method.
+ *
+ * @param container An existing instance of the container.
+ * On return, its allocation is set to `x`.
+ * @param x Non-negative value representing the desired container size.
+ * @param args Additional arguments to pass to `reserve()` after the size.
+ */
+template<class Container_, typename Value_, typename ... Args_>
+void reserve(Container_& container, Value_ x, Args_&&... args) {
+    container.reserve(as_size_type<Container_>(x), std::forward<Args_>(args)...);
 }
 
 }
