@@ -17,6 +17,11 @@ namespace sanisizer {
 
 /**
  * Check if differences between iterators can be safely represented in the iterator's difference type.
+ * This is necessary because implementations could, in theory, allocate arrays/containers of size greater than the maximum value of the difference type. 
+ * In practice, most implementations enforce a maximum allocation size that is representable by the difference type, but this is not guaranteed.
+ *
+ * Note that this is not required if the iterator refers to a container that was created with `create()` or allocated by `resize()`.
+ * These functions automatically limit the size to the maximum value of the difference type of the `begin()`/`end()` iterators.
  *
  * @tparam Iterator_ Random access iterator that supports subtraction. 
  * @tparam MaxDiff_ Integer type for maximum difference between iterators.

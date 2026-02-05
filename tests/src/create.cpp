@@ -13,20 +13,7 @@ TEST(Create, Basic) {
     EXPECT_EQ(output2.front(), 1);
     EXPECT_EQ(output2.back(), 1);
 
-    // Check that it throws the right errors.
-    struct MockVector {
-        MockVector(std::uint8_t) {}
-        std::uint8_t size() const { return 0; }
-    };
     bool failed = false;
-    try {
-        sanisizer::create<MockVector>(300);
-    } catch (std::overflow_error& e) {
-        failed = true;
-    }
-    EXPECT_TRUE(failed);
-
-    failed = false;
     try {
         sanisizer::create<std::vector<int> >(-1);
     } catch (std::out_of_range& e) {
@@ -40,6 +27,48 @@ TEST(Create, Basic) {
 
     // as_size_type works at compile-time.
     static_assert(sanisizer::as_size_type<std::vector<int> >(10) == 10);
+}
+
+TEST(Create, MockSize) {
+    struct MockVector {
+        MockVector(std::uint8_t) {}
+        std::uint8_t size() const { return 0; }
+    };
+
+    auto out = sanisizer::create<MockVector>(200);
+    EXPECT_EQ(out.size(), 0);
+
+    bool failed = false;
+    try {
+        sanisizer::create<MockVector>(300);
+    } catch (std::overflow_error& e) {
+        failed = true;
+    }
+    EXPECT_TRUE(failed);
+}
+
+TEST(Create, MockPtrDiff) {
+    struct MockVector2 {
+        MockVector2(std::uint8_t) {}
+        std::size_t size() const { return 0; }
+
+        struct Ptr {
+            std::int8_t operator-(const Ptr&) { return 0; }
+        };
+        Ptr begin() const { return Ptr(); }
+        Ptr end() const { return Ptr(); }
+    };
+
+    auto out = sanisizer::create<MockVector2>(100);
+    EXPECT_EQ(out.size(), 0);
+
+    bool failed = false;
+    try {
+        sanisizer::create<MockVector2>(200);
+    } catch (std::overflow_error& e) {
+        failed = true;
+    }
+    EXPECT_TRUE(failed);
 }
 
 TEST(Resize, Basic) {

@@ -2,6 +2,7 @@
 #define SANISIZER_CREATE_HPP
 
 #include <utility>
+#include <limits>
 
 #include "utils.hpp"
 #include "attest.hpp"
@@ -14,8 +15,35 @@
 namespace sanisizer {
 
 /**
- * Cast an integer to the type of the size of a container.
- * This protects against overflow when using this integer in the container's constructor or `resize()` method.
+ * @cond
+ */
+template<typename Container_, typename = int>
+struct effective_size {
+    typedef I<decltype(std::declval<Container_>().size())> Type;
+};
+
+template<typename Container_>
+struct effective_size<Container_, decltype(std::declval<Container_>().end() - std::declval<Container_>().begin(), 0)> {
+    typedef I<decltype(std::declval<Container_>().size())> Size;
+    typedef I<decltype(std::declval<Container_>().end() - std::declval<Container_>().begin())> Ptrdiff;
+    typedef typename std::conditional<(std::numeric_limits<Size>::max() > std::numeric_limits<Ptrdiff>::max()), Ptrdiff, Size>::type Type;
+};
+/**
+ * @endcond
+ */
+
+/**
+ * Effective size type of a container, defined as the smaller of the type of `size()` and the type of the difference between the `begin()` and `end()` iterators.
+ * This ensures that the size of the container can be safely used in the container's iterator arithmetic. 
+ * For containers without `begin()` or `end()` methods that return random access iterators, the effective size type is just that of `size()`.
+ */
+template<class Container_>
+using EffectiveSizeType = typename effective_size<Container_>::Type;
+
+/**
+ * Cast an integer to the effective size type of a container.
+ * This protects against overflow when using this integer in the container's constructor or `resize()` method,
+ * or when using this integer in any arithmetic on the container's `begin()`/`end()` iterators (if available).
  *
  * @tparam Container_ Container class with a `size()` method and a constructor that accepts the size as the first argument.
  * @tparam Value_ Integer type of the input size.
@@ -25,17 +53,28 @@ namespace sanisizer {
  * @return `x` as the container's size's type.
  * If overflow would occur, an `OverflowError` is raised.
  */
-template<class Container_, typename Value_>
-constexpr auto as_size_type(Value_ x) {
+template<typename Container_, typename Value_>
+constexpr EffectiveSizeType<Container_> as_effective_size_type(Value_ x) {
     check_negative(x);
-    typedef I<decltype(std::declval<Container_>().size())> Size;
-    check_overflow<Size>(x);
-    return static_cast<Size>(get_value(x));
+    check_overflow<EffectiveSizeType<Container_> >(x);
+    return get_value(x);
 }
 
 /**
+ * @cond
+ */
+// Soft-deprecated, use as_effective_size_type() instead.
+template<class Container_, typename Value_>
+constexpr auto as_size_type(Value_ x) {
+    return as_effective_size_type<Container_>(x);
+}
+/**
+ * @endcond
+ */
+
+/**
  * Create a new container of a specified size.
- * This protects against overflow when casting the integer size to the container's size type.
+ * This protects against overflow when casting the integer size to the container's size type, see `as_effective_size_type()` for details.
  *
  * @tparam Container_ Container class with a `size()` method and a constructor that accepts the size as the first argument.
  * @tparam Value_ Integer type of the input size.
@@ -54,7 +93,7 @@ Container_ create(Value_ x, Args_&&... args) {
 
 /**
  * Resize a container to the desired size.
- * This protects against overflow when casting the integer size to the container's size type.
+ * This protects against overflow when casting the integer size to the container's size type, see `as_effective_size_type()` for details.
  *
  * @tparam Container_ Container class with a `size()` method and a `resize()` method that accepts the size as the first argument.
  * @tparam Value_ Integer type of the input size.
