@@ -4,6 +4,96 @@
 
 #include <cstdint>
 
+TEST(EffectiveSizeType, Basic) {
+    // Checking that the minimum works correctly.
+    {
+        constexpr bool val = std::is_same<typename sanisizer::minimum<std::uint16_t, std::uint8_t>::Type, std::uint8_t>::value;
+        EXPECT_TRUE(val);
+    }
+    {
+        constexpr bool val = std::is_same<typename sanisizer::minimum<std::uint16_t, std::uint32_t>::Type, std::uint16_t>::value;
+        EXPECT_TRUE(val);
+    }
+    {
+        constexpr bool val = std::is_same<typename sanisizer::minimum<std::uint16_t, std::uint8_t, std::uint32_t>::Type, std::uint8_t>::value;
+        EXPECT_TRUE(val);
+    }
+    {
+        constexpr bool val = std::is_same<typename sanisizer::minimum<std::uint8_t, std::int16_t, std::int32_t>::Type, std::uint8_t>::value;
+        EXPECT_TRUE(val);
+    }
+    {
+        constexpr bool val = std::is_same<typename sanisizer::minimum<std::uint16_t, std::int32_t, std::uint8_t>::Type, std::uint8_t>::value;
+        EXPECT_TRUE(val);
+    }
+
+    {
+        struct Test {
+            std::size_t size() const { return 0; }
+        };
+        constexpr bool hd = sanisizer::has_data<Test>::value;
+        EXPECT_FALSE(hd);
+        constexpr bool hri = sanisizer::has_random_access_iterators<Test>::value;
+        EXPECT_FALSE(hri);
+        constexpr bool val = std::is_same<sanisizer::EffectiveSizeType<Test>, std::size_t>::value;
+        EXPECT_TRUE(val);
+    }
+
+    {
+        struct Test {
+            std::size_t size() const { return 0; }
+            char* data() const { return NULL; }
+        };
+        constexpr bool hd = sanisizer::has_data<Test>::value;
+        EXPECT_TRUE(hd);
+        constexpr bool hri = sanisizer::has_random_access_iterators<Test>::value;
+        EXPECT_FALSE(hri);
+        constexpr bool val = std::is_same<sanisizer::EffectiveSizeType<Test>, typename sanisizer::minimum<std::ptrdiff_t, std::size_t>::Type>::value;
+        EXPECT_TRUE(val);
+    }
+
+    {
+        struct Test {
+            std::size_t size() const { return 0; }
+            struct Ptr {
+                std::int8_t operator-(const Ptr&) const { return 0; }
+            };
+            Ptr begin() const { return Ptr(); }
+            Ptr end() const { return Ptr(); }
+        };
+        constexpr bool hd = sanisizer::has_data<Test>::value;
+        EXPECT_FALSE(hd);
+        constexpr bool hri = sanisizer::has_random_access_iterators<Test>::value;
+        EXPECT_TRUE(hri);
+        constexpr bool val = std::is_same<sanisizer::EffectiveSizeType<Test>, typename sanisizer::minimum<std::int8_t, std::size_t>::Type>::value;
+        EXPECT_TRUE(val);
+    }
+
+    {
+        struct Test {
+            std::uint16_t size() const { return 0; }
+            char* data() const { return NULL; }
+            struct Ptr {
+                std::uint32_t operator-(const Ptr&) { return 0; }
+            };
+            Ptr begin() const { return Ptr(); }
+            Ptr end() const { return Ptr(); }
+        };
+        constexpr bool hd = sanisizer::has_data<Test>::value;
+        EXPECT_TRUE(hd);
+        constexpr bool hri = sanisizer::has_random_access_iterators<Test>::value;
+        EXPECT_TRUE(hri);
+        constexpr bool val = std::is_same<sanisizer::EffectiveSizeType<Test>, typename sanisizer::minimum<std::uint16_t, std::ptrdiff_t, std::size_t>::Type>::value;
+        EXPECT_TRUE(val);
+    }
+
+    // Check that SFINAE works on a vector.
+    {
+        static_assert(sanisizer::has_random_access_iterators<std::vector<int> >::value);
+        static_assert(sanisizer::has_data<std::vector<int> >::value);
+    }
+}
+
 TEST(Create, Basic) {
     auto output = sanisizer::create<std::vector<int> >(20);
     EXPECT_EQ(output.size(), 20);

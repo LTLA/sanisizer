@@ -18,27 +18,82 @@ namespace sanisizer {
  * @cond
  */
 template<typename Container_, typename = int>
-struct effective_size {
-    typedef I<decltype(std::declval<Container_>().size())> Type;
+struct has_random_access_iterators {
+    static constexpr bool value = false;
 };
 
 template<typename Container_>
-struct effective_size<Container_, decltype(std::declval<Container_>().end() - std::declval<Container_>().begin(), 0)> {
-    typedef I<decltype(std::declval<Container_>().size())> Size;
-    typedef I<decltype(std::declval<Container_>().end() - std::declval<Container_>().begin())> Ptrdiff;
-    typedef typename std::conditional<(std::numeric_limits<Size>::max() > std::numeric_limits<Ptrdiff>::max()), Ptrdiff, Size>::type Type;
+struct has_random_access_iterators<Container_, decltype((void) (std::declval<Container_>().end() - std::declval<Container_>().begin()), 0)> {
+    static constexpr bool value = true;
 };
+
+template<typename Container_, typename = int>
+struct has_data {
+    static constexpr bool value = false;
+};
+
+template<typename Container_>
+struct has_data<Container_, decltype((void) *(std::declval<Container_>().data()), 0)> {
+    static constexpr bool value = true;
+};
+
+template<typename X_, typename Y_, typename ... Args_>
+struct minimum {
+    typedef typename std::conditional<
+        (static_cast<std::make_unsigned_t<X_> >(std::numeric_limits<X_>::max()) < 
+         static_cast<std::make_unsigned_t<Y_> >(std::numeric_limits<Y_>::max())),
+        typename minimum<X_, Args_...>::Type,
+        typename minimum<Y_, Args_...>::Type
+    >::type Type;
+};
+
+template<typename X_, typename Y_>
+struct minimum<X_, Y_> {
+    typedef typename std::conditional<
+        (static_cast<std::make_unsigned_t<X_> >(std::numeric_limits<X_>::max()) < 
+         static_cast<std::make_unsigned_t<Y_> >(std::numeric_limits<Y_>::max())),
+        X_,
+        Y_
+    >::type Type;
+};
+
+template<typename Container_>
+auto derive_effective_size() {
+    typedef I<decltype(std::declval<Container_>().size())> Size;
+    if constexpr(has_random_access_iterators<Container_>::value) {
+        typedef I<decltype(std::declval<Container_>().end() - std::declval<Container_>().begin())> Ptrdiff;
+        if constexpr(has_data<Container_>::value) {
+            return static_cast<typename minimum<Size, Ptrdiff, std::size_t, std::ptrdiff_t>::Type>(0);
+        } else {
+            return static_cast<typename minimum<Size, Ptrdiff>::Type>(0);
+        }
+    } else {
+        if constexpr(has_data<Container_>::value) {
+            return static_cast<typename minimum<Size, std::size_t, std::ptrdiff_t>::Type>(0);
+        } else {
+            return static_cast<Size>(0);
+        }
+    }
+}
 /**
  * @endcond
  */
 
 /**
- * Effective size type of a container, defined as the smaller of the type of `size()` and the type of the difference between the `begin()` and `end()` iterators.
- * This ensures that the size of the container can be safely used in the container's iterator arithmetic. 
- * For containers without `begin()` or `end()` methods that return random access iterators, the effective size type is just that of `size()`.
+ * Effective size type of a container, defined as the smallest of:
+ *
+ * - The type of `size()`, to ensure that any value of the effective size type can be safely used in the container's constructor, `resize()` or `reserve()` methods.
+ * - The type of the difference between the `begin()` and `end()` iterators.
+ *   This ensures that any value of the effective size type can be safely used in the container's iterator arithmetic. 
+ *   Ignored if the container has no `begin()` or `end()` method that returns random access iterators.
+ * - `std::ptrdiff_t` and `std::size_t`, if the container exposes an underlying pointer to its contents via the `data()` method.
+ *   This ensures that any value of the effective size type can be safely used with such pointers.
+ *   Ignored if the container has no `data()` method that returns a pointer.
+ *
+ * @tparam Container_ Container class with a `size()` method. 
  */
 template<class Container_>
-using EffectiveSizeType = typename effective_size<Container_>::Type;
+using EffectiveSizeType = decltype(derive_effective_size<Container_>());
 
 /**
  * Cast an integer to the effective size type of a container.
