@@ -13,7 +13,7 @@
     <filename>attest_8hpp.html</filename>
     <class kind="struct">sanisizer::Attestation</class>
     <class kind="struct">sanisizer::is_Attestation</class>
-    <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;</class>
+    <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;</class>
     <class kind="struct">sanisizer::is_integral_or_Attestation</class>
     <namespace>sanisizer</namespace>
   </compound>
@@ -95,41 +95,33 @@
     <name>sanisizer::Attestation</name>
     <filename>structsanisizer_1_1Attestation.html</filename>
     <templarg>typename Integer_</templarg>
-    <templarg>bool gez_</templarg>
     <templarg>Integer_ max_</templarg>
     <member kind="typedef">
       <type>Integer_</type>
       <name>Integer</name>
       <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>ac5395e3b350d6a3adf4d12d95412842d</anchor>
+      <anchor>a68d1e7517f9fb4b7bee87ead27a68448</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>constexpr</type>
       <name>Attestation</name>
       <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>abdc6b3d218467d0255924a3cddcc0957</anchor>
+      <anchor>a9b816913a4d2aa284aa055f46e104b77</anchor>
       <arglist>(Integer_ x)</arglist>
     </member>
     <member kind="variable">
       <type>Integer_</type>
       <name>value</name>
       <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>a4d9541219e33c305042d1987aad8f9d6</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable" static="yes">
-      <type>static constexpr bool</type>
-      <name>gez</name>
-      <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>a2cd689aae0ae6d03571868fc6e9d202a</anchor>
+      <anchor>acbca33b35d6f68de4b209228f55f76c5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr Integer_</type>
       <name>max</name>
       <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>a7e063a67b9a9a044e73576ecb0d0e5d0</anchor>
+      <anchor>a19587380bbe3e2da9fe21e6a368ae058</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -191,16 +183,15 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>sanisizer::is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;</name>
-    <filename>structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01gez___00_01max___01_4_01_4.html</filename>
+    <name>sanisizer::is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;</name>
+    <filename>structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01max___01_4_01_4.html</filename>
     <templarg>typename Integer_</templarg>
-    <templarg>bool gez_</templarg>
     <templarg>Integer_ max_</templarg>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>value</name>
-      <anchorfile>structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01gez___00_01max___01_4_01_4.html</anchorfile>
-      <anchor>ab6f08ec3fb5799b957aee57347a9d4fd</anchor>
+      <anchorfile>structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01max___01_4_01_4.html</anchorfile>
+      <anchor>a4b99225ea8d25e56f963e2924217ec7d</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -223,15 +214,8 @@
     <class kind="class">sanisizer::Cast</class>
     <class kind="class">sanisizer::Exact</class>
     <class kind="struct">sanisizer::is_Attestation</class>
-    <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, gez_, max_ &gt; &gt;</class>
+    <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;</class>
     <class kind="struct">sanisizer::is_integral_or_Attestation</class>
-    <member kind="typedef">
-      <type>decltype(derive_effective_size&lt; Container_ &gt;())</type>
-      <name>EffectiveSizeType</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>af9ef7d5241157fcb22979d809c46def3</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="function">
       <type>constexpr Dest_</type>
       <name>sum</name>
@@ -268,20 +252,6 @@
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
-      <type>constexpr bool</type>
-      <name>get_gez</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>afe6928cff24b957539ecc49410e029b7</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr auto</type>
-      <name>attest_gez</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ac49bdb53f70812fbab201a97f0342453</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
       <type>constexpr auto</type>
       <name>get_max</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
@@ -300,13 +270,6 @@
       <name>attest_max_by_type</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>ad69021adac47a10c27b7ee0fab7f0e98</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>check_negative</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a7c1360b1927790be52a1068b3927b1ee</anchor>
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
@@ -387,10 +350,10 @@
       <arglist>(First_ first, Second_ second)</arglist>
     </member>
     <member kind="function">
-      <type>constexpr EffectiveSizeType&lt; Container_ &gt;</type>
-      <name>as_effective_size_type</name>
+      <type>constexpr auto</type>
+      <name>as_size_type</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a508c9d22ef809f448ff598b34655c4bd</anchor>
+      <anchor>a1822e85f3815607a803d826f36b82814</anchor>
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
@@ -434,13 +397,6 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a8d460a84022487d3460671e5ff96f163</anchor>
       <arglist>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>can_ptrdiff</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>adb21975d4661d6c96ededfaa2f59e1da</anchor>
-      <arglist>(MaxDiff_ max_diff)</arglist>
     </member>
   </compound>
   <compound kind="page">
