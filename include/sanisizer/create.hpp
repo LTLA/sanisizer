@@ -27,7 +27,6 @@ namespace sanisizer {
  */
 template<typename Container_, typename Value_>
 constexpr auto as_size_type(Value_ x) {
-    check_negative(x);
     check_overflow<I<decltype(std::declval<Container_>().size())> >(x);
     return get_value(x);
 }

@@ -14,22 +14,14 @@ TEST(Cap, Basic) {
     EXPECT_EQ(sanisizer::cap<std::int64_t>((std::int32_t)1000), 1000);
 
     // Also accepts attestations.
-    EXPECT_EQ(sanisizer::cap<std::uint8_t>(sanisizer::Attestation<int, true, 100>(10)), 10);
-    EXPECT_EQ(sanisizer::cap<std::uint8_t>(sanisizer::Attestation<int, true, 10000>(1000)), 255);
+    EXPECT_EQ(sanisizer::cap<std::uint8_t>(sanisizer::Attestation<int, 100>(10)), 10);
+    EXPECT_EQ(sanisizer::cap<std::uint8_t>(sanisizer::Attestation<int, 10000>(1000)), 255);
 
     bool okay = false;
     if constexpr(sanisizer::cap<std::uint8_t>(1000) == 255) {
         okay = true;
     }
     EXPECT_TRUE(okay);
-
-    bool failed = true;
-    try {
-        sanisizer::cap<std::int8_t>(-1);
-    } catch (std::out_of_range& e) {
-        failed = true;
-    }
-    EXPECT_TRUE(failed);
 }
 
 // Check it works as constexpr defaults.

@@ -51,16 +51,6 @@ TEST(Float, ToFloat) {
     EXPECT_EQ(sanisizer::to_float<float>(255), 255.0);
     EXPECT_EQ(sanisizer::to_float<float>(32767), 32767.0);
 
-    {
-        std::string failmsg;
-        try {
-            std::cout << sanisizer::to_float<float>(-1) << std::endl;
-        } catch (std::exception& e) {
-            failmsg = e.what();
-        }
-        EXPECT_TRUE(failmsg.find("negative") != std::string::npos);
-    }
-
     if constexpr(std::numeric_limits<float>::is_iec559) {
         EXPECT_EQ(sanisizer::to_float<float>(16777216), 16777216.0);
         EXPECT_EQ(sanisizer::to_float<double>(9007199254740992), 9007199254740992.0); 
@@ -83,7 +73,7 @@ TEST(Float, ToFloat) {
     }
 
     // Works with attestations.
-    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, true, 0>((std::int64_t)0)), 0.0);
-    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, true, 100>((std::int64_t)10)), 10.0);
-    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, true, std::numeric_limits<std::int64_t>::max()>((std::int64_t)10)), 10.0);
+    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, 0>((std::int64_t)0)), 0.0);
+    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, 100>((std::int64_t)10)), 10.0);
+    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, std::numeric_limits<std::int64_t>::max()>((std::int64_t)10)), 10.0);
 }

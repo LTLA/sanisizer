@@ -30,21 +30,13 @@ TEST(Cast, Basic) {
     static_assert(std::is_same<decltype(sanisizer::cast<std::uint8_t>((u32)1)), std::uint8_t>::value);
 
     // Works with attestations.
-    EXPECT_EQ(sanisizer::cast<std::uint8_t>(sanisizer::Attestation<int, true, 100>(10)), 10);
-    EXPECT_EQ(sanisizer::cast<std::int64_t>(sanisizer::Attestation<int, true, 100>(100)), 100);
+    EXPECT_EQ(sanisizer::cast<std::uint8_t>(sanisizer::Attestation<int, 100>(10)), 10);
+    EXPECT_EQ(sanisizer::cast<std::int64_t>(sanisizer::Attestation<int, 100>(100)), 100);
 
     bool failed = false;
     try {
         sanisizer::cast<std::uint8_t>(256);
     } catch (std::overflow_error& e) {
-        failed = true;
-    }
-    EXPECT_TRUE(failed);
-
-    failed = false;
-    try {
-        sanisizer::cast<std::uint8_t>(-10);
-    } catch (std::out_of_range& e) {
         failed = true;
     }
     EXPECT_TRUE(failed);

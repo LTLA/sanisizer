@@ -20,7 +20,6 @@ namespace sanisizer {
  */
 template<typename Iterator_, typename MaxDiff_>
 constexpr bool can_ptrdiff(MaxDiff_ max_diff) {
-    check_negative(max_diff);
     typedef I<decltype(std::declval<Iterator_>() - std::declval<Iterator_>())> Diff;
     check_overflow<Diff>(max_diff);
     return true;

@@ -86,16 +86,7 @@ for (auto is : individual_sizes) {
 ## Attestations
 
 Attestations are a mechanism by which users can supply additional constraints for compile-time optimizations.
-If we know that an integer is non-negative, we can attest to it when calling a **sanisizer** function.
-This allows the compiler to omit the run-time checks for negative values.
-
-```cpp
-int val; // set to some value that we know to be non-negative.
-auto must_be_non_neg = sanisizer::attest_gez(val); // i.e., greater-than-or-equal-to-zero.
-auto val_as_size = sanisizer::cast<std::size_t>(must_be_non_neg);
-```
-
-Similarly, we can attest to a maximum value for an integer that is below the integer type's maximum.
+For example, we can attest to a maximum value for an integer that is below the integer type's maximum.
 This allows the compiler to omit run-time overflow checks.
 
 ```cpp

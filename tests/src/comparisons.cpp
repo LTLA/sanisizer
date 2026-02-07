@@ -4,17 +4,6 @@
 
 #include <cstdint>
 
-template<typename Fun_>
-bool throws_on_negative(Fun_ fun) {
-    bool failed = false;
-    try {
-        fun();
-    } catch (std::out_of_range& e) {
-        failed = true;
-    }
-    return failed;
-}
-
 TEST(Comparisons, Equal) {
     static_assert(sanisizer::is_equal(1, 1));
     static_assert(!sanisizer::is_equal(1, 0));
@@ -26,12 +15,9 @@ TEST(Comparisons, Equal) {
     EXPECT_TRUE(sanisizer::is_equal(10, 10u)); // for codecov.
 
     // Works with attestations.
-    static_assert(!sanisizer::is_equal(sanisizer::Attestation<int, true, 100>(10), 20u));
-    static_assert(sanisizer::is_equal(10u, sanisizer::Attestation<int, true, 100>(10)));
-    static_assert(sanisizer::is_equal(sanisizer::Attestation<int, true, 100>(10), sanisizer::Attestation<unsigned, true, 20>(10u)));
-
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_equal(-1, 0); })); 
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_equal(0, -1); })); 
+    static_assert(!sanisizer::is_equal(sanisizer::Attestation<int, 100>(10), 20u));
+    static_assert(sanisizer::is_equal(10u, sanisizer::Attestation<int, 100>(10)));
+    static_assert(sanisizer::is_equal(sanisizer::Attestation<int, 100>(10), sanisizer::Attestation<unsigned, 20>(10u)));
 }
 
 TEST(Comparisons, GreaterThan) {
@@ -45,12 +31,9 @@ TEST(Comparisons, GreaterThan) {
     EXPECT_TRUE(sanisizer::is_greater_than(11, 10u)); // for codecov.
 
     // Works with attestations.
-    static_assert(!sanisizer::is_greater_than(sanisizer::Attestation<int, true, 100>(10), 20u));
-    static_assert(sanisizer::is_greater_than(20u, sanisizer::Attestation<int, true, 100>(10)));
-    static_assert(!sanisizer::is_greater_than(sanisizer::Attestation<int, true, 100>(10), sanisizer::Attestation<unsigned, true, 20>(10u)));
-
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_greater_than(-1, 0); })); 
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_greater_than(0, -1); })); 
+    static_assert(!sanisizer::is_greater_than(sanisizer::Attestation<int, 100>(10), 20u));
+    static_assert(sanisizer::is_greater_than(20u, sanisizer::Attestation<int, 100>(10)));
+    static_assert(!sanisizer::is_greater_than(sanisizer::Attestation<int, 100>(10), sanisizer::Attestation<unsigned, 20>(10u)));
 }
 
 TEST(Comparisons, LessThanOrEqual) {
@@ -67,12 +50,9 @@ TEST(Comparisons, LessThanOrEqual) {
     EXPECT_TRUE(sanisizer::is_less_than_or_equal(9, 10u)); // for codecov.
 
     // Works with attestations.
-    static_assert(sanisizer::is_less_than_or_equal(sanisizer::Attestation<int, true, 100>(10), 20u));
-    static_assert(!sanisizer::is_less_than_or_equal(20u, sanisizer::Attestation<int, true, 100>(10)));
-    static_assert(sanisizer::is_less_than_or_equal(sanisizer::Attestation<int, true, 100>(10), sanisizer::Attestation<unsigned, true, 20>(10u)));
-
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_less_than_or_equal(-1, 0); })); 
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_less_than_or_equal(0, -1); })); 
+    static_assert(sanisizer::is_less_than_or_equal(sanisizer::Attestation<int, 100>(10), 20u));
+    static_assert(!sanisizer::is_less_than_or_equal(20u, sanisizer::Attestation<int, 100>(10)));
+    static_assert(sanisizer::is_less_than_or_equal(sanisizer::Attestation<int, 100>(10), sanisizer::Attestation<unsigned, 20>(10u)));
 }
 
 TEST(Comparisons, LessThan) {
@@ -86,12 +66,9 @@ TEST(Comparisons, LessThan) {
     EXPECT_TRUE(sanisizer::is_less_than(9, 10u)); // for codecov.
 
     // Works with attestations.
-    static_assert(sanisizer::is_less_than(sanisizer::Attestation<int, true, 100>(10), 20u));
-    static_assert(!sanisizer::is_less_than(20u, sanisizer::Attestation<int, true, 100>(10)));
-    static_assert(!sanisizer::is_less_than(sanisizer::Attestation<int, true, 100>(10), sanisizer::Attestation<unsigned, true, 20>(10u)));
-
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_less_than(-1, 0); })); 
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_less_than(0, -1); })); 
+    static_assert(sanisizer::is_less_than(sanisizer::Attestation<int, 100>(10), 20u));
+    static_assert(!sanisizer::is_less_than(20u, sanisizer::Attestation<int, 100>(10)));
+    static_assert(!sanisizer::is_less_than(sanisizer::Attestation<int, 100>(10), sanisizer::Attestation<unsigned, 20>(10u)));
 }
 
 TEST(Comparisons, GreaterThanOrEqual) {
@@ -108,12 +85,9 @@ TEST(Comparisons, GreaterThanOrEqual) {
     EXPECT_TRUE(sanisizer::is_greater_than_or_equal(11, 10u)); // for codecov.
 
     // Works with attestations.
-    static_assert(!sanisizer::is_greater_than_or_equal(sanisizer::Attestation<int, true, 100>(10), 20u));
-    static_assert(sanisizer::is_greater_than_or_equal(20u, sanisizer::Attestation<int, true, 100>(10)));
-    static_assert(sanisizer::is_greater_than_or_equal(sanisizer::Attestation<int, true, 100>(10), sanisizer::Attestation<unsigned, true, 20>(10u)));
-
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_greater_than_or_equal(-1, 0); })); 
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::is_greater_than_or_equal(0, -1); })); 
+    static_assert(!sanisizer::is_greater_than_or_equal(sanisizer::Attestation<int, 100>(10), 20u));
+    static_assert(sanisizer::is_greater_than_or_equal(20u, sanisizer::Attestation<int, 100>(10)));
+    static_assert(sanisizer::is_greater_than_or_equal(sanisizer::Attestation<int, 100>(10), sanisizer::Attestation<unsigned, 20>(10u)));
 }
 
 TEST(Comparisons, Min) {
@@ -139,21 +113,18 @@ TEST(Comparisons, Min) {
 
     // Check it works for attestations.
     constexpr auto attest_check1 = sanisizer::min(
-        sanisizer::Attestation<std::int32_t, true, 10>((std::int32_t)10),
-        sanisizer::Attestation<std::int8_t, false, 100>((std::int8_t)5)
+        sanisizer::Attestation<std::int32_t, 10>((std::int32_t)10),
+        sanisizer::Attestation<std::int8_t, 100>((std::int8_t)5)
     );
     static_assert(attest_check1 == 5);
     static_assert(std::is_same<decltype(attest_check1), const std::int32_t>::value);
 
     constexpr auto attest_check2 = sanisizer::min(
-        sanisizer::Attestation<std::int8_t, true, 10>((std::int8_t)10),
-        sanisizer::Attestation<std::int32_t, false, 100>((std::int32_t)7)
+        sanisizer::Attestation<std::int8_t, 10>((std::int8_t)10),
+        sanisizer::Attestation<std::int32_t, 100>((std::int32_t)7)
     );
     static_assert(attest_check2 == 7);
     static_assert(std::is_same<decltype(attest_check2), const std::int8_t>::value);
-
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::min(-1, 0); })); 
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::min(0, -1); })); 
 }
 
 TEST(Comparisons, Max) {
@@ -179,19 +150,16 @@ TEST(Comparisons, Max) {
 
     // Check it works for attestations.
     constexpr auto attest_check1 = sanisizer::max(
-        sanisizer::Attestation<std::int32_t, true, 10>((std::int32_t)10),
-        sanisizer::Attestation<std::int8_t, false, 100>((std::int8_t)5)
+        sanisizer::Attestation<std::int32_t, 10>((std::int32_t)10),
+        sanisizer::Attestation<std::int8_t, 100>((std::int8_t)5)
     );
     static_assert(attest_check1 == 10);
     static_assert(std::is_same<decltype(attest_check1), const std::int8_t>::value);
 
     constexpr auto attest_check2 = sanisizer::max(
-        sanisizer::Attestation<std::int8_t, true, 10>((std::int8_t)10),
-        sanisizer::Attestation<std::int32_t, false, 100>((std::int32_t)7)
+        sanisizer::Attestation<std::int8_t, 10>((std::int8_t)10),
+        sanisizer::Attestation<std::int32_t, 100>((std::int32_t)7)
     );
     static_assert(attest_check2 == 10);
     static_assert(std::is_same<decltype(attest_check2), const std::int32_t>::value);
-
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::max(-1, 0); })); 
-    EXPECT_TRUE(throws_on_negative([]() -> void { sanisizer::max(0, -1); })); 
 }

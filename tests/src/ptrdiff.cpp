@@ -44,16 +44,8 @@ TEST(CanPtrdiff, Basic) {
         EXPECT_TRUE(failed);
     }
 
-    bool failed = false;
-    try {
-        sanisizer::can_ptrdiff<MockIterator>(-1);
-    } catch (std::out_of_range& e) {
-        failed = true;
-    }
-    EXPECT_TRUE(failed);
-
     // Works with Attestations.
-    sanisizer::can_ptrdiff<double*>(sanisizer::Attestation<int, true, 20>(10));
+    sanisizer::can_ptrdiff<double*>(sanisizer::Attestation<int, 20>(10));
 
     // Works at compile time.
     static_assert(sanisizer::can_ptrdiff<double*>(10));

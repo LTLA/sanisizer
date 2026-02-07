@@ -12,8 +12,8 @@ TEST(Class, Cast) {
     EXPECT_EQ(check_value(sanisizer::Cast(2)), 2);
     static_assert(check_value(sanisizer::Cast(2)) == 2);
 
-    EXPECT_EQ(check_value(sanisizer::Cast(sanisizer::attest_gez(2))), 2);
-    static_assert(check_value(sanisizer::Cast(sanisizer::attest_gez(2))) == 2);
+    EXPECT_EQ(check_value(sanisizer::Cast(sanisizer::attest_max<int, 10>(2))), 2);
+    static_assert(check_value(sanisizer::Cast(sanisizer::attest_max<int, 10>(2))) == 2);
 
     bool failed = false;
     try {

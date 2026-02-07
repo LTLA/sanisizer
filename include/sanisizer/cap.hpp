@@ -24,7 +24,6 @@ namespace sanisizer {
  * @param x Non-negative value to be capped.
  *
  * @return `x` if it can be represented in `Dest_`, otherwise the maximum value of `Dest_`.
- * An error is thrown if `x` is negative.
  */
 template<typename Dest_, typename Value_>
 constexpr Dest_ cap(Value_ x) {
@@ -32,7 +31,6 @@ constexpr Dest_ cap(Value_ x) {
     constexpr auto maxed = std::numeric_limits<Dest_>::max();
     constexpr auto umaxed = as_unsigned(maxed);
 
-    check_negative(x);
     const auto val = get_value(x);
     if constexpr(umaxed >= as_unsigned(get_max<Value_>())) {
         return val;
