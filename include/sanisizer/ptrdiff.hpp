@@ -16,21 +16,7 @@
 namespace sanisizer {
 
 /**
- * Check if differences between iterators can be safely represented in the iterator's difference type.
- * This is necessary because implementations could, in theory, allocate arrays/containers of size greater than the maximum value of the difference type. 
- * In practice, most implementations enforce a maximum allocation size that is representable by the difference type, but this is not guaranteed.
- *
- * Note that this is not required if the iterator refers to a container that was created with `create()` or allocated by `resize()`.
- * These functions automatically limit the size to the maximum value of the difference type of the `begin()`/`end()` iterators.
- *
- * @tparam Iterator_ Random access iterator that supports subtraction. 
- * @tparam MaxDiff_ Integer type for maximum difference between iterators.
- *
- * @param max_diff Maximum difference between iterators, typically derived from external knowledge (e.g., the array/container size).
- * This should be non-negative.
- *
- * @return On success, `true` is returned.
- * If `max_diff` is negative or would overflow the difference type, an error is raised.
+ * @cond
  */
 template<typename Iterator_, typename MaxDiff_>
 constexpr bool can_ptrdiff(MaxDiff_ max_diff) {
@@ -39,6 +25,9 @@ constexpr bool can_ptrdiff(MaxDiff_ max_diff) {
     check_overflow<Diff>(max_diff);
     return true;
 }
+/**
+ * @endcond
+ */
 
 // It is tempting to write a ptrdiff() function that checks each subtraction for overflow given 'start' and 'end' iterators.
 // This could be implemented by checking if 'end >= start + theoretical_max_diff' when 'max_diff > theoretical_max_diff'.
