@@ -1,9 +1,7 @@
 #ifndef SANISIZER_PTRDIFF_HPP
 #define SANISIZER_PTRDIFF_HPP
 
-#include <limits>
 #include <utility>
-#include <type_traits>
 
 #include "attest.hpp"
 #include "utils.hpp"

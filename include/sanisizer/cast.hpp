@@ -2,7 +2,6 @@
 #define SANISIZER_CAST_HPP
 
 #include "attest.hpp"
-#include "utils.hpp"
 
 /**
  * @file cast.hpp

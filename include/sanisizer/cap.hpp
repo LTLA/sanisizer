@@ -4,6 +4,7 @@
 #include <limits>
 #include <type_traits>
 
+#include "utils.hpp"
 #include "attest.hpp"
 
 /**

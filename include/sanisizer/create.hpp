@@ -2,7 +2,6 @@
 #define SANISIZER_CREATE_HPP
 
 #include <utility>
-#include <limits>
 
 #include "utils.hpp"
 #include "attest.hpp"
