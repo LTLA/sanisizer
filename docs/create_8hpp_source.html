@@ -106,43 +106,41 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Container_, <span class="keyword">typename</span> Value_&gt;</div>
 <div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">   28</a></span><span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">as_size_type</a>(Value_ x) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_function" href="namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a">check_overflow&lt;I&lt;decltype(std::declval&lt;Container_&gt;</a>().size())&gt; &gt;(x);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(x);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="namespacesanisizer.html#acde4a5b2077777f0c0d0b0761183b29b">cast&lt;I&lt;decltype(std::declval&lt;Container_&gt;</a>().size())&gt; &gt;(x);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
 </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>Container_, <span class="keyword">typename</span> Value_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">   47</a></span>Container_ <a class="code hl_function" href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">create</a>(Value_ x, Args_&amp;&amp;... args) {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordflow">return</span> Container_(<a class="code hl_function" href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">as_size_type&lt;Container_&gt;</a>(x), std::forward&lt;Args_&gt;(args)...);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>Container_, <span class="keyword">typename</span> Value_, <span class="keyword">typename</span> ... Args_&gt;</div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">   46</a></span>Container_ <a class="code hl_function" href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">create</a>(Value_ x, Args_&amp;&amp;... args) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">return</span> Container_(<a class="code hl_function" href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">as_size_type&lt;Container_&gt;</a>(x), std::forward&lt;Args_&gt;(args)...);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
 </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>Container_, <span class="keyword">typename</span> Value_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d">   65</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d">resize</a>(Container_&amp; container, Value_ x, Args_&amp;&amp;... args) {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    container.resize(<a class="code hl_function" href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">as_size_type&lt;Container_&gt;</a>(x), std::forward&lt;Args_&gt;(args)...);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>Container_, <span class="keyword">typename</span> Value_, <span class="keyword">typename</span> ... Args_&gt;</div>
+<div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d">   64</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d">resize</a>(Container_&amp; container, Value_ x, Args_&amp;&amp;... args) {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    container.resize(<a class="code hl_function" href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">as_size_type&lt;Container_&gt;</a>(x), std::forward&lt;Args_&gt;(args)...);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
 </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>Container_, <span class="keyword">typename</span> Value_, <span class="keyword">typename</span> ... Args_&gt;</div>
-<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a1a07e85a7c7d29d992442f2d40476188">   83</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacesanisizer.html#a1a07e85a7c7d29d992442f2d40476188">reserve</a>(Container_&amp; container, Value_ x, Args_&amp;&amp;... args) {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    container.reserve(<a class="code hl_function" href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">as_size_type&lt;Container_&gt;</a>(x), std::forward&lt;Args_&gt;(args)...);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">template</span>&lt;<span class="keyword">class </span>Container_, <span class="keyword">typename</span> Value_, <span class="keyword">typename</span> ... Args_&gt;</div>
+<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a1a07e85a7c7d29d992442f2d40476188">   82</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacesanisizer.html#a1a07e85a7c7d29d992442f2d40476188">reserve</a>(Container_&amp; container, Value_ x, Args_&amp;&amp;... args) {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    container.reserve(<a class="code hl_function" href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">as_size_type&lt;Container_&gt;</a>(x), std::forward&lt;Args_&gt;(args)...);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
 </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>}</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>}</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aattest_8hpp_html"><div class="ttname"><a href="attest_8hpp.html">attest.hpp</a></div><div class="ttdoc">Create compile-time attestations.</div></div>
 <div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:16</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a0c7c43499ff60d5185708c50b32a40d7"><div class="ttname"><a href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">sanisizer::create</a></div><div class="ttdeci">Container_ create(Value_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:47</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a1377156c38a676a8de3829988a703d17"><div class="ttname"><a href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">sanisizer::get_value</a></div><div class="ttdeci">constexpr auto get_value(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:105</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a0c7c43499ff60d5185708c50b32a40d7"><div class="ttname"><a href="namespacesanisizer.html#a0c7c43499ff60d5185708c50b32a40d7">sanisizer::create</a></div><div class="ttdeci">Container_ create(Value_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:46</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a1822e85f3815607a803d826f36b82814"><div class="ttname"><a href="namespacesanisizer.html#a1822e85f3815607a803d826f36b82814">sanisizer::as_size_type</a></div><div class="ttdeci">constexpr auto as_size_type(Value_ x)</div><div class="ttdef"><b>Definition</b> create.hpp:28</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a1a07e85a7c7d29d992442f2d40476188"><div class="ttname"><a href="namespacesanisizer.html#a1a07e85a7c7d29d992442f2d40476188">sanisizer::reserve</a></div><div class="ttdeci">void reserve(Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:83</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a3df6e5117dcf28cab0e705d4ac499f0d"><div class="ttname"><a href="namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d">sanisizer::resize</a></div><div class="ttdeci">void resize(Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:65</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a6911bfdd00b6bd59dd72b935ca5d9d3a"><div class="ttname"><a href="namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a">sanisizer::check_overflow</a></div><div class="ttdeci">constexpr bool check_overflow(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:178</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a1a07e85a7c7d29d992442f2d40476188"><div class="ttname"><a href="namespacesanisizer.html#a1a07e85a7c7d29d992442f2d40476188">sanisizer::reserve</a></div><div class="ttdeci">void reserve(Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:82</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a3df6e5117dcf28cab0e705d4ac499f0d"><div class="ttname"><a href="namespacesanisizer.html#a3df6e5117dcf28cab0e705d4ac499f0d">sanisizer::resize</a></div><div class="ttdeci">void resize(Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</div><div class="ttdef"><b>Definition</b> create.hpp:64</div></div>
+<div class="ttc" id="anamespacesanisizer_html_acde4a5b2077777f0c0d0b0761183b29b"><div class="ttname"><a href="namespacesanisizer.html#acde4a5b2077777f0c0d0b0761183b29b">sanisizer::cast</a></div><div class="ttdeci">constexpr Dest_ cast(Value_ x)</div><div class="ttdef"><b>Definition</b> cast.hpp:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
