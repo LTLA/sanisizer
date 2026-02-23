@@ -52,7 +52,7 @@
     <name>create.hpp</name>
     <path>sanisizer/</path>
     <filename>create_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
