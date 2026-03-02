@@ -191,7 +191,7 @@ You can install the library by cloning a suitable version of this repository and
 
 ```sh
 mkdir build && cd build
-cmake .. -DNCLIST_TESTS=OFF
+cmake .. -DSANISIZER_TESTS=OFF
 cmake --build . --target install
 ```
 
