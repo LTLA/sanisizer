@@ -1145,11 +1145,11 @@ template&lt;typename Float_ &gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>A non-negative integer. Specifically, a non-negative floating-point value where <code>x == std::trunc(x)</code>.</td></tr>
+    <tr><td class="paramname">x</td><td>A finite non-negative integer. Specifically, a floating-point number for which the following is true: <code>std::isfinite(x)</code>, <code>x &gt;= 0</code> and <code>x == std::trunc(x)</code>.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Number of bits required to represent <code>x</code> as a (two's complement) integer.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of bits required to store <code>x</code> exactly in a (two's complement) integer type.</dd></dl>
 <p>The return value can be compared to <code>std::numeric_limits&lt;Integer_&gt;::digits</code> to determine if <code>Integer_</code> is large enough to store <code>x</code>. </p>
 
 </div>

@@ -112,103 +112,104 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a714d5385b83631d2aace857ca004fee8">   31</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="namespacesanisizer.html#a714d5385b83631d2aace857ca004fee8">required_bits_for_float</a>(Float_ x) {</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">static_assert</span>(std::is_floating_point&lt;Float_&gt;::value);</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    assert(x &gt;= 0);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    assert(std::trunc(x) == x);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_FREXP</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::numeric_limits&lt;Float_&gt;::radix == 2) {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordflow">if</span> (x == 0) {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="comment">// ilogb returns an &#39;exp&#39; such that 2^exp &lt;= x &lt; 2^(exp + 1).</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordflow">return</span> std::ilogb(x) + 1;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="comment">// Ensure we&#39;re covered for weird float types where the radix is not 2.</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordtype">int</span> exp;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        std::frexp(x, &amp;exp); </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="comment">// frexp guarantees that 2^(exp - 1) &lt;= x &lt; 2^exp.</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">return</span> exp;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_FREXP</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    }</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    assert(std::isfinite(x));</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    assert(std::trunc(x) == x);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_FREXP</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::numeric_limits&lt;Float_&gt;::radix == 2) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">if</span> (x == 0) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="comment">// ilogb returns an &#39;exp&#39; such that 2^exp &lt;= x &lt; 2^(exp + 1).</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            <span class="keywordflow">return</span> std::ilogb(x) + 1;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="comment">// Ensure we&#39;re covered for weird float types where the radix is not 2.</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">int</span> exp;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        std::frexp(x, &amp;exp); </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">// frexp guarantees that 2^(exp - 1) &lt;= x &lt; 2^exp.</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">return</span> exp;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_FREXP</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Integer_, <span class="keyword">typename</span> Float_&gt;</div>
-<div class="foldopen" id="foldopen00069" data-start="{" data-end="}">
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">   69</a></span>Integer_ <a class="code hl_function" href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">from_float</a>(Float_ x) {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">static_assert</span>(std::is_floating_point&lt;Float_&gt;::value);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Integer_&gt;::value);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">if</span> (!std::isfinite(x)) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">throw</span> std::range_error(<span class="stringliteral">&quot;invalid conversion of non-finite value in sanisizer::from_float&quot;</span>);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">if</span> (x &lt; 0) {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordflow">throw</span> std::out_of_range(<span class="stringliteral">&quot;negative input value in sanisizer::from_float&quot;</span>);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    x = std::trunc(x);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> output_precision = std::numeric_limits&lt;Integer_&gt;::digits;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacesanisizer.html#a714d5385b83631d2aace857ca004fee8">required_bits_for_float</a>(x) &gt; output_precision) {</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::from_float&quot;</span>);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">return</span> x;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>}</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Integer_, <span class="keyword">typename</span> Float_&gt;</div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">   70</a></span>Integer_ <a class="code hl_function" href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">from_float</a>(Float_ x) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">static_assert</span>(std::is_floating_point&lt;Float_&gt;::value);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">static_assert</span>(std::is_integral&lt;Integer_&gt;::value);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">if</span> (!std::isfinite(x)) {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordflow">throw</span> std::range_error(<span class="stringliteral">&quot;invalid conversion of non-finite value in sanisizer::from_float&quot;</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">if</span> (x &lt; 0) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">throw</span> std::out_of_range(<span class="stringliteral">&quot;negative input value in sanisizer::from_float&quot;</span>);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    x = std::trunc(x);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> output_precision = std::numeric_limits&lt;Integer_&gt;::digits;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacesanisizer.html#a714d5385b83631d2aace857ca004fee8">required_bits_for_float</a>(x) &gt; output_precision) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::from_float&quot;</span>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">return</span> x;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
 </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Float_, <span class="keyword">typename</span> Integer_&gt;</div>
-<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">  106</a></span>Float_ <a class="code hl_function" href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">to_float</a>(Integer_ x) {</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">const</span> <span class="keyword">auto</span> val = <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(x);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="comment">// protect against the various -1 operations.</span></div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> xmax = <a class="code hl_function" href="namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64">get_max</a>&lt;I&lt;<span class="keyword">decltype</span>(x)&gt; &gt;();</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(xmax == 0) {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (val == 0) {</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> frad = std::numeric_limits&lt;Float_&gt;::radix;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> fdig = std::numeric_limits&lt;Float_&gt;::digits;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_MANUAL</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(frad == 2) {</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::numeric_limits&lt;I&lt;<span class="keyword">decltype</span>(val)&gt; &gt;::digits &gt; fdig) {</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>((xmax - 1) &gt;&gt; fdig) {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                <span class="keyword">const</span> <span class="keyword">auto</span> y = (val - 1) &gt;&gt; fdig;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                <span class="keywordflow">if</span> (y) {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                    <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::to_float&quot;</span>);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                }</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            }</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="comment">// Manual fallback in the unusual case that the radixes is not 2.</span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        I&lt;<span class="keyword">decltype</span>(val)&gt; working = val - 1;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(fdig)&gt; d = 0; d &lt; fdig &amp;&amp; working; ++d) {</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            working /= frad;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        }</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">if</span> (working) {</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::to_float&quot;</span>);</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        }</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_MANUAL</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    }</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">return</span> val;</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Float_, <span class="keyword">typename</span> Integer_&gt;</div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">  107</a></span>Float_ <a class="code hl_function" href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">to_float</a>(Integer_ x) {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">const</span> <span class="keyword">auto</span> val = <a class="code hl_function" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">get_value</a>(x);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="comment">// protect against the various -1 operations.</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> xmax = <a class="code hl_function" href="namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64">get_max</a>&lt;I&lt;<span class="keyword">decltype</span>(x)&gt; &gt;();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(xmax == 0) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (val == 0) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> frad = std::numeric_limits&lt;Float_&gt;::radix;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> fdig = std::numeric_limits&lt;Float_&gt;::digits;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_MANUAL</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(frad == 2) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::numeric_limits&lt;I&lt;<span class="keyword">decltype</span>(val)&gt; &gt;::digits &gt; fdig) {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            <span class="keywordflow">if</span> <span class="keyword">constexpr</span>((xmax - 1) &gt;&gt; fdig) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                <span class="keyword">const</span> <span class="keyword">auto</span> y = (val - 1) &gt;&gt; fdig;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                <span class="keywordflow">if</span> (y) {</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>                    <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::to_float&quot;</span>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="comment">// Manual fallback in the unusual case that the radixes is not 2.</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        I&lt;<span class="keyword">decltype</span>(val)&gt; working = val - 1;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">for</span> (I&lt;<span class="keyword">decltype</span>(fdig)&gt; d = 0; d &lt; fdig &amp;&amp; working; ++d) {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            working /= frad;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        <span class="keywordflow">if</span> (working) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            <span class="keywordflow">throw</span> std::overflow_error(<span class="stringliteral">&quot;overflow detected in sanisizer::to_float&quot;</span>);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        }</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">#ifndef SANISIZER_FLOAT_FORCE_MANUAL</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordflow">return</span> val;</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>}</div>
 </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>}</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>}</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aattest_8hpp_html"><div class="ttname"><a href="attest_8hpp.html">attest.hpp</a></div><div class="ttdoc">Create compile-time attestations.</div></div>
 <div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> arithmetic.hpp:16</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a1377156c38a676a8de3829988a703d17"><div class="ttname"><a href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">sanisizer::get_value</a></div><div class="ttdeci">constexpr auto get_value(Value_ x)</div><div class="ttdef"><b>Definition</b> attest.hpp:105</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a4339f0370428ea79772ab81e3637db20"><div class="ttname"><a href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Integer_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:106</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a56076716172db1c8ee4b11e1a01bb4b6"><div class="ttname"><a href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">sanisizer::from_float</a></div><div class="ttdeci">Integer_ from_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:69</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a4339f0370428ea79772ab81e3637db20"><div class="ttname"><a href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Integer_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:107</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a56076716172db1c8ee4b11e1a01bb4b6"><div class="ttname"><a href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">sanisizer::from_float</a></div><div class="ttdeci">Integer_ from_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:70</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a714d5385b83631d2aace857ca004fee8"><div class="ttname"><a href="namespacesanisizer.html#a714d5385b83631d2aace857ca004fee8">sanisizer::required_bits_for_float</a></div><div class="ttdeci">int required_bits_for_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:31</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a743d244f216921a55a3c74d0544f1d64"><div class="ttname"><a href="namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64">sanisizer::get_max</a></div><div class="ttdeci">constexpr auto get_max()</div><div class="ttdef"><b>Definition</b> attest.hpp:119</div></div>
 </div><!-- fragment --></div><!-- contents -->
