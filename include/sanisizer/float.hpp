@@ -20,10 +20,10 @@ namespace sanisizer {
 /**
  * @tparam Float_ Floating-point type.
  *
- * @param x A non-negative integer.
- * Specifically, a non-negative floating-point value where `x == std::trunc(x)`.
+ * @param x A finite non-negative integer.
+ * Specifically, a floating-point number for which the following is true: `std::isfinite(x)`, `x >= 0` and `x == std::trunc(x)`.
  *
- * @return Number of bits required to represent `x` as a (two's complement) integer.
+ * @return Number of bits required to store `x` exactly in a (two's complement) integer type.
  *
  * The return value can be compared to `std::numeric_limits<Integer_>::digits` to determine if `Integer_` is large enough to store `x`.
  */
@@ -31,6 +31,7 @@ template<typename Float_>
 int required_bits_for_float(Float_ x) {
     static_assert(std::is_floating_point<Float_>::value);
     assert(x >= 0);
+    assert(std::isfinite(x));
     assert(std::trunc(x) == x);
 
 #ifndef SANISIZER_FLOAT_FORCE_FREXP
