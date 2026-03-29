@@ -378,6 +378,13 @@
       <arglist>(Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</arglist>
     </member>
     <member kind="function">
+      <type>int</type>
+      <name>required_bits_for_float</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a714d5385b83631d2aace857ca004fee8</anchor>
+      <arglist>(Float_ x)</arglist>
+    </member>
+    <member kind="function">
       <type>Integer_</type>
       <name>from_float</name>
       <anchorfile>namespacesanisizer.html</anchorfile>

@@ -173,11 +173,11 @@ Float conversions</h1>
 <p>Occasionally, we must cast a floating-point value to an integer, e.g., when determining the size of a container from a non-integer calculation. This can be done safely using the <code>from_float()</code> function:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> some_value;</div>
 <div class="line"><span class="keyword">auto</span> as_u8 = <a class="code hl_function" href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">sanisizer::from_float&lt;std::uint8_t&gt;</a>(some_value);</div>
-<div class="ttc" id="anamespacesanisizer_html_a56076716172db1c8ee4b11e1a01bb4b6"><div class="ttname"><a href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">sanisizer::from_float</a></div><div class="ttdeci">Integer_ from_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:58</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a56076716172db1c8ee4b11e1a01bb4b6"><div class="ttname"><a href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">sanisizer::from_float</a></div><div class="ttdeci">Integer_ from_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:69</div></div>
 </div><!-- fragment --><p>We can do the converse with the <code>to_float()</code> function, which checks that the input integer can be exactly represented in floating-point. This is sometimes necessary when interfacing with frameworks that have no concept of an integer, e.g., Javascript.</p>
 <div class="fragment"><div class="line">std::uint64_t foo;</div>
 <div class="line"><span class="keyword">auto</span> as_dbl = <a class="code hl_function" href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float&lt;double&gt;</a>(foo);</div>
-<div class="ttc" id="anamespacesanisizer_html_a4339f0370428ea79772ab81e3637db20"><div class="ttname"><a href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Integer_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:93</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a4339f0370428ea79772ab81e3637db20"><div class="ttname"><a href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Integer_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:106</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Building projects</h1>
 <h2><a class="anchor" id="autotoc_md9"></a>

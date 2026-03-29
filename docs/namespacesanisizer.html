@@ -185,6 +185,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a1a07e85a7c7d29d992442f2d40476188" id="r_a1a07e85a7c7d29d992442f2d40476188"><td class="memTemplParams" colspan="2">template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:a1a07e85a7c7d29d992442f2d40476188"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1a07e85a7c7d29d992442f2d40476188">reserve</a> (Container_ &amp;container, Value_ x, Args_ &amp;&amp;... args)</td></tr>
 <tr class="separator:a1a07e85a7c7d29d992442f2d40476188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a714d5385b83631d2aace857ca004fee8" id="r_a714d5385b83631d2aace857ca004fee8"><td class="memTemplParams" colspan="2">template&lt;typename Float_ &gt; </td></tr>
+<tr class="memitem:a714d5385b83631d2aace857ca004fee8"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a714d5385b83631d2aace857ca004fee8">required_bits_for_float</a> (Float_ x)</td></tr>
+<tr class="separator:a714d5385b83631d2aace857ca004fee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56076716172db1c8ee4b11e1a01bb4b6" id="r_a56076716172db1c8ee4b11e1a01bb4b6"><td class="memTemplParams" colspan="2">template&lt;typename Integer_ , typename Float_ &gt; </td></tr>
 <tr class="memitem:a56076716172db1c8ee4b11e1a01bb4b6"><td class="memTemplItemLeft" align="right" valign="top">Integer_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a56076716172db1c8ee4b11e1a01bb4b6">from_float</a> (Float_ x)</td></tr>
 <tr class="separator:a56076716172db1c8ee4b11e1a01bb4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1115,6 +1118,39 @@ template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Product of all arguments as a <code>Dest_</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a714d5385b83631d2aace857ca004fee8" name="a714d5385b83631d2aace857ca004fee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a714d5385b83631d2aace857ca004fee8">&#9670;&#160;</a></span>required_bits_for_float()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Float_ &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int sanisizer::required_bits_for_float </td>
+          <td>(</td>
+          <td class="paramtype">Float_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Float_</td><td>Floating-point type.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>A non-negative integer. Specifically, a non-negative floating-point value where <code>x == std::trunc(x)</code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Number of bits required to represent <code>x</code> as a (two's complement) integer.</dd></dl>
+<p>The return value can be compared to <code>std::numeric_limits&lt;Integer_&gt;::digits</code> to determine if <code>Integer_</code> is large enough to store <code>x</code>. </p>
 
 </div>
 </div>
