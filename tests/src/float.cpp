@@ -4,6 +4,33 @@
 
 #include <cstdint>
 
+TEST(Float, RequiredBits) {
+    EXPECT_EQ(sanisizer::required_bits_for_float(0.), 0);
+    EXPECT_EQ(sanisizer::required_bits_for_float(1.), 1);
+    EXPECT_EQ(sanisizer::required_bits_for_float(2.), 2);
+    EXPECT_EQ(sanisizer::required_bits_for_float(3.), 2);
+    EXPECT_EQ(sanisizer::required_bits_for_float(4.), 3);
+    EXPECT_EQ(sanisizer::required_bits_for_float(10.), 4);
+    EXPECT_EQ(sanisizer::required_bits_for_float(25.), 5);
+    EXPECT_EQ(sanisizer::required_bits_for_float(50.), 6);
+    EXPECT_EQ(sanisizer::required_bits_for_float(100.), 7);
+
+    EXPECT_EQ(sanisizer::required_bits_for_float(127.), 7);
+    EXPECT_EQ(sanisizer::required_bits_for_float(128.), 8);
+    EXPECT_EQ(sanisizer::required_bits_for_float(255.), 8);
+    EXPECT_EQ(sanisizer::required_bits_for_float(256.), 9);
+
+    EXPECT_EQ(sanisizer::required_bits_for_float(32767.), 15);
+    EXPECT_EQ(sanisizer::required_bits_for_float(32768.), 16);
+    EXPECT_EQ(sanisizer::required_bits_for_float(65535.), 16);
+    EXPECT_EQ(sanisizer::required_bits_for_float(65536.), 17);
+
+    EXPECT_EQ(sanisizer::required_bits_for_float(2147483647.0), 31);
+    EXPECT_EQ(sanisizer::required_bits_for_float(2147483648.0), 32);
+    EXPECT_EQ(sanisizer::required_bits_for_float(4294967295.0), 32);
+    EXPECT_EQ(sanisizer::required_bits_for_float(4294967296.0), 33);
+}
+
 TEST(Float, FromFloat) {
     EXPECT_EQ(sanisizer::from_float<std::uint8_t>(0.0), 0);
     EXPECT_EQ(sanisizer::from_float<std::uint8_t>(6.0), 6);
