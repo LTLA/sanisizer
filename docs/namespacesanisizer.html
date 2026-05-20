@@ -1180,6 +1180,7 @@ template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Reserve a container to the desired size. This protects against overflow when casting the integer size to the container's size type, see <code><a class="el" href="#a1822e85f3815607a803d826f36b82814">as_size_type()</a></code> for details.</p>
+<p>In most cases involving <code>std::vector</code>, this protection is not necessary as the size type is unsigned and <code>x</code> would harmlessly wrap around to some smaller non-negative value. The reserved size would be smaller than <code>x</code> but would silently reallocate as necessary upon <code>push_back()</code> or <code>insert()</code> operations beyond that size. However, this function becomes useful when the user wants to ensure that no reallocations occur, either for performance reasons or to maintain iterator/pointer validity.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Container_</td><td>Container class with a <code>size()</code> method and a <code><a class="el" href="#a1a07e85a7c7d29d992442f2d40476188">reserve()</a></code> method that accepts the size as the first argument. </td></tr>
