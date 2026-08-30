@@ -97,6 +97,7 @@ Integer_ from_float(Float_ x) {
  * @tparam Integer_ Integer type.
  * This can also be an `Attestation`.
  * @tparam Float_ Floating-point type.
+ * This should be one of the IEEE-754 binary formats.
  *
  * @param x Non-negative integer, usually holding some kind of size. 
  *
@@ -117,29 +118,23 @@ Float_ to_float(Integer_ x) {
 
     constexpr auto frad = std::numeric_limits<Float_>::radix;
     constexpr auto fdig = std::numeric_limits<Float_>::digits;
-#ifndef SANISIZER_FLOAT_FORCE_MANUAL
-    if constexpr(frad == 2) {
-        if constexpr(std::numeric_limits<I<decltype(val)> >::digits > fdig) {
-            if constexpr((xmax - 1) >> fdig) {
-                const auto y = (val - 1) >> fdig;
-                if (y) {
-                    throw std::overflow_error("overflow detected in sanisizer::to_float");
-                }
+
+    // Only considering IEEE-754 binary formats, to keep things simple.
+    // Also I don't even have the hardware to test the other formats.
+    static_assert(frad == 2);
+    static_assert(std::numeric_limits<Float_>::is_iec559);
+
+    // Checking digits first, because attempting to right-shift an integer by a number equal to or more than its bits is UB.
+    if constexpr(std::numeric_limits<I<decltype(val)> >::digits > fdig) {
+        // We can represent '2^fdig' itself due to the implicit leading bit on the mantissa in a (normal) IEEE binary float.
+        // Thus, we subtract 1 to avoid throwing an error when 'x == 2^fdig'.
+        if constexpr((xmax - 1) >> fdig) {
+            const auto y = (val - 1) >> fdig;
+            if (y) {
+                throw std::overflow_error("overflow detected in sanisizer::to_float");
             }
         }
-    } else {
-#endif
-        // Manual fallback in the unusual case that the radixes is not 2.
-        I<decltype(val)> working = val - 1;
-        for (I<decltype(fdig)> d = 0; d < fdig && working; ++d) {
-            working /= frad;
-        }
-        if (working) {
-            throw std::overflow_error("overflow detected in sanisizer::to_float");
-        }
-#ifndef SANISIZER_FLOAT_FORCE_MANUAL
     }
-#endif
 
     return val;
 }

@@ -32,9 +32,7 @@ add_executable(libtest
 add_executable(floattest 
     src/float.cpp
 )
-target_compile_definitions(floattest PRIVATE 
-    SANISIZER_FLOAT_FORCE_FREXP=1
-    SANISIZER_FLOAT_FORCE_MANUAL=1)
+target_compile_definitions(floattest PRIVATE SANISIZER_FLOAT_FORCE_FREXP=1)
 
 target_link_libraries(libtest gtest_main sanisizer)
 target_link_libraries(floattest gtest_main sanisizer)
