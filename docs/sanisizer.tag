@@ -387,20 +387,6 @@
     </member>
     <member kind="function">
       <type>constexpr Dest_</type>
-      <name>sum</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ad0351da831c6ee07baf0a96c51a019c9</anchor>
-      <arglist>(First_ first, Args_... more)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr Dest_</type>
-      <name>sum_unsafe</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a6f87dc746d660a88c85ed46d90e5d54c</anchor>
-      <arglist>(First_ first, Args_... more)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr Dest_</type>
       <name>product</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>ace3b6841d0fd165ae3f47d07a713a15c</anchor>
@@ -411,6 +397,20 @@
       <name>product_unsafe</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>aa3df28f9c655292959f7fbf22e61f9c2</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Dest_</type>
+      <name>sum</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ad0351da831c6ee07baf0a96c51a019c9</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Dest_</type>
+      <name>sum_unsafe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a6f87dc746d660a88c85ed46d90e5d54c</anchor>
       <arglist>(First_ first, Args_... more)</arglist>
     </member>
   </compound>
