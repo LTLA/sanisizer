@@ -2,7 +2,8 @@
 #define SANISIZER_HPP
 
 #include "cast.hpp"
-#include "arithmetic.hpp"
+#include "sum.hpp"
+#include "product.hpp"
 #include "attest.hpp"
 #include "comparisons.hpp"
 #include "create.hpp"

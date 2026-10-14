@@ -20,7 +20,8 @@ add_executable(libtest
     src/comparisons.cpp
     src/cast.cpp
     src/create.cpp
-    src/arithmetic.cpp
+    src/sum.cpp
+    src/product.cpp
     src/nd_offset.cpp
     src/cap.cpp
     src/ptrdiff.cpp
