@@ -549,7 +549,7 @@ template&lt;typename Integer_ , typename Float_ &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Safely convert a non-negative floating-point number to an integer with truncation. This is occasionally necessary when the size of a container or number of loop iterations is determined by floating-point calculations.</p>
+<p><a class="el" href="classsanisizer_1_1Cast.html" title="Cast an integer in a function call.">Cast</a> a non-negative floating-point number to an integer. This checks that the conversion is possible, otherwise it throws an exception. Such a cast is occasionally necessary when floating-point calculations are used to derive the size of a container, number of loop iterations, etc.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Integer_</td><td>Integer type. </td></tr>
@@ -563,7 +563,14 @@ template&lt;typename Integer_ , typename Float_ &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The value of <code>x</code> as an integer, after truncation. An exception is raised if <code>x</code> is negative, non-finite or overflow would occur. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of <code>x</code> as an integer, after truncation.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::domain_error</td><td>Thrown if <code>x</code> is negative or non-finite. </td></tr>
+    <tr><td class="paramname">std::overflow_error</td><td>Thrown if <code>x</code> is too large to be stored in <code>Integer_</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1357,8 +1364,9 @@ template&lt;typename Float_ , typename Integer_ &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Safely convert a non-negative integer into a floating-point number without loss of precision. This is occasionally necessary when the surrounding environment does not have a dedicated integer type (e.g., Javascript).</p>
-<p>Note that the "safety" of this function is based on preserving precision rather than avoiding undefined behavior. If the implementation's floats are compliant with the IEEE-754 specifiation, very large integers will already be safely converted to positive infinity via regular casts.</p>
+<p><a class="el" href="classsanisizer_1_1Cast.html" title="Cast an integer in a function call.">Cast</a> a non-negative integer into a (IEE-754 compliant) floating-point number. This checks that (i) there is no loss of precision and (ii) all integers smaller than the input can also be represented by the specified floating-point type.</p>
+<p>This is motivated by the fact that some environments do not have a dedicated integer type (e.g., Javascript). In such cases, array lengths need to be stored as floating-point values. Our checks ensure that both the array length and all valid array indices can be exactly represented in the floating-point type.</p>
+<p>Note that the purpose of this function is to preserve precision rather than to avoid undefined behavior. For IEEE-754 floats, very large integers already have a well-defined cast to positive infinity.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Integer_</td><td>Integer type. This can also be an <code><a class="el" href="structsanisizer_1_1Attestation.html" title="Attest to additional compile-time properties of an integer.">Attestation</a></code>. </td></tr>
@@ -1372,7 +1380,13 @@ template&lt;typename Float_ , typename Integer_ &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The value of <code>x</code> as a floating-point number. An exception is raised if overflow would occur. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of <code>x</code> as a floating-point number.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::overflow_error</td><td>Thrown if <code>Float_</code> cannot exactly represent all non-negative integers less than or equal to <code>x</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
