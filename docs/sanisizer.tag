@@ -1,13 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile doxygen_version="1.12.0">
   <compound kind="file">
-    <name>arithmetic.hpp</name>
-    <path>sanisizer/</path>
-    <filename>arithmetic_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
-    <namespace>sanisizer</namespace>
-  </compound>
-  <compound kind="file">
     <name>attest.hpp</name>
     <path>sanisizer/</path>
     <filename>attest_8hpp.html</filename>
@@ -69,6 +62,13 @@
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
+    <name>product.hpp</name>
+    <path>sanisizer/</path>
+    <filename>product_8hpp.html</filename>
+    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
     <name>ptrdiff.hpp</name>
     <path>sanisizer/</path>
     <filename>ptrdiff_8hpp.html</filename>
@@ -80,7 +80,8 @@
     <path>sanisizer/</path>
     <filename>sanisizer_8hpp.html</filename>
     <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
-    <includes id="arithmetic_8hpp" name="arithmetic.hpp" local="yes" import="no" module="no" objc="no">arithmetic.hpp</includes>
+    <includes id="sum_8hpp" name="sum.hpp" local="yes" import="no" module="no" objc="no">sum.hpp</includes>
+    <includes id="product_8hpp" name="product.hpp" local="yes" import="no" module="no" objc="no">product.hpp</includes>
     <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
     <includes id="create_8hpp" name="create.hpp" local="yes" import="no" module="no" objc="no">create.hpp</includes>
@@ -89,6 +90,13 @@
     <includes id="ptrdiff_8hpp" name="ptrdiff.hpp" local="yes" import="no" module="no" objc="no">ptrdiff.hpp</includes>
     <includes id="float_8hpp" name="float.hpp" local="yes" import="no" module="no" objc="no">float.hpp</includes>
     <includes id="class_8hpp" name="class.hpp" local="yes" import="no" module="no" objc="no">class.hpp</includes>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
+    <name>sum.hpp</name>
+    <path>sanisizer/</path>
+    <filename>sum_8hpp.html</filename>
+    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="struct">
@@ -216,34 +224,6 @@
     <class kind="struct">sanisizer::is_Attestation</class>
     <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;</class>
     <class kind="struct">sanisizer::is_integral_or_Attestation</class>
-    <member kind="function">
-      <type>constexpr Dest_</type>
-      <name>sum</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ad0351da831c6ee07baf0a96c51a019c9</anchor>
-      <arglist>(First_ first, Args_... more)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr Dest_</type>
-      <name>sum_unsafe</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a6f87dc746d660a88c85ed46d90e5d54c</anchor>
-      <arglist>(First_ first, Args_... more)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr Dest_</type>
-      <name>product</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ace3b6841d0fd165ae3f47d07a713a15c</anchor>
-      <arglist>(First_ first, Args_... more)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr Dest_</type>
-      <name>product_unsafe</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>aa3df28f9c655292959f7fbf22e61f9c2</anchor>
-      <arglist>(First_ first, Args_... more)</arglist>
-    </member>
     <member kind="function">
       <type>constexpr auto</type>
       <name>get_value</name>
@@ -404,6 +384,34 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a8d460a84022487d3460671e5ff96f163</anchor>
       <arglist>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Dest_</type>
+      <name>sum</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ad0351da831c6ee07baf0a96c51a019c9</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Dest_</type>
+      <name>sum_unsafe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a6f87dc746d660a88c85ed46d90e5d54c</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Dest_</type>
+      <name>product</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ace3b6841d0fd165ae3f47d07a713a15c</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Dest_</type>
+      <name>product_unsafe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>aa3df28f9c655292959f7fbf22e61f9c2</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
     </member>
   </compound>
   <compound kind="page">
