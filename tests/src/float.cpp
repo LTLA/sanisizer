@@ -44,7 +44,7 @@ TEST(Float, FromFloat) {
     } catch (std::exception& e) {
         failmsg = e.what();
     }
-    EXPECT_TRUE(failmsg.find("overflow detected") != std::string::npos);
+    EXPECT_TRUE(failmsg.find("too large") != std::string::npos);
 
     failmsg.clear();
     try {
@@ -52,7 +52,7 @@ TEST(Float, FromFloat) {
     } catch (std::exception& e) {
         failmsg = e.what();
     }
-    EXPECT_TRUE(failmsg.find("overflow detected") != std::string::npos);
+    EXPECT_TRUE(failmsg.find("too large") != std::string::npos);
 
     failmsg.clear();
     try {
@@ -60,7 +60,7 @@ TEST(Float, FromFloat) {
     } catch (std::exception& e) {
         failmsg = e.what();
     }
-    EXPECT_TRUE(failmsg.find("invalid conversion") != std::string::npos);
+    EXPECT_TRUE(failmsg.find("finite") != std::string::npos);
 
     failmsg.clear();
     try {
@@ -68,7 +68,7 @@ TEST(Float, FromFloat) {
     } catch (std::exception& e) {
         failmsg = e.what();
     }
-    EXPECT_TRUE(failmsg.find("negative input value") != std::string::npos);
+    EXPECT_TRUE(failmsg.find("non-negative") != std::string::npos);
 }
 
 TEST(Float, ToFloat) {
@@ -88,7 +88,7 @@ TEST(Float, ToFloat) {
         } catch (std::exception& e) {
             failmsg = e.what();
         }
-        EXPECT_TRUE(failmsg.find("overflow detected") != std::string::npos);
+        EXPECT_TRUE(failmsg.find("too large") != std::string::npos);
 
         failmsg.clear();
         try {
@@ -96,7 +96,7 @@ TEST(Float, ToFloat) {
         } catch (std::exception& e) {
             failmsg = e.what();
         }
-        EXPECT_TRUE(failmsg.find("overflow detected") != std::string::npos);
+        EXPECT_TRUE(failmsg.find("too large") != std::string::npos);
     }
 
     // Works with attestations.

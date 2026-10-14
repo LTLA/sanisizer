@@ -12,7 +12,7 @@
 
 /**
  * @file float.hpp
- * @brief Safely convert floats to/from integer sizes.
+ * @brief Cast floats to/from integer sizes.
  */
 
 namespace sanisizer {
@@ -55,8 +55,9 @@ int required_bits_for_float(Float_ x) {
 }
 
 /**
- * Safely convert a non-negative floating-point number to an integer with truncation.
- * This is occasionally necessary when the size of a container or number of loop iterations is determined by floating-point calculations.
+ * Cast a non-negative floating-point number to an integer.
+ * This checks that the conversion is possible, otherwise it throws an exception. 
+ * Such a cast is occasionally necessary when floating-point calculations are used to derive the size of a container, number of loop iterations, etc.
  *
  * @tparam Integer_ Integer type.
  * @tparam Float_ Floating-point type.
@@ -64,7 +65,9 @@ int required_bits_for_float(Float_ x) {
  * @param x Floating-point number, usually holding some kind of size. 
  *
  * @return The value of `x` as an integer, after truncation.
- * An exception is raised if `x` is negative, non-finite or overflow would occur.
+ *
+ * @throw std::domain_error Thrown if `x` is negative or non-finite.
+ * @throw std::overflow_error Thrown if `x` is too large to be stored in `Integer_`.
  */
 template<typename Integer_, typename Float_>
 Integer_ from_float(Float_ x) {
@@ -72,27 +75,31 @@ Integer_ from_float(Float_ x) {
     static_assert(std::is_integral<Integer_>::value);
 
     if (!std::isfinite(x)) {
-        throw std::range_error("invalid conversion of non-finite value in sanisizer::from_float");
+        throw std::range_error("expected a finite value");
     }
     if (x < 0) {
-        throw std::out_of_range("negative input value in sanisizer::from_float");
+        throw std::range_error("expected a non-negative value");
     }
     x = std::trunc(x);
 
     constexpr auto output_precision = std::numeric_limits<Integer_>::digits;
     if (required_bits_for_float(x) > output_precision) {
-        throw std::overflow_error("overflow detected in sanisizer::from_float");
+        throw std::overflow_error("value is too large for the specified integer type");
     }
 
     return x;
 }
 
 /**
- * Safely convert a non-negative integer into a floating-point number without loss of precision.
- * This is occasionally necessary when the surrounding environment does not have a dedicated integer type (e.g., Javascript).
+ * Cast a non-negative integer into a (IEE-754 compliant) floating-point number.
+ * This checks that (i) there is no loss of precision and (ii) all integers smaller than the input can also be represented by the specified floating-point type.
  *
- * Note that the "safety" of this function is based on preserving precision rather than avoiding undefined behavior.
- * If the implementation's floats are compliant with the IEEE-754 specifiation, very large integers will already be safely converted to positive infinity via regular casts.
+ * This is motivated by the fact that some environments do not have a dedicated integer type (e.g., Javascript). 
+ * In such cases, array lengths need to be stored as floating-point values.
+ * Our checks ensure that both the array length and all valid array indices can be exactly represented in the floating-point type.
+ *
+ * Note that the purpose of this function is to preserve precision rather than to avoid undefined behavior.
+ * For IEEE-754 floats, very large integers already have a well-defined cast to positive infinity. 
  *
  * @tparam Integer_ Integer type.
  * This can also be an `Attestation`.
@@ -102,7 +109,8 @@ Integer_ from_float(Float_ x) {
  * @param x Non-negative integer, usually holding some kind of size. 
  *
  * @return The value of `x` as a floating-point number.
- * An exception is raised if overflow would occur.
+ *
+ * @throw std::overflow_error Thrown if `Float_` cannot exactly represent all non-negative integers less than or equal to `x`.
  */
 template<typename Float_, typename Integer_>
 Float_ to_float(Integer_ x) {
@@ -131,7 +139,7 @@ Float_ to_float(Integer_ x) {
         if constexpr((xmax - 1) >> fdig) {
             const auto y = (val - 1) >> fdig;
             if (y) {
-                throw std::overflow_error("overflow detected in sanisizer::to_float");
+                throw std::overflow_error("value is too large for the specified floating-point type");
             }
         }
     }
