@@ -4,7 +4,7 @@
 #include <type_traits>
 
 #include "cast.hpp"
-#include "attest.hpp"
+#include "generics.hpp"
 
 /**
  * @file class.hpp
@@ -16,8 +16,7 @@ namespace sanisizer {
 /**
  * @brief Cast an integer in a function call.
  *
- * @tparam Value_ Type of the integer to be casted from.
- * This may also be an `Attestation`.
+ * @tparam Value_ Integer type, `Bounded` or `Constant`.
  *
  * Consider a function `f(T x)` for some (non-template) integer `T`.
  * When calling this function on an integer `y`, we can use `f(Cast(y))`, 
@@ -25,7 +24,6 @@ namespace sanisizer {
  */
 template<typename Value_>
 class Cast {
-    static_assert(is_integral_or_Attestation<Value_>::value);
     Value_ my_x;
 
 public:
@@ -47,7 +45,7 @@ public:
 /**
  * @brief Do not cast an integer in a function call.
  *
- * @tparam Integer_ Type of the integer used in the call.
+ * @tparam Integer_ Integer type.
  *
  * Consider a function `f(T x)` for some (non-template) integer `T`.
  * When calling this function on an integer `y`, we can use `f(Exact(y))`, 

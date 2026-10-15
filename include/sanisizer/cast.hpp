@@ -1,7 +1,7 @@
 #ifndef SANISIZER_CAST_HPP
 #define SANISIZER_CAST_HPP
 
-#include "attest.hpp"
+#include "generics.hpp"
 
 /**
  * @file cast.hpp
@@ -15,13 +15,13 @@ namespace sanisizer {
  * This is useful for chaining together checks without actually doing the cast itself.
  * 
  * @tparam Dest_ Integer type of the destination.
- * @tparam Value_ Integer type of the input value.
- * This may also be an `Attestation`.
+ * @tparam Value_ Integer type, `Bounded` or `Constant`.
  *
  * @param x Non-negative value to be casted.
  *
- * @return `x` as its input type (or the corresponding integer type, if it was an `Attestation`).
- * An error is thrown if overflow would occur.
+ * @return `x` as its input type (or the corresponding integer type, if it was an `Bounded` or `Constant`).
+ *
+ * @throw std::overflow_error Thrown if overflow would occur.
  */
 template<typename Size_, typename Value_>
 constexpr auto can_cast(Value_ x) {
@@ -34,8 +34,7 @@ constexpr auto can_cast(Value_ x) {
  * This avoids accidental overflow from an implicit cast when `x` is used in `new` or the container's constructor.
  * 
  * @tparam Dest_ Integer type of the destination.
- * @tparam Value_ Integer type of the input value.
- * This may also be an `Attestation`.
+ * @tparam Value_ Integer type, `Bounded` or `Constant`.
  *
  * @param x Non-negative value to be casted.
  *

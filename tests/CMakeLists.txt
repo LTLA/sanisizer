@@ -26,7 +26,9 @@ add_executable(libtest
     src/cap.cpp
     src/ptrdiff.cpp
     src/float.cpp
-    src/attest.cpp
+    src/Bounded.cpp
+    src/Constant.cpp
+    src/generics.cpp
     src/class.cpp
 )
 

@@ -4,6 +4,16 @@
 
 #include <cstdint>
 
+TEST(AsSizeType, Basic) {
+    EXPECT_EQ(sanisizer::as_size_type<std::vector<int> >(20), 20);
+    EXPECT_EQ(sanisizer::as_size_type<std::vector<int> >(sanisizer::Bounded<unsigned, 50>(20)), 20);
+    EXPECT_EQ(sanisizer::as_size_type<std::vector<int> >(sanisizer::Constant<unsigned, 50>()), 50);
+
+    static_assert(sanisizer::as_size_type<std::vector<int> >(20) == 20);
+    static_assert(sanisizer::as_size_type<std::vector<int> >(sanisizer::Bounded<unsigned, 50>(20)) == 20);
+    static_assert(sanisizer::as_size_type<std::vector<int> >(sanisizer::Constant<unsigned, 50>()) == 50);
+}
+
 TEST(Create, Basic) {
     auto output = sanisizer::create<std::vector<int> >(20);
     EXPECT_EQ(output.size(), 20);
@@ -12,13 +22,6 @@ TEST(Create, Basic) {
     EXPECT_EQ(output2.size(), 20);
     EXPECT_EQ(output2.front(), 1);
     EXPECT_EQ(output2.back(), 1);
-
-    // Check that it works with attestations.
-    auto output_attest = sanisizer::create<std::vector<int> >(sanisizer::Attestation<int, 20>(10));
-    EXPECT_EQ(output_attest.size(), 10);
-
-    // as_size_type works at compile-time.
-    static_assert(sanisizer::as_size_type<std::vector<int> >(10) == 10);
 }
 
 struct MockVector {

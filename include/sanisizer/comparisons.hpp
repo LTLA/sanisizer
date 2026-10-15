@@ -2,7 +2,7 @@
 #define SANISIZER_COMPARISONS_HPP
 
 #include "utils.hpp"
-#include "attest.hpp"
+#include "generics.hpp"
 
 /**
  * @file comparisons.hpp
@@ -12,10 +12,10 @@
 namespace sanisizer {
 
 /**
- * @tparam Left_ Integer type on the left hand side of the comparison.
- * This may also be an `Attestation`.
- * @tparam Right_ Integer type on the right hand side of the comparison.
- * This may also be an `Attestation`.
+ * @tparam Left_ Integer type of the value on the left hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
+ * @tparam Right_ Integer type of the value on the right hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
  *
  * @param left Non-negative value on the left hand side of the comparison.
  * @param right Non-negative value on the right hand side of the comparison.
@@ -28,10 +28,10 @@ constexpr bool is_equal(Left_ left, Right_ right) {
 }
 
 /**
- * @tparam Left_ Integer type on the left hand side of the comparison.
- * This may also be an `Attestation`.
- * @tparam Right_ Integer type on the right hand side of the comparison.
- * This may also be an `Attestation`.
+ * @tparam Left_ Integer type of the value on the left hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
+ * @tparam Right_ Integer type of the value on the right hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
  *
  * @param left Non-negative value on the left hand side of the comparison.
  * @param right Non-negative value on the right hand side of the comparison.
@@ -44,10 +44,10 @@ constexpr bool is_less_than(Left_ left, Right_ right) {
 }
 
 /**
- * @tparam Left_ Integer type on the left hand side of the comparison.
- * This may also be an `Attestation`.
- * @tparam Right_ Integer type on the right hand side of the comparison.
- * This may also be an `Attestation`.
+ * @tparam Left_ Integer type of the value on the left hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
+ * @tparam Right_ Integer type of the value on the right hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
  *
  * @param left Non-negative value on the left hand side of the comparison.
  * @param right Non-negative value on the right hand side of the comparison.
@@ -60,10 +60,10 @@ constexpr bool is_less_than_or_equal(Left_ left, Right_ right) {
 }
 
 /**
- * @tparam Left_ Integer type on the left hand side of the comparison.
- * This may also be an `Attestation`.
- * @tparam Right_ Integer type on the right hand side of the comparison.
- * This may also be an `Attestation`.
+ * @tparam Left_ Integer type of the value on the left hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
+ * @tparam Right_ Integer type of the value on the right hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
  *
  * @param left Non-negative value on the left hand side of the comparison.
  * @param right Non-negative value on the right hand side of the comparison.
@@ -76,10 +76,10 @@ constexpr bool is_greater_than(Left_ left, Right_ right) {
 }
 
 /**
- * @tparam Left_ Integer type on the left hand side of the comparison.
- * This may also be an `Attestation`.
- * @tparam Right_ Integer type on the right hand side of the comparison.
- * This may also be an `Attestation`.
+ * @tparam Left_ Integer type of the value on the left hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
+ * @tparam Right_ Integer type of the value on the right hand side of the comparison.
+ * This may also be a `Constant` or `Bounded`.
  *
  * @param left Non-negative value on the left hand side of the comparison.
  * @param right Non-negative value on the right hand side of the comparison.
@@ -92,10 +92,10 @@ constexpr bool is_greater_than_or_equal(Left_ left, Right_ right) {
 }
 
 /**
- * @tparam First_ First integer type. 
- * This may also be an `Attestation`.
- * @tparam Second_ Second integer type.
- * This may also be an `Attestation`.
+ * @tparam First_ Integer type of the first value.
+ * This may also be a `Bounded` or `Constant`.
+ * @tparam Second_ Integer type of the second value.
+ * This may also be a `Bounded` or `Constant`.
  *
  * @param first First non-negative value. 
  * @param second Second non-negative value. 
@@ -124,10 +124,10 @@ constexpr auto min(First_ first, Second_ second) {
 }
 
 /**
- * @tparam First_ First integer type. 
- * This may also be an `Attestation`.
- * @tparam Second_ Second integer type.
- * This may also be an `Attestation`.
+ * @tparam First_ Integer type of the first value.
+ * This may also be a `Bounded` or `Constant`.
+ * @tparam Second_ Integer type of the second value.
+ * This may also be a `Bounded` or `Constant`.
  *
  * @param first First non-negative value. 
  * @param second Second non-negative value. 

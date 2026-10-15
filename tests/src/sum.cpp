@@ -20,7 +20,7 @@ TEST(Sum, Check) {
     static_assert(!sanisizer::needs_sum_check<std::int64_t, std::int64_t, sanisizer::Attestation<std::int64_t, 0> >());
 }
 
-TEST(Sum, Okay) {
+TEST(Sum, Integer) {
     EXPECT_EQ(sanisizer::sum<std::int64_t>((i32)5, (i32)20), 25);
     EXPECT_EQ(sanisizer::sum<std::int64_t>((u32)5, (i32)20), 25);
     EXPECT_EQ(sanisizer::sum<std::int64_t>((i32)5, (u32)20), 25);
@@ -31,16 +31,35 @@ TEST(Sum, Okay) {
     EXPECT_EQ(sanisizer::sum<std::uint8_t>((i32)5, (u32)20), 25);
     EXPECT_EQ(sanisizer::sum<std::uint8_t>((u32)5, (u32)20), 25);
 
-    EXPECT_EQ(sanisizer::sum<std::int8_t>(5, sanisizer::Attestation<i32, 1000>((i32)20)), 25);
-    EXPECT_EQ(sanisizer::sum<std::int8_t>(5, sanisizer::Attestation<i32, 100>((i32)20)), 25);
-    EXPECT_EQ(sanisizer::sum<std::int8_t>(sanisizer::Attestation<u32, 1000>((u32)20), 5), 25);
-    EXPECT_EQ(sanisizer::sum<std::int8_t>(sanisizer::Attestation<u32, 100>((u32)20), 5), 25);
-
     // Works at compile-time.
+    static_assert(sanisizer::sum<std::int8_t>((i32)5, (i32)20) == 25);
     static_assert(sanisizer::sum<std::int64_t>((i32)5, (i32)20) == 25);
 }
 
+TEST(Sum, Bounded) {
+    EXPECT_EQ(sanisizer::sum<std::int8_t>(5, sanisizer::Attestation<i32, 1000>((i32)20)), 25);
+    EXPECT_EQ(sanisizer::sum<std::int64_t>(5, sanisizer::Attestation<i32, 100>((i32)20)), 25);
+    EXPECT_EQ(sanisizer::sum<std::int8_t>(sanisizer::Attestation<u32, 1000>((u32)20), 5), 25);
+    EXPECT_EQ(sanisizer::sum<std::int64_t>(sanisizer::Attestation<u32, 100>((u32)20), 5), 25);
+
+    // Works at compile-time.
+    static_assert(sanisizer::sum<std::int8_t>(sanisizer::Attestation<i32, 1000>((i32)5), sanisizer::Attestation<i32, 20>((i32)20)) == 25);
+    static_assert(sanisizer::sum<std::int64_t>(sanisizer::Attestation<i32, 1000>((i32)5), sanisizer::Attestation<i32, 20>((i32)20)) == 25);
+}
+
+TEST(Sum, Constant) {
+    EXPECT_EQ(sanisizer::sum<std::int8_t>(5, sanisizer::Constant<i32, 20>()), 25);
+    EXPECT_EQ(sanisizer::sum<std::int64_t>(5, sanisizer::Constant<i32, 20>()), 25);
+    EXPECT_EQ(sanisizer::sum<std::int8_t>(sanisizer::Constant<u32, 20>(), 5), 25);
+    EXPECT_EQ(sanisizer::sum<std::int64_t>(sanisizer::Constant<u32, 20>(), 5), 25);
+
+    // Works at compile-time.
+    static_assert(sanisizer::sum<std::int8_t>(sanisizer::Constant<i32, 5>(), sanisizer::Constant<i32, 20>()) == 25);
+    static_assert(sanisizer::sum<std::int64_t>(sanisizer::Constant<i32, 5>(), sanisizer::Constant<i32, 20>()) == 25);
+}
+
 TEST(Sum, Fail) {
+    // Initial cast fails.
     bool failed = false;
     try {
         sanisizer::sum<std::int8_t>(5, 255);
@@ -48,6 +67,28 @@ TEST(Sum, Fail) {
         failed = true;
     }
     EXPECT_TRUE(failed);
+
+    // Sum overflows.
+    {
+        bool failed = false;
+        try {
+            sanisizer::sum<std::uint8_t>(1, 255);
+        } catch (std::overflow_error& e) {
+            failed = true;
+        }
+        EXPECT_TRUE(failed);
+    }
+
+    // Repeat when the second value is a Constant, which uses a different branch.
+    {
+        bool failed = false;
+        try {
+            sanisizer::sum<std::uint8_t>(1, sanisizer::Constant<int, 255>());
+        } catch (std::overflow_error& e) {
+            failed = true;
+        }
+        EXPECT_TRUE(failed);
+    }
 }
 
 TEST(Sum, Multiple) {

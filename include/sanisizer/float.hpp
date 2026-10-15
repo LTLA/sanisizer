@@ -8,7 +8,7 @@
 #include <cassert>
 
 #include "utils.hpp"
-#include "attest.hpp"
+#include "generics.hpp"
 
 /**
  * @file float.hpp
@@ -101,8 +101,7 @@ Integer_ from_float(Float_ x) {
  * Note that the purpose of this function is to preserve precision rather than to avoid undefined behavior.
  * For IEEE-754 floats, very large integers already have a well-defined cast to positive infinity. 
  *
- * @tparam Integer_ Integer type.
- * This can also be an `Attestation`.
+ * @tparam Integer_ Integer type, `Bounded` or `Constant`.
  * @tparam Float_ Floating-point type.
  * This should be one of the IEEE-754 binary formats.
  *

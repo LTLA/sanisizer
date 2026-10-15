@@ -4,7 +4,7 @@
 
 #include <cstdint>
 
-TEST(Float, RequiredBits) {
+TEST(RequiredBitsForFloat, Basic) {
     EXPECT_EQ(sanisizer::required_bits_for_float(0.), 0);
     EXPECT_EQ(sanisizer::required_bits_for_float(1.), 1);
     EXPECT_EQ(sanisizer::required_bits_for_float(2.), 2);
@@ -31,13 +31,15 @@ TEST(Float, RequiredBits) {
     EXPECT_EQ(sanisizer::required_bits_for_float(4294967296.0), 33);
 }
 
-TEST(Float, FromFloat) {
+TEST(FromFloat, Okay) {
     EXPECT_EQ(sanisizer::from_float<std::uint8_t>(0.0), 0);
     EXPECT_EQ(sanisizer::from_float<std::uint8_t>(6.0), 6);
     EXPECT_EQ(sanisizer::from_float<std::uint8_t>(100.0), 100);
     EXPECT_EQ(sanisizer::from_float<std::uint8_t>(255.5), 255);
     EXPECT_EQ(sanisizer::from_float<std::int16_t>(32767.9), 32767);
+}
 
+TEST(FromFloat, Error) {
     std::string failmsg;
     try {
         std::cout << (int)sanisizer::from_float<std::uint8_t>(258.5) << std::endl;
@@ -71,14 +73,14 @@ TEST(Float, FromFloat) {
     EXPECT_TRUE(failmsg.find("non-negative") != std::string::npos);
 }
 
-TEST(Float, ToFloat) {
-    EXPECT_EQ(sanisizer::to_float<float>(0), 0.0);
-    EXPECT_EQ(sanisizer::to_float<float>(6), 6.0);
-    EXPECT_EQ(sanisizer::to_float<float>(100), 100.0);
-    EXPECT_EQ(sanisizer::to_float<float>(255), 255.0);
-    EXPECT_EQ(sanisizer::to_float<float>(32767), 32767.0);
-
+TEST(ToFloat, Integer) {
     if constexpr(std::numeric_limits<float>::is_iec559) {
+        EXPECT_EQ(sanisizer::to_float<float>(0), 0.0);
+        EXPECT_EQ(sanisizer::to_float<float>(6), 6.0);
+        EXPECT_EQ(sanisizer::to_float<float>(100), 100.0);
+        EXPECT_EQ(sanisizer::to_float<float>(255), 255.0);
+        EXPECT_EQ(sanisizer::to_float<float>(32767), 32767.0);
+
         EXPECT_EQ(sanisizer::to_float<float>(16777216), 16777216.0);
         EXPECT_EQ(sanisizer::to_float<double>(9007199254740992), 9007199254740992.0); 
 
@@ -98,9 +100,20 @@ TEST(Float, ToFloat) {
         }
         EXPECT_TRUE(failmsg.find("too large") != std::string::npos);
     }
+}
 
-    // Works with attestations.
-    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, 0>((std::int64_t)0)), 0.0);
-    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, 100>((std::int64_t)10)), 10.0);
-    EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, std::numeric_limits<std::int64_t>::max()>((std::int64_t)10)), 10.0);
+TEST(ToFloat, Bounded) {
+    if constexpr(std::numeric_limits<float>::is_iec559) {
+        EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, 0>((std::int64_t)0)), 0.0);
+        EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, 100>((std::int64_t)10)), 10.0);
+        EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Attestation<std::int64_t, std::numeric_limits<std::int64_t>::max()>((std::int64_t)10)), 10.0);
+    }
+}
+
+TEST(ToFloat, Constant) {
+    if constexpr(std::numeric_limits<float>::is_iec559) {
+        EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Constant<std::int64_t, 0>()), 0.0);
+        EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Constant<std::int64_t, 10>()), 10.0);
+        EXPECT_EQ(sanisizer::to_float<double>(sanisizer::Constant<std::int64_t, std::numeric_limits<std::uint16_t>::max()>()), 65535.0);
+    }
 }

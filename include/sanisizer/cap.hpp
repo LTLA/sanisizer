@@ -5,7 +5,7 @@
 #include <type_traits>
 
 #include "utils.hpp"
-#include "attest.hpp"
+#include "generics.hpp"
 
 /**
  * @file cap.hpp
@@ -19,8 +19,7 @@ namespace sanisizer {
  * This is primarily intended for setting appropriate default values of function arguments and class variables.
  *
  * @tparam Dest_ Integer type of the destination.
- * @tparam Value_ Integer type of the input value.
- * This may also be an `Attestation`.
+ * @tparam Value_ Integer, `Bounded` or `Constant`.
  *
  * @param x Non-negative value to be capped.
  *

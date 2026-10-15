@@ -5,7 +5,8 @@
 #include <type_traits>
 #include <stdexcept>
 
-#include "attest.hpp"
+#include "generics.hpp"
+#include "Constant.hpp"
 #include "utils.hpp"
 
 /**
@@ -43,16 +44,23 @@ constexpr auto sum_protected(First_ first, Second_ second) {
         static_assert(std::is_integral<Dest_>::value);
         constexpr Dest_ dest_maxed = std::numeric_limits<Dest_>::max();
 
-        // Sometimes users will call sum() with compile-time constants in the later arguments.
-        // In those cases, 'dest_maxed - second_val' will be known at compile time.
-        if (static_cast<Dest_>(dest_maxed - second_val) < first_val) {
-            throw std::overflow_error("overflow detected in sanisizer::sum");
+        const bool overflowed =[&]{
+            if constexpr(is_Constant<Second_>::value) {
+                // If Second_ is Constant, then the compiler could compute 'dest_maxed - second_val' at compile time, which saves us some runtime work.
+                return (static_cast<Dest_>(dest_maxed - second_val) < first_val);
+            } else {
+                return (static_cast<Dest_>(dest_maxed - first_val) < second_val);
+            }
+        }();
+        if (overflowed) {
+            throw std::overflow_error("overflow detected during summation");
         }
-        return Attestation<Dest_, dest_maxed>(static_cast<Dest_>(first_val + second_val));
+
+        return static_cast<Dest_>(first_val + second_val);
 
     } else {
         constexpr Dest_ maxsum = static_cast<Dest_>(get_max<First_>()) + static_cast<Dest_>(get_max<Second_>());
-        return Attestation<Dest_, maxsum>(static_cast<Dest_>(first_val + second_val));
+        return set_bound<Dest_, maxsum>(static_cast<Dest_>(first_val + second_val));
     }
 }
 
@@ -85,15 +93,16 @@ constexpr Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
  *
  * @tparam Dest_ Integer type of the destination.
  * @tparam First_ Integer type of the first value.
- * This may also be an `Attestation`.
+ * This may also be a `Bounded` or `Constant`.
  * @tparam Args_ Integer types of additional values.
- * Any number of these may also be `Attestation`s.
+ * Any number of these may also be `Bounded` or `Constant`.
  *
  * @param first First non-negative value to add.
  * @param more Additional non-negative values to add.
  *
  * @return Sum of all arguments as a `Dest_`.
- * An error is raised if an overflow would occur.
+ *
+ * @throw std::overflow_error Thrown if an overflow would occur.
  */
 template<typename Dest_, typename First_, typename ... Args_>
 constexpr Dest_ sum(First_ first, Args_... more) {

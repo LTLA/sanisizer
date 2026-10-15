@@ -4,33 +4,59 @@
 
 #include <cstdint>
 
-TEST(Cap, Basic) {
+TEST(Cap, Integer) {
     EXPECT_EQ(sanisizer::cap<std::uint8_t>((std::int32_t)1), 1);
     EXPECT_EQ(sanisizer::cap<std::uint8_t>((std::int32_t)100), 100);
     EXPECT_EQ(sanisizer::cap<std::uint8_t>((std::int32_t)1000), 255);
+
+    static_assert(sanisizer::cap<std::uint8_t>((std::int32_t)1) == 1);
+    static_assert(sanisizer::cap<std::uint8_t>((std::int32_t)100) == 100);
+    static_assert(sanisizer::cap<std::uint8_t>((std::int32_t)1000) == 255);
 
     EXPECT_EQ(sanisizer::cap<std::int64_t>((std::int32_t)10), 10);
     EXPECT_EQ(sanisizer::cap<std::int64_t>((std::int32_t)100), 100);
     EXPECT_EQ(sanisizer::cap<std::int64_t>((std::int32_t)1000), 1000);
 
-    // Also accepts attestations.
+    static_assert(sanisizer::cap<std::int64_t>((std::int32_t)10) == 10);
+    static_assert(sanisizer::cap<std::int64_t>((std::int32_t)100) == 100);
+    static_assert(sanisizer::cap<std::int64_t>((std::int32_t)1000) == 1000);
+}
+
+TEST(Cap, Bounded) {
     EXPECT_EQ(sanisizer::cap<std::uint8_t>(sanisizer::Attestation<int, 100>(10)), 10);
     EXPECT_EQ(sanisizer::cap<std::uint8_t>(sanisizer::Attestation<int, 10000>(1000)), 255);
 
-    bool okay = false;
-    if constexpr(sanisizer::cap<std::uint8_t>(1000) == 255) {
-        okay = true;
-    }
-    EXPECT_TRUE(okay);
+    static_assert(sanisizer::cap<std::uint8_t>(sanisizer::Attestation<int, 100>(10)) == 10);
+    static_assert(sanisizer::cap<std::uint8_t>(sanisizer::Attestation<int, 10000>(1000)) == 255);
+
+    EXPECT_EQ(sanisizer::cap<std::int64_t>(sanisizer::Attestation<int, 100>(10)), 10);
+    EXPECT_EQ(sanisizer::cap<std::int64_t>(sanisizer::Attestation<int, 10000>(1000)), 1000);
+
+    static_assert(sanisizer::cap<std::int64_t>(sanisizer::Attestation<int, 100>(10)) == 10);
+    static_assert(sanisizer::cap<std::int64_t>(sanisizer::Attestation<int, 10000>(1000)) == 1000);
 }
 
-// Check it works as constexpr defaults.
-struct FooBarOptions {
-    std::int8_t thing8 = sanisizer::cap<std::int8_t>(10000);
-    std::int16_t thing16 = sanisizer::cap<std::int16_t>(10000);
-};
+TEST(Cap, Constant) {
+    EXPECT_EQ(sanisizer::cap<std::uint8_t>(sanisizer::Constant<int, 100>()), 100);
+    EXPECT_EQ(sanisizer::cap<std::uint8_t>(sanisizer::Constant<int, 10000>()), 255);
+
+    static_assert(sanisizer::cap<std::uint8_t>(sanisizer::Constant<int, 100>()) == 100);
+    static_assert(sanisizer::cap<std::uint8_t>(sanisizer::Constant<int, 10000>()) == 255);
+
+    EXPECT_EQ(sanisizer::cap<std::int64_t>(sanisizer::Constant<int, 100>()), 100);
+    EXPECT_EQ(sanisizer::cap<std::int64_t>(sanisizer::Constant<int, 10000>()), 10000);
+
+    static_assert(sanisizer::cap<std::int64_t>(sanisizer::Constant<int, 100>()) == 100);
+    static_assert(sanisizer::cap<std::int64_t>(sanisizer::Constant<int, 10000>()) == 10000);
+}
 
 TEST(Cap, Struct) {
+    // Check it works as constexpr defaults.
+    struct FooBarOptions {
+        std::int8_t thing8 = sanisizer::cap<std::int8_t>(10000);
+        std::int16_t thing16 = sanisizer::cap<std::int16_t>(10000);
+    };
+
     FooBarOptions opt;
     EXPECT_EQ(opt.thing8, 127);
     EXPECT_EQ(opt.thing16, 10000);
