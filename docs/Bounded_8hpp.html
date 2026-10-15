@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>sanisizer: sanisizer/attest.hpp File Reference</title>
+<title>sanisizer: sanisizer/Bounded.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -92,32 +92,28 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">attest.hpp File Reference</div></div>
+<a href="#namespaces">Namespaces</a>  </div>
+  <div class="headertitle"><div class="title">Bounded.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Create compile-time attestations.  
+<p>Specify compile-time bounds on integers.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;limits&gt;</code><br />
-<code>#include &lt;type_traits&gt;</code><br />
+<div class="textblock"><code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;cassert&gt;</code><br />
 <code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &quot;utils.hpp&quot;</code><br />
 </div>
-<p><a href="attest_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="Bounded_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1Attestation.html">sanisizer::Attestation&lt; Integer_, max_ &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attest to additional compile-time properties of an integer.  <a href="structsanisizer_1_1Attestation.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1Bounded.html">sanisizer::Bounded&lt; Integer_, max_ &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bound the maximum possible value of an integer.  <a href="structsanisizer_1_1Bounded.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1is__Attestation.html">sanisizer::is_Attestation&lt; Value_ &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1is__Bounded.html">sanisizer::is_Bounded&lt; Value_ &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01max___01_4_01_4.html">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1is__integral__or__Attestation.html">sanisizer::is_integral_or_Attestation&lt; Value_ &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsanisizer_1_1is__Bounded_3_01Bounded_3_01Integer___00_01max___01_4_01_4.html">sanisizer::is_Bounded&lt; Bounded&lt; Integer_, max_ &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -125,27 +121,9 @@ Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html">sanisizer</a></td></tr>
 <tr class="memdesc:namespacesanisizer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sanitize sizes to avoid integer overflow. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a1377156c38a676a8de3829988a703d17" id="r_a1377156c38a676a8de3829988a703d17"><td class="memTemplParams" colspan="2">template&lt;typename Value_ &gt; </td></tr>
-<tr class="memitem:a1377156c38a676a8de3829988a703d17"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a1377156c38a676a8de3829988a703d17">sanisizer::get_value</a> (Value_ x)</td></tr>
-<tr class="separator:a1377156c38a676a8de3829988a703d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a743d244f216921a55a3c74d0544f1d64" id="r_a743d244f216921a55a3c74d0544f1d64"><td class="memTemplParams" colspan="2">template&lt;typename Value_ &gt; </td></tr>
-<tr class="memitem:a743d244f216921a55a3c74d0544f1d64"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64">sanisizer::get_max</a> ()</td></tr>
-<tr class="separator:a743d244f216921a55a3c74d0544f1d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad59e5f50bb0487252468b5fbf1a1f70b" id="r_ad59e5f50bb0487252468b5fbf1a1f70b"><td class="memTemplParams" colspan="2">template&lt;typename Max_ , Max_ new_max_, typename Value_ &gt; </td></tr>
-<tr class="memitem:ad59e5f50bb0487252468b5fbf1a1f70b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#ad59e5f50bb0487252468b5fbf1a1f70b">sanisizer::attest_max</a> (Value_ x)</td></tr>
-<tr class="separator:ad59e5f50bb0487252468b5fbf1a1f70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad69021adac47a10c27b7ee0fab7f0e98" id="r_ad69021adac47a10c27b7ee0fab7f0e98"><td class="memTemplParams" colspan="2">template&lt;typename Max_ , typename Value_ &gt; </td></tr>
-<tr class="memitem:ad69021adac47a10c27b7ee0fab7f0e98"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#ad69021adac47a10c27b7ee0fab7f0e98">sanisizer::attest_max_by_type</a> (Value_ x)</td></tr>
-<tr class="separator:ad69021adac47a10c27b7ee0fab7f0e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6911bfdd00b6bd59dd72b935ca5d9d3a" id="r_a6911bfdd00b6bd59dd72b935ca5d9d3a"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
-<tr class="memitem:a6911bfdd00b6bd59dd72b935ca5d9d3a"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a6911bfdd00b6bd59dd72b935ca5d9d3a">sanisizer::check_overflow</a> (Value_ x)</td></tr>
-<tr class="separator:a6911bfdd00b6bd59dd72b935ca5d9d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Create compile-time attestations. </p>
+<div class="textblock"><p>Specify compile-time bounds on integers. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

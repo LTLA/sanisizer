@@ -1,27 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile doxygen_version="1.12.0">
   <compound kind="file">
-    <name>attest.hpp</name>
+    <name>Bounded.hpp</name>
     <path>sanisizer/</path>
-    <filename>attest_8hpp.html</filename>
-    <class kind="struct">sanisizer::Attestation</class>
-    <class kind="struct">sanisizer::is_Attestation</class>
-    <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;</class>
-    <class kind="struct">sanisizer::is_integral_or_Attestation</class>
+    <filename>Bounded_8hpp.html</filename>
+    <class kind="struct">sanisizer::Bounded</class>
+    <class kind="struct">sanisizer::is_Bounded</class>
+    <class kind="struct">sanisizer::is_Bounded&lt; Bounded&lt; Integer_, max_ &gt; &gt;</class>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
     <name>cap.hpp</name>
     <path>sanisizer/</path>
     <filename>cap_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
     <name>cast.hpp</name>
     <path>sanisizer/</path>
     <filename>cast_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -29,7 +28,7 @@
     <path>sanisizer/</path>
     <filename>class_8hpp.html</filename>
     <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
     <class kind="class">sanisizer::Cast</class>
     <class kind="class">sanisizer::Exact</class>
     <namespace>sanisizer</namespace>
@@ -38,7 +37,16 @@
     <name>comparisons.hpp</name>
     <path>sanisizer/</path>
     <filename>comparisons_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Constant.hpp</name>
+    <path>sanisizer/</path>
+    <filename>Constant_8hpp.html</filename>
+    <class kind="struct">sanisizer::Constant</class>
+    <class kind="struct">sanisizer::is_Constant</class>
+    <class kind="struct">sanisizer::is_Constant&lt; Constant&lt; Integer_, value_ &gt; &gt;</class>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -52,7 +60,15 @@
     <name>float.hpp</name>
     <path>sanisizer/</path>
     <filename>float_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
+    <name>generics.hpp</name>
+    <path>sanisizer/</path>
+    <filename>generics_8hpp.html</filename>
+    <includes id="Bounded_8hpp" name="Bounded.hpp" local="yes" import="no" module="no" objc="no">Bounded.hpp</includes>
+    <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -65,14 +81,15 @@
     <name>product.hpp</name>
     <path>sanisizer/</path>
     <filename>product_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
     <name>ptrdiff.hpp</name>
     <path>sanisizer/</path>
     <filename>ptrdiff_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -82,7 +99,8 @@
     <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
     <includes id="sum_8hpp" name="sum.hpp" local="yes" import="no" module="no" objc="no">sum.hpp</includes>
     <includes id="product_8hpp" name="product.hpp" local="yes" import="no" module="no" objc="no">product.hpp</includes>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="Bounded_8hpp" name="Bounded.hpp" local="yes" import="no" module="no" objc="no">Bounded.hpp</includes>
+    <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
     <includes id="create_8hpp" name="create.hpp" local="yes" import="no" module="no" objc="no">create.hpp</includes>
     <includes id="nd__offset_8hpp" name="nd_offset.hpp" local="yes" import="no" module="no" objc="no">nd_offset.hpp</includes>
@@ -96,40 +114,41 @@
     <name>sum.hpp</name>
     <path>sanisizer/</path>
     <filename>sum_8hpp.html</filename>
-    <includes id="attest_8hpp" name="attest.hpp" local="yes" import="no" module="no" objc="no">attest.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="struct">
-    <name>sanisizer::Attestation</name>
-    <filename>structsanisizer_1_1Attestation.html</filename>
+    <name>sanisizer::Bounded</name>
+    <filename>structsanisizer_1_1Bounded.html</filename>
     <templarg>typename Integer_</templarg>
     <templarg>Integer_ max_</templarg>
     <member kind="typedef">
       <type>Integer_</type>
       <name>Integer</name>
-      <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>a68d1e7517f9fb4b7bee87ead27a68448</anchor>
+      <anchorfile>structsanisizer_1_1Bounded.html</anchorfile>
+      <anchor>a5f1dada9de441277dd6ebd5881c87fec</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>constexpr</type>
-      <name>Attestation</name>
-      <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>a9b816913a4d2aa284aa055f46e104b77</anchor>
+      <name>Bounded</name>
+      <anchorfile>structsanisizer_1_1Bounded.html</anchorfile>
+      <anchor>a59679bcff533d20b408114a762bf798a</anchor>
       <arglist>(Integer_ x)</arglist>
     </member>
     <member kind="variable">
       <type>Integer_</type>
       <name>value</name>
-      <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>acbca33b35d6f68de4b209228f55f76c5</anchor>
+      <anchorfile>structsanisizer_1_1Bounded.html</anchorfile>
+      <anchor>a6448aef12ad7eb8dbe6616c66be4b1c8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr Integer_</type>
       <name>max</name>
-      <anchorfile>structsanisizer_1_1Attestation.html</anchorfile>
-      <anchor>a19587380bbe3e2da9fe21e6a368ae058</anchor>
+      <anchorfile>structsanisizer_1_1Bounded.html</anchorfile>
+      <anchor>a49c663a1120236dc17b3379e0d10722c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -150,6 +169,26 @@
       <anchorfile>classsanisizer_1_1Cast.html</anchorfile>
       <anchor>a22b477d41df49b122428deb6532e2307</anchor>
       <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>sanisizer::Constant</name>
+    <filename>structsanisizer_1_1Constant.html</filename>
+    <templarg>typename Integer_</templarg>
+    <templarg>Integer_ value_</templarg>
+    <member kind="typedef">
+      <type>Integer_</type>
+      <name>Integer</name>
+      <anchorfile>structsanisizer_1_1Constant.html</anchorfile>
+      <anchor>a5061a62e69f7c97a8a667aca38b43274</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr Integer_</type>
+      <name>value</name>
+      <anchorfile>structsanisizer_1_1Constant.html</anchorfile>
+      <anchor>a6095d68700546a49ed3bcd1e508c9799</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -179,86 +218,66 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>sanisizer::is_Attestation</name>
-    <filename>structsanisizer_1_1is__Attestation.html</filename>
+    <name>sanisizer::is_Bounded</name>
+    <filename>structsanisizer_1_1is__Bounded.html</filename>
     <templarg>typename Value_</templarg>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>value</name>
-      <anchorfile>structsanisizer_1_1is__Attestation.html</anchorfile>
-      <anchor>a9e1593c0b2cee2cbc7b1e3d86cfb9954</anchor>
+      <anchorfile>structsanisizer_1_1is__Bounded.html</anchorfile>
+      <anchor>aaa906d0c0fd51f6245fac0db26b5718e</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
-    <name>sanisizer::is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;</name>
-    <filename>structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01max___01_4_01_4.html</filename>
+    <name>sanisizer::is_Bounded&lt; Bounded&lt; Integer_, max_ &gt; &gt;</name>
+    <filename>structsanisizer_1_1is__Bounded_3_01Bounded_3_01Integer___00_01max___01_4_01_4.html</filename>
     <templarg>typename Integer_</templarg>
     <templarg>Integer_ max_</templarg>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>value</name>
-      <anchorfile>structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01max___01_4_01_4.html</anchorfile>
-      <anchor>a4b99225ea8d25e56f963e2924217ec7d</anchor>
+      <anchorfile>structsanisizer_1_1is__Bounded_3_01Bounded_3_01Integer___00_01max___01_4_01_4.html</anchorfile>
+      <anchor>a97cdec9760ff90fef96343f9ad084e5f</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
-    <name>sanisizer::is_integral_or_Attestation</name>
-    <filename>structsanisizer_1_1is__integral__or__Attestation.html</filename>
+    <name>sanisizer::is_Constant</name>
+    <filename>structsanisizer_1_1is__Constant.html</filename>
     <templarg>typename Value_</templarg>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>value</name>
-      <anchorfile>structsanisizer_1_1is__integral__or__Attestation.html</anchorfile>
-      <anchor>a9960ac09d55cec98e5e4844591a67900</anchor>
+      <anchorfile>structsanisizer_1_1is__Constant.html</anchorfile>
+      <anchor>ac66b9a11eb8396dc2931f968c0a3eb79</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>sanisizer::is_Constant&lt; Constant&lt; Integer_, value_ &gt; &gt;</name>
+    <filename>structsanisizer_1_1is__Constant_3_01Constant_3_01Integer___00_01value___01_4_01_4.html</filename>
+    <templarg>typename Integer_</templarg>
+    <templarg>Integer_ value_</templarg>
+    <member kind="variable" static="yes">
+      <type>static constexpr bool</type>
+      <name>value</name>
+      <anchorfile>structsanisizer_1_1is__Constant_3_01Constant_3_01Integer___00_01value___01_4_01_4.html</anchorfile>
+      <anchor>a4dd498d7d6b615b8b25e6155659f63dc</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="namespace">
     <name>sanisizer</name>
     <filename>namespacesanisizer.html</filename>
-    <class kind="struct">sanisizer::Attestation</class>
+    <class kind="struct">sanisizer::Bounded</class>
     <class kind="class">sanisizer::Cast</class>
+    <class kind="struct">sanisizer::Constant</class>
     <class kind="class">sanisizer::Exact</class>
-    <class kind="struct">sanisizer::is_Attestation</class>
-    <class kind="struct">sanisizer::is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;</class>
-    <class kind="struct">sanisizer::is_integral_or_Attestation</class>
-    <member kind="function">
-      <type>constexpr auto</type>
-      <name>get_value</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a1377156c38a676a8de3829988a703d17</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr auto</type>
-      <name>get_max</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a743d244f216921a55a3c74d0544f1d64</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr auto</type>
-      <name>attest_max</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ad59e5f50bb0487252468b5fbf1a1f70b</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr auto</type>
-      <name>attest_max_by_type</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ad69021adac47a10c27b7ee0fab7f0e98</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>check_overflow</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a6911bfdd00b6bd59dd72b935ca5d9d3a</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
+    <class kind="struct">sanisizer::is_Bounded</class>
+    <class kind="struct">sanisizer::is_Bounded&lt; Bounded&lt; Integer_, max_ &gt; &gt;</class>
+    <class kind="struct">sanisizer::is_Constant</class>
+    <class kind="struct">sanisizer::is_Constant&lt; Constant&lt; Integer_, value_ &gt; &gt;</class>
     <member kind="function">
       <type>constexpr Dest_</type>
       <name>cap</name>
@@ -377,6 +396,41 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a4339f0370428ea79772ab81e3637db20</anchor>
       <arglist>(Integer_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr auto</type>
+      <name>get_value</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a4b2d1215d4bca4f8179c72083919cf56</anchor>
+      <arglist>(const Value_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr auto</type>
+      <name>get_max</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a743d244f216921a55a3c74d0544f1d64</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>check_overflow</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a6911bfdd00b6bd59dd72b935ca5d9d3a</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr auto</type>
+      <name>set_bound</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ab92b5616dafc2a69591b24e81fdbc50b</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr auto</type>
+      <name>set_bound_by_type</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a7ea759a528a70c08c2558f9531397e33</anchor>
+      <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
       <type>constexpr Size_</type>

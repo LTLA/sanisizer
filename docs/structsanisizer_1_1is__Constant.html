@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>sanisizer: sanisizer::is_integral_or_Attestation&lt; Value_ &gt; Struct Template Reference</title>
+<title>sanisizer: sanisizer::is_Constant&lt; Value_ &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -85,28 +85,28 @@ $(function(){ initResizable(false); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacesanisizer.html">sanisizer</a></li><li class="navelem"><a class="el" href="structsanisizer_1_1is__integral__or__Attestation.html">is_integral_or_Attestation</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacesanisizer.html">sanisizer</a></li><li class="navelem"><a class="el" href="structsanisizer_1_1is__Constant.html">is_Constant</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
-<a href="structsanisizer_1_1is__integral__or__Attestation-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">sanisizer::is_integral_or_Attestation&lt; Value_ &gt; Struct Template Reference</div></div>
+<a href="structsanisizer_1_1is__Constant-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">sanisizer::is_Constant&lt; Value_ &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="attest_8hpp_source.html">attest.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="Constant_8hpp_source.html">Constant.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a9960ac09d55cec98e5e4844591a67900" id="r_a9960ac09d55cec98e5e4844591a67900"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9960ac09d55cec98e5e4844591a67900">value</a> = std::is_integral&lt;Value_&gt;::value || <a class="el" href="structsanisizer_1_1is__Attestation.html">is_Attestation</a>&lt;Value_&gt;::value</td></tr>
-<tr class="separator:a9960ac09d55cec98e5e4844591a67900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac66b9a11eb8396dc2931f968c0a3eb79" id="r_ac66b9a11eb8396dc2931f968c0a3eb79"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac66b9a11eb8396dc2931f968c0a3eb79">value</a> = false</td></tr>
+<tr class="separator:ac66b9a11eb8396dc2931f968c0a3eb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Value_&gt;<br />
-struct sanisizer::is_integral_or_Attestation&lt; Value_ &gt;</div><p>Whether <code>Value_</code> is an integer or <code><a class="el" href="structsanisizer_1_1Attestation.html" title="Attest to additional compile-time properties of an integer.">Attestation</a></code>.</p>
+struct sanisizer::is_Constant&lt; Value_ &gt;</div><p>Default case for checking whether <code>Value_</code> is a <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Value_</td><td>Type to be queried. </td></tr>
@@ -114,8 +114,8 @@ struct sanisizer::is_integral_or_Attestation&lt; Value_ &gt;</div><p>Whether <co
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a9960ac09d55cec98e5e4844591a67900" name="a9960ac09d55cec98e5e4844591a67900"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9960ac09d55cec98e5e4844591a67900">&#9670;&#160;</a></span>value</h2>
+<a id="ac66b9a11eb8396dc2931f968c0a3eb79" name="ac66b9a11eb8396dc2931f968c0a3eb79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac66b9a11eb8396dc2931f968c0a3eb79">&#9670;&#160;</a></span>value</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -126,7 +126,7 @@ template&lt;typename Value_ &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="structsanisizer_1_1is__integral__or__Attestation.html">sanisizer::is_integral_or_Attestation</a>&lt; Value_ &gt;::value = std::is_integral&lt;Value_&gt;::value || <a class="el" href="structsanisizer_1_1is__Attestation.html">is_Attestation</a>&lt;Value_&gt;::value</td>
+          <td class="memname">bool <a class="el" href="structsanisizer_1_1is__Constant.html">sanisizer::is_Constant</a>&lt; Value_ &gt;::value = false</td>
         </tr>
       </table>
   </td>
@@ -135,12 +135,12 @@ template&lt;typename Value_ &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Whether <code>Value_</code> is an integer or <code><a class="el" href="structsanisizer_1_1Attestation.html" title="Attest to additional compile-time properties of an integer.">Attestation</a></code>. </p>
+<p>Fale, <code>Value_</code> is not a <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>. </p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>sanisizer/<a class="el" href="attest_8hpp_source.html">attest.hpp</a></li>
+<li>sanisizer/<a class="el" href="Constant_8hpp_source.html">Constant.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

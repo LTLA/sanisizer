@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['is_5fattestation_0',['is_Attestation',['../structsanisizer_1_1is__Attestation.html',1,'sanisizer']]],
-  ['is_5fattestation_3c_20attestation_3c_20integer_5f_2c_20max_5f_20_3e_20_3e_1',['is_Attestation&lt; Attestation&lt; Integer_, max_ &gt; &gt;',['../structsanisizer_1_1is__Attestation_3_01Attestation_3_01Integer___00_01max___01_4_01_4.html',1,'sanisizer']]],
-  ['is_5fintegral_5for_5fattestation_2',['is_integral_or_Attestation',['../structsanisizer_1_1is__integral__or__Attestation.html',1,'sanisizer']]]
+  ['is_5fbounded_0',['is_Bounded',['../structsanisizer_1_1is__Bounded.html',1,'sanisizer']]],
+  ['is_5fbounded_3c_20bounded_3c_20integer_5f_2c_20max_5f_20_3e_20_3e_1',['is_Bounded&lt; Bounded&lt; Integer_, max_ &gt; &gt;',['../structsanisizer_1_1is__Bounded_3_01Bounded_3_01Integer___00_01max___01_4_01_4.html',1,'sanisizer']]],
+  ['is_5fconstant_2',['is_Constant',['../structsanisizer_1_1is__Constant.html',1,'sanisizer']]],
+  ['is_5fconstant_3c_20constant_3c_20integer_5f_2c_20value_5f_20_3e_20_3e_3',['is_Constant&lt; Constant&lt; Integer_, value_ &gt; &gt;',['../structsanisizer_1_1is__Constant_3_01Constant_3_01Integer___00_01value___01_4_01_4.html',1,'sanisizer']]]
 ];
