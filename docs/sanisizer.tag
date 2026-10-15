@@ -413,6 +413,13 @@
     </member>
     <member kind="function">
       <type>constexpr bool</type>
+      <name>does_overflow</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>acbe1d9850c8873fe0661a686ecf3a10b</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
       <name>check_overflow</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a6911bfdd00b6bd59dd72b935ca5d9d3a</anchor>

@@ -178,6 +178,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a743d244f216921a55a3c74d0544f1d64" id="r_a743d244f216921a55a3c74d0544f1d64"><td class="memTemplParams" colspan="2">template&lt;typename Value_ &gt; </td></tr>
 <tr class="memitem:a743d244f216921a55a3c74d0544f1d64"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a743d244f216921a55a3c74d0544f1d64">get_max</a> ()</td></tr>
 <tr class="separator:a743d244f216921a55a3c74d0544f1d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbe1d9850c8873fe0661a686ecf3a10b" id="r_acbe1d9850c8873fe0661a686ecf3a10b"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
+<tr class="memitem:acbe1d9850c8873fe0661a686ecf3a10b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acbe1d9850c8873fe0661a686ecf3a10b">does_overflow</a> (Value_ x)</td></tr>
+<tr class="separator:acbe1d9850c8873fe0661a686ecf3a10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6911bfdd00b6bd59dd72b935ca5d9d3a" id="r_a6911bfdd00b6bd59dd72b935ca5d9d3a"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
 <tr class="memitem:a6911bfdd00b6bd59dd72b935ca5d9d3a"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6911bfdd00b6bd59dd72b935ca5d9d3a">check_overflow</a> (Value_ x)</td></tr>
 <tr class="separator:a6911bfdd00b6bd59dd72b935ca5d9d3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -417,7 +420,13 @@ template&lt;typename Dest_ , typename Value_ &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>An overflow error is thrown if <code>x</code>'s value would overflow when stored in <code>Dest_</code>. Otherwise, <code>false</code> is returned. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>false</code> on success, for back-compatibility. Consider using <code><a class="el" href="#acbe1d9850c8873fe0661a686ecf3a10b">does_overflow()</a></code> instead to detect overflow. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::overflow_error</td><td>Thrown if <code>x</code>'s value would overflow when stored in <code>Dest_</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -458,6 +467,47 @@ template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An instance of the container, constructed to be of size <code>x</code>. </dd></dl>
+
+</div>
+</div>
+<a id="acbe1d9850c8873fe0661a686ecf3a10b" name="acbe1d9850c8873fe0661a686ecf3a10b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbe1d9850c8873fe0661a686ecf3a10b">&#9670;&#160;</a></span>does_overflow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Dest_ , typename Value_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sanisizer::does_overflow </td>
+          <td>(</td>
+          <td class="paramtype">Value_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>
+    <tr><td class="paramname">Value_</td><td>Integer type, <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Representation of an integer value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether <code>x</code>'s value would overflow when stored in <code>Dest_</code>. </dd></dl>
 
 </div>
 </div>
