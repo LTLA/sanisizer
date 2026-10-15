@@ -199,12 +199,22 @@ TEST(CheckOverflow, Integer) {
     static_assert(!sanisizer::check_overflow<unsigned>(10));
     static_assert(!sanisizer::check_overflow<unsigned>(10u));
 
+    static_assert(sanisizer::does_overflow<std::int8_t>(128));
+    static_assert(sanisizer::does_overflow<std::int8_t>(128u));
+    static_assert(sanisizer::does_overflow<std::uint8_t>(256));
+    static_assert(sanisizer::does_overflow<std::uint8_t>(256u));
+
     // Also works at run-time.
     {
         EXPECT_FALSE(sanisizer::check_overflow<int>(10));
         EXPECT_FALSE(sanisizer::check_overflow<int>(10u));
         EXPECT_FALSE(sanisizer::check_overflow<unsigned>(10));
         EXPECT_FALSE(sanisizer::check_overflow<unsigned>(10u));
+
+        EXPECT_TRUE(sanisizer::does_overflow<std::int8_t>(128));
+        EXPECT_TRUE(sanisizer::does_overflow<std::int8_t>(128u));
+        EXPECT_TRUE(sanisizer::does_overflow<std::uint8_t>(256));
+        EXPECT_TRUE(sanisizer::does_overflow<std::uint8_t>(256u));
     }
 
     {
