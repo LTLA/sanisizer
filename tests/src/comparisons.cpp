@@ -163,7 +163,7 @@ TEST(Min, Bounded) {
         sanisizer::Attestation<std::int8_t, 100>((std::int8_t)5)
     );
     static_assert(attest_check1 == 5);
-    static_assert(std::is_same<decltype(attest_check1), const std::int32_t>::value);
+    static_assert(std::is_same<decltype(attest_check1), const std::int8_t>::value);
 
     constexpr auto attest_check2 = sanisizer::min(
         sanisizer::Attestation<std::int8_t, 10>((std::int8_t)10),
@@ -186,12 +186,12 @@ TEST(Min, Constant) {
         sanisizer::Constant<std::int32_t, 7>()
     );
     static_assert(attest_check2 == 7);
-    static_assert(std::is_same<decltype(attest_check2), const std::int32_t>::value);
+    static_assert(std::is_same<decltype(attest_check2), const std::int8_t>::value);
 }
 
 /*******************************************/
 
-TEST(Comparisons, Max) {
+TEST(Max, Integer) {
     auto x = sanisizer::max(static_cast<std::uint8_t>(255), 100);
     static_assert(std::is_same<decltype(x), int>::value);
     EXPECT_EQ(x, 255);
@@ -211,14 +211,15 @@ TEST(Comparisons, Max) {
     static_assert(std::is_same<decltype(x4), unsigned int>::value);
     EXPECT_EQ(x4, 10000u);
     static_assert(sanisizer::max(10000u, 1000) == 10000u);
+}
 
-    // Check it works for attestations.
+TEST(Max, Bounded) {
     constexpr auto attest_check1 = sanisizer::max(
         sanisizer::Attestation<std::int32_t, 10>((std::int32_t)10),
         sanisizer::Attestation<std::int8_t, 100>((std::int8_t)5)
     );
     static_assert(attest_check1 == 10);
-    static_assert(std::is_same<decltype(attest_check1), const std::int8_t>::value);
+    static_assert(std::is_same<decltype(attest_check1), const std::int32_t>::value);
 
     constexpr auto attest_check2 = sanisizer::max(
         sanisizer::Attestation<std::int8_t, 10>((std::int8_t)10),
@@ -226,4 +227,20 @@ TEST(Comparisons, Max) {
     );
     static_assert(attest_check2 == 10);
     static_assert(std::is_same<decltype(attest_check2), const std::int32_t>::value);
+}
+
+TEST(Max, Constant) {
+    constexpr auto attest_check1 = sanisizer::max(
+        sanisizer::Constant<std::int32_t, 10>(),
+        sanisizer::Constant<std::uint8_t, 5>()
+    );
+    static_assert(attest_check1 == 10);
+    static_assert(std::is_same<decltype(attest_check1), const std::int32_t>::value);
+
+    constexpr auto attest_check2 = sanisizer::max(
+        sanisizer::Constant<std::uint8_t, 10>(),
+        sanisizer::Constant<std::int8_t, 100>()
+    );
+    static_assert(attest_check2 == 100);
+    static_assert(std::is_same<decltype(attest_check2), const std::uint8_t>::value);
 }

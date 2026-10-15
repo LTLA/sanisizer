@@ -108,7 +108,7 @@ constexpr auto min(First_ first, Second_ second) {
     const auto sval = get_value(second);
     const bool first_larger = as_unsigned(fval) > as_unsigned(sval);
 
-    if constexpr(as_unsigned(get_max<First_>()) > as_unsigned(get_max<Second_>())) {
+    if constexpr(as_unsigned(get_max<I<decltype(fval)> >()) > as_unsigned(get_max<I<decltype(sval)> >())) {
         if (first_larger) {
             return sval;
         } else {
@@ -140,7 +140,7 @@ constexpr auto max(First_ first, Second_ second) {
     const auto sval = get_value(second);
     const bool first_larger = as_unsigned(fval) > as_unsigned(sval);
 
-    if constexpr(as_unsigned(get_max<First_>()) > as_unsigned(get_max<Second_>())) {
+    if constexpr(as_unsigned(get_max<I<decltype(fval)> >()) > as_unsigned(get_max<I<decltype(sval)> >())) {
         if (first_larger) {
             return fval;
         } else {
