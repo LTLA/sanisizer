@@ -75,6 +75,7 @@
     <name>nd_offset.hpp</name>
     <path>sanisizer/</path>
     <filename>nd__offset_8hpp.html</filename>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -419,8 +420,8 @@
       <type>Float_</type>
       <name>to_float</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a4339f0370428ea79772ab81e3637db20</anchor>
-      <arglist>(Integer_ x)</arglist>
+      <anchor>a447b72d39555bf45311e5f3419246e95</anchor>
+      <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
       <type>constexpr auto</type>
@@ -472,13 +473,6 @@
       <arglist>(First_ first, Args_... more)</arglist>
     </member>
     <member kind="function">
-      <type>constexpr Dest_</type>
-      <name>sum_unsafe</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a6f87dc746d660a88c85ed46d90e5d54c</anchor>
-      <arglist>(First_ first, Args_... more)</arglist>
-    </member>
-    <member kind="function">
       <type>Dest_</type>
       <name>plus_one</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
@@ -491,6 +485,13 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>ae96d0a15b46bc1a5893e94896884495a</anchor>
       <arglist>(Integer_ &amp;x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr Dest_</type>
+      <name>sum_unsafe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a6f87dc746d660a88c85ed46d90e5d54c</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
     </member>
   </compound>
   <compound kind="page">

@@ -159,9 +159,9 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}</div>
 </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Float_, <span class="keyword">typename</span> Integer_&gt;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Float_, <span class="keyword">typename</span> Value_&gt;</div>
 <div class="foldopen" id="foldopen00115" data-start="{" data-end="}">
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">  115</a></span>Float_ <a class="code hl_function" href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">to_float</a>(Integer_ x) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="namespacesanisizer.html#a447b72d39555bf45311e5f3419246e95">  115</a></span>Float_ <a class="code hl_function" href="namespacesanisizer.html#a447b72d39555bf45311e5f3419246e95">to_float</a>(Value_ x) {</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">const</span> <span class="keyword">auto</span> val = <a class="code hl_function" href="namespacesanisizer.html#a4b2d1215d4bca4f8179c72083919cf56">get_value</a>(x);</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// protect against the various -1 operations.</span></div>
@@ -201,7 +201,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="agenerics_8hpp_html"><div class="ttname"><a href="generics_8hpp.html">generics.hpp</a></div><div class="ttdoc">Generics for operating on integer representations.</div></div>
 <div class="ttc" id="anamespacesanisizer_html"><div class="ttname"><a href="namespacesanisizer.html">sanisizer</a></div><div class="ttdoc">Sanitize sizes to avoid integer overflow.</div><div class="ttdef"><b>Definition</b> Bounded.hpp:15</div></div>
-<div class="ttc" id="anamespacesanisizer_html_a4339f0370428ea79772ab81e3637db20"><div class="ttname"><a href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Integer_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:115</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a447b72d39555bf45311e5f3419246e95"><div class="ttname"><a href="namespacesanisizer.html#a447b72d39555bf45311e5f3419246e95">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Value_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:115</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a4b2d1215d4bca4f8179c72083919cf56"><div class="ttname"><a href="namespacesanisizer.html#a4b2d1215d4bca4f8179c72083919cf56">sanisizer::get_value</a></div><div class="ttdeci">constexpr auto get_value(const Value_ x)</div><div class="ttdef"><b>Definition</b> generics.hpp:23</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a56076716172db1c8ee4b11e1a01bb4b6"><div class="ttname"><a href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">sanisizer::from_float</a></div><div class="ttdeci">Integer_ from_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:73</div></div>
 <div class="ttc" id="anamespacesanisizer_html_a714d5385b83631d2aace857ca004fee8"><div class="ttname"><a href="namespacesanisizer.html#a714d5385b83631d2aace857ca004fee8">sanisizer::required_bits_for_float</a></div><div class="ttdeci">int required_bits_for_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:31</div></div>

@@ -132,14 +132,14 @@ Arithmetic</h1>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> is : individual_sizes) {</div>
 <div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9">sanisizer::sum&lt;std::size_t&gt;</a>(combined_size, is);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacesanisizer_html_ad0351da831c6ee07baf0a96c51a019c9"><div class="ttname"><a href="namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9">sanisizer::sum</a></div><div class="ttdeci">constexpr Dest_ sum(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> sum.hpp:113</div></div>
+<div class="ttc" id="anamespacesanisizer_html_ad0351da831c6ee07baf0a96c51a019c9"><div class="ttname"><a href="namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9">sanisizer::sum</a></div><div class="ttdeci">constexpr Dest_ sum(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> sum.hpp:99</div></div>
 </div><!-- fragment --><p>When allocating contiguous memory for a high-dimensional array, we need to compute the product of the dimension extents. Again, this calculation can be done safely by using the <code>product()</code> functions to check for overflow.</p>
 <div class="fragment"><div class="line">std::vector&lt;long long&gt; dimensions{ 123, 456, 789 };</div>
 <div class="line">std::size_t combined_size = 1;</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> is : individual_sizes) {</div>
 <div class="line">    combined_size = <a class="code hl_function" href="namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c">sanisizer::product&lt;std::size_t&gt;</a>(combined_size, is);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacesanisizer_html_ace3b6841d0fd165ae3f47d07a713a15c"><div class="ttname"><a href="namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c">sanisizer::product</a></div><div class="ttdeci">constexpr Dest_ product(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> product.hpp:119</div></div>
+<div class="ttc" id="anamespacesanisizer_html_ace3b6841d0fd165ae3f47d07a713a15c"><div class="ttname"><a href="namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c">sanisizer::product</a></div><div class="ttdeci">constexpr Dest_ product(First_ first, Args_... more)</div><div class="ttdef"><b>Definition</b> product.hpp:105</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 Attestations</h1>
 <p>Attestations are a mechanism by which users can supply additional constraints for compile-time optimizations. For example, we can attest to a maximum value for an integer that is below the integer type's maximum. This allows the compiler to omit run-time overflow checks.</p>
@@ -159,7 +159,7 @@ N-dimensional offsets</h1>
 </div><!-- fragment --><p>If <code>x1</code>, <code>d1</code>, <code>x2</code>, etc. are of a smaller type than the array/container's size, the intermediate sums and products could overflow, even if the final offset itself would be representable by the array/container size type. To avoid this, we provide the <code>nd_offset()</code> function, which casts all inputs to the size type before performing calculations.</p>
 <div class="fragment"><div class="line"><span class="comment">// Same calculation as above</span></div>
 <div class="line"><a class="code hl_function" href="namespacesanisizer.html#a8d460a84022487d3460671e5ff96f163">sanisizer::nd_offset&lt;std::size_t&gt;</a>(x1, d1, x2, d2, x3);</div>
-<div class="ttc" id="anamespacesanisizer_html_a8d460a84022487d3460671e5ff96f163"><div class="ttname"><a href="namespacesanisizer.html#a8d460a84022487d3460671e5ff96f163">sanisizer::nd_offset</a></div><div class="ttdeci">constexpr Size_ nd_offset(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</div><div class="ttdef"><b>Definition</b> nd_offset.hpp:55</div></div>
+<div class="ttc" id="anamespacesanisizer_html_a8d460a84022487d3460671e5ff96f163"><div class="ttname"><a href="namespacesanisizer.html#a8d460a84022487d3460671e5ff96f163">sanisizer::nd_offset</a></div><div class="ttdeci">constexpr Size_ nd_offset(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</div><div class="ttdef"><b>Definition</b> nd_offset.hpp:61</div></div>
 </div><!-- fragment --><p>The idea is to use <code>nd_offset()</code> within tight loops - say, for accessing the 10-th column of a row-major matrix:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> c = 10;</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> r = 0; r &lt; NR; ++r) {</div>
@@ -175,8 +175,8 @@ Float conversions</h1>
 <div class="ttc" id="anamespacesanisizer_html_a56076716172db1c8ee4b11e1a01bb4b6"><div class="ttname"><a href="namespacesanisizer.html#a56076716172db1c8ee4b11e1a01bb4b6">sanisizer::from_float</a></div><div class="ttdeci">Integer_ from_float(Float_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:73</div></div>
 </div><!-- fragment --><p>We can do the converse with the <code>to_float()</code> function, which checks that the input integer can be exactly represented in floating-point. This is sometimes necessary when interfacing with frameworks that have no concept of an integer, e.g., Javascript.</p>
 <div class="fragment"><div class="line">std::uint64_t foo;</div>
-<div class="line"><span class="keyword">auto</span> as_dbl = <a class="code hl_function" href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float&lt;double&gt;</a>(foo);</div>
-<div class="ttc" id="anamespacesanisizer_html_a4339f0370428ea79772ab81e3637db20"><div class="ttname"><a href="namespacesanisizer.html#a4339f0370428ea79772ab81e3637db20">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Integer_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:115</div></div>
+<div class="line"><span class="keyword">auto</span> as_dbl = <a class="code hl_function" href="namespacesanisizer.html#a447b72d39555bf45311e5f3419246e95">sanisizer::to_float&lt;double&gt;</a>(foo);</div>
+<div class="ttc" id="anamespacesanisizer_html_a447b72d39555bf45311e5f3419246e95"><div class="ttname"><a href="namespacesanisizer.html#a447b72d39555bf45311e5f3419246e95">sanisizer::to_float</a></div><div class="ttdeci">Float_ to_float(Value_ x)</div><div class="ttdef"><b>Definition</b> float.hpp:115</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Building projects</h1>
 <h2><a class="anchor" id="autotoc_md9"></a>
