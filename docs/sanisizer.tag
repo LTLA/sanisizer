@@ -20,7 +20,7 @@
     <name>cast.hpp</name>
     <path>sanisizer/</path>
     <filename>cast_8hpp.html</filename>
-    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -78,10 +78,18 @@
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
+    <name>overflow.hpp</name>
+    <path>sanisizer/</path>
+    <filename>overflow_8hpp.html</filename>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <namespace>sanisizer</namespace>
+  </compound>
+  <compound kind="file">
     <name>product.hpp</name>
     <path>sanisizer/</path>
     <filename>product_8hpp.html</filename>
     <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
     <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
@@ -90,6 +98,7 @@
     <path>sanisizer/</path>
     <filename>ptrdiff_8hpp.html</filename>
     <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -99,6 +108,7 @@
     <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
     <includes id="sum_8hpp" name="sum.hpp" local="yes" import="no" module="no" objc="no">sum.hpp</includes>
     <includes id="product_8hpp" name="product.hpp" local="yes" import="no" module="no" objc="no">product.hpp</includes>
+    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
     <includes id="Bounded_8hpp" name="Bounded.hpp" local="yes" import="no" module="no" objc="no">Bounded.hpp</includes>
     <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
@@ -115,6 +125,7 @@
     <path>sanisizer/</path>
     <filename>sum_8hpp.html</filename>
     <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
     <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
@@ -279,6 +290,20 @@
     <class kind="struct">sanisizer::is_Constant</class>
     <class kind="struct">sanisizer::is_Constant&lt; Constant&lt; Integer_, value_ &gt; &gt;</class>
     <member kind="function">
+      <type>constexpr auto</type>
+      <name>set_bound</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ab92b5616dafc2a69591b24e81fdbc50b</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr auto</type>
+      <name>set_bound_by_type</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a7ea759a528a70c08c2558f9531397e33</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
       <type>constexpr Dest_</type>
       <name>cap</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
@@ -287,9 +312,9 @@
     </member>
     <member kind="function">
       <type>constexpr auto</type>
-      <name>can_cast</name>
+      <name>pre_cast</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a58381525eca91a088489cdabfbc4f74c</anchor>
+      <anchor>aacd55d75b924707ee0eaac356261751b</anchor>
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
@@ -412,39 +437,18 @@
       <arglist>()</arglist>
     </member>
     <member kind="function">
-      <type>constexpr bool</type>
-      <name>does_overflow</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>acbe1d9850c8873fe0661a686ecf3a10b</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>check_overflow</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a6911bfdd00b6bd59dd72b935ca5d9d3a</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr auto</type>
-      <name>set_bound</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>ab92b5616dafc2a69591b24e81fdbc50b</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr auto</type>
-      <name>set_bound_by_type</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>a7ea759a528a70c08c2558f9531397e33</anchor>
-      <arglist>(Value_ x)</arglist>
-    </member>
-    <member kind="function">
       <type>constexpr Size_</type>
       <name>nd_offset</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a8d460a84022487d3460671e5ff96f163</anchor>
       <arglist>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr bool</type>
+      <name>does_overflow</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>acbe1d9850c8873fe0661a686ecf3a10b</anchor>
+      <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
       <type>constexpr Dest_</type>
@@ -473,6 +477,20 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a6f87dc746d660a88c85ed46d90e5d54c</anchor>
       <arglist>(First_ first, Args_... more)</arglist>
+    </member>
+    <member kind="function">
+      <type>Dest_</type>
+      <name>plus_one</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ae6ca60232f40d5bc56f66fdc28cacaa7</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>Integer_ &amp;</type>
+      <name>increment</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>ae96d0a15b46bc1a5893e94896884495a</anchor>
+      <arglist>(Integer_ &amp;x)</arglist>
     </member>
   </compound>
   <compound kind="page">
