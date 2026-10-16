@@ -12,7 +12,7 @@
 namespace sanisizer {
 
 /**
- * Check that a non-negative integer can be cast to a destination type, typically the size type of a C-style array or STL container. 
+ * Check if a non-negative integer can be cast to a destination type, typically the size type of a C-style array or STL container. 
  * This is useful for chaining together checks without actually doing the cast itself.
  * 
  * @tparam Dest_ Integer type of the destination.
@@ -20,17 +20,34 @@ namespace sanisizer {
  *
  * @param x Non-negative value to be casted.
  *
- * @return `x` as its input type (or the corresponding integer type, if it was an `Bounded` or `Constant`).
+ * @return `x`, if the maximum value of `x` is less than or equal to that of `Dest_`.
+ * Otherwise, a `Bounded` object is returned that contains `x` and sets the maximum value to that of `Dest` (see `set_bound_by_type()`).
  *
  * @throw std::overflow_error Thrown if overflow/wraparound would occur.
  */
-template<typename Size_, typename Value_>
-constexpr auto can_cast(Value_ x) {
-    if (does_overflow<Size_>(x)) {
-        throw std::overflow_error("detected " + failure<Size_>() + " during integer cast");
+template<typename Dest_, typename Value_>
+constexpr auto pre_cast(Value_ x) {
+    if constexpr(get_max<Value_>() <= get_max<Dest_>()) {
+        return x;
+    } else {
+        if (does_overflow<Dest_>(x)) {
+            throw std::overflow_error("detected " + failure<Dest_>() + " during integer cast");
+        }
+        return set_bound_by_type<Dest_>(get_value(x));
     }
-    return get_value(x);
 }
+
+/**
+ * @cond
+ */
+// Back-compatibility.
+template<typename Dest_, typename Value_>
+constexpr auto can_cast(Value_ x) {
+    return get_value(pre_cast<Dest_>(x));
+}
+/**
+ * @endcond
+ */
 
 /**
  * Cast a non-negative integer to a destination type, typically the size type of a C-style array or STL container.
