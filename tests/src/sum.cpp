@@ -129,3 +129,36 @@ TEST(Sum, Unsafe) {
     // Works at compile-time.
     static_assert(sanisizer::sum_unsafe<std::int64_t>((i32)5, (i32)20) == 25);
 }
+
+TEST(PlusOne, Basic) {
+    EXPECT_EQ(sanisizer::plus_one<int>(100), 101);
+    EXPECT_EQ(sanisizer::plus_one<std::uint8_t>((std::int8_t)127), 128);
+    EXPECT_EQ(sanisizer::plus_one<int>(sanisizer::set_bound<std::int8_t, 100>(50)), 51);
+    EXPECT_EQ(sanisizer::plus_one<int>(sanisizer::set_bound<std::int8_t, 100>(100)), 101);
+    EXPECT_EQ(sanisizer::plus_one<int>(sanisizer::Constant<std::int8_t, 100>()), 101);
+
+    bool failed = false;
+    try {
+        sanisizer::plus_one<std::uint16_t>(65535);
+    } catch (std::overflow_error&) {
+        failed = true;
+    }
+    EXPECT_TRUE(failed);
+}
+
+TEST(Increment, Basic) {
+    {
+        std::uint8_t a = 254;
+        EXPECT_EQ(sanisizer::increment(a), 255);
+        EXPECT_EQ(a, 255);
+    }
+
+    bool failed = false;
+    try {
+        std::uint8_t a = 255;
+        sanisizer::increment(a);
+    } catch (std::overflow_error&) {
+        failed = true;
+    }
+    EXPECT_TRUE(failed);
+}

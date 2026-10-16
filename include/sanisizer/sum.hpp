@@ -132,6 +132,39 @@ constexpr Dest_ sum_unsafe(First_ first, Args_... more) {
     return sum_unprotected<Dest_>(first, more...);
 }
 
+/**
+ * Convenience wrapper for `sum<Dest_>(x, 1)`, i.e., `get_value(x) + 1` with an exception if overflow/wraparound is detected.
+ *
+ * @tparam Dest_ Integer type of the destination.
+ * @tparam Value_ Integer type of the value.
+ * This may also be a `Bounded` or `Constant`.
+ *
+ * @param x Non-negative value.
+ * 
+ * @return The value of `x` plus 1.
+ */
+template<typename Dest_, typename Value_>
+Dest_ plus_one(Value_ x) {
+    return sum<Dest_>(x, Constant<int, 1>());
+}
+
+/**
+ * Convenience wrapper for `x = plus_one<Dest_>(x)`, i.e., `++x` with an exception if overflow/wraparound is detected.
+ *
+ * @tparam Dest_ Integer type of the destination.
+ * @tparam Value_ Integer type of the value.
+ * 
+ * @param x Non-negative value.
+ * On output, this is incremented by 1.
+ *
+ * @return Reference to `x` after increment.
+ */
+template<typename Integer_>
+Integer_& increment(Integer_& x) {
+    x = plus_one<Integer_>(x);
+    return x;
+}
+
 }
 
 #endif
