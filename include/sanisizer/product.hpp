@@ -76,20 +76,6 @@ constexpr auto product_protected(First_ first, Second_ second, Args_... more) {
     const auto subproduct = product_protected<Dest_>(first, second);
     return product_protected<Dest_>(subproduct, more...);
 }
-
-template<typename Dest_, typename First_, typename Second_>
-constexpr Dest_ product_unprotected(First_ left, Second_ right) {
-    static_assert(std::is_integral<Dest_>::value);
-    static_assert(std::is_integral<First_>::value);
-    static_assert(std::is_integral<Second_>::value);
-    return static_cast<Dest_>(left) * static_cast<Dest_>(right);
-}
-
-template<typename Dest_, typename First_, typename Second_, typename ... Args_>
-constexpr Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
-    const auto subproduct = product_unprotected<Dest_>(left, right);
-    return product_unprotected<Dest_>(subproduct, more...);
-}
 /**
  * @endcond
  */
@@ -121,14 +107,36 @@ constexpr Dest_ product(First_ first, Args_... more) {
 }
 
 /**
- * Unsafe version of `product()` that casts its arguments to `Dest_` but does not check for overflow.
- * This is more efficent if it is known that the product will not overflow, e.g., from previous calls to `product()` with larger values.
+ * @cond
+ */
+template<typename Dest_, typename First_, typename Second_>
+constexpr Dest_ product_unprotected(First_ left, Second_ right) {
+    static_assert(std::is_integral<Dest_>::value);
+    return static_cast<Dest_>(get_value(left)) * static_cast<Dest_>(get_value(right));
+}
+
+template<typename Dest_, typename First_, typename Second_, typename ... Args_>
+constexpr Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
+    const auto subproduct = product_unprotected<Dest_>(left, right);
+    return product_unprotected<Dest_>(subproduct, more...);
+}
+/**
+ * @endcond
+ */
+
+/**
+ * Unsafe alternative to `product()` that casts its arguments to `Dest_` but does not check for overflow/wraparound.
+ * This is more efficent than `product()` if it is already known that the product will not overflow,
+ * e.g., when computing `std::size_t` offsets into a pre-allocated array.
  *
  * @tparam Dest_ Integer type of the destination.
- * @tparam Args_ Integer types of additional values.
+ * @tparam First_ Type of the first multiplication term.
+ * This should be an integer type, `Bounded` or `Constant`.
+ * @tparam Args_ Types of additional terms.
+ * Each of these should be either an integer type, `Bounded` or `Constant`.
  * 
- * @param first Value to multiply.
- * @param more Additional values to multiply.
+ * @param first Non-negative term to multiply.
+ * @param more Additional non-negative terms to multiply.
  *
  * @return Product of all arguments as a `Dest_`.
  */

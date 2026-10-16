@@ -74,20 +74,6 @@ constexpr auto sum_protected(First_ first, Second_ second, Args_... more) {
     const auto subsum = sum_protected<Dest_>(first, second); 
     return sum_protected<Dest_>(subsum, more...);
 }
-
-template<typename Dest_, typename First_, typename Second_>
-constexpr Dest_ sum_unprotected(First_ first, Second_ second) {
-    static_assert(std::is_integral<Dest_>::value);
-    static_assert(std::is_integral<First_>::value);
-    static_assert(std::is_integral<Second_>::value);
-    return static_cast<Dest_>(first) + static_cast<Dest_>(second);
-}
-
-template<typename Dest_, typename First_, typename Second_, typename ... Args_>
-constexpr Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
-    const auto subsum = sum_unprotected<Dest_>(first, second);
-    return sum_unprotected<Dest_>(subsum, more...);
-}
 /**
  * @endcond
  */
@@ -112,24 +98,6 @@ constexpr Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
 template<typename Dest_, typename First_, typename ... Args_>
 constexpr Dest_ sum(First_ first, Args_... more) {
     return get_value(sum_protected<Dest_>(first, more...));
-}
-
-/**
- * Unsafe version of `sum()` that casts its arguments to `Dest_` before summation but does not check for overflow.
- * This is more efficent if it is already known that the sum will not overflow, e.g., from previous calls to `sum()` with larger values.
- *
- * @tparam Dest_ Integer type of the destination.
- * @tparam First_ Integer type of the first value.
- * @tparam Args_ Integer types of additional values.
- * 
- * @param first Non-negative value to add.
- * @param more Additional non-negative values to add.
- *
- * @return Sum of all arguments as a `Dest_`.
- */
-template<typename Dest_, typename First_, typename ... Args_>
-constexpr Dest_ sum_unsafe(First_ first, Args_... more) {
-    return sum_unprotected<Dest_>(first, more...);
 }
 
 /**
@@ -163,6 +131,45 @@ template<typename Integer_>
 Integer_& increment(Integer_& x) {
     x = plus_one<Integer_>(x);
     return x;
+}
+
+/**
+ * @cond
+ */
+template<typename Dest_, typename First_, typename Second_>
+constexpr Dest_ sum_unprotected(First_ first, Second_ second) {
+    static_assert(std::is_integral<Dest_>::value);
+    return static_cast<Dest_>(get_value(first)) + static_cast<Dest_>(get_value(second));
+}
+
+template<typename Dest_, typename First_, typename Second_, typename ... Args_>
+constexpr Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
+    const auto subsum = sum_unprotected<Dest_>(first, second);
+    return sum_unprotected<Dest_>(subsum, more...);
+}
+/**
+ * @endcond
+ */
+
+/**
+ * Unsafe alternative to `sum()` that casts its arguments to `Dest_` before summation but does not check for overflow/wraparound.
+ * This is more efficent than `sum()` if it is already known that the sum will not overflow, 
+ * e.g., when computing `std::size_t` offsets into a pre-allocated array.
+ *
+ * @tparam Dest_ Integer type of the destination.
+ * @tparam First_ Type of the first summation term.
+ * This should be an integer type, `Bounded` or `Constant`.
+ * @tparam Args_ Types of additional terms.
+ * Each of these should be either an integer type, `Bounded` or `Constant`.
+ * 
+ * @param first Non-negative term to sum.
+ * @param more Additional non-negative terms to add.
+ *
+ * @return Sum of all arguments as a `Dest_`.
+ */
+template<typename Dest_, typename First_, typename ... Args_>
+constexpr Dest_ sum_unsafe(First_ first, Args_... more) {
+    return sum_unprotected<Dest_>(first, more...);
 }
 
 }

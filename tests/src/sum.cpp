@@ -115,7 +115,7 @@ TEST(Sum, Multiple) {
     }
 }
 
-TEST(Sum, Unsafe) {
+TEST(SumUnsafe, Integer) {
     EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>((i32)5, (i32)20), 25);
     EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>((u32)5, (i32)20), 25);
     EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>((i32)5, (u32)20), 25);
@@ -128,6 +128,43 @@ TEST(Sum, Unsafe) {
 
     // Works at compile-time.
     static_assert(sanisizer::sum_unsafe<std::int64_t>((i32)5, (i32)20) == 25);
+}
+
+TEST(SumUnsafe, Bounded) {
+    EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>(
+        sanisizer::set_bound_by_type<std::uint8_t>(5),
+        sanisizer::set_bound_by_type<std::uint8_t>(20)
+    ), 25);
+
+    EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>(
+        sanisizer::set_bound_by_type<std::uint8_t>(5),
+        sanisizer::set_bound_by_type<std::uint8_t>(20), 
+        sanisizer::set_bound_by_type<std::uint8_t>(2)
+    ), 27);
+
+    static_assert(sanisizer::sum_unsafe<std::uint8_t>(
+        sanisizer::set_bound_by_type<std::uint8_t>(5),
+        sanisizer::set_bound_by_type<std::uint8_t>(20)
+    ) == 25);
+
+}
+
+TEST(SumUnsafe, Constant) {
+    EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>(
+        sanisizer::Constant<std::uint8_t, 5>(),
+        sanisizer::Constant<std::uint8_t, 20>()
+    ), 25);
+
+    EXPECT_EQ(sanisizer::sum_unsafe<std::uint8_t>(
+        sanisizer::Constant<std::uint8_t, 5>(),
+        sanisizer::Constant<std::uint8_t, 20>(), 
+        sanisizer::Constant<std::uint8_t, 2>()
+    ), 27);
+
+    static_assert(sanisizer::sum_unsafe<std::uint8_t>(
+        sanisizer::Constant<std::uint8_t, 5>(),
+        sanisizer::Constant<std::uint8_t, 20>()
+    ) == 25);
 }
 
 TEST(PlusOne, Basic) {

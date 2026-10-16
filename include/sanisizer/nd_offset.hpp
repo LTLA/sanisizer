@@ -3,6 +3,8 @@
 
 #include <type_traits>
 
+#include "generics.hpp"
+
 /**
  * @file nd_offset.hpp
  * @brief Offsets for accessing N-dimensional arrays.
@@ -13,16 +15,16 @@ namespace sanisizer {
 /**
  * @cond
  */
-template<typename Size_>
-constexpr Size_ nd_offset_internal(Size_ extent, Size_ pos) {
+template<typename Size_, typename Extent_, typename NextIndex_>
+constexpr Size_ nd_offset_internal(Extent_ extent, NextIndex_ pos) {
     static_assert(std::is_integral<Size_>::value);
-    return extent * pos;
+    return get_value(extent) * get_value(pos);
 }
 
-template<typename Size_, typename... MoreArgs_>
-constexpr Size_ nd_offset_internal(Size_ extent, Size_ pos, MoreArgs_... more_args) {
+template<typename Size_, typename Extent_, typename NextIndex_, typename... MoreArgs_>
+constexpr Size_ nd_offset_internal(Extent_ extent, NextIndex_ pos, MoreArgs_... more_args) {
     static_assert(std::is_integral<Size_>::value);
-    return (pos + nd_offset_internal<Size_>(more_args...)) * extent;
+    return (get_value(pos) + nd_offset_internal<Size_>(more_args...)) * get_value(extent);
 }
 /**
  * @endcond
@@ -33,13 +35,17 @@ constexpr Size_ nd_offset_internal(Size_ extent, Size_ pos, MoreArgs_... more_ar
  * The first dimension is assumed to be the fastest-changing, followed by the second dimension, and so on.
  * 
  * @tparam Size_ Integer type to represent the size of the flattened array.
- * @tparam FirstIndex_ Integer type to represent the index on the first dimension.
+ * @tparam FirstIndex_ Type of the index on the first dimension.
+ * This may be an integer type, `Bounded` or `Constant`.
  * It is assumed that this can be safely cast to `Size_`, as overflow/wraparound checks should have been performed during array allocation, e.g., via `product()`.
- * @tparam FirstExtent_ Integer type to represent the extent of the first dimension.
+ * @tparam FirstExtent_ Type of the extent of the first dimension.
+ * This may be an integer type, `Bounded` or `Constant`.
  * It is assumed that this can be safely cast to `Size_`, as overflow/wraparound checks should have been performed during array allocation, e.g., via `product()`.
- * @tparam SecondIndex_ Integer type to represent the index on the second dimension.
+ * @tparam SecondIndex_ Type of the index on the second dimension.
+ * This may be an integer type, `Bounded` or `Constant`.
  * It is assumed that this can be safely cast to `Size_`, as overflow/wraparound checks should have been performed during array allocation, e.g., via `product()`.
  * @tparam Remaining_ Additional arguments for further dimensions.
+ * Each argument should should be either an integer type, `Bounded` or `Constant`.
  * It is assumed that all types can be safely cast to `Size_`, as overflow/wraparound checks should have been performed during array allocation, e.g., `product()`.
  *
  * @param x1 Position on the first dimension.
@@ -54,14 +60,11 @@ constexpr Size_ nd_offset_internal(Size_ extent, Size_ pos, MoreArgs_... more_ar
 template<typename Size_, typename FirstIndex_, typename FirstExtent_, typename SecondIndex_, typename... Remaining_>
 constexpr Size_ nd_offset(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining) {
     static_assert(std::is_integral<Size_>::value);
-    static_assert(std::is_integral<FirstIndex_>::value);
-    static_assert(std::is_integral<FirstExtent_>::value);
-    static_assert(std::is_integral<SecondIndex_>::value);
 
     // Note that we don't use Size_ in the function signature, even though everything is cast to Size_.
     // This avoids inadvertent deduction of Size_ from the input types.
     // The user is always forced to explicitly specify Size_ to avoid any risk of accidental overflow.
-    return static_cast<Size_>(x1) + nd_offset_internal<Size_>(extent1, x2, remaining...);
+    return static_cast<Size_>(get_value(x1)) + nd_offset_internal<Size_>(extent1, x2, remaining...);
 }
 
 }

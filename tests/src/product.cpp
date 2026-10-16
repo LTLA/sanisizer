@@ -139,7 +139,7 @@ TEST(Product, Multiple) {
     }
 }
 
-TEST(Product, Unsafe) {
+TEST(ProductUnsafe, Integer) {
     EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>((i32)5, (i32)20), 100);
     EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>((u32)5, (i32)20), 100);
     EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>((i32)5, (u32)20), 100);
@@ -152,4 +152,42 @@ TEST(Product, Unsafe) {
 
     // Works at compile-time.
     static_assert(sanisizer::product_unsafe<std::int64_t>((i32)5, (i32)20) == 100);
+}
+
+TEST(ProductUnsafe, Bounded) {
+    EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>(
+        sanisizer::set_bound_by_type<std::uint8_t>(5),
+        sanisizer::set_bound_by_type<std::uint8_t>(20)
+    ), 100);
+
+    EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>(
+        sanisizer::set_bound_by_type<std::uint8_t>(5),
+        sanisizer::set_bound_by_type<std::uint8_t>(20), 
+        sanisizer::set_bound_by_type<std::uint8_t>(2)
+    ), 200);
+
+    // Works at compile-time.
+    static_assert(sanisizer::product_unsafe<std::uint8_t>(
+        sanisizer::set_bound_by_type<std::uint8_t>(5),
+        sanisizer::set_bound_by_type<std::uint8_t>(20)
+    ) == 100);
+}
+
+TEST(ProductUnsafe, Constant) {
+    EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>(
+        sanisizer::Constant<std::uint8_t, 5>(),
+        sanisizer::Constant<std::uint8_t, 20>()
+    ), 100);
+
+    EXPECT_EQ(sanisizer::product_unsafe<std::uint8_t>(
+        sanisizer::Constant<std::uint8_t, 5>(),
+        sanisizer::Constant<std::uint8_t, 20>(), 
+        sanisizer::Constant<std::uint8_t, 2>()
+    ), 200);
+
+    // Works at compile-time.
+    static_assert(sanisizer::product_unsafe<std::uint8_t>(
+        sanisizer::Constant<std::uint8_t, 5>(),
+        sanisizer::Constant<std::uint8_t, 20>()
+    ) == 100);
 }

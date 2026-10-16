@@ -101,9 +101,9 @@ Integer_ from_float(Float_ x) {
  * Note that the purpose of this function is to preserve precision rather than to avoid undefined behavior.
  * For IEEE-754 floats, very large integers already have a well-defined cast to positive infinity. 
  *
- * @tparam Integer_ Integer type, `Bounded` or `Constant`.
  * @tparam Float_ Floating-point type.
  * This should be one of the IEEE-754 binary formats.
+ * @tparam Value_ Integer type, `Bounded` or `Constant`.
  *
  * @param x Non-negative integer, usually holding some kind of size. 
  *
@@ -111,8 +111,8 @@ Integer_ from_float(Float_ x) {
  *
  * @throw std::overflow_error Thrown if `Float_` cannot exactly represent all non-negative integers less than or equal to `x`.
  */
-template<typename Float_, typename Integer_>
-Float_ to_float(Integer_ x) {
+template<typename Float_, typename Value_>
+Float_ to_float(Value_ x) {
     const auto val = get_value(x);
 
     // protect against the various -1 operations.
