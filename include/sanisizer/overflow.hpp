@@ -17,7 +17,7 @@ namespace sanisizer {
  * @tparam Dest_ Integer type of the destination.
  * @tparam Value_ Integer type, `Bounded` or `Constant`.
  * @param x Representation of an integer value. 
- * @return Whether `x`'s value would overflow when stored in `Dest_`.
+ * @return Whether `x`'s value would overflow/wraparound when stored in `Dest_`.
  */
 template<typename Dest_, typename Value_>
 constexpr bool does_overflow(Value_ x) {
@@ -30,20 +30,18 @@ constexpr bool does_overflow(Value_ x) {
 }
 
 /**
- * @tparam Dest_ Integer type of the destination.
- * @tparam Value_ Integer type, `Bounded` or `Constant`.
- * @param x Representation of an integer value. 
- * @return `false` on success, for back-compatibility.
- * Consider using `does_overflow()` instead to detect overflow.
- * @throw std::overflow_error Thrown if `x`'s value would overflow when stored in `Dest_`.
+ * @cond
  */
 template<typename Dest_, typename Value_>
 constexpr bool check_overflow(Value_ x) {
     if (does_overflow<Dest_>(x)) {
-        throw std::overflow_error("overflow detected for integer cast");
+        throw std::overflow_error("detected " + failure<Dest_>() + " for integer cast");
     }
     return false;
 }
+/**
+ * @endcond
+ */
 
 }
 

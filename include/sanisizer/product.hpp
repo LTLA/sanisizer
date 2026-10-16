@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 #include "generics.hpp"
+#include "overflow.hpp"
 #include "Constant.hpp"
 #include "utils.hpp"
 
@@ -36,10 +37,14 @@ constexpr bool needs_product_check() {
 
 template<typename Dest_, typename First_, typename Second_>
 constexpr auto product_protected(First_ first, Second_ second) {
-    check_overflow<Dest_>(first);
+    if (does_overflow<Dest_>(first)) {
+        throw std::overflow_error("detected " + failure<Dest_>() + " of multiplication term");
+    }
     const Dest_ first_val = get_value(first);
 
-    check_overflow<Dest_>(second);
+    if (does_overflow<Dest_>(second)) {
+        throw std::overflow_error("detected " + failure<Dest_>() + " of multiplication term");
+    }
     const Dest_ second_val = get_value(second);
 
     if constexpr(needs_product_check<Dest_, First_, Second_>()) {
@@ -55,7 +60,7 @@ constexpr auto product_protected(First_ first, Second_ second) {
             }
         }();
         if (overflowed) {
-            throw std::overflow_error("overflow detected during multiplication");
+            throw std::overflow_error("detected " + failure<Dest_>() + " during multiplication");
         }
 
         return static_cast<Dest_>(first_val * second_val);
@@ -90,7 +95,7 @@ constexpr Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
  */
 
 /**
- * Multiply two or more non-negative values, checking for overflow in the destination type.
+ * Multiply two or more non-negative values, checking for overflow/wraparound in the destination type.
  * This is typically used to compute the size of a flattened N-dimensional array as the product of its dimension extents.
  * 
  * For consistency, this function will also check that each input value can be cast to `Dest_`.
@@ -108,7 +113,7 @@ constexpr Dest_ product_unprotected(First_ left, Second_ right, Args_... more) {
  *
  * @return Product of all arguments as a `Dest_`.
  *
- * @throw std::overflow_error Thrown if an overflow would occur.
+ * @throw std::overflow_error Thrown if an overflow/wraparound would occur.
  */
 template<typename Dest_, typename First_, typename ... Args_>
 constexpr Dest_ product(First_ first, Args_... more) {

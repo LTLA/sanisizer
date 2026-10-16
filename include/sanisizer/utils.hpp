@@ -2,6 +2,7 @@
 #define SANISIZER_UTILS_HPP
 
 #include <type_traits>
+#include <string>
 
 namespace sanisizer {
 
@@ -15,6 +16,16 @@ constexpr auto as_unsigned(Integer_ x) {
         return x;
     } else {
         return static_cast<typename std::make_unsigned<Integer_>::type>(x);
+    }
+}
+
+template<typename Integer_>
+std::string failure() {
+    static_assert(std::is_integral<Integer_>::value);
+    if constexpr(std::is_unsigned<Integer_>::value) {
+        return "wraparound";
+    } else {
+        return "overflow";
     }
 }
 

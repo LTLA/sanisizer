@@ -1,7 +1,8 @@
 #ifndef SANISIZER_CAST_HPP
 #define SANISIZER_CAST_HPP
 
-#include "generics.hpp"
+#include "utils.hpp"
+#include "overflow.hpp"
 
 /**
  * @file cast.hpp
@@ -21,17 +22,19 @@ namespace sanisizer {
  *
  * @return `x` as its input type (or the corresponding integer type, if it was an `Bounded` or `Constant`).
  *
- * @throw std::overflow_error Thrown if overflow would occur.
+ * @throw std::overflow_error Thrown if overflow/wraparound would occur.
  */
 template<typename Size_, typename Value_>
 constexpr auto can_cast(Value_ x) {
-    check_overflow<Size_>(x);
+    if (does_overflow<Size_>(x)) {
+        throw std::overflow_error("detected " + failure<Size_>() + " during integer cast");
+    }
     return get_value(x);
 }
 
 /**
  * Cast a non-negative integer to a destination type, typically the size type of a C-style array or STL container.
- * This avoids accidental overflow from an implicit cast when `x` is used in `new` or the container's constructor.
+ * This avoids accidental overflow/wraparound from an implicit cast when `x` is used in `new` or the container's constructor.
  * 
  * @tparam Dest_ Integer type of the destination.
  * @tparam Value_ Integer type, `Bounded` or `Constant`.
@@ -39,7 +42,7 @@ constexpr auto can_cast(Value_ x) {
  * @param x Non-negative value to be casted.
  *
  * @return `x` as a `Dest_`.
- * An error is thrown if overflow would occur.
+ * An error is thrown if overflow/wraparound would occur.
  */
 template<typename Dest_, typename Value_>
 constexpr Dest_ cast(Value_ x) {

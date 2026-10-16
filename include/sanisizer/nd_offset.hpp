@@ -34,13 +34,13 @@ constexpr Size_ nd_offset_internal(Size_ extent, Size_ pos, MoreArgs_... more_ar
  * 
  * @tparam Size_ Integer type to represent the size of the flattened array.
  * @tparam FirstIndex_ Integer type to represent the index on the first dimension.
- * It is assumed that this can be safely cast to `Size_`, as overflow checks should have been performed during array allocation, e.g., via `product()`.
+ * It is assumed that this can be safely cast to `Size_`, as overflow/wraparound checks should have been performed during array allocation, e.g., via `product()`.
  * @tparam FirstExtent_ Integer type to represent the extent of the first dimension.
- * It is assumed that this can be safely cast to `Size_`, as overflow checks should have been performed during array allocation, e.g., via `product()`.
+ * It is assumed that this can be safely cast to `Size_`, as overflow/wraparound checks should have been performed during array allocation, e.g., via `product()`.
  * @tparam SecondIndex_ Integer type to represent the index on the second dimension.
- * It is assumed that this can be safely cast to `Size_`, as overflow checks should have been performed during array allocation, e.g., via `product()`.
+ * It is assumed that this can be safely cast to `Size_`, as overflow/wraparound checks should have been performed during array allocation, e.g., via `product()`.
  * @tparam Remaining_ Additional arguments for further dimensions.
- * It is assumed that all types can be safely cast to `Size_`, as overflow checks should have been performed during array allocation, e.g., `product()`.
+ * It is assumed that all types can be safely cast to `Size_`, as overflow/wraparound checks should have been performed during array allocation, e.g., `product()`.
  *
  * @param x1 Position on the first dimension.
  * @param extent1 Extent of the first dimension.

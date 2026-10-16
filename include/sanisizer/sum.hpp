@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 #include "generics.hpp"
+#include "overflow.hpp"
 #include "Constant.hpp"
 #include "utils.hpp"
 
@@ -34,10 +35,14 @@ constexpr bool needs_sum_check() {
 
 template<typename Dest_, typename First_, typename Second_>
 constexpr auto sum_protected(First_ first, Second_ second) {
-    check_overflow<Dest_>(first);
+    if (does_overflow<Dest_>(first)) {
+        throw std::overflow_error("detected " + failure<Dest_>() + " of summation term");
+    }
     const Dest_ first_val = get_value(first);
 
-    check_overflow<Dest_>(second);
+    if (does_overflow<Dest_>(second)) {
+        throw std::overflow_error("detected " + failure<Dest_>() + " of summation term");
+    }
     const Dest_ second_val = get_value(second);
 
     if constexpr(needs_sum_check<Dest_, First_, Second_>()) {
@@ -53,7 +58,7 @@ constexpr auto sum_protected(First_ first, Second_ second) {
             }
         }();
         if (overflowed) {
-            throw std::overflow_error("overflow detected during summation");
+            throw std::overflow_error("detected " + failure<Dest_>() + " during summation");
         }
 
         return static_cast<Dest_>(first_val + second_val);
@@ -88,7 +93,7 @@ constexpr Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
  */
 
 /**
- * Add two or more non-negative values, checking for overflow in the destination type.
+ * Add two or more non-negative values, checking for overflow/wraparound in the destination type.
  * This is typically used to compute the size of an array that is a concatenation of smaller arrays.
  *
  * @tparam Dest_ Integer type of the destination.
@@ -102,7 +107,7 @@ constexpr Dest_ sum_unprotected(First_ first, Second_ second, Args_... more) {
  *
  * @return Sum of all arguments as a `Dest_`.
  *
- * @throw std::overflow_error Thrown if an overflow would occur.
+ * @throw std::overflow_error Thrown if an overflow/wraparound would occur.
  */
 template<typename Dest_, typename First_, typename ... Args_>
 constexpr Dest_ sum(First_ first, Args_... more) {

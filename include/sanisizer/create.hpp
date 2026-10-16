@@ -15,7 +15,7 @@ namespace sanisizer {
 
 /**
  * Cast an integer to the size type of a container.
- * This protects against overflow when using this integer in the container's constructor or `resize()`/`reserve()` methods.
+ * This protects against overflow/wraparound when using this integer in the container's constructor or `resize()`/`reserve()` methods.
  *
  * @tparam Container_ Container class with a `size()` method and a constructor that accepts the size as the first argument.
  * @tparam Value_ Integer type of the input size.
@@ -31,7 +31,7 @@ constexpr auto as_size_type(Value_ x) {
 
 /**
  * Create a new container of a specified size.
- * This protects against overflow when casting the integer size to the container's size type, see `as_size_type()` for details.
+ * This protects against overflow/wraparound when casting the integer size to the container's size type, see `as_size_type()` for details.
  *
  * @tparam Container_ Container class with a `size()` method and a constructor that accepts the size as the first argument.
  * @tparam Value_ Integer type of the input size.
@@ -49,7 +49,7 @@ Container_ create(Value_ x, Args_&&... args) {
 
 /**
  * Resize a container to the desired size.
- * This protects against overflow when casting the integer size to the container's size type, see `as_size_type()` for details.
+ * This protects against overflow/wraparound when casting the integer size to the container's size type, see `as_size_type()` for details.
  *
  * @tparam Container_ Container class with a `size()` method and a `resize()` method that accepts the size as the first argument.
  * @tparam Value_ Integer type of the input size.
@@ -67,7 +67,7 @@ void resize(Container_& container, Value_ x, Args_&&... args) {
 
 /**
  * Reserve a container to the desired size.
- * This protects against overflow when casting the integer size to the container's size type, see `as_size_type()` for details.
+ * This protects against overflow/wraparound when casting the integer size to the container's size type, see `as_size_type()` for details.
  *
  * In most cases involving `std::vector`, this protection is not necessary as the size type is unsigned and `x` would harmlessly wrap around to some smaller non-negative value.
  * The reserved size would be smaller than `x` but would silently reallocate as necessary upon `push_back()` or `insert()` operations beyond that size.

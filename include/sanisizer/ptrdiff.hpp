@@ -5,6 +5,7 @@
 
 #include "generics.hpp"
 #include "utils.hpp"
+#include "overflow.hpp"
 
 /**
  * @file ptrdiff.hpp
@@ -26,7 +27,7 @@ constexpr bool can_ptrdiff(MaxDiff_ max_diff) {
  * @endcond
  */
 
-// It is tempting to write a ptrdiff() function that checks each subtraction for overflow given 'start' and 'end' iterators.
+// It is tempting to write a ptrdiff() function that checks each subtraction for overflow/wraparound given 'start' and 'end' iterators.
 // This could be implemented by checking if 'end >= start + theoretical_max_diff' when 'max_diff > theoretical_max_diff'.
 // Unfortunately, this causes the most recent Clang to emit a warning when 'start' and 'end' are pointers to an array of objects of size > 2, 
 // because it knows that 'theoretical_max_diff' cannot be allocated when ptrdiff_t is a signed version of size_t.
