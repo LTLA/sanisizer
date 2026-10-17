@@ -99,13 +99,14 @@ $(function(){ initResizable(false); });
 
 <p>Safe sum of integer sizes.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;limits&gt;</code><br />
-<code>#include &lt;type_traits&gt;</code><br />
+<div class="textblock"><code>#include &lt;type_traits&gt;</code><br />
 <code>#include &lt;stdexcept&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &quot;<a class="el" href="generics_8hpp_source.html">generics.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="overflow_8hpp_source.html">overflow.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Bounded_8hpp_source.html">Bounded.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Constant_8hpp_source.html">Constant.hpp</a>&quot;</code><br />
 <code>#include &quot;utils.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="comparisons_8hpp_source.html">comparisons.hpp</a>&quot;</code><br />
 </div>
 <p><a href="sum_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -117,6 +118,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a8bd6016302e1070a3f264e0612b72834" id="r_a8bd6016302e1070a3f264e0612b72834"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a8bd6016302e1070a3f264e0612b72834"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::optional&lt; Dest_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#a8bd6016302e1070a3f264e0612b72834">sanisizer::sum_maybe</a> (First_ first, Args_... more)</td></tr>
+<tr class="separator:a8bd6016302e1070a3f264e0612b72834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0351da831c6ee07baf0a96c51a019c9" id="r_ad0351da831c6ee07baf0a96c51a019c9"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:ad0351da831c6ee07baf0a96c51a019c9"><td class="memTemplItemLeft" align="right" valign="top">constexpr Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9">sanisizer::sum</a> (First_ first, Args_... more)</td></tr>
 <tr class="separator:ad0351da831c6ee07baf0a96c51a019c9"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -8,5 +8,6 @@ var searchData=
   ['sizes_20to_20avoid_20integer_20overflow_5',['Sanitize sizes to avoid integer overflow',['../index.html',1,'']]],
   ['sum_6',['sum',['../namespacesanisizer.html#ad0351da831c6ee07baf0a96c51a019c9',1,'sanisizer']]],
   ['sum_2ehpp_7',['sum.hpp',['../sum_8hpp.html',1,'']]],
-  ['sum_5funsafe_8',['sum_unsafe',['../namespacesanisizer.html#a6f87dc746d660a88c85ed46d90e5d54c',1,'sanisizer']]]
+  ['sum_5fmaybe_8',['sum_maybe',['../namespacesanisizer.html#a8bd6016302e1070a3f264e0612b72834',1,'sanisizer']]],
+  ['sum_5funsafe_9',['sum_unsafe',['../namespacesanisizer.html#a6f87dc746d660a88c85ed46d90e5d54c',1,'sanisizer']]]
 ];

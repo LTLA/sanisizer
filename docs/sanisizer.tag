@@ -90,8 +90,9 @@
     <path>sanisizer/</path>
     <filename>product_8hpp.html</filename>
     <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
-    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
+    <includes id="Bounded_8hpp" name="Bounded.hpp" local="yes" import="no" module="no" objc="no">Bounded.hpp</includes>
     <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
+    <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -126,8 +127,9 @@
     <path>sanisizer/</path>
     <filename>sum_8hpp.html</filename>
     <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
-    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
+    <includes id="Bounded_8hpp" name="Bounded.hpp" local="yes" import="no" module="no" objc="no">Bounded.hpp</includes>
     <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
+    <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="struct">
@@ -452,6 +454,13 @@
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
+      <type>constexpr std::optional&lt; Dest_ &gt;</type>
+      <name>product_maybe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a7561ffa1b7335ac39b5a02063890f1da</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
+    </member>
+    <member kind="function">
       <type>constexpr Dest_</type>
       <name>product</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
@@ -463,6 +472,13 @@
       <name>product_unsafe</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>aa3df28f9c655292959f7fbf22e61f9c2</anchor>
+      <arglist>(First_ first, Args_... more)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr std::optional&lt; Dest_ &gt;</type>
+      <name>sum_maybe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a8bd6016302e1070a3f264e0612b72834</anchor>
       <arglist>(First_ first, Args_... more)</arglist>
     </member>
     <member kind="function">

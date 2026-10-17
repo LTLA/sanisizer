@@ -190,12 +190,18 @@ Functions</h2></td></tr>
 <tr class="memitem:acbe1d9850c8873fe0661a686ecf3a10b" id="r_acbe1d9850c8873fe0661a686ecf3a10b"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
 <tr class="memitem:acbe1d9850c8873fe0661a686ecf3a10b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acbe1d9850c8873fe0661a686ecf3a10b">does_overflow</a> (Value_ x)</td></tr>
 <tr class="separator:acbe1d9850c8873fe0661a686ecf3a10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7561ffa1b7335ac39b5a02063890f1da" id="r_a7561ffa1b7335ac39b5a02063890f1da"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a7561ffa1b7335ac39b5a02063890f1da"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::optional&lt; Dest_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7561ffa1b7335ac39b5a02063890f1da">product_maybe</a> (First_ first, Args_... more)</td></tr>
+<tr class="separator:a7561ffa1b7335ac39b5a02063890f1da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace3b6841d0fd165ae3f47d07a713a15c" id="r_ace3b6841d0fd165ae3f47d07a713a15c"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:ace3b6841d0fd165ae3f47d07a713a15c"><td class="memTemplItemLeft" align="right" valign="top">constexpr Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ace3b6841d0fd165ae3f47d07a713a15c">product</a> (First_ first, Args_... more)</td></tr>
 <tr class="separator:ace3b6841d0fd165ae3f47d07a713a15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3df28f9c655292959f7fbf22e61f9c2" id="r_aa3df28f9c655292959f7fbf22e61f9c2"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:aa3df28f9c655292959f7fbf22e61f9c2"><td class="memTemplItemLeft" align="right" valign="top">constexpr Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa3df28f9c655292959f7fbf22e61f9c2">product_unsafe</a> (First_ first, Args_... more)</td></tr>
 <tr class="separator:aa3df28f9c655292959f7fbf22e61f9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd6016302e1070a3f264e0612b72834" id="r_a8bd6016302e1070a3f264e0612b72834"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
+<tr class="memitem:a8bd6016302e1070a3f264e0612b72834"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::optional&lt; Dest_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8bd6016302e1070a3f264e0612b72834">sum_maybe</a> (First_ first, Args_... more)</td></tr>
+<tr class="separator:a8bd6016302e1070a3f264e0612b72834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0351da831c6ee07baf0a96c51a019c9" id="r_ad0351da831c6ee07baf0a96c51a019c9"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:ad0351da831c6ee07baf0a96c51a019c9"><td class="memTemplItemLeft" align="right" valign="top">constexpr Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad0351da831c6ee07baf0a96c51a019c9">sum</a> (First_ first, Args_... more)</td></tr>
 <tr class="separator:ad0351da831c6ee07baf0a96c51a019c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1062,8 +1068,63 @@ template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Multiply two or more non-negative values, checking for overflow/wraparound in the destination type. This is typically used to compute the size of a flattened N-dimensional array as the product of its dimension extents.</p>
-<p>For consistency, this function will also check that each input value can be cast to <code>Dest_</code>. This ensures that per-dimension indices/extents can be safely represented as <code>Dest_</code> in later steps (e.g., <code><a class="el" href="#a8d460a84022487d3460671e5ff96f163">nd_offset()</a></code>). These checks are necessary as the product may fit in <code>Dest_</code> but not the input values if one of the inputs is zero.</p>
+<p>Multiply two or more non-negative values, e.g., to compute the size of a flattened N-dimensional array as the product of its dimension extents. If overflow/wraparound in the destination type is detected, an exception is thrown. (See also <code><a class="el" href="#a7561ffa1b7335ac39b5a02063890f1da">product_maybe()</a></code> to return an empty object upon overflow/wraparound.)</p>
+<p>For consistency, this function will also check that each input value can be cast to <code>Dest_</code>. This ensures that per-dimension indices/extents can be safely represented as <code>Dest_</code> in later steps (e.g., <code><a class="el" href="#a8d460a84022487d3460671e5ff96f163">nd_offset()</a></code>). These checks are necessary as the product may fit in <code>Dest_</code> but not the input values if any one of the inputs is zero.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>
+    <tr><td class="paramname">First_</td><td>Integer type of the first value. This may be also be a <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>. </td></tr>
+    <tr><td class="paramname">Args_</td><td>Integer types of additional values. Any number of these may also be <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>Non-negative value to multiply. </td></tr>
+    <tr><td class="paramname">more</td><td>Additional non-negative values to multiply.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Product of all arguments as a <code>Dest_</code>.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::overflow_error</td><td>Thrown if an overflow/wraparound would occur. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7561ffa1b7335ac39b5a02063890f1da" name="a7561ffa1b7335ac39b5a02063890f1da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7561ffa1b7335ac39b5a02063890f1da">&#9670;&#160;</a></span>product_maybe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; Dest_ &gt; sanisizer::product_maybe </td>
+          <td>(</td>
+          <td class="paramtype">First_</td>          <td class="paramname"><span class="paramname"><em>first</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args_...</td>          <td class="paramname"><span class="paramname"><em>more</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Multiply two or more non-negative values. If overflow/wraparound in the destination type is detected, an empty object is returned. See also <code><a class="el" href="#ace3b6841d0fd165ae3f47d07a713a15c">product()</a></code> to throw an exception upon overflow/wraparound.</p>
+<p>For consistency, this function will also check that each input value can be cast to <code>Dest_</code>. See <code><a class="el" href="#ace3b6841d0fd165ae3f47d07a713a15c">product()</a></code> for more details.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>
@@ -1379,7 +1440,7 @@ template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Add two or more non-negative values, checking for overflow/wraparound in the destination type. This is typically used to compute the size of an array that is a concatenation of smaller arrays.</p>
+<p>Add two or more non-negative values, e.g., to compute the size of an array that is a concatenation of smaller arrays. If overflow/wraparound in the destination type is detected, an exception is thrown. (See also <code><a class="el" href="#a8bd6016302e1070a3f264e0612b72834">sum_maybe()</a></code> to return an empty object upon overflow/wraparound.)</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>
@@ -1398,10 +1459,58 @@ template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Sum of all arguments as a <code>Dest_</code>.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::overflow_error</td><td>Thrown if an overflow/wraparound would occur. </td></tr>
+    <tr><td class="paramname">std::overflow_error</td><td>Thrown if an overflow/wraparound occurs at any summation step. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a8bd6016302e1070a3f264e0612b72834" name="a8bd6016302e1070a3f264e0612b72834"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bd6016302e1070a3f264e0612b72834">&#9670;&#160;</a></span>sum_maybe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; Dest_ &gt; sanisizer::sum_maybe </td>
+          <td>(</td>
+          <td class="paramtype">First_</td>          <td class="paramname"><span class="paramname"><em>first</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args_...</td>          <td class="paramname"><span class="paramname"><em>more</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add two or more non-negative values. If overflow/wraparound in the destination type is detected, an empty object is returned. (See also <code><a class="el" href="#ad0351da831c6ee07baf0a96c51a019c9">sum()</a></code> to throw an exception upon overflow/wraparound.)</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>
+    <tr><td class="paramname">First_</td><td>Integer type of the first value. This may also be a <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>. </td></tr>
+    <tr><td class="paramname">Args_</td><td>Integer types of additional values. Any number of these may also be <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>First non-negative value to add. </td></tr>
+    <tr><td class="paramname">more</td><td>Additional non-negative values to add.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Sum of all arguments as a <code>Dest_</code>, wrapped in a <code>std::optional</code>. An empty object is returned if overflow/wraparound is detected in the destination type at any step of the summation. </dd></dl>
 
 </div>
 </div>
