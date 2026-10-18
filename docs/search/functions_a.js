@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['operator_20integer_5f_0',['operator Integer_',['../classsanisizer_1_1Exact.html#ae46a64c0dbe62535e6d5ffe8e555bba5',1,'sanisizer::Exact']]],
-  ['operator_20output_5f_1',['operator Output_',['../classsanisizer_1_1Cast.html#a22b477d41df49b122428deb6532e2307',1,'sanisizer::Cast::operator Output_()'],['../classsanisizer_1_1Exact.html#a0f5204707227e757d6b1dd25ba60619c',1,'sanisizer::Exact::operator Output_()']]]
+  ['plus_5fone_0',['plus_one',['../namespacesanisizer.html#ae6ca60232f40d5bc56f66fdc28cacaa7',1,'sanisizer']]],
+  ['product_1',['product',['../namespacesanisizer.html#ace3b6841d0fd165ae3f47d07a713a15c',1,'sanisizer']]],
+  ['product_5fmaybe_2',['product_maybe',['../namespacesanisizer.html#a7561ffa1b7335ac39b5a02063890f1da',1,'sanisizer']]],
+  ['product_5funsafe_3',['product_unsafe',['../namespacesanisizer.html#aa3df28f9c655292959f7fbf22e61f9c2',1,'sanisizer']]]
 ];

@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['get_5fmax_0',['get_max',['../namespacesanisizer.html#a743d244f216921a55a3c74d0544f1d64',1,'sanisizer']]],
-  ['get_5fvalue_1',['get_value',['../namespacesanisizer.html#a4b2d1215d4bca4f8179c72083919cf56',1,'sanisizer']]]
+  ['increment_0',['increment',['../namespacesanisizer.html#ae96d0a15b46bc1a5893e94896884495a',1,'sanisizer']]],
+  ['is_5fequal_1',['is_equal',['../namespacesanisizer.html#a48da56272ee357d828828ffd58eda482',1,'sanisizer']]],
+  ['is_5fgreater_5fthan_2',['is_greater_than',['../namespacesanisizer.html#a130cca1b1feb23a41a4a6c44dabc01e7',1,'sanisizer']]],
+  ['is_5fgreater_5fthan_5for_5fequal_3',['is_greater_than_or_equal',['../namespacesanisizer.html#a6e29b2bd239d09d23bf296ffa9c9c8a5',1,'sanisizer']]],
+  ['is_5fless_5fthan_4',['is_less_than',['../namespacesanisizer.html#ae9c6a966b9ff5f778c8a604f215461b5',1,'sanisizer']]],
+  ['is_5fless_5fthan_5for_5fequal_5',['is_less_than_or_equal',['../namespacesanisizer.html#aa13ce5afa9f069e2aa89c6495e6c0d50',1,'sanisizer']]]
 ];

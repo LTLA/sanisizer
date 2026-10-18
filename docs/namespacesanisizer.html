@@ -130,9 +130,9 @@ Functions</h2></td></tr>
 <tr class="memitem:abd46ba64586c8de228897cc013def813" id="r_abd46ba64586c8de228897cc013def813"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
 <tr class="memitem:abd46ba64586c8de228897cc013def813"><td class="memTemplItemLeft" align="right" valign="top">constexpr Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#abd46ba64586c8de228897cc013def813">cap</a> (Value_ x)</td></tr>
 <tr class="separator:abd46ba64586c8de228897cc013def813"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacd55d75b924707ee0eaac356261751b" id="r_aacd55d75b924707ee0eaac356261751b"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
-<tr class="memitem:aacd55d75b924707ee0eaac356261751b"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aacd55d75b924707ee0eaac356261751b">pre_cast</a> (Value_ x)</td></tr>
-<tr class="separator:aacd55d75b924707ee0eaac356261751b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93671e112a8dcc39ace5e5aa102eb793" id="r_a93671e112a8dcc39ace5e5aa102eb793"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
+<tr class="memitem:a93671e112a8dcc39ace5e5aa102eb793"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a93671e112a8dcc39ace5e5aa102eb793">can_cast</a> (Value_ x)</td></tr>
+<tr class="separator:a93671e112a8dcc39ace5e5aa102eb793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acde4a5b2077777f0c0d0b0761183b29b" id="r_acde4a5b2077777f0c0d0b0761183b29b"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
 <tr class="memitem:acde4a5b2077777f0c0d0b0761183b29b"><td class="memTemplItemLeft" align="right" valign="top">constexpr Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acde4a5b2077777f0c0d0b0761183b29b">cast</a> (Value_ x)</td></tr>
 <tr class="separator:acde4a5b2077777f0c0d0b0761183b29b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,9 +187,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a8d460a84022487d3460671e5ff96f163" id="r_a8d460a84022487d3460671e5ff96f163"><td class="memTemplParams" colspan="2">template&lt;typename Size_ , typename FirstIndex_ , typename FirstExtent_ , typename SecondIndex_ , typename... Remaining_&gt; </td></tr>
 <tr class="memitem:a8d460a84022487d3460671e5ff96f163"><td class="memTemplItemLeft" align="right" valign="top">constexpr Size_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8d460a84022487d3460671e5ff96f163">nd_offset</a> (FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</td></tr>
 <tr class="separator:a8d460a84022487d3460671e5ff96f163"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbe1d9850c8873fe0661a686ecf3a10b" id="r_acbe1d9850c8873fe0661a686ecf3a10b"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
-<tr class="memitem:acbe1d9850c8873fe0661a686ecf3a10b"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acbe1d9850c8873fe0661a686ecf3a10b">does_overflow</a> (Value_ x)</td></tr>
-<tr class="separator:acbe1d9850c8873fe0661a686ecf3a10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7561ffa1b7335ac39b5a02063890f1da" id="r_a7561ffa1b7335ac39b5a02063890f1da"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename First_ , typename ... Args_&gt; </td></tr>
 <tr class="memitem:a7561ffa1b7335ac39b5a02063890f1da"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::optional&lt; Dest_ &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7561ffa1b7335ac39b5a02063890f1da">product_maybe</a> (First_ first, Args_... more)</td></tr>
 <tr class="separator:a7561ffa1b7335ac39b5a02063890f1da"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -257,6 +254,47 @@ template&lt;typename Container_ , typename Value_ &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>x</code> as the container's size's type. </dd></dl>
+
+</div>
+</div>
+<a id="a93671e112a8dcc39ace5e5aa102eb793" name="a93671e112a8dcc39ace5e5aa102eb793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93671e112a8dcc39ace5e5aa102eb793">&#9670;&#160;</a></span>can_cast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Dest_ , typename Value_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sanisizer::can_cast </td>
+          <td>(</td>
+          <td class="paramtype">Value_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>
+    <tr><td class="paramname">Value_</td><td>Integer type, <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Representation of an integer value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether <code>x</code>'s value would overflow/wraparound when stored in <code>Dest_</code>. </dd></dl>
 
 </div>
 </div>
@@ -381,47 +419,6 @@ template&lt;class Container_ , typename Value_ , typename ... Args_&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An instance of the container, constructed to be of size <code>x</code>. </dd></dl>
-
-</div>
-</div>
-<a id="acbe1d9850c8873fe0661a686ecf3a10b" name="acbe1d9850c8873fe0661a686ecf3a10b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbe1d9850c8873fe0661a686ecf3a10b">&#9670;&#160;</a></span>does_overflow()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Dest_ , typename Value_ &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool sanisizer::does_overflow </td>
-          <td>(</td>
-          <td class="paramtype">Value_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>
-    <tr><td class="paramname">Value_</td><td>Integer type, <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>Representation of an integer value. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Whether <code>x</code>'s value would overflow/wraparound when stored in <code>Dest_</code>. </dd></dl>
 
 </div>
 </div>
@@ -992,54 +989,6 @@ template&lt;typename Dest_ , typename Value_ &gt; </div>
 
 </div>
 </div>
-<a id="aacd55d75b924707ee0eaac356261751b" name="aacd55d75b924707ee0eaac356261751b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacd55d75b924707ee0eaac356261751b">&#9670;&#160;</a></span>pre_cast()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename Dest_ , typename Value_ &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto sanisizer::pre_cast </td>
-          <td>(</td>
-          <td class="paramtype">Value_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Check if a non-negative integer can be cast to a destination type, typically the size type of a C-style array or STL container. This is useful for chaining together checks without actually doing the cast itself.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Dest_</td><td>Integer type of the destination. </td></tr>
-    <tr><td class="paramname">Value_</td><td>Integer type, <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>Non-negative value to be casted.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>x</code>, if the maximum value of <code>x</code> is less than or equal to that of <code>Dest_</code>. Otherwise, a <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> object is returned that contains <code>x</code> and sets the maximum value to that of <code>Dest</code> (see <code><a class="el" href="#a7ea759a528a70c08c2558f9531397e33">set_bound_by_type()</a></code>).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::overflow_error</td><td>Thrown if overflow/wraparound would occur. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ace3b6841d0fd165ae3f47d07a713a15c" name="ace3b6841d0fd165ae3f47d07a713a15c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ace3b6841d0fd165ae3f47d07a713a15c">&#9670;&#160;</a></span>product()</h2>
 
@@ -1363,10 +1312,11 @@ template&lt;typename Max_ , Max_ new_max_, typename Value_ &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd><code>x</code> if it is already known to be less than or equal to <code>new_max_</code>, otherwise, an <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> that declares this constraint.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::domain_error</td><td>Thrown if the value of <code>x</code> is greater than <code>new_max_</code>. </td></tr>
+    <tr><td class="paramname">std::domain_error</td><td>Thrown if the value of <code>x</code> is greater than <code>new_max_</code>.</td></tr>
   </table>
   </dd>
 </dl>
+<p>If <code>x</code> is known to be less than or equal to <code>max_</code>, users can directly call the <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> constructor to avoid the check. </p>
 
 </div>
 </div>

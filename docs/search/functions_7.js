@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['increment_0',['increment',['../namespacesanisizer.html#ae96d0a15b46bc1a5893e94896884495a',1,'sanisizer']]],
-  ['is_5fequal_1',['is_equal',['../namespacesanisizer.html#a48da56272ee357d828828ffd58eda482',1,'sanisizer']]],
-  ['is_5fgreater_5fthan_2',['is_greater_than',['../namespacesanisizer.html#a130cca1b1feb23a41a4a6c44dabc01e7',1,'sanisizer']]],
-  ['is_5fgreater_5fthan_5for_5fequal_3',['is_greater_than_or_equal',['../namespacesanisizer.html#a6e29b2bd239d09d23bf296ffa9c9c8a5',1,'sanisizer']]],
-  ['is_5fless_5fthan_4',['is_less_than',['../namespacesanisizer.html#ae9c6a966b9ff5f778c8a604f215461b5',1,'sanisizer']]],
-  ['is_5fless_5fthan_5for_5fequal_5',['is_less_than_or_equal',['../namespacesanisizer.html#aa13ce5afa9f069e2aa89c6495e6c0d50',1,'sanisizer']]]
+  ['max_0',['max',['../namespacesanisizer.html#a692dab8520331e20e6d2361439a53450',1,'sanisizer']]],
+  ['min_1',['min',['../namespacesanisizer.html#aa483a5cd81fb958f0cd7198752030076',1,'sanisizer']]]
 ];

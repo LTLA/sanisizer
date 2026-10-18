@@ -20,7 +20,8 @@
     <name>cast.hpp</name>
     <path>sanisizer/</path>
     <filename>cast_8hpp.html</filename>
-    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
+    <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
+    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -79,13 +80,6 @@
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
-    <name>overflow.hpp</name>
-    <path>sanisizer/</path>
-    <filename>overflow_8hpp.html</filename>
-    <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
-    <namespace>sanisizer</namespace>
-  </compound>
-  <compound kind="file">
     <name>product.hpp</name>
     <path>sanisizer/</path>
     <filename>product_8hpp.html</filename>
@@ -100,7 +94,7 @@
     <path>sanisizer/</path>
     <filename>ptrdiff_8hpp.html</filename>
     <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
-    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
+    <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
@@ -110,7 +104,6 @@
     <includes id="cast_8hpp" name="cast.hpp" local="yes" import="no" module="no" objc="no">cast.hpp</includes>
     <includes id="sum_8hpp" name="sum.hpp" local="yes" import="no" module="no" objc="no">sum.hpp</includes>
     <includes id="product_8hpp" name="product.hpp" local="yes" import="no" module="no" objc="no">product.hpp</includes>
-    <includes id="overflow_8hpp" name="overflow.hpp" local="yes" import="no" module="no" objc="no">overflow.hpp</includes>
     <includes id="Bounded_8hpp" name="Bounded.hpp" local="yes" import="no" module="no" objc="no">Bounded.hpp</includes>
     <includes id="Constant_8hpp" name="Constant.hpp" local="yes" import="no" module="no" objc="no">Constant.hpp</includes>
     <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
@@ -314,10 +307,10 @@
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
-      <type>constexpr auto</type>
-      <name>pre_cast</name>
+      <type>constexpr bool</type>
+      <name>can_cast</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>aacd55d75b924707ee0eaac356261751b</anchor>
+      <anchor>a93671e112a8dcc39ace5e5aa102eb793</anchor>
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
@@ -445,13 +438,6 @@
       <anchorfile>namespacesanisizer.html</anchorfile>
       <anchor>a8d460a84022487d3460671e5ff96f163</anchor>
       <arglist>(FirstIndex_ x1, FirstExtent_ extent1, SecondIndex_ x2, Remaining_... remaining)</arglist>
-    </member>
-    <member kind="function">
-      <type>constexpr bool</type>
-      <name>does_overflow</name>
-      <anchorfile>namespacesanisizer.html</anchorfile>
-      <anchor>acbe1d9850c8873fe0661a686ecf3a10b</anchor>
-      <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::optional&lt; Dest_ &gt;</type>
