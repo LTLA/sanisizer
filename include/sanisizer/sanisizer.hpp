@@ -4,7 +4,6 @@
 #include "cast.hpp"
 #include "sum.hpp"
 #include "product.hpp"
-#include "overflow.hpp"
 #include "Bounded.hpp"
 #include "Constant.hpp"
 #include "comparisons.hpp"

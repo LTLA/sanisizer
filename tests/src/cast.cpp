@@ -8,115 +8,69 @@ typedef std::int8_t i8;
 typedef std::uint8_t u8;
 typedef std::int32_t i32;
 typedef std::uint32_t u32;
+typedef std::int64_t i64;
+typedef std::uint64_t u64;
 
-TEST(PreCast, Integer) {
-    // Returns an integer.
-    EXPECT_EQ(sanisizer::pre_cast<std::uint32_t>((u32)2), 2);
-    EXPECT_EQ(sanisizer::pre_cast<std::int32_t>((i32)3), 3);
-    EXPECT_EQ(sanisizer::pre_cast<std::uint32_t>((i32)4), 4);
+TEST(CanCast, Integer) {
+    // Skip check. 
+    static_assert(sanisizer::can_cast<u32>((u32)2));
+    static_assert(sanisizer::can_cast<i32>((i32)3));
+    static_assert(sanisizer::can_cast<u32>((i32)4));
+    static_assert(sanisizer::can_cast<u32>((u8)200));
+    static_assert(sanisizer::can_cast<i32>((u8)250));
 
-    EXPECT_EQ(sanisizer::pre_cast<std::uint32_t>((u8)200), 200);
-    EXPECT_EQ(sanisizer::pre_cast<std::int32_t>((u8)250), 250);
+    // No skip check, no overflow.
+    static_assert(sanisizer::can_cast<i32>((u32)1));
+    static_assert(sanisizer::can_cast<u8>((u32)10));
+    static_assert(sanisizer::can_cast<i8>((u32)100));
 
-    // Returns a Bounded.
-    EXPECT_EQ(sanisizer::pre_cast<std::int32_t>((u32)1).value, 1);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::int32_t>((u32)1))::max, 2147483647);
-    EXPECT_EQ(sanisizer::pre_cast<std::uint8_t>((u32)10).value, 10);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::uint8_t>((u32)10))::max, 255);
-    EXPECT_EQ(sanisizer::pre_cast<std::int8_t>((u32)100).value, 100);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::int8_t>((u32)100))::max, 127);
-
-    // Works at compile time.
-    static_assert(sanisizer::pre_cast<std::uint8_t>((i8)10) == 10);
-    static_assert(sanisizer::pre_cast<std::int8_t>((u8)10).value == 10);
-    static_assert(decltype(sanisizer::pre_cast<std::int8_t>((u8)10))::max == 127);
-
-    // Types are preserved.
-    static_assert(std::is_same<decltype(sanisizer::pre_cast<std::uint8_t>((i8)10)), i8>::value);
-    static_assert(std::is_same<decltype(sanisizer::pre_cast<std::int8_t>((u8)10).value), u8>::value);
-
-    // Checking cast failure for both signed and unsigned destinations.
-    {
-        bool failed = false;
-        try {
-            sanisizer::pre_cast<std::uint8_t>(256);
-        } catch (std::overflow_error& e) {
-            failed = true;
-        }
-        EXPECT_TRUE(failed);
-    }
-
-    {
-        bool failed = false;
-        try {
-            sanisizer::pre_cast<std::int8_t>(128);
-        } catch (std::overflow_error& e) {
-            failed = true;
-        }
-        EXPECT_TRUE(failed);
-    }
+    // Overflow.
+    static_assert(!sanisizer::can_cast<u8>(256));
+    static_assert(!sanisizer::can_cast<i8>(128));
 }
 
-TEST(PreCast, Bounded) {
-    // No-op as Bound is less than the limit.
-    EXPECT_EQ(sanisizer::pre_cast<std::int64_t>(sanisizer::Attestation<std::int32_t, 200>(100)).value, 100);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::int64_t>(sanisizer::Attestation<std::int32_t, 200>(100)))::max, 200);
-    EXPECT_EQ(sanisizer::pre_cast<std::int64_t>(sanisizer::Attestation<std::uint8_t, 200>(100)).value, 100);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::int64_t>(sanisizer::Attestation<std::uint8_t, 200>(100)))::max, 200);
+TEST(CanCast, Bounded) {
+    // Skip check. 
+    static_assert(sanisizer::can_cast<i64>(sanisizer::Attestation<i32, 200>(100)));
+    static_assert(sanisizer::can_cast<i64>(sanisizer::Attestation<u8, 200>(100)));
+    static_assert(sanisizer::can_cast<u8>(sanisizer::Attestation<i32, 200>(100)));
+    static_assert(sanisizer::can_cast<u8>(sanisizer::Attestation<u8, 200>(100)));
 
-    // Returns a new Bounded.
-    EXPECT_EQ(sanisizer::pre_cast<std::int8_t>(sanisizer::Attestation<std::int32_t, 200>(100)).value, 100);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::int8_t>(sanisizer::Attestation<std::int32_t, 200>(100)))::max, 127);
-    EXPECT_EQ(sanisizer::pre_cast<std::int8_t>(sanisizer::Attestation<std::uint8_t, 200>(100)).value, 100);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::int8_t>(sanisizer::Attestation<std::uint8_t, 200>(100)))::max, 127);
+    // No skip check, no overflow.
+    static_assert(sanisizer::can_cast<i32>(sanisizer::Attestation<u32, 3000000000>(100)));
+    static_assert(sanisizer::can_cast<i8>(sanisizer::Attestation<i32, 200>(100)));
 
-    // Works at compile time.
-    static_assert(sanisizer::pre_cast<std::int64_t>(sanisizer::Attestation<std::int32_t, 200>(100)).value == 100);
-    static_assert(decltype(sanisizer::pre_cast<std::int64_t>(sanisizer::Attestation<std::int32_t, 200>(100)))::max == 200);
-    static_assert(sanisizer::pre_cast<std::int8_t>(sanisizer::Attestation<std::int32_t, 200>(100)).value == 100);
-    static_assert(decltype(sanisizer::pre_cast<std::int8_t>(sanisizer::Attestation<std::int32_t, 200>(100)))::max == 127);
-
-    // Types are preserved.
-    static_assert(std::is_same<decltype(sanisizer::pre_cast<std::int64_t>(sanisizer::Attestation<std::int32_t, 200>(100)).value), std::int32_t>::value);
-    static_assert(std::is_same<decltype(sanisizer::pre_cast<std::int8_t>(sanisizer::Attestation<std::int16_t, 200>(100)).value), std::int16_t>::value);
-
-    bool failed = false;
-    try {
-        sanisizer::pre_cast<std::uint8_t>(sanisizer::Attestation<std::int64_t, 1000>(1000));
-    } catch (std::overflow_error& e) {
-        failed = true;
-    }
-    EXPECT_TRUE(failed);
+    // Overflow.
+    static_assert(!sanisizer::can_cast<u8>(sanisizer::Attestation<i64, 1000>(1000)));
+    static_assert(!sanisizer::can_cast<i8>(sanisizer::Attestation<u32, 200>(150)));
 }
 
-TEST(PreCast, Constant) {
+TEST(CanCast, Constant) {
     // Must be a no-op if it's successful.
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::int64_t>(sanisizer::Constant<std::int32_t, 200>()))::value, 200);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::int64_t>(sanisizer::Constant<std::uint8_t, 200>()))::value, 200);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::uint8_t>(sanisizer::Constant<std::int32_t, 200>()))::value, 200);
-    EXPECT_EQ(decltype(sanisizer::pre_cast<std::uint8_t>(sanisizer::Constant<std::uint8_t, 200>()))::value, 200);
+    static_assert(sanisizer::can_cast<i64>(sanisizer::Constant<i32, 200>()));
+    static_assert(sanisizer::can_cast<i64>(sanisizer::Constant<u8, 200>()));
+    static_assert(sanisizer::can_cast<u8>(sanisizer::Constant<i32, 200>()));
+    static_assert(sanisizer::can_cast<u8>(sanisizer::Constant<u8, 200>()));
 
-    // Works at compile time.
-    static_assert(decltype(sanisizer::pre_cast<std::int64_t>(sanisizer::Constant<std::int32_t, 200>()))::value == 200);
-    static_assert(decltype(sanisizer::pre_cast<std::uint8_t>(sanisizer::Constant<std::int32_t, 200>()))::value == 200);
-
-    // Types are preserved.
-    static_assert(std::is_same<decltype(decltype(sanisizer::pre_cast<std::int64_t>(sanisizer::Constant<std::int32_t, 200>()))::value), const std::int32_t>::value);
-    static_assert(std::is_same<decltype(decltype(sanisizer::pre_cast<std::uint8_t>(sanisizer::Constant<std::int16_t, 200>()))::value), const std::int16_t>::value);
-
-    bool failed = false;
-    try {
-        sanisizer::pre_cast<std::uint8_t>(sanisizer::Constant<std::int64_t, 1000>());
-    } catch (std::overflow_error& e) {
-        failed = true;
-    }
-    EXPECT_TRUE(failed);
+    static_assert(!sanisizer::can_cast<u8>(sanisizer::Constant<i64, 1000>()));
+    static_assert(!sanisizer::can_cast<i32>(sanisizer::Constant<u32, 3000000000>()));
 }
 
 TEST(Cast, Basic) {
+    static_assert(sanisizer::cast<i32>((u8)200) == 200);
+    static_assert(sanisizer::cast<u8>((i32)200) == 200);
+
     // Always returns an integer type.
-    EXPECT_EQ(sanisizer::cast<std::int32_t>((u8)200), 200);
-    EXPECT_EQ(sanisizer::cast<std::uint8_t>((i32)200), 200);
-    EXPECT_EQ(sanisizer::cast<std::int64_t>(sanisizer::Attestation<std::int32_t, 200>(100)), 100);
-    EXPECT_EQ(sanisizer::cast<std::uint8_t>(sanisizer::Attestation<std::int32_t, 200>(100)), 100);
+    static_assert(sanisizer::cast<i64>(sanisizer::Attestation<i32, 200>(100)) == 100);
+    static_assert(sanisizer::cast<u8>(sanisizer::Attestation<i32, 200>(100)) == 100);
+    static_assert(sanisizer::cast<i64>(sanisizer::Constant<i32, 200>()) == 200);
+    static_assert(sanisizer::cast<u8>(sanisizer::Constant<i32, 200>()) == 200);
+
+    bool failed = false;
+    try {
+        sanisizer::cast<i32>(u32(3000000000));
+    } catch (std::overflow_error&) {
+        failed = true;
+    }
+    EXPECT_TRUE(failed);
 }

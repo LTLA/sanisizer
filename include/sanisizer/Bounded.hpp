@@ -33,6 +33,9 @@ struct Bounded {
     /**
      * @param x Value of the integer.
      * This should be no greater than `max_`.
+     *
+     * This constructor assumes that `x` is not greater than `max_`.
+     * If this may not be the case, use `set_bound()` instead to perform a run-time check.
      */
     constexpr Bounded(Integer_ x) : value(x) {
         assert(x <= max_);
@@ -97,6 +100,9 @@ constexpr auto get_value(const Value_);
 
 template<typename Value_>
 constexpr auto get_max();
+
+template<typename Left_, typename Right_>
+constexpr bool is_greater_than(Left_, Right_);
 /** 
  * @endcond
  */
@@ -110,17 +116,20 @@ constexpr auto get_max();
  * otherwise, an `Bounded` that declares this constraint.
  *
  * @throw std::domain_error Thrown if the value of `x` is greater than `new_max_`.
+ *
+ * If `x` is known to be less than or equal to `max_`,
+ * users can directly call the `Bounded` constructor to avoid the check. 
  */
 template<typename Max_, Max_ new_max_, typename Value_>
 constexpr auto set_bound(Value_ x) {
-    if constexpr(as_unsigned(get_max<Value_>()) <= as_unsigned(new_max_)) {
-        return x; 
-    } else {
+    if constexpr(is_greater_than(get_max<Value_>(), new_max_)) {
         const auto val = get_value(x);
-        if (as_unsigned(val) > as_unsigned(new_max_)) {
+        if (is_greater_than(val, new_max_)) {
             throw std::domain_error("input value exceeds the declared upper bound");
         }
-        return Bounded<I<decltype(val)>, static_cast<I<decltype(val)> >(new_max_)>(val);
+        return Bounded<I<decltype(val)>, new_max_>(val);
+    } else {
+        return x; 
     }
 }
 
@@ -135,7 +144,7 @@ constexpr auto set_bound(Value_ x) {
  */
 template<typename MaxType_, typename Value_>
 constexpr auto set_bound_by_type(Value_ x) {
-    return set_bound<MaxType_, std::numeric_limits<MaxType_>::max()>(x);
+    return set_bound<MaxType_, get_max<MaxType_>()>(x);
 }
 
 /** 

@@ -2,7 +2,8 @@
 #define SANISIZER_CAST_HPP
 
 #include "utils.hpp"
-#include "overflow.hpp"
+#include "comparisons.hpp"
+#include "generics.hpp"
 
 /**
  * @file cast.hpp
@@ -12,38 +13,31 @@
 namespace sanisizer {
 
 /**
- * Check if a non-negative integer can be cast to a destination type, typically the size type of a C-style array or STL container. 
- * This is useful for chaining together checks without actually doing the cast itself.
- * 
  * @tparam Dest_ Integer type of the destination.
  * @tparam Value_ Integer type, `Bounded` or `Constant`.
- *
- * @param x Non-negative value to be casted.
- *
- * @return `x`, if the maximum value of `x` is less than or equal to that of `Dest_`.
- * Otherwise, a `Bounded` object is returned that contains `x` and sets the maximum value to that of `Dest` (see `set_bound_by_type()`).
- *
- * @throw std::overflow_error Thrown if overflow/wraparound would occur.
+ * @param x Representation of an integer value. 
+ * @return Whether `x`'s value would overflow/wraparound when stored in `Dest_`.
  */
 template<typename Dest_, typename Value_>
-constexpr auto pre_cast(Value_ x) {
-    if constexpr(get_max<Value_>() <= get_max<Dest_>()) {
-        return x;
+constexpr bool can_cast(Value_ x) {
+    static_assert(std::is_integral<Dest_>::value);
+    constexpr auto dest_maxed = get_max<Dest_>();
+    if constexpr(is_less_than_or_equal(get_max<Value_>(), dest_maxed)) {
+        return true;
     } else {
-        if (does_overflow<Dest_>(x)) {
-            throw std::overflow_error("detected " + failure<Dest_>() + " during integer cast");
-        }
-        return set_bound_by_type<Dest_>(get_value(x));
+        return is_less_than_or_equal(get_value(x), dest_maxed);
     }
 }
 
 /**
  * @cond
  */
-// Back-compatibility.
 template<typename Dest_, typename Value_>
-constexpr auto can_cast(Value_ x) {
-    return get_value(pre_cast<Dest_>(x));
+constexpr bool check_overflow(Value_ x) {
+    if (!can_cast<Dest_>(x)) {
+        throw std::overflow_error("detected " + failure<Dest_>() + " for integer cast");
+    }
+    return false;
 }
 /**
  * @endcond
@@ -63,7 +57,8 @@ constexpr auto can_cast(Value_ x) {
  */
 template<typename Dest_, typename Value_>
 constexpr Dest_ cast(Value_ x) {
-    return can_cast<Dest_>(x);
+    check_overflow<Dest_>(x);
+    return get_value(x);
 }
 
 }

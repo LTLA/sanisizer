@@ -29,7 +29,6 @@ add_executable(libtest
     src/Bounded.cpp
     src/Constant.cpp
     src/generics.cpp
-    src/overflow.cpp
     src/class.cpp
 )
 

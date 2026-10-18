@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "sanisizer/nd_offset.hpp"
+#include "sanisizer/comparisons.hpp"
 
 #include <cstdint>
 
