@@ -1,11 +1,11 @@
 #ifndef SANISIZER_CAP_HPP
 #define SANISIZER_CAP_HPP
 
-#include <limits>
 #include <type_traits>
 
 #include "utils.hpp"
 #include "generics.hpp"
+#include "comparisons.hpp"
 
 /**
  * @file cap.hpp
@@ -28,13 +28,12 @@ namespace sanisizer {
 template<typename Dest_, typename Value_>
 constexpr Dest_ cap(Value_ x) {
     static_assert(std::is_integral<Dest_>::value);
-    constexpr auto maxed = std::numeric_limits<Dest_>::max();
-    constexpr auto umaxed = as_unsigned(maxed);
+    constexpr auto maxed = get_max<Dest_>();
 
     const auto val = get_value(x);
-    if constexpr(umaxed >= as_unsigned(get_max<Value_>())) {
+    if constexpr(is_greater_than_or_equal(maxed, get_max<Value_>())) {
         return val;
-    } else if (umaxed >= as_unsigned(val)) {
+    } else if (is_greater_than_or_equal(maxed, val)) {
         return val;
     } else {
         return maxed;

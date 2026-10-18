@@ -12,6 +12,23 @@
 namespace sanisizer {
 
 /**
+ * @cond
+ */
+// A little wrapper for convenience.
+template<typename Integer_>
+constexpr auto as_unsigned(Integer_ x) {
+    static_assert(std::is_integral<Integer_>::value);
+    if constexpr(std::is_unsigned<Integer_>::value) {
+        return x;
+    } else {
+        return static_cast<typename std::make_unsigned<Integer_>::type>(x);
+    }
+}
+/**
+ * @endcond
+ */
+
+/**
  * @tparam Left_ Integer type of the value on the left hand side of the comparison.
  * This may also be a `Constant` or `Bounded`.
  * @tparam Right_ Integer type of the value on the right hand side of the comparison.
