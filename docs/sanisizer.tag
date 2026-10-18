@@ -14,6 +14,7 @@
     <path>sanisizer/</path>
     <filename>cap_8hpp.html</filename>
     <includes id="generics_8hpp" name="generics.hpp" local="yes" import="no" module="no" objc="no">generics.hpp</includes>
+    <includes id="comparisons_8hpp" name="comparisons.hpp" local="yes" import="no" module="no" objc="no">comparisons.hpp</includes>
     <namespace>sanisizer</namespace>
   </compound>
   <compound kind="file">
