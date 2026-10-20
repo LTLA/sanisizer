@@ -127,6 +127,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a7ea759a528a70c08c2558f9531397e33" id="r_a7ea759a528a70c08c2558f9531397e33"><td class="memTemplParams" colspan="2">template&lt;typename MaxType_ , typename Value_ &gt; </td></tr>
 <tr class="memitem:a7ea759a528a70c08c2558f9531397e33"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7ea759a528a70c08c2558f9531397e33">set_bound_by_type</a> (Value_ x)</td></tr>
 <tr class="separator:a7ea759a528a70c08c2558f9531397e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cbfcb03b4ef401efb191b96671c4c2a" id="r_a4cbfcb03b4ef401efb191b96671c4c2a"><td class="memTemplParams" colspan="2">template&lt;typename Max_ , Max_ new_max_, typename Value_ &gt; </td></tr>
+<tr class="memitem:a4cbfcb03b4ef401efb191b96671c4c2a"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a4cbfcb03b4ef401efb191b96671c4c2a">set_bound_unsafe</a> (Value_ x)</td></tr>
+<tr class="separator:a4cbfcb03b4ef401efb191b96671c4c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ad3ab45b6827480f54fa6b160e49526" id="r_a8ad3ab45b6827480f54fa6b160e49526"><td class="memTemplParams" colspan="2">template&lt;typename MaxType_ , typename Value_ &gt; </td></tr>
+<tr class="memitem:a8ad3ab45b6827480f54fa6b160e49526"><td class="memTemplItemLeft" align="right" valign="top">constexpr auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a8ad3ab45b6827480f54fa6b160e49526">set_bound_by_type_unsafe</a> (Value_ x)</td></tr>
+<tr class="separator:a8ad3ab45b6827480f54fa6b160e49526"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd46ba64586c8de228897cc013def813" id="r_abd46ba64586c8de228897cc013def813"><td class="memTemplParams" colspan="2">template&lt;typename Dest_ , typename Value_ &gt; </td></tr>
 <tr class="memitem:abd46ba64586c8de228897cc013def813"><td class="memTemplItemLeft" align="right" valign="top">constexpr Dest_&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#abd46ba64586c8de228897cc013def813">cap</a> (Value_ x)</td></tr>
 <tr class="separator:abd46ba64586c8de228897cc013def813"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1309,14 +1315,14 @@ template&lt;typename Max_ , Max_ new_max_, typename Value_ &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>x</code> if it is already known to be less than or equal to <code>new_max_</code>, otherwise, an <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> that declares this constraint.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>x</code> if its maximum value is less than or equal to <code>new_max_</code>. Otherwise, an <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> that declares this constraint.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">std::domain_error</td><td>Thrown if the value of <code>x</code> is greater than <code>new_max_</code>.</td></tr>
   </table>
   </dd>
 </dl>
-<p>If <code>x</code> is known to be less than or equal to <code>max_</code>, users can directly call the <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> constructor to avoid the check. </p>
+<p>If <code>x</code> is known to be less than or equal to <code>max_</code>, users can call <code><a class="el" href="#a4cbfcb03b4ef401efb191b96671c4c2a">set_bound_unsafe()</a></code> to avoid the check. </p>
 
 </div>
 </div>
@@ -1358,7 +1364,93 @@ template&lt;typename MaxType_ , typename Value_ &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><code>x</code> if it is already known to be less than or equal to the maximum value of <code>MaxType_</code>; otherwise, an <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> that declares this constraint. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>x</code> if its maximum value is less than or equal to that of <code>MaxType_</code>. Otherwise, an <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> that declares this constraint.</dd></dl>
+<p>If <code>x</code> is known to be less than or equal to <code>max_</code>, users can call <code><a class="el" href="#a8ad3ab45b6827480f54fa6b160e49526">set_bound_by_type_unsafe()</a></code> to avoid the check. </p>
+
+</div>
+</div>
+<a id="a8ad3ab45b6827480f54fa6b160e49526" name="a8ad3ab45b6827480f54fa6b160e49526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ad3ab45b6827480f54fa6b160e49526">&#9670;&#160;</a></span>set_bound_by_type_unsafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MaxType_ , typename Value_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto sanisizer::set_bound_by_type_unsafe </td>
+          <td>(</td>
+          <td class="paramtype">Value_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Variant of <code><a class="el" href="#a4cbfcb03b4ef401efb191b96671c4c2a">set_bound_unsafe()</a></code> that uses the maximum value of an integer type.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">MaxType_</td><td>Integer type of the new compile-time maximum. </td></tr>
+    <tr><td class="paramname">Value_</td><td>Integer type, <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Representation of an integer value. This should be less than or equal to the maximum value of <code>MaxType_</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>x</code> if its maximum value is less than or equal to that of <code>MaxType_</code>. Otherwise, an <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> that declares this constraint. </dd></dl>
+
+</div>
+</div>
+<a id="a4cbfcb03b4ef401efb191b96671c4c2a" name="a4cbfcb03b4ef401efb191b96671c4c2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cbfcb03b4ef401efb191b96671c4c2a">&#9670;&#160;</a></span>set_bound_unsafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Max_ , Max_ new_max_, typename Value_ &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto sanisizer::set_bound_unsafe </td>
+          <td>(</td>
+          <td class="paramtype">Value_</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Variant of <code><a class="el" href="#ab92b5616dafc2a69591b24e81fdbc50b">set_bound()</a></code> that assumes <code>x &lt;= new_max_</code> and does not throw exceptions.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Max_</td><td>Integer type of the new compile-time maximum. </td></tr>
+    <tr><td class="paramname">new_max_</td><td>The new compile-time maximum. </td></tr>
+    <tr><td class="paramname">Value_</td><td>Integer type, <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> or <code><a class="el" href="structsanisizer_1_1Constant.html" title="Integer constant.">Constant</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Representation of an integer value. This should be no greater than <code>new_max_</code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>x</code> if its maximum value is less than or equal to <code>new_max_</code>. Otherwise, an <code><a class="el" href="structsanisizer_1_1Bounded.html" title="Bound the maximum possible value of an integer.">Bounded</a></code> that declares this constraint. </dd></dl>
 
 </div>
 </div>

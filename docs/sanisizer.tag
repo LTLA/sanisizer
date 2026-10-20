@@ -301,6 +301,20 @@
       <arglist>(Value_ x)</arglist>
     </member>
     <member kind="function">
+      <type>constexpr auto</type>
+      <name>set_bound_unsafe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a4cbfcb03b4ef401efb191b96671c4c2a</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
+      <type>constexpr auto</type>
+      <name>set_bound_by_type_unsafe</name>
+      <anchorfile>namespacesanisizer.html</anchorfile>
+      <anchor>a8ad3ab45b6827480f54fa6b160e49526</anchor>
+      <arglist>(Value_ x)</arglist>
+    </member>
+    <member kind="function">
       <type>constexpr Dest_</type>
       <name>cap</name>
       <anchorfile>namespacesanisizer.html</anchorfile>
