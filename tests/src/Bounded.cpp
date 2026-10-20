@@ -66,6 +66,13 @@ TEST(SetBoundByType, IntegerNoOp) {
         static_assert(std::is_same<decltype(thing), i32>::value);
         EXPECT_EQ(thing, 2147483647);
     }
+
+    // Works when unsafe.
+    {
+        constexpr auto thing = sanisizer::set_bound_by_type_unsafe<u32>(u8(100));
+        static_assert(std::is_same<decltype(thing), const u8>::value);
+        static_assert(thing == 100);
+    }
 }
 
 TEST(SetBoundByType, IntegerOp) {
@@ -93,6 +100,15 @@ TEST(SetBoundByType, IntegerOp) {
         static_assert(std::is_same<typename decltype(thing)::Integer, u32>::value);
         EXPECT_EQ(sanisizer::get_value(thing), 1000);
         static_assert(sanisizer::get_max<decltype(thing)>() == 2147483647);
+    }
+
+    // Works when unsafe.
+    {
+        constexpr auto thing = sanisizer::set_bound_by_type_unsafe<i8>(u32(100));
+        static_assert(sanisizer::is_Bounded<decltype(thing)>::value);
+        static_assert(std::is_same<typename decltype(thing)::Integer, u32>::value);
+        EXPECT_EQ(sanisizer::get_value(thing), 100);
+        static_assert(sanisizer::get_max<decltype(thing)>() == 127);
     }
 }
 
@@ -144,6 +160,15 @@ TEST(SetBoundByType, BoundedNoOp) {
         static_assert(std::is_same<decltype(thing.value), u32>::value);
         static_assert(decltype(thing)::max == 2000000000u);
     }
+
+    // Works when unsafe.
+    {
+        constexpr auto thing = sanisizer::set_bound_by_type_unsafe<i32>(sanisizer::Bounded<u8, 200>(100));
+        static_assert(sanisizer::is_Bounded<decltype(thing)>::value);
+        static_assert(std::is_same<typename decltype(thing)::Integer, u8>::value);
+        EXPECT_EQ(sanisizer::get_value(thing), 100);
+        static_assert(sanisizer::get_max<decltype(thing)>() == 200);
+    }
 }
 
 TEST(SetBoundByType, BoundedOp) {
@@ -171,6 +196,15 @@ TEST(SetBoundByType, BoundedOp) {
         static_assert(std::is_same<typename decltype(thing)::Integer, u32>::value);
         EXPECT_EQ(sanisizer::get_value(thing), 1000000000);
         static_assert(sanisizer::get_max<decltype(thing)>() == 2147483647);
+    }
+
+    // Works when unsafe.
+    {
+        constexpr auto thing = sanisizer::set_bound_by_type_unsafe<i8>(sanisizer::Bounded<u8, 200>(100));
+        static_assert(sanisizer::is_Bounded<decltype(thing)>::value);
+        static_assert(std::is_same<typename decltype(thing)::Integer, u8>::value);
+        EXPECT_EQ(sanisizer::get_value(thing), 100);
+        static_assert(sanisizer::get_max<decltype(thing)>() == 127);
     }
 }
 
@@ -221,6 +255,14 @@ TEST(SetBoundByType, ConstantNoOp) {
         static_assert(sanisizer::is_Constant<decltype(thing)>::value);
         static_assert(std::is_same<typename decltype(thing)::Integer, i32>::value);
         EXPECT_EQ(decltype(thing)::value, 1000000000);
+    }
+
+    // Same when unsafe.
+    {
+        auto thing = sanisizer::set_bound_by_type_unsafe<u32>(sanisizer::Constant<i32, 100000>());
+        static_assert(sanisizer::is_Constant<decltype(thing)>::value);
+        static_assert(std::is_same<typename decltype(thing)::Integer, i32>::value);
+        EXPECT_EQ(decltype(thing)::value, 100000);
     }
 }
 
