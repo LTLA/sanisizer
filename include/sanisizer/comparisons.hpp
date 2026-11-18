@@ -1,6 +1,8 @@
 #ifndef SANISIZER_COMPARISONS_HPP
 #define SANISIZER_COMPARISONS_HPP
 
+#include <type_traits>
+
 #include "utils.hpp"
 #include "generics.hpp"
 
@@ -14,7 +16,12 @@ namespace sanisizer {
 /**
  * @cond
  */
-// A little wrapper for convenience.
+// We convert all values to the appropriate unsigned integers to avoid warnings about comparing differently signed integers.
+// In theory, this performs two unnecessary casts when comparing two signed integers.
+// In practice, any decent compiler will just optimize this away by reinterpreting the bits of the signed integer.
+// Then it's just a simple matter of zero-extending the smaller integer to the larger integer.
+//
+// To that end, we implement a little wrapper for conveniently casting to each integer's unsigned type (if it isn't already).
 template<typename Integer_>
 constexpr auto as_unsigned(Integer_ x) {
     static_assert(std::is_integral<Integer_>::value);
@@ -123,9 +130,11 @@ template<typename First_, typename Second_>
 constexpr auto min(First_ first, Second_ second) {
     const auto fval = get_value(first);
     const auto sval = get_value(second);
-    const bool first_larger = as_unsigned(fval) > as_unsigned(sval);
+    const bool first_larger = is_greater_than(fval, sval);
 
-    if constexpr(as_unsigned(get_max<I<decltype(fval)> >()) > as_unsigned(get_max<I<decltype(sval)> >())) {
+    // Deliberately using decltype(fval) instead of First_, and same with sval and Second_.
+    // This ensures that we use the actual smaller integer type and ignore any Bounds.
+    if constexpr(is_greater_than(get_max<I<decltype(fval)> >(), get_max<I<decltype(sval)> >())) {
         if (first_larger) {
             return sval;
         } else {
@@ -155,9 +164,11 @@ template<typename First_, typename Second_>
 constexpr auto max(First_ first, Second_ second) {
     const auto fval = get_value(first);
     const auto sval = get_value(second);
-    const bool first_larger = as_unsigned(fval) > as_unsigned(sval);
+    const bool first_larger = is_greater_than(fval, sval);
 
-    if constexpr(as_unsigned(get_max<I<decltype(fval)> >()) > as_unsigned(get_max<I<decltype(sval)> >())) {
+    // Deliberately using decltype(fval) instead of First_, and same with sval and Second_.
+    // This ensures that we use the actual larger integer type and ignore any Bounds.
+    if constexpr(is_greater_than(get_max<I<decltype(fval)> >(), get_max<I<decltype(sval)> >())) {
         if (first_larger) {
             return fval;
         } else {
