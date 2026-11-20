@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(sanisizer
-    VERSION 0.2.2
+project(
+    sanisizer
+    VERSION 0.3.0
     DESCRIPTION "Sanitize sizes to avoid integer overflow"
-    LANGUAGES CXX)
+    LANGUAGES CXX
+)
 
 set(CMAKE_CXX_STANDARD 17)
 

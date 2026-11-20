@@ -56,7 +56,7 @@ struct Bounded {
 };
 
 /**
- * Default case for checking whether `Value_` is a `Bounded`.
+ * @brief Default case for checking whether `Value_` is a `Bounded`.
  *
  * @tparam Value_ Type to be queried.
  */
@@ -69,7 +69,7 @@ struct is_Bounded {
 };
 
 /**
- * Positive case for checking whether a class instace is a `Bounded`.
+ * @brief Positive case for checking whether a class instace is a `Bounded`.
  *
  * @tparam Integer_ See documentation for `Bounded`.
  * @tparam max_ See documentation for `Bounded`.

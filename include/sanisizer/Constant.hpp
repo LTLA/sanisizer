@@ -38,7 +38,7 @@ struct Constant {
 };
 
 /**
- * Default case for checking whether `Value_` is a `Constant`.
+ * @brief Default case for checking whether `Value_` is a `Constant`.
  *
  * @tparam Value_ Type to be queried.
  */
@@ -51,7 +51,7 @@ struct is_Constant {
 };
 
 /**
- * Positive case for checking whether a class instace is a `Constant`.
+ * @brief Positive case for checking whether a class instace is a `Constant`.
  *
  * @tparam Integer_ See documentation for `Constant`.
  * @tparam value_ See documentation for `Constant`.
