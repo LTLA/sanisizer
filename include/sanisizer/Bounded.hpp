@@ -183,7 +183,7 @@ constexpr auto set_bound_unsafe(Value_ x) {
  */
 template<typename MaxType_, typename Value_>
 constexpr auto set_bound_by_type_unsafe(Value_ x) {
-    return set_bound<MaxType_, get_max<MaxType_>()>(x);
+    return set_bound_unsafe<MaxType_, get_max<MaxType_>()>(x);
 }
 
 /** 
